@@ -10,16 +10,17 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#B49D95',
-          dark: '#9D8680',
-          light: '#D4C4BF',
+          DEFAULT: '#D8A7B1',
+          dark: '#C48A96',
+          light: '#EDD3D9',
         },
         accent: {
-          gold: '#C9A86A',
-          gold_dark: '#B39654',
+          rose: '#F8EEF0',
+          gold: '#CDA882',
+          gold_dark: '#B89566',
         },
         neutral: {
-          cream: '#FAF9F7',
+          cream: '#FFF9FA',
         },
       },
       fontFamily: {

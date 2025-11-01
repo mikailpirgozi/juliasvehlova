@@ -4,15 +4,34 @@
 
 @layer base {
   :root {
-    --primary: 180 157 149; /* #B49D95 */
-    --primary-dark: 157 134 128;
-    --primary-light: 212 196 191;
-    --accent-gold: 201 168 106;
-    --cream: 250 249 247;
+    --primary: 216 167 177; /* #D8A7B1 */
+    --primary-dark: 196 138 150; /* #C48A96 */
+    --primary-light: 237 211 217; /* #EDD3D9 */
+    --accent-rose: 248 238 240; /* #F8EEF0 */
+    --accent-gold: 205 168 130; /* #CDA882 */
+    --cream: 255 249 250; /* #FFF9FA */
     --radius: 0.5rem;
   }
 
   body {
     @apply bg-white text-gray-900 font-sans antialiased;
+  }
+
+  /* Modern scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--cream));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--primary));
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--primary-dark));
   }
 }

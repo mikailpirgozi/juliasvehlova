@@ -99,20 +99,20 @@ export function HeroSection(): JSX.Element {
               {/* Invisible interactive area */}
               <div className="absolute inset-0" />
               
-              {/* Subtle glow border on hover */}
-              <div className="absolute inset-0 rounded-xl border-2 border-white/0 group-hover:border-white/60 transition-all duration-500 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.5)]" />
+              {/* Subtle glow border on hover - updated with rose gold */}
+              <div className="absolute inset-0 rounded-xl border-2 border-white/0 group-hover:border-white/70 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(216,167,177,0.6)]" />
               
-              {/* Modern tooltip badge */}
+              {/* Modern tooltip badge with rose gold accent */}
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
                 <div className="relative">
-                  {/* Glassmorphism background */}
-                  <div className="backdrop-blur-md bg-white/20 border border-white/40 rounded-full px-4 py-2 shadow-2xl">
+                  {/* Glassmorphism background with rose tint */}
+                  <div className="backdrop-blur-md bg-white/25 border border-white/50 rounded-full px-5 py-2.5 shadow-2xl">
                     <span className="text-white font-semibold text-sm drop-shadow-lg whitespace-nowrap">
                       {area.label}
                     </span>
                   </div>
-                  {/* Subtle gradient glow */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent-gold/20 to-primary/20 blur-xl rounded-full -z-10" />
+                  {/* Rose gold gradient glow */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-accent-gold/30 to-primary/30 blur-xl rounded-full -z-10" />
                 </div>
               </div>
 

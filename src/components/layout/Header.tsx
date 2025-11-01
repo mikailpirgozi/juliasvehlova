@@ -70,12 +70,20 @@ export function Header(): JSX.Element {
   ]
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-primary/10 bg-white/95 backdrop-blur-md shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 font-serif text-2xl font-bold text-primary">
-            Julia Clinic
+          <Link href="/" className="group flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent-gold shadow-md transition-transform duration-300 group-hover:scale-110">
+              <span className="text-2xl">✨</span>
+            </div>
+            <div>
+              <h1 className="font-serif text-2xl font-bold text-primary-dark group-hover:text-primary transition-colors">
+                Julia Clinic
+              </h1>
+              <p className="text-xs text-gray-500 font-medium">Estetická medicína</p>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -84,7 +92,7 @@ export function Header(): JSX.Element {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-gray-700 transition hover:text-primary"
+                className="relative text-sm font-semibold text-gray-700 transition-colors hover:text-primary-dark after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gradient-to-r after:from-primary after:to-accent-gold after:transition-all hover:after:w-full"
               >
                 {link.label}
               </a>
@@ -96,7 +104,7 @@ export function Header(): JSX.Element {
               onMouseEnter={() => setIsServicesDropdownOpen(true)}
               onMouseLeave={() => setIsServicesDropdownOpen(false)}
             >
-              <button className="flex items-center gap-1 text-sm font-medium text-gray-700 transition hover:text-primary">
+              <button className="relative flex items-center gap-1 text-sm font-semibold text-gray-700 transition-colors hover:text-primary-dark after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gradient-to-r after:from-primary after:to-accent-gold after:transition-all hover:after:w-full">
                 Služby
                 <svg
                   className={`h-4 w-4 transition-transform ${isServicesDropdownOpen ? 'rotate-180' : ''}`}
@@ -110,15 +118,18 @@ export function Header(): JSX.Element {
 
               {/* Mega Menu Dropdown */}
               {isServicesDropdownOpen && (
-                <div className="absolute left-1/2 top-full -translate-x-1/2 pt-2 w-screen max-w-5xl">
-                  <div className="rounded-2xl bg-white p-8 shadow-2xl border border-gray-100">
+                <div className="absolute left-1/2 top-full -translate-x-1/2 pt-4 w-screen max-w-5xl">
+                  <div className="relative rounded-3xl bg-white p-8 shadow-2xl border border-primary/20">
+                    {/* Decorative gradient border */}
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent-gold to-primary rounded-t-3xl" />
+                    
                     <div className="mb-6">
                       <Link
                         href="/sluzby"
-                        className="inline-flex items-center gap-2 text-lg font-bold text-primary hover:underline"
+                        className="group inline-flex items-center gap-2 text-lg font-bold text-primary-dark hover:text-primary transition-colors"
                       >
                         Všetky služby
-                        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                       </Link>
@@ -129,37 +140,45 @@ export function Header(): JSX.Element {
                         <Link
                           key={category.href}
                           href={category.href}
-                          className="group rounded-xl border border-gray-100 p-4 transition-all hover:border-primary hover:shadow-md"
+                          className="group relative overflow-hidden rounded-2xl bg-white border border-gray-200 p-5 transition-all duration-300 hover:border-primary hover:shadow-xl hover:-translate-y-1"
                         >
-                          <div className="mb-3 flex items-center gap-3">
-                            <span className="text-3xl">{category.icon}</span>
-                            <h3 className="font-bold text-gray-900 group-hover:text-primary">
-                              {category.title}
-                            </h3>
-                          </div>
-                          <p className="mb-3 text-sm text-gray-600">{category.description}</p>
+                          {/* Gradient background on hover */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent-gold/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                          
+                          <div className="relative z-10">
+                            <div className="mb-3 flex items-center gap-3">
+                              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-accent-gold/20 text-2xl transition-transform duration-300 group-hover:scale-110">
+                                {category.icon}
+                              </div>
+                              <h3 className="font-bold text-gray-900 group-hover:text-primary-dark transition-colors">
+                                {category.title}
+                              </h3>
+                            </div>
+                            <p className="mb-3 text-sm text-gray-700 leading-relaxed">{category.description}</p>
 
-                          {category.subcategories && (
-                            <ul className="space-y-1 border-t border-gray-100 pt-2">
-                              {category.subcategories.map((sub) => (
-                                <li key={sub.href}>
-                                  <a
-                                    href={sub.href}
-                                    className="text-xs text-gray-500 hover:text-primary transition"
-                                  >
-                                    → {sub.title}
-                                  </a>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
+                            {category.subcategories && (
+                              <ul className="space-y-1 border-t border-gray-200 pt-3 mt-3">
+                                {category.subcategories.map((sub) => (
+                                  <li key={sub.href}>
+                                    <a
+                                      href={sub.href}
+                                      className="text-xs text-gray-600 hover:text-primary-dark transition flex items-center gap-1 hover:translate-x-1"
+                                    >
+                                      <span className="text-primary">→</span>
+                                      {sub.title}
+                                    </a>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
                         </Link>
                       ))}
                     </div>
 
-                    <div className="mt-6 border-t border-gray-100 pt-6 text-center">
-                      <p className="text-sm text-gray-600 mb-3">
-                        Neviete si vybrať? Objednajte sa na bezplatnú konzultáciu
+                    <div className="mt-8 rounded-2xl bg-gradient-to-r from-accent-rose to-neutral-cream p-6 text-center">
+                      <p className="text-sm text-gray-700 mb-4 font-medium">
+                        💎 Neviete si vybrať? Objednajte sa na bezplatnú konzultáciu
                       </p>
                       <Link href="/rezervacia">
                         <Button variant="primary" size="sm">
