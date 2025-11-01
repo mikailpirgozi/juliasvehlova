@@ -7,9 +7,21 @@ const envSchema = z.object({
   NEXT_PUBLIC_BOOKIO_WIDGET_URL: z.string().url().optional(),
 })
 
-export const env = envSchema.parse({
-  RESEND_API_KEY: process.env.RESEND_API_KEY,
-  CONTACT_EMAIL: process.env.CONTACT_EMAIL,
+// Export raw env vars without validation
+// Validation happens only at runtime in API routes where they're actually used
+export const env = {
+  RESEND_API_KEY: process.env.RESEND_API_KEY || '',
+  CONTACT_EMAIL: process.env.CONTACT_EMAIL || '',
   NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
   NEXT_PUBLIC_BOOKIO_WIDGET_URL: process.env.NEXT_PUBLIC_BOOKIO_WIDGET_URL,
-})
+} as const
+
+// Runtime validation helper for API routes
+export function validateEnv() {
+  return envSchema.parse({
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    CONTACT_EMAIL: process.env.CONTACT_EMAIL,
+    NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
+    NEXT_PUBLIC_BOOKIO_WIDGET_URL: process.env.NEXT_PUBLIC_BOOKIO_WIDGET_URL,
+  })
+}

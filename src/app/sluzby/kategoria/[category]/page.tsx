@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import { FadeIn, Button } from '@/components/ui'
+import { FadeIn, LinkButton } from '@/components/ui'
 import { ServiceCard } from '@/components/services'
 import { allServices, categoryMetadata, type ServiceCategory } from '@/lib/services'
 
@@ -74,11 +73,9 @@ export default function CategoryPage({ params }: CategoryPageProps): JSX.Element
                 <p className="text-gray-700 mb-6">
                   Rezervujte si konzultáciu a radi vám poradíme s výberom najvhodnejšej procedúry.
                 </p>
-                <Link href="/rezervacia">
-                  <Button variant="primary" size="lg">
-                    Rezervovať konzultáciu
-                  </Button>
-                </Link>
+                <LinkButton href="/rezervacia" variant="primary" size="lg">
+                  Rezervovať konzultáciu
+                </LinkButton>
               </div>
             </FadeIn>
           </>
@@ -88,11 +85,9 @@ export default function CategoryPage({ params }: CategoryPageProps): JSX.Element
               <p className="text-xl text-gray-600 mb-8">
                 Služby v tejto kategórii sú práve v príprave.
               </p>
-              <Link href="/sluzby">
-                <Button variant="outline" size="lg">
-                  ← Späť na všetky služby
-                </Button>
-              </Link>
+              <LinkButton href="/sluzby" variant="outline" size="lg">
+                ← Späť na všetky služby
+              </LinkButton>
             </div>
           </FadeIn>
         )}

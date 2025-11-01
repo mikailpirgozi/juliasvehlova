@@ -1,16 +1,14 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import { BookioWidget } from '@/components/booking'
-import { Button } from '@/components/ui'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Rezervácia termínu - Julia Estetic Clinic',
-  description:
-    'Rezervujte si termín online v Julia Estetic Clinic. Jednoduché online objednávanie na všetky procedúry estetickej medicíny.',
-  keywords: ['rezervácia termínu', 'online objednávanie', 'bookio', 'estetická medicína Malacky'],
-}
+import { BookioWidget } from '@/components/booking'
+import { Button, LinkButton } from '@/components/ui'
+import { useEffect } from 'react'
 
 export default function ReservationPage(): JSX.Element {
+  // Set document title for Client Component (metadata can't be used with 'use client')
+  useEffect(() => {
+    document.title = 'Rezervácia termínu - Julia Estetic Clinic'
+  }, [])
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -44,11 +42,9 @@ export default function ReservationPage(): JSX.Element {
                   📞 Zavolať: +421 940 123 456
                 </Button>
               </a>
-              <Link href="/#kontakt">
-                <Button variant="outline" size="lg">
-                  ✉️ Kontaktný formulár
-                </Button>
-              </Link>
+              <LinkButton href="/#kontakt" variant="outline" size="lg">
+                ✉️ Kontaktný formulár
+              </LinkButton>
             </div>
           </div>
         </div>

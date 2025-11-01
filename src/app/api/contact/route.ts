@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { contactFormSchema } from '@/lib/validations/contact'
 import { Resend } from 'resend'
-import { env } from '@/lib/env'
-
-const resend = new Resend(env.RESEND_API_KEY)
+import { validateEnv } from '@/lib/env'
 
 // Rate limiting store (simple in-memory, in production use Redis)
 const rateLimit = new Map<string, { count: number; resetTime: number }>()
@@ -28,6 +26,12 @@ function checkRateLimit(ip: string): boolean {
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
+    // Validate env vars at runtime
+    const env = validateEnv()
+    
+    // Initialize Resend
+    const resend = new Resend(env.RESEND_API_KEY)
+
     // Get IP for rate limiting
     const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
 

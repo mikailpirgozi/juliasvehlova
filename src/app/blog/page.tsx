@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getBlogPosts, getAllBlogCategories, getAllBlogTags } from '@/lib/blog'
-import { Button } from '@/components/ui'
+import { LinkButton } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: 'Blog - Estetická medicína | Julia Clinic',
@@ -72,11 +72,9 @@ export default function BlogPage(): JSX.Element {
                             day: 'numeric',
                           })}
                         </time>
-                        <Link href={`/blog/${post.slug}`}>
-                          <Button variant="outline" size="sm">
-                            Čítať viac →
-                          </Button>
-                        </Link>
+                        <LinkButton href={`/blog/${post.slug}`} variant="outline" size="sm">
+                          Čítať viac →
+                        </LinkButton>
                       </div>
                     </article>
                   ))}

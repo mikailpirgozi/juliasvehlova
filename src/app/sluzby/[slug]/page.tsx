@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { FadeIn, Button, Badge } from '@/components/ui'
+import { FadeIn, LinkButton, Badge } from '@/components/ui'
 import { PriceTable, ProcessTimeline, ServiceFAQ } from '@/components/services'
 import { getServiceBySlug, getAllServiceSlugs } from '@/lib/services'
 
@@ -216,11 +216,9 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps): J
             <p className="text-gray-700 mb-6">
               Rezervujte si konzultáciu a radi vám poradíme s výberom najvhodnejšej procedúry.
             </p>
-            <Link href="/rezervacia">
-              <Button variant="primary" size="lg">
-                Rezervovať konzultáciu
-              </Button>
-            </Link>
+            <LinkButton href="/rezervacia" variant="primary" size="lg">
+              Rezervovať konzultáciu
+            </LinkButton>
           </div>
         </FadeIn>
       </div>

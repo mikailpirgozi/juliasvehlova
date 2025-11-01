@@ -1,5 +1,7 @@
+'use client'
+
 import Link from 'next/link'
-import { Button, FadeIn } from '@/components/ui'
+import { LinkButton, FadeIn } from '@/components/ui'
 import { allServices, categoryMetadata, type ServiceCategory } from '@/lib/services'
 
 interface MainCategory {
@@ -72,11 +74,9 @@ export function ServicesSection(): JSX.Element {
 
         <FadeIn delay={0.6}>
           <div className="mt-12 text-center">
-            <Link href="/sluzby">
-              <Button variant="primary" size="lg">
-                Všetky služby →
-              </Button>
-            </Link>
+            <LinkButton href="/sluzby" variant="primary" size="lg">
+              Všetky služby →
+            </LinkButton>
           </div>
         </FadeIn>
       </div>

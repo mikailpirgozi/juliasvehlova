@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getBlogPosts, getBlogPostBySlug, getRelatedBlogPosts } from '@/lib/blog'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import { Button } from '@/components/ui'
+import { LinkButton } from '@/components/ui'
 
 interface BlogPostPageProps {
   params: {
@@ -169,11 +169,9 @@ export default function BlogPostPage({ params }: BlogPostPageProps): JSX.Element
           <p className="mb-8 text-lg text-gray-700">
             Objednajte si bezplatnú konzultáciu a dozviete sa viac o procedúrach.
           </p>
-          <Link href="/#kontakt">
-            <Button variant="primary" size="lg">
-              Rezervovať konzultáciu
-            </Button>
-          </Link>
+          <LinkButton href="/#kontakt" variant="primary" size="lg">
+            Rezervovať konzultáciu
+          </LinkButton>
         </div>
       </section>
     </div>

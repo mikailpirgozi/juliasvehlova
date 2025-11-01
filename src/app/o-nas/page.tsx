@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { Button } from '@/components/ui'
-import Link from 'next/link'
+import { LinkButton } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: 'O nás - MUDr. Julia Svehlová | Julia Estetic Clinic',
@@ -277,16 +276,12 @@ export default function AboutPage(): JSX.Element {
             Objednajte sa na bezplatnú konzultáciu a spoločne vytvoríme plán pre vašu krásu.
           </p>
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Link href="#kontakt">
-              <Button variant="primary" size="lg">
-                Rezervovať konzultáciu
-              </Button>
-            </Link>
-            <Link href="/sluzby">
-              <Button variant="outline" size="lg">
-                Pozrieť služby
-              </Button>
-            </Link>
+            <LinkButton href="#kontakt" variant="primary" size="lg">
+              Rezervovať konzultáciu
+            </LinkButton>
+            <LinkButton href="/sluzby" variant="outline" size="lg">
+              Pozrieť služby
+            </LinkButton>
           </div>
         </div>
       </section>
