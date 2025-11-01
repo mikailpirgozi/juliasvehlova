@@ -1,20 +1,14 @@
-import type { Metadata } from 'next'
+'use client'
+
+import { useEffect } from 'react'
 import { LinkButton } from '@/components/ui'
 
-export const metadata: Metadata = {
-  title: 'O nás - MUDr. Julia Svehlová | Julia Estetic Clinic',
-  description:
-    'Spoznajte MUDr. Juliu Svehlovú - špecialista na estetickú medicínu s viac ako 10-ročnou praxou. Certifikácie, kvalifikácie a filozofia kliniky.',
-  keywords: [
-    'MUDr. Julia Svehlová',
-    'estetický lekár Malacky',
-    'lekár estetickej medicíny',
-    'o klinike',
-    'certifikácie',
-  ],
-}
-
+// Client Component - metadata via useEffect
 export default function AboutPage(): JSX.Element {
+  useEffect(() => {
+    document.title = 'O nás - MUDr. Julia Svehlová | Julia Estetic Clinic'
+  }, [])
+
   const timeline = [
     {
       year: '2013',
