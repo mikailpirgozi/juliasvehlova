@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { getBlogPosts, getBlogPostBySlug, getRelatedBlogPosts } from '@/lib/blog'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { LinkButton } from '@/components/ui'
+import { ShareButtons } from '@/components/blog/ShareButtons'
 
 interface BlogPostPageProps {
   params: {
@@ -97,38 +98,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps): JSX.Element
           </div>
 
           {/* Share */}
-          <div className="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-6">
-            <h3 className="mb-4 font-medium text-gray-900">Zdieľajte články</h3>
-            <div className="flex gap-3">
-              <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=${typeof window !== 'undefined' ? window.location.href : ''}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-primary transition"
-              >
-                📘 Facebook
-              </a>
-              <a
-                href={`https://twitter.com/intent/tweet?url=${typeof window !== 'undefined' ? window.location.href : ''}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-primary transition"
-              >
-                𝕏 Twitter
-              </a>
-              <button
-                onClick={() => {
-                  if (typeof window !== 'undefined') {
-                    navigator.clipboard.writeText(window.location.href)
-                    alert('Link skopírovaný!')
-                  }
-                }}
-                className="text-gray-600 hover:text-primary transition"
-              >
-                🔗 Kopírovať odkaz
-              </button>
-            </div>
-          </div>
+          <ShareButtons title={post.title} />
         </div>
       </section>
 
