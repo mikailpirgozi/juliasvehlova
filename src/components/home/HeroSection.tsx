@@ -1,30 +1,143 @@
-import { Button } from '@/components/ui'
+'use client'
+
+import { useRouter } from 'next/navigation'
+
+interface ClickableArea {
+  id: string
+  label: string
+  href: string
+  top: string
+  left: string
+  width: string
+  height: string
+}
+
+const clickableAreas: ClickableArea[] = [
+  {
+    id: 'forehead',
+    label: 'Čelo',
+    href: '/sluzby/botulotoxin-mimicke-vrasky',
+    top: '24%',
+    left: '25%',
+    width: '50%',
+    height: '8%',
+  },
+  {
+    id: 'eyebrows',
+    label: 'Obočie',
+    href: '/sluzby/permanentny-makeup-hair-strokes',
+    top: '32%',
+    left: '25%',
+    width: '50%',
+    height: '5%',
+  },
+  {
+    id: 'eyes',
+    label: 'Oči/Mihalnice',
+    href: '/sluzby/lash-lifting',
+    top: '37%',
+    left: '20%',
+    width: '60%',
+    height: '6%',
+  },
+  {
+    id: 'cheeks',
+    label: 'Líca',
+    href: '/sluzby/kyselina-hyaluronova-modelovanie-lic',
+    top: '48%',
+    left: '15%',
+    width: '70%',
+    height: '12%',
+  },
+  {
+    id: 'lips',
+    label: 'Pery',
+    href: '/sluzby/permanentny-makeup-tetovanie-pier',
+    top: '59%',
+    left: '30%',
+    width: '40%',
+    height: '8%',
+  },
+]
 
 export function HeroSection(): JSX.Element {
+  const router = useRouter()
+
+  const handleAreaClick = (href: string) => {
+    router.push(href)
+  }
+
   return (
-    <section className="relative min-h-[70vh] bg-gradient-to-b from-primary/10 to-accent-gold/5 px-4 py-20">
-      <div className="mx-auto max-w-4xl text-center">
-        <h1 className="mb-6 font-serif text-5xl font-bold text-primary md:text-6xl">
-          Vaša Krása v Skúsených Rukách
-        </h1>
+    <section className="relative h-screen overflow-hidden">
+      {/* Video Background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/videos/klinika_tvar_3.webm" type="video/webm" />
+        <source src="/videos/klinika_tvar_3.mp4" type="video/mp4" />
+      </video>
 
-        <p className="mb-8 text-xl text-gray-700">
-          Komplexné služby estetickej medicíny, permanentného make-upu a profesionálneho líčenia.
-          Viac ako 10 rokov skúseností a tisícky spokojných klientok.
-        </p>
+        {/* Clickable Areas Overlay */}
+        <div className="absolute inset-0 z-10">
+          {clickableAreas.map((area) => (
+            <button
+              key={area.id}
+              onClick={() => handleAreaClick(area.href)}
+              className="absolute group cursor-pointer"
+              style={{
+                top: area.top,
+                left: area.left,
+                width: area.width,
+                height: area.height,
+              }}
+              aria-label={`Prejsť na ${area.label}`}
+            >
+              {/* Invisible interactive area */}
+              <div className="absolute inset-0" />
+              
+              {/* Subtle glow border on hover */}
+              <div className="absolute inset-0 rounded-xl border-2 border-white/0 group-hover:border-white/60 transition-all duration-500 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.5)]" />
+              
+              {/* Modern tooltip badge */}
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+                <div className="relative">
+                  {/* Glassmorphism background */}
+                  <div className="backdrop-blur-md bg-white/20 border border-white/40 rounded-full px-4 py-2 shadow-2xl">
+                    <span className="text-white font-semibold text-sm drop-shadow-lg whitespace-nowrap">
+                      {area.label}
+                    </span>
+                  </div>
+                  {/* Subtle gradient glow */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent-gold/20 to-primary/20 blur-xl rounded-full -z-10" />
+                </div>
+              </div>
 
-        <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-          <Button variant="primary" size="lg" className="text-base">
-            Rezervovať konzultáciu
-          </Button>
-          <Button variant="outline" size="lg" className="text-base">
-            Pozrite si naše služby
-          </Button>
+              {/* Corner indicators - minimalistic */}
+              <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-white/0 group-hover:border-white/80 rounded-tl-lg transition-all duration-300" />
+              <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-white/0 group-hover:border-white/80 rounded-tr-lg transition-all duration-300" />
+              <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-white/0 group-hover:border-white/80 rounded-bl-lg transition-all duration-300" />
+              <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-white/0 group-hover:border-white/80 rounded-br-lg transition-all duration-300" />
+            </button>
+          ))}
         </div>
 
-        <p className="mt-12 text-sm text-gray-600">
-          Certifikovaná príslušníčka v odbore estetická medicína | Bezpečné a overené metódy
-        </p>
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+        <svg
+          className="w-6 h-6 text-white drop-shadow-lg"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
       </div>
     </section>
   )
