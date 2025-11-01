@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { inter, playfair } from '@/lib/fonts'
+import { MainLayout } from '@/components/MainLayout'
 
 export const metadata: Metadata = {
   title: 'Julia Estetic Clinic - Profesionálne služby estetickej medicíny',
@@ -37,7 +38,9 @@ export default function RootLayout({
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body>{children}</body>
+      <body>
+        <MainLayout>{children}</MainLayout>
+      </body>
     </html>
   )
 }
