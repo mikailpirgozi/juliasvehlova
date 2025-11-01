@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: 180 157 149; /* #B49D95 */
+    --primary-dark: 157 134 128;
+    --primary-light: 212 196 191;
+    --accent-gold: 201 168 106;
+    --cream: 250 249 247;
+    --radius: 0.5rem;
+  }
+
+  body {
+    @apply bg-white text-gray-900 font-sans antialiased;
+  }
+}
