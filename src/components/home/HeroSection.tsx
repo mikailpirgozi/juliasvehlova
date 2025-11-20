@@ -45,8 +45,8 @@ const sections: SectionConfig[] = [
         id: 'eyes-left',
         label: 'Oči',
         href: '/sluzby/lash-lifting',
-        top: '41.38%',
-        left: '44.28%',
+        top: '41.31%',
+        left: '42.34%',
       },
       {
         id: 'cheeks-left',
