@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 interface InteractivePoint {
@@ -31,50 +31,36 @@ const sections: SectionConfig[] = [
         id: 'forehead',
         label: 'Čelo',
         href: '/sluzby/botulotoxin-mimicke-vrasky',
-        top: '21%',
-        left: '50%',
+        top: '26.79%',
+        left: '49.41%',
       },
       {
         id: 'eyebrows',
         label: 'Obočie',
         href: '/sluzby/permanentny-makeup-hair-strokes',
-        top: '33%',
-        left: '50%',
+        top: '33.96%',
+        left: '55.62%',
       },
       {
         id: 'eyes-left',
         label: 'Oči',
         href: '/sluzby/lash-lifting',
-        top: '36%',
-        left: '32%',
-      },
-      {
-        id: 'eyes-right',
-        label: 'Oči',
-        href: '/sluzby/lash-lifting',
-        top: '36%',
-        left: '68%',
+        top: '41.38%',
+        left: '44.28%',
       },
       {
         id: 'cheeks-left',
         label: 'Líca',
         href: '/sluzby/kyselina-hyaluronova-modelovanie-lic',
-        top: '48%',
-        left: '24%',
-      },
-      {
-        id: 'cheeks-right',
-        label: 'Líca',
-        href: '/sluzby/kyselina-hyaluronova-modelovanie-lic',
-        top: '48%',
-        left: '76%',
+        top: '50.50%',
+        left: '40.93%',
       },
       {
         id: 'lips',
         label: 'Pery',
         href: '/sluzby/permanentny-makeup-tetovanie-pier',
-        top: '58%',
-        left: '50%',
+        top: '64.84%',
+        left: '50.20%',
       },
     ],
   },
@@ -120,40 +106,138 @@ export function HeroSection(): JSX.Element {
   const router = useRouter()
   const [activeSection, setActiveSection] = useState<'face' | 'body'>('face')
   const [hoveredPoint, setHoveredPoint] = useState<string | null>(null)
+  const [debugMode, setDebugMode] = useState(false)
+  const [draggingPoint, setDraggingPoint] = useState<string | null>(null)
+  const [positions, setPositions] = useState<Record<string, { top: string; left: string }>>({})
+  const containerRef = React.useRef<HTMLDivElement>(null)
+  const draggingRef = React.useRef<string | null>(null)
 
   const currentSection = sections.find((s) => s.id === activeSection)!
   const isFaceSection = activeSection === 'face'
 
   const handlePointClick = (href: string) => {
+    if (debugMode) return
     router.push(href)
+  }
+
+  const handlePointerDown = (e: React.PointerEvent, pointId: string) => {
+    if (!debugMode) return
+    e.preventDefault()
+    e.stopPropagation()
+    draggingRef.current = pointId
+  }
+
+  React.useEffect(() => {
+    if (!debugMode || !containerRef.current) return
+
+    const container = containerRef.current
+
+    const handlePointerMove = (e: PointerEvent) => {
+      if (!draggingRef.current || !container) return
+
+      const rect = container.getBoundingClientRect()
+      const top = ((e.clientY - rect.top) / rect.height) * 100
+      const left = ((e.clientX - rect.left) / rect.width) * 100
+
+      setPositions((prev) => ({
+        ...prev,
+        [draggingRef.current!]: {
+          top: `${Math.max(0, Math.min(100, top))}%`,
+          left: `${Math.max(0, Math.min(100, left))}%`,
+        },
+      }))
+    }
+
+    const handlePointerUp = () => {
+      draggingRef.current = null
+    }
+
+    document.addEventListener('pointermove', handlePointerMove)
+    document.addEventListener('pointerup', handlePointerUp)
+
+    return () => {
+      document.removeEventListener('pointermove', handlePointerMove)
+      document.removeEventListener('pointerup', handlePointerUp)
+    }
+  }, [debugMode])
+
+  const getPointPosition = (pointId: string, defaultTop: string, defaultLeft: string) => {
+    if (positions[pointId]) return positions[pointId]
+    return { top: defaultTop, left: defaultLeft }
+  }
+
+  const exportPositions = () => {
+    const output = currentSection.points
+      .map((p) => {
+        const pos = getPointPosition(p.id, p.top, p.left)
+        return `{
+        id: '${p.id}',
+        label: '${p.label}',
+        href: '${p.href}',
+        top: '${pos.top}',
+        left: '${pos.left}',
+      },`
+      })
+      .join('\n')
+
+    console.log(output)
+    alert('Pozície kopírované do console! Otvor Developer Tools (F12) a skopíruj text.')
   }
 
   return (
     <section className="relative h-screen overflow-hidden">
       {/* Background - Video for Face, Image for Body */}
-      {isFaceSection ? (
-        <video
-          key="video"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src={`${currentSection.videoSrc}.webm`} type="video/webm" />
-          <source src={`${currentSection.videoSrc}.mp4`} type="video/mp4" />
-        </video>
-      ) : (
-        <img
-          key="image"
-          src={currentSection.imageSrc}
-          alt="Telo"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      )}
+      <div
+        ref={containerRef}
+        className="absolute inset-0"
+      >
+        {isFaceSection ? (
+          <video
+            key="video"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src={`${currentSection.videoSrc}.webm`} type="video/webm" />
+            <source src={`${currentSection.videoSrc}.mp4`} type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            key="image"
+            src={currentSection.imageSrc}
+            alt="Telo"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        )}
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/20 z-5" />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/20 z-5" />
+
+        {/* Debug Mode Toggle */}
+        {process.env.NODE_ENV === 'development' && (
+          <button
+            onClick={() => {
+              setDebugMode(!debugMode)
+              setPositions({})
+            }}
+            className="absolute top-4 right-4 z-50 px-3 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-600"
+          >
+            {debugMode ? '❌ Vypnúť Debug' : '🐛 Debug Režim'}
+          </button>
+        )}
+
+        {/* Export Button (visible only in debug mode) */}
+        {debugMode && (
+          <button
+            onClick={exportPositions}
+            className="absolute top-4 right-28 z-50 px-3 py-1 bg-green-500 text-white text-xs rounded hover:bg-green-600"
+          >
+            ✅ Exportovať Pozície
+          </button>
+        )}
+      </div>
 
       {/* Section Toggle - Left Sidebar */}
       <div className="absolute left-8 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-6">
@@ -192,57 +276,75 @@ export function HeroSection(): JSX.Element {
 
       {/* Interactive Points Overlay */}
       <div className="absolute inset-0 z-10">
-        {currentSection.points.map((point) => (
-          <button
-            key={point.id}
-            onClick={() => handlePointClick(point.href)}
-            className="absolute group cursor-pointer"
-            style={{
-              top: point.top,
-              left: point.left,
-              width: '2rem',
-              height: '2rem',
-              transform: 'translate(-50%, -50%)',
-            }}
-            aria-label={`Prejsť na ${point.label}`}
-            onMouseEnter={() => setHoveredPoint(point.id)}
-            onMouseLeave={() => setHoveredPoint(null)}
-          >
-            {/* Main circle dot */}
-            <div
-              className={`absolute inset-0 rounded-full transition-all duration-300 ${
-                hoveredPoint === point.id
-                  ? 'bg-white/60 scale-100 shadow-[0_0_30px_rgba(255,255,255,0.8)]'
-                  : 'bg-white/40 scale-75'
-              }`}
-            />
+        {currentSection.points.map((point) => {
+          const pos = getPointPosition(point.id, point.top, point.left)
+          return (
+            <button
+              key={point.id}
+              onClick={() => handlePointClick(point.href)}
+              className={`absolute group cursor-pointer ${debugMode ? 'cursor-grab active:cursor-grabbing' : ''}`}
+              style={{
+                top: pos.top,
+                left: pos.left,
+                width: '2rem',
+                height: '2rem',
+                transform: 'translate(-50%, -50%)',
+              }}
+              aria-label={`Prejsť na ${point.label}`}
+              onMouseEnter={() => setHoveredPoint(point.id)}
+              onMouseLeave={() => setHoveredPoint(null)}
+              onPointerDown={(e) => handlePointerDown(e, point.id)}
+            >
+              {/* Main circle dot */}
+              <div
+                className={`absolute inset-0 rounded-full transition-all duration-300 ${
+                  hoveredPoint === point.id
+                    ? 'bg-white/60 scale-100 shadow-[0_0_30px_rgba(255,255,255,0.8)]'
+                    : 'bg-white/40 scale-75'
+                } ${debugMode ? 'border-2 border-yellow-400' : ''}`}
+              />
 
-            {/* Ring animation on hover */}
-            <div
-              className={`absolute inset-0 rounded-full border-2 border-white transition-all duration-300 ${
-                hoveredPoint === point.id
-                  ? 'scale-150 opacity-50'
-                  : 'scale-100 opacity-0'
-              }`}
-            />
+              {/* Ring animation on hover */}
+              <div
+                className={`absolute inset-0 rounded-full border-2 border-white transition-all duration-300 ${
+                  hoveredPoint === point.id
+                    ? 'scale-150 opacity-50'
+                    : 'scale-100 opacity-0'
+                }`}
+              />
 
-            {/* Tooltip Label */}
-            {hoveredPoint === point.id && (
-              <div className="absolute -top-12 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
-                <div className="relative">
-                  {/* Glassmorphism badge */}
-                  <div className="backdrop-blur-md bg-white/25 border border-white/50 rounded-full px-4 py-1.5 shadow-2xl whitespace-nowrap">
-                    <span className="text-white font-semibold text-xs drop-shadow-lg">
+              {/* Debug Label (visible in debug mode) */}
+              {debugMode && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 z-30 whitespace-nowrap mt-2">
+                  <div className="flex flex-col gap-1 items-center">
+                    <div className="bg-blue-600 text-white text-xs px-2 py-1 rounded font-bold">
                       {point.label}
-                    </span>
+                    </div>
+                    <div className="bg-yellow-400 text-black text-xs px-2 py-1 rounded font-bold">
+                      {pos.top} / {pos.left}
+                    </div>
                   </div>
-                  {/* Glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-accent-gold/30 to-primary/30 blur-lg rounded-full -z-10" />
                 </div>
-              </div>
-            )}
-          </button>
-        ))}
+              )}
+
+              {/* Tooltip Label */}
+              {hoveredPoint === point.id && !debugMode && (
+                <div className="absolute -top-12 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
+                  <div className="relative">
+                    {/* Glassmorphism badge */}
+                    <div className="backdrop-blur-md bg-white/25 border border-white/50 rounded-full px-4 py-1.5 shadow-2xl whitespace-nowrap">
+                      <span className="text-white font-semibold text-xs drop-shadow-lg">
+                        {point.label}
+                      </span>
+                    </div>
+                    {/* Glow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-accent-gold/30 to-primary/30 blur-lg rounded-full -z-10" />
+                  </div>
+                </div>
+              )}
+            </button>
+          )
+        })}
       </div>
 
       {/* Scroll Indicator */}
