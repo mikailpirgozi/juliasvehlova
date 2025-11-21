@@ -189,7 +189,6 @@ export function HeroSection(): JSX.Element {
   const draggingRef = React.useRef<string | null>(null)
 
   const currentSection = sections.find((s) => s.id === activeSection)!
-  const isFaceSection = activeSection === 'face'
 
   // Logika na získanie správnej pozície podľa breakpointu
   const getResponsivePosition = (point: InteractivePoint) => {
