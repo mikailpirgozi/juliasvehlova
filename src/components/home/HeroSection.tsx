@@ -68,7 +68,7 @@ const sections: SectionConfig[] = [
     id: 'body',
     label: 'Telo',
     icon: '👗',
-    imageSrc: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&h=800&fit=crop',
+    videoSrc: '/videos/klinika_body_3_blur',
     points: [
       {
         id: 'chest',
@@ -191,9 +191,9 @@ export function HeroSection(): JSX.Element {
         ref={containerRef}
         className="absolute inset-0"
       >
-        {isFaceSection ? (
+        {currentSection?.videoSrc ? (
           <video
-            key="video"
+            key={`video-${currentSection.id}`}
             autoPlay
             loop
             muted
@@ -203,14 +203,14 @@ export function HeroSection(): JSX.Element {
             <source src={`${currentSection.videoSrc}.webm`} type="video/webm" />
             <source src={`${currentSection.videoSrc}.mp4`} type="video/mp4" />
           </video>
-        ) : (
+        ) : currentSection?.imageSrc ? (
           <img
             key="image"
             src={currentSection.imageSrc}
-            alt="Telo"
+            alt="Media"
             className="absolute inset-0 w-full h-full object-cover"
           />
-        )}
+        ) : null}
 
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/20 z-5" />
