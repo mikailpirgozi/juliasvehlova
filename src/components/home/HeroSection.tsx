@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 interface InteractivePoint {
@@ -9,6 +9,35 @@ interface InteractivePoint {
   href: string
   top: string
   left: string
+  topMobile?: string
+  leftMobile?: string
+  topTablet?: string
+  leftTablet?: string
+}
+
+type BreakPoint = 'mobile' | 'tablet' | 'desktop'
+
+// Hook na detekciu breakpointu
+function useBreakpoint(): BreakPoint {
+  const [breakpoint, setBreakpoint] = useState<BreakPoint>('desktop')
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setBreakpoint('mobile')
+      } else if (window.innerWidth < 1024) {
+        setBreakpoint('tablet')
+      } else {
+        setBreakpoint('desktop')
+      }
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  return breakpoint
 }
 
 interface SectionConfig {
@@ -33,6 +62,10 @@ const sections: SectionConfig[] = [
         href: '/sluzby/botulotoxin-mimicke-vrasky',
         top: '26.79%',
         left: '49.41%',
+        topMobile: '22%',
+        leftMobile: '50%',
+        topTablet: '25%',
+        leftTablet: '50%',
       },
       {
         id: 'eyebrows',
@@ -40,6 +73,10 @@ const sections: SectionConfig[] = [
         href: '/sluzby/permanentny-makeup-hair-strokes',
         top: '33.96%',
         left: '55.62%',
+        topMobile: '29%',
+        leftMobile: '55%',
+        topTablet: '32%',
+        leftTablet: '55%',
       },
       {
         id: 'eyes-left',
@@ -47,6 +84,10 @@ const sections: SectionConfig[] = [
         href: '/sluzby/lash-lifting',
         top: '41.31%',
         left: '42.34%',
+        topMobile: '36%',
+        leftMobile: '45%',
+        topTablet: '39%',
+        leftTablet: '44%',
       },
       {
         id: 'cheeks-left',
@@ -54,6 +95,10 @@ const sections: SectionConfig[] = [
         href: '/sluzby/kyselina-hyaluronova-modelovanie-lic',
         top: '50.50%',
         left: '40.93%',
+        topMobile: '46%',
+        leftMobile: '42%',
+        topTablet: '49%',
+        leftTablet: '41%',
       },
       {
         id: 'lips',
@@ -61,6 +106,10 @@ const sections: SectionConfig[] = [
         href: '/sluzby/permanentny-makeup-tetovanie-pier',
         top: '64.84%',
         left: '50.20%',
+        topMobile: '60%',
+        leftMobile: '50%',
+        topTablet: '63%',
+        leftTablet: '50%',
       },
     ],
   },
@@ -76,6 +125,10 @@ const sections: SectionConfig[] = [
         href: '/sluzby/kategoria/energy',
         top: '28%',
         left: '50%',
+        topMobile: '18%',
+        leftMobile: '50%',
+        topTablet: '20%',
+        leftTablet: '48%',
       },
       {
         id: 'abdomen',
@@ -83,6 +136,10 @@ const sections: SectionConfig[] = [
         href: '/sluzby/kategoria/energy',
         top: '48%',
         left: '50%',
+        topMobile: '45%',
+        leftMobile: '50%',
+        topTablet: '47%',
+        leftTablet: '51%',
       },
       {
         id: 'arms-right',
@@ -90,6 +147,10 @@ const sections: SectionConfig[] = [
         href: '/sluzby/laserova-epilacia-podpazie',
         top: '22.03%',
         left: '47.32%',
+        topMobile: '26%',
+        leftMobile: '45%',
+        topTablet: '24%',
+        leftTablet: '46%',
       },
       {
         id: 'legs',
@@ -97,6 +158,10 @@ const sections: SectionConfig[] = [
         href: '/sluzby/laserova-epilacia-nohy-cele',
         top: '68.84%',
         left: '58.37%',
+        topMobile: '72%',
+        leftMobile: '50%',
+        topTablet: '70%',
+        leftTablet: '55%',
       },
       {
         id: 'bikini',
@@ -104,6 +169,10 @@ const sections: SectionConfig[] = [
         href: '/sluzby/laserova-epilacia-bikini',
         top: '50.48%',
         left: '52.42%',
+        topMobile: '55%',
+        leftMobile: '50%',
+        topTablet: '52%',
+        leftTablet: '51%',
       },
     ],
   },
@@ -111,6 +180,7 @@ const sections: SectionConfig[] = [
 
 export function HeroSection(): JSX.Element {
   const router = useRouter()
+  const breakpoint = useBreakpoint()
   const [activeSection, setActiveSection] = useState<'face' | 'body'>('face')
   const [hoveredPoint, setHoveredPoint] = useState<string | null>(null)
   const [debugMode, setDebugMode] = useState(false)
@@ -121,6 +191,17 @@ export function HeroSection(): JSX.Element {
 
   const currentSection = sections.find((s) => s.id === activeSection)!
   const isFaceSection = activeSection === 'face'
+
+  // Logika na získanie správnej pozície podľa breakpointu
+  const getResponsivePosition = (point: InteractivePoint) => {
+    if (breakpoint === 'mobile' && point.topMobile && point.leftMobile) {
+      return { top: point.topMobile, left: point.leftMobile }
+    }
+    if (breakpoint === 'tablet' && point.topTablet && point.leftTablet) {
+      return { top: point.topTablet, left: point.leftTablet }
+    }
+    return { top: point.top, left: point.left }
+  }
 
   const handlePointClick = (href: string) => {
     if (debugMode) return
@@ -192,7 +273,7 @@ export function HeroSection(): JSX.Element {
   }
 
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative h-screen md:h-screen overflow-hidden">
       {/* Background - Video for Face, Image for Body */}
       <div
         ref={containerRef}
@@ -247,7 +328,7 @@ export function HeroSection(): JSX.Element {
       </div>
 
       {/* Section Toggle - Left Sidebar */}
-      <div className="absolute left-8 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-6">
+      <div className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-3 sm:gap-4 md:gap-6">
         {sections.map((section) => (
           <button
             key={section.id}
@@ -259,7 +340,7 @@ export function HeroSection(): JSX.Element {
           >
             {/* Icon with background */}
             <div
-              className={`w-16 h-16 rounded-full flex items-center justify-center text-2xl transition-all duration-300 ${
+              className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-xl sm:text-2xl transition-all duration-300 ${
                 activeSection === section.id
                   ? 'bg-white/30 backdrop-blur-md border border-white/50 shadow-lg shadow-primary/40'
                   : 'bg-white/15 backdrop-blur-sm border border-white/20 group-hover:bg-white/25'
@@ -284,7 +365,8 @@ export function HeroSection(): JSX.Element {
       {/* Interactive Points Overlay */}
       <div className="absolute inset-0 z-10">
         {currentSection.points.map((point) => {
-          const pos = getPointPosition(point.id, point.top, point.left)
+          const responsivePos = getResponsivePosition(point)
+          const pos = getPointPosition(point.id, responsivePos.top, responsivePos.left)
           return (
             <button
               key={point.id}
