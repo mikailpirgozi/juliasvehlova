@@ -273,20 +273,24 @@ export function HeroSection(): JSX.Element {
   }
 
   return (
-    <section className="relative h-screen md:h-screen overflow-hidden">
+    <section className="relative min-h-[70vh] sm:min-h-[80vh] md:min-h-[85vh] lg:h-screen overflow-hidden">
       {/* Background - Video for Face, Image for Body */}
       <div
         ref={containerRef}
         className="absolute inset-0"
       >
-        {currentSection?.videoSrc ? (
+               {currentSection?.videoSrc ? (
           <video
             key={`video-${currentSection.id}`}
             autoPlay
             loop
             muted
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            style={{
+              // Optimizes video display on mobile by focusing on center content
+              objectPosition: 'center 30%',
+            }}
           >
             <source src={`${currentSection.videoSrc}.webm`} type="video/webm" />
             <source src={`${currentSection.videoSrc}.mp4`} type="video/mp4" />
@@ -296,7 +300,7 @@ export function HeroSection(): JSX.Element {
             key="image"
             src={currentSection.imageSrc}
             alt="Media"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover object-center"
           />
         ) : null}
 
