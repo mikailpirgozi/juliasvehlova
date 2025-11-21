@@ -184,7 +184,6 @@ export function HeroSection(): JSX.Element {
   const [activeSection, setActiveSection] = useState<'face' | 'body'>('face')
   const [hoveredPoint, setHoveredPoint] = useState<string | null>(null)
   const [debugMode, setDebugMode] = useState(false)
-  const [draggingPoint, setDraggingPoint] = useState<string | null>(null)
   const [positions, setPositions] = useState<Record<string, { top: string; left: string }>>({})
   const containerRef = React.useRef<HTMLDivElement>(null)
   const draggingRef = React.useRef<string | null>(null)
@@ -268,6 +267,7 @@ export function HeroSection(): JSX.Element {
       })
       .join('\n')
 
+    // eslint-disable-next-line no-console
     console.log(output)
     alert('Pozície kopírované do console! Otvor Developer Tools (F12) a skopíruj text.')
   }
@@ -296,6 +296,7 @@ export function HeroSection(): JSX.Element {
             <source src={`${currentSection.videoSrc}.mp4`} type="video/mp4" />
           </video>
         ) : currentSection?.imageSrc ? (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             key="image"
             src={currentSection.imageSrc}
