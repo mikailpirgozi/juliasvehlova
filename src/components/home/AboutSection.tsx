@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui'
 import Link from 'next/link'
 
-export function AboutSection(): JSX.Element {
+export function AboutSection() {
   const stats = [
     { value: '10+', label: 'Rokov skúseností', icon: '⏱️' },
     { value: '5000+', label: 'Spokojných klientov', icon: '⭐' },

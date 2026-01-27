@@ -6,7 +6,7 @@ export const metadata = {
     'Aktuálne akcie a špeciálne ponuky estetickej kliniky Julia. Zľavy na vybrané služby a balíčky.',
 }
 
-export default function AkciePage(): JSX.Element {
+export default function AkciePage() {
   return (
     <div className="min-h-[60vh] py-20 px-4 flex items-center justify-center">
       <div className="max-w-2xl mx-auto text-center">

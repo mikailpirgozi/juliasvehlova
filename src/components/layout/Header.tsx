@@ -58,7 +58,7 @@ const serviceCategories: ServiceCategory[] = [
   },
 ]
 
-export function Header(): JSX.Element {
+export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
 

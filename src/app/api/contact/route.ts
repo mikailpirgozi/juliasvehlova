@@ -64,7 +64,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const { error } = await resend.emails.send({
       from: 'Julia Clinic <noreply@juliaesteticclinic.sk>',
       to: env.CONTACT_EMAIL,
-      reply_to: sanitizedData.email,
+      replyTo: sanitizedData.email,
       subject: `Nová správa z webu - ${sanitizedData.name}`,
       html: `
         <h2>Nová správa z kontaktného formulára</h2>

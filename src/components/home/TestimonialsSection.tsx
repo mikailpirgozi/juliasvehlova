@@ -55,7 +55,7 @@ const testimonials: Testimonial[] = [
   },
 ]
 
-export function TestimonialsSection(): JSX.Element {
+export function TestimonialsSection() {
   const [visibleCount, setVisibleCount] = useState(3)
 
   const showMore = (): void => {

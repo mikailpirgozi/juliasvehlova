@@ -4,7 +4,7 @@ import { BookioWidget } from '@/components/booking'
 import { Button, LinkButton } from '@/components/ui'
 import { useEffect } from 'react'
 
-export default function ReservationPage(): JSX.Element {
+export default function ReservationPage() {
   // Set document title for Client Component (metadata can't be used with 'use client')
   useEffect(() => {
     document.title = 'Rezervácia termínu - Julia Estetic Clinic'

@@ -190,7 +190,7 @@ const pricingData: PricingCategory[] = [
   },
 ]
 
-export default function CennikPage(): JSX.Element {
+export default function CennikPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>(pricingData[0]?.id || '')
   const [searchQuery, setSearchQuery] = useState('')
 

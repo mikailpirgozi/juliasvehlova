@@ -34,7 +34,7 @@ export function generateMetadata({ params }: CategoryPageProps) {
   }
 }
 
-export default function CategoryPage({ params }: CategoryPageProps): JSX.Element {
+export default function CategoryPage({ params }: CategoryPageProps) {
   const categoryKey = categorySlugMap[params.category]
 
   if (!categoryKey) {

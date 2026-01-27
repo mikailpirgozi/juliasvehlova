@@ -17,7 +17,7 @@ const mainCategories: Array<{ key: ServiceCategory; slug: string; label: string 
   { key: 'men', slug: 'muzi', label: 'Muži' },
 ]
 
-export default function ServicesPage(): JSX.Element {
+export default function ServicesPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<ServiceCategory | 'all'>('all')
   const [sortBy, setSortBy] = useState<SortOption>('name')
@@ -48,14 +48,16 @@ export default function ServicesPage(): JSX.Element {
       switch (sortBy) {
         case 'name':
           return a.title.localeCompare(b.title)
-        case 'price-low':
+        case 'price-low': {
           const priceA = typeof a.price === 'string' ? 0 : a.price.from
           const priceB = typeof b.price === 'string' ? 0 : b.price.from
           return priceA - priceB
-        case 'price-high':
+        }
+        case 'price-high': {
           const priceA2 = typeof a.price === 'string' ? 9999 : a.price.to
           const priceB2 = typeof b.price === 'string' ? 9999 : b.price.to
           return priceB2 - priceA2
+        }
         case 'duration':
           return a.duration.localeCompare(b.duration)
         default:

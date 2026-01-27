@@ -9,7 +9,7 @@ interface ServiceCardProps {
   showCategory?: boolean
 }
 
-export function ServiceCard({ service, showCategory = false }: ServiceCardProps): JSX.Element {
+export function ServiceCard({ service, showCategory = false }: ServiceCardProps) {
   const priceDisplay =
     typeof service.price === 'string'
       ? service.price

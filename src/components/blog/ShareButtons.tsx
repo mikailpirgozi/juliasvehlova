@@ -6,10 +6,12 @@ interface ShareButtonsProps {
   title: string
 }
 
-export function ShareButtons({ title }: ShareButtonsProps): JSX.Element {
+export function ShareButtons({ title }: ShareButtonsProps) {
   const [currentUrl, setCurrentUrl] = useState('')
 
   useEffect(() => {
+    // Reading initial value from window - this is safe to do synchronously on mount
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setCurrentUrl(window.location.href)
   }, [])
 

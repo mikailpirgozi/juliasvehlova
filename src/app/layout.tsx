@@ -31,7 +31,7 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
-}): JSX.Element {
+}) {
   return (
     <html lang="sk" className={`${inter.variable} ${playfair.variable}`}>
       <head>

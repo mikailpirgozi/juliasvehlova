@@ -1,6 +1,6 @@
 import { LinkButton } from '@/components/ui'
 
-export default function NotFound(): JSX.Element {
+export default function NotFound() {
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-accent-rose via-neutral-cream to-white px-4">
       {/* Decorative elements */}

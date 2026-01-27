@@ -15,7 +15,7 @@ export function FadeIn({
   delay = 0,
   direction = 'up',
   className,
-}: FadeInProps): JSX.Element {
+}: FadeInProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 

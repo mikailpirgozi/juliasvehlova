@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   }
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps): JSX.Element {
+export default function BlogPostPage({ params }: BlogPostPageProps) {
   const post = getBlogPostBySlug(params.slug)
 
   if (!post) {

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     'Všeobecné obchodné podmienky Julia Estetic Clinic. Informácie o poskytovaní služieb, rezervácii termínov a storno politike.',
 }
 
-export default function TermsPage(): JSX.Element {
+export default function TermsPage() {
   const lastUpdated = '1. november 2025'
 
   return (

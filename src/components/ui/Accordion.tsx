@@ -14,7 +14,7 @@ interface AccordionProps {
   defaultOpen?: number[]
 }
 
-export function Accordion({ items, className, defaultOpen = [] }: AccordionProps): JSX.Element {
+export function Accordion({ items, className, defaultOpen = [] }: AccordionProps) {
   const [openItems, setOpenItems] = useState<Set<number>>(new Set(defaultOpen))
 
   const toggleItem = (index: number): void => {

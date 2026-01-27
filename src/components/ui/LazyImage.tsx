@@ -24,7 +24,7 @@ export function LazyImage({
   className,
   fill = false,
   objectFit = 'cover',
-}: LazyImageProps): JSX.Element {
+}: LazyImageProps) {
   const [isLoading, setIsLoading] = useState(true)
 
   return (

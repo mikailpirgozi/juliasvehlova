@@ -14,7 +14,7 @@ export function Button({
   className,
   children,
   ...props
-}: ButtonProps): JSX.Element {
+}: ButtonProps) {
   const baseStyles =
     'inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2'
 

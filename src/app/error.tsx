@@ -8,7 +8,7 @@ interface ErrorProps {
   reset: () => void
 }
 
-export default function Error({ error, reset }: ErrorProps): JSX.Element {
+export default function Error({ error, reset }: ErrorProps) {
   useEffect(() => {
     // Log error to error tracking service
     console.error('Application error:', error)

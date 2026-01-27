@@ -7,7 +7,7 @@ interface ServiceFAQProps {
   faqs: FAQ[]
 }
 
-export function ServiceFAQ({ faqs }: ServiceFAQProps): JSX.Element {
+export function ServiceFAQ({ faqs }: ServiceFAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   const toggleFAQ = (index: number): void => {

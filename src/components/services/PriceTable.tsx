@@ -4,7 +4,7 @@ interface PriceTableProps {
   service: Service
 }
 
-export function PriceTable({ service }: PriceTableProps): JSX.Element {
+export function PriceTable({ service }: PriceTableProps) {
   const priceDisplay =
     typeof service.price === 'string'
       ? service.price

@@ -7,7 +7,7 @@ import { contactFormSchema, type ContactFormData } from '@/lib/validations/conta
 import { Button, Input } from '@/components/ui'
 import { toast } from 'sonner'
 
-export function ContactForm(): JSX.Element {
+export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const {

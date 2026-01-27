@@ -12,7 +12,7 @@ export function LinkButton({
   size = 'md',
   className,
   children,
-}: LinkButtonProps): JSX.Element {
+}: LinkButtonProps) {
   const baseStyles =
     'inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2'
 

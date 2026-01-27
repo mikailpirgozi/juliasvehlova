@@ -17,7 +17,7 @@ const mainCategories: MainCategory[] = [
   { key: 'men', slug: 'muzi' },
 ]
 
-export function ServicesSection(): JSX.Element {
+export function ServicesSection() {
   return (
     <section id="services" className="relative overflow-hidden bg-gradient-to-b from-white via-neutral-cream to-accent-rose px-4 py-20">
       {/* Decorative background elements */}

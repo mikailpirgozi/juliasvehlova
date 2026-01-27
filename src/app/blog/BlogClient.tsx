@@ -11,7 +11,7 @@ interface BlogClientProps {
   tags: string[]
 }
 
-export function BlogClient({ posts, categories, tags }: BlogClientProps): JSX.Element {
+export function BlogClient({ posts, categories, tags }: BlogClientProps) {
   useEffect(() => {
     document.title = 'Blog - Estetická medicína | Julia Clinic'
   }, [])

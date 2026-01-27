@@ -4,7 +4,7 @@ interface ProcessTimelineProps {
   steps: ProcessStep[]
 }
 
-export function ProcessTimeline({ steps }: ProcessTimelineProps): JSX.Element {
+export function ProcessTimeline({ steps }: ProcessTimelineProps) {
   return (
     <div className="space-y-6">
       {steps.map((step, index) => (

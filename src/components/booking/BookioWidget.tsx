@@ -8,7 +8,7 @@ interface BookioWidgetProps {
   className?: string
 }
 
-export function BookioWidget({ preselectedService, className }: BookioWidgetProps): JSX.Element {
+export function BookioWidget({ preselectedService, className }: BookioWidgetProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
 

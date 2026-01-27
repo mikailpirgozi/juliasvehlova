@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   keywords: ['blog', 'estetická medicína', 'botox', 'filery', 'permanentný makeup', 'laserová epilácia'],
 }
 
-export default function BlogPage(): JSX.Element {
+export default function BlogPage() {
   const posts = getBlogPosts()
   const categories = getAllBlogCategories()
   const tags = getAllBlogTags()

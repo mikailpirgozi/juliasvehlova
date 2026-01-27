@@ -1,6 +1,6 @@
 import { ContactForm } from '@/components/contact'
 
-export function ContactSection(): JSX.Element {
+export function ContactSection() {
   const contactInfo = [
     {
       icon: '📞',

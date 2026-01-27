@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { LinkButton } from '@/components/ui'
 
 // Client Component - metadata via useEffect
-export default function AboutPage(): JSX.Element {
+export default function AboutPage() {
   useEffect(() => {
     document.title = 'O nás - MUDr. Julia Svehlová | Julia Estetic Clinic'
   }, [])

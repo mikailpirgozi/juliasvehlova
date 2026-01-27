@@ -178,7 +178,7 @@ const sections: SectionConfig[] = [
   },
 ]
 
-export function HeroSection(): JSX.Element {
+export function HeroSection() {
   const router = useRouter()
   const breakpoint = useBreakpoint()
   const [activeSection, setActiveSection] = useState<'face' | 'body'>('face')

@@ -8,7 +8,7 @@ import {
   ContactSection,
 } from '@/components/home'
 
-export default function HomePage(): JSX.Element {
+export default function HomePage() {
   return (
     <>
       <HeroSection />

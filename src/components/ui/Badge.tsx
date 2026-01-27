@@ -10,7 +10,7 @@ export function Badge({
   size = 'sm',
   className,
   ...props
-}: BadgeProps): JSX.Element {
+}: BadgeProps) {
   const variants = {
     primary: 'bg-primary/10 text-primary',
     secondary: 'bg-gray-100 text-gray-800',

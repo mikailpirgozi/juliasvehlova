@@ -27,7 +27,7 @@ export function generateMetadata({ params }: ServiceDetailPageProps) {
   }
 }
 
-export default function ServiceDetailPage({ params }: ServiceDetailPageProps): JSX.Element {
+export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
   const service = getServiceBySlug(params.slug)
 
   if (!service) {

@@ -3,12 +3,14 @@
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui'
 
-export function CookieConsent(): JSX.Element | null {
+export function CookieConsent() {
   const [showConsent, setShowConsent] = useState(false)
 
   useEffect(() => {
+    // Reading initial value from localStorage - this is safe to do synchronously on mount
     const hasConsent = localStorage.getItem('cookie-consent')
     if (!hasConsent) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowConsent(true)
     }
   }, [])
