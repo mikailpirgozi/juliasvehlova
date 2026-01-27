@@ -1,58 +1,133 @@
 import { MetadataRoute } from 'next'
-import { getAllServiceSlugs } from '@/lib/services'
+import { getAllServiceSlugs, categoryMetadata, type ServiceCategory } from '@/lib/services'
+import { getBlogPosts } from '@/lib/blog'
+import { BASE_URL } from '@/lib/seo/constants'
 
+/**
+ * Dynamic sitemap generation
+ * Includes all static pages, services, service categories, and blog posts
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://juliaesteticclinic.sk'
+  const now = new Date()
 
-  // Static pages
-  const staticPages = [
+  // Static pages with priorities
+  const staticPages: MetadataRoute.Sitemap = [
     {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
+      url: BASE_URL,
+      lastModified: now,
+      changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/sluzby`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
+      url: `${BASE_URL}/sluzby`,
+      lastModified: now,
+      changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/o-nas`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
+      url: `${BASE_URL}/o-nas`,
+      lastModified: now,
+      changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/rezervacia`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
+      url: `${BASE_URL}/cennik`,
+      lastModified: now,
+      changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/ochrana-udajov`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly' as const,
+      url: `${BASE_URL}/rezervacia`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/blog`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/akcie`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/ochrana-udajov`,
+      lastModified: now,
+      changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
-      url: `${baseUrl}/obchodne-podmienky`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly' as const,
+      url: `${BASE_URL}/obchodne-podmienky`,
+      lastModified: now,
+      changeFrequency: 'yearly',
       priority: 0.3,
     },
   ]
 
-  // Service pages
+  // Service detail pages
   const serviceSlugs = getAllServiceSlugs()
-  const servicePages = serviceSlugs.map((slug) => ({
-    url: `${baseUrl}/sluzby/${slug}`,
-    lastModified: new Date(),
+  const servicePages: MetadataRoute.Sitemap = serviceSlugs.map((slug) => ({
+    url: `${BASE_URL}/sluzby/${slug}`,
+    lastModified: now,
     changeFrequency: 'monthly' as const,
     priority: 0.8,
   }))
 
-  return [...staticPages, ...servicePages]
-}
+  // Service category pages
+  const mainCategories: ServiceCategory[] = ['face', 'body', 'energy', 'chakra_calibration', 'men']
+  const categoryPages: MetadataRoute.Sitemap = mainCategories
+    .filter((cat) => categoryMetadata[cat])
+    .map((category) => {
+      // Map category to slug
+      const categorySlugMap: Record<ServiceCategory, string> = {
+        face: 'tvar',
+        body: 'telo',
+        energy: 'energy',
+        chakra_calibration: 'chakra-calibration',
+        men: 'muzi',
+        botulotoxin: 'botulotoxin',
+        hyaluronic_acid: 'kyselina-hyaluronova',
+        permanent_makeup: 'permanentny-makeup',
+        laser_epilation: 'laserova-epilacia',
+        face_procedures: 'procedury-tvar',
+        body_procedures: 'procedury-telo',
+        anti_aging: 'anti-aging',
+        cosmetics: 'kozmetika',
+        eyebrows_lashes: 'obocie-mihalnice',
+        professional_makeup: 'licenie',
+        device_treatments: 'pristrojove-osetrenia',
+        mesotherapy: 'mezoterapia',
+        vip_services: 'vip',
+        gift_vouchers: 'darcekove-poukazky',
+      }
+      const slug = categorySlugMap[category] || category
 
+      return {
+        url: `${BASE_URL}/sluzby/kategoria/${slug}`,
+        lastModified: now,
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
+      }
+    })
+
+  // Blog posts
+  let blogPages: MetadataRoute.Sitemap = []
+  try {
+    const blogPosts = getBlogPosts()
+    blogPages = blogPosts.map((post) => ({
+      url: `${BASE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    }))
+  } catch {
+    // If blog posts can't be loaded, continue without them
+    console.warn('Could not load blog posts for sitemap')
+  }
+
+  return [...staticPages, ...servicePages, ...categoryPages, ...blogPages]
+}

@@ -3,13 +3,13 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getBlogPosts, getBlogPostBySlug, getRelatedBlogPosts } from '@/lib/blog'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import { LinkButton } from '@/components/ui'
+import { Button } from '@/components/base/buttons/button'
 import { ShareButtons } from '@/components/blog/ShareButtons'
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
@@ -18,7 +18,8 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const post = getBlogPostBySlug(params.slug)
+  const { slug } = await params
+  const post = getBlogPostBySlug(slug)
 
   if (!post) {
     return { title: 'Článok nenájdený' }
@@ -37,34 +38,40 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   }
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = getBlogPostBySlug(params.slug)
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params
+  const post = getBlogPostBySlug(slug)
 
   if (!post) {
     notFound()
   }
 
-  const relatedPosts = getRelatedBlogPosts(params.slug)
+  const relatedPosts = getRelatedBlogPosts(slug)
 
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="bg-gradient-to-b from-primary/10 to-white px-4 py-12">
+      <section className="bg-gray-50 px-4 py-12">
         <div className="mx-auto max-w-3xl">
-          <Link href="/blog" className="mb-6 inline-block text-sm text-primary hover:underline">
-            ← Späť na blog
+          <Link href="/blog" className="mb-6 inline-flex items-center text-sm text-gray-500 hover:text-gray-700">
+            <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Späť na blog
           </Link>
 
           <div className="mb-4 flex items-center gap-3">
-            <span className="text-xs font-medium uppercase tracking-wider text-accent-gold">
+            <span className="text-xs font-medium uppercase tracking-wider text-brand-600">
               {post.category}
             </span>
-            <span className="text-xs text-gray-500">{post.readingTime} min čítania</span>
+            <span className="text-xs text-gray-400">{post.readingTime} min čítania</span>
           </div>
 
-          <h1 className="mb-4 font-serif text-4xl font-bold text-primary md:text-5xl">{post.title}</h1>
+          <h1 className="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
+            {post.title}
+          </h1>
 
-          <div className="flex items-center justify-between text-sm text-gray-600">
+          <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
             <span>Napísal{post.author === 'Julia Svehlová' ? 'a' : ''} {post.author}</span>
             <time>
               {new Date(post.date).toLocaleDateString('sk-SK', {
@@ -80,7 +87,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Content */}
       <section className="px-4 py-16">
         <div className="mx-auto max-w-3xl">
-          <article className="prose prose-lg max-w-none">
+          <article className="prose prose-gray max-w-none">
             <MDXRemote source={post.content} />
           </article>
 
@@ -89,7 +96,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="flex flex-wrap gap-2">
               {post.tags.map((tag) => (
                 <Link key={tag} href={`/blog?tag=${encodeURIComponent(tag)}`}>
-                  <span className="text-sm bg-primary/10 text-primary px-4 py-2 rounded-full hover:bg-primary hover:text-white transition">
+                  <span className="rounded-full bg-brand-50 px-3 py-1.5 text-sm font-medium text-brand-700 transition-colors hover:bg-brand-100">
                     {tag}
                   </span>
                 </Link>
@@ -104,24 +111,26 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
-        <section className="bg-neutral-cream px-4 py-16">
+        <section className="bg-gray-50 px-4 py-16">
           <div className="mx-auto max-w-6xl">
-            <h2 className="mb-12 text-center font-serif text-3xl font-bold text-primary">
+            <h2 className="text-center text-2xl font-semibold text-gray-900">
               Súvisiace články
             </h2>
 
-            <div className="grid gap-8 md:grid-cols-3">
+            <div className="mt-12 grid gap-6 sm:grid-cols-3">
               {relatedPosts.map((relatedPost) => (
                 <Link key={relatedPost.slug} href={`/blog/${relatedPost.slug}`}>
-                  <article className="rounded-lg border border-gray-200 bg-white p-6 hover:shadow-md transition">
-                    <p className="mb-2 text-xs font-medium uppercase text-accent-gold">
+                  <article className="rounded-xl border border-gray-200 bg-white p-6 transition-shadow hover:shadow-md">
+                    <p className="text-xs font-medium uppercase text-brand-600">
                       {relatedPost.category}
                     </p>
-                    <h3 className="mb-3 font-serif text-lg font-bold text-primary hover:text-primary-dark">
+                    <h3 className="mt-2 font-semibold text-gray-900 hover:text-brand-600">
                       {relatedPost.title}
                     </h3>
-                    <p className="mb-4 line-clamp-2 text-sm text-gray-600">{relatedPost.excerpt}</p>
-                    <span className="text-sm text-primary">Čítať viac →</span>
+                    <p className="mt-2 line-clamp-2 text-sm text-gray-500">{relatedPost.excerpt}</p>
+                    <span className="mt-4 inline-block text-sm font-medium text-brand-600">
+                      Čítať viac →
+                    </span>
                   </article>
                 </Link>
               ))}
@@ -131,17 +140,19 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
       )}
 
       {/* CTA */}
-      <section className="bg-gradient-to-b from-white to-primary/10 px-4 py-16">
+      <section className="bg-white px-4 py-16">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="mb-4 font-serif text-3xl font-bold text-primary">
+          <h2 className="text-2xl font-semibold text-gray-900">
             Chcete viac informácií?
           </h2>
-          <p className="mb-8 text-lg text-gray-700">
+          <p className="mt-4 text-gray-500">
             Objednajte si bezplatnú konzultáciu a dozviete sa viac o procedúrach.
           </p>
-          <LinkButton href="/#kontakt" variant="primary" size="lg">
-            Rezervovať konzultáciu
-          </LinkButton>
+          <div className="mt-8">
+            <Button href="/#kontakt" color="primary" size="lg">
+              Rezervovať konzultáciu
+            </Button>
+          </div>
         </div>
       </section>
     </div>

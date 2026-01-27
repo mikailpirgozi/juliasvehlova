@@ -1,21 +1,9 @@
-'use client'
+import type { Metadata } from 'next'
+import { generatePageMetadata } from '@/lib/seo'
+import { HomePageClient } from './HomePageClient'
 
-import {
-  HeroSection,
-  ServicesSection,
-  AboutSection,
-  TestimonialsSection,
-  ContactSection,
-} from '@/components/home'
+export const metadata: Metadata = generatePageMetadata('home')
 
 export default function HomePage() {
-  return (
-    <>
-      <HeroSection />
-      <ServicesSection />
-      <AboutSection />
-      <TestimonialsSection />
-      <ContactSection />
-    </>
-  )
+  return <HomePageClient />
 }

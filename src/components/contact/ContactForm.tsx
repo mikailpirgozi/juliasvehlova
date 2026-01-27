@@ -1,22 +1,46 @@
 'use client'
 
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { contactFormSchema, type ContactFormData } from '@/lib/validations/contact'
-import { Button, Input } from '@/components/ui'
+import { Button } from '@/components/base/buttons/button'
+import { Input } from '@/components/base/input/input'
+import { TextArea } from '@/components/base/textarea/textarea'
+import { Checkbox } from '@/components/base/checkbox/checkbox'
+import { Select } from '@/components/base/select/select'
 import { toast } from 'sonner'
+import Link from 'next/link'
+
+const serviceOptions = [
+  { id: '', label: 'Vyberte službu' },
+  { id: 'botulotoxin', label: 'Botulotoxín' },
+  { id: 'hyaluronic_acid', label: 'Kyselina hyalurónová' },
+  { id: 'permanent_makeup', label: 'Permanentný make-up' },
+  { id: 'laser_epilation', label: 'Laserová epilácia' },
+  { id: 'face_procedures', label: 'Procedúry na tvár' },
+  { id: 'body_procedures', label: 'Telové procedúry' },
+  { id: 'consultation', label: 'Všeobecná konzultácia' },
+]
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      phone: '',
+      service: '',
+      message: '',
+      consent: false,
+    },
   })
 
   const onSubmit = async (data: ContactFormData): Promise<void> => {
@@ -51,115 +75,134 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       {/* Name */}
-      <div>
-        <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-700">
-          Meno a priezvisko <span className="text-red-500">*</span>
-        </label>
-        <Input
-          id="name"
-          type="text"
-          placeholder="Vaše meno"
-          {...register('name')}
-          error={errors.name?.message}
-          disabled={isSubmitting}
-        />
-      </div>
+      <Controller
+        name="name"
+        control={control}
+        render={({ field }) => (
+          <Input
+            label="Meno a priezvisko"
+            placeholder="Vaše meno"
+            isRequired
+            isDisabled={isSubmitting}
+            isInvalid={!!errors.name}
+            hint={errors.name?.message}
+            value={field.value}
+            onChange={field.onChange}
+            onBlur={field.onBlur}
+          />
+        )}
+      />
 
       {/* Email */}
-      <div>
-        <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-700">
-          Email <span className="text-red-500">*</span>
-        </label>
-        <Input
-          id="email"
-          type="email"
-          placeholder="vas@email.sk"
-          {...register('email')}
-          error={errors.email?.message}
-          disabled={isSubmitting}
-        />
-      </div>
+      <Controller
+        name="email"
+        control={control}
+        render={({ field }) => (
+          <Input
+            label="Email"
+            type="email"
+            placeholder="vas@email.sk"
+            isRequired
+            isDisabled={isSubmitting}
+            isInvalid={!!errors.email}
+            hint={errors.email?.message}
+            value={field.value}
+            onChange={field.onChange}
+            onBlur={field.onBlur}
+          />
+        )}
+      />
 
       {/* Phone */}
-      <div>
-        <label htmlFor="phone" className="mb-2 block text-sm font-medium text-gray-700">
-          Telefón
-        </label>
-        <Input
-          id="phone"
-          type="tel"
-          placeholder="+421 912 345 678"
-          {...register('phone')}
-          error={errors.phone?.message}
-          disabled={isSubmitting}
-        />
-      </div>
+      <Controller
+        name="phone"
+        control={control}
+        render={({ field }) => (
+          <Input
+            label="Telefón"
+            type="tel"
+            placeholder="+421 912 345 678"
+            isDisabled={isSubmitting}
+            isInvalid={!!errors.phone}
+            hint={errors.phone?.message}
+            value={field.value || ''}
+            onChange={field.onChange}
+            onBlur={field.onBlur}
+          />
+        )}
+      />
 
       {/* Service */}
-      <div>
-        <label htmlFor="service" className="mb-2 block text-sm font-medium text-gray-700">
-          Služba (voliteľné)
-        </label>
-        <select
-          id="service"
-          {...register('service')}
-          disabled={isSubmitting}
-          className="w-full rounded-md border border-gray-300 px-4 py-2 transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:bg-gray-100"
-        >
-          <option value="">Vyberte službu</option>
-          <option value="botulotoxin">Botulotoxín</option>
-          <option value="hyaluronic_acid">Kyselina hyalurónová</option>
-          <option value="permanent_makeup">Permanentný make-up</option>
-          <option value="laser_epilation">Laserová epilácia</option>
-          <option value="face_procedures">Procedúry na tvár</option>
-          <option value="body_procedures">Telové procedúry</option>
-          <option value="consultation">Všeobecná konzultácia</option>
-        </select>
-      </div>
+      <Controller
+        name="service"
+        control={control}
+        render={({ field }) => (
+          <Select
+            label="Služba (voliteľné)"
+            placeholder="Vyberte službu"
+            items={serviceOptions}
+            isDisabled={isSubmitting}
+            selectedKey={field.value || ''}
+            onSelectionChange={(key) => {
+              field.onChange(key === '' ? undefined : key)
+            }}
+          >
+            {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
+          </Select>
+        )}
+      />
 
       {/* Message */}
-      <div>
-        <label htmlFor="message" className="mb-2 block text-sm font-medium text-gray-700">
-          Správa <span className="text-red-500">*</span>
-        </label>
-        <textarea
-          id="message"
-          rows={5}
-          placeholder="Napíšte nám vašu správu alebo otázku..."
-          {...register('message')}
-          disabled={isSubmitting}
-          className={`w-full rounded-md border px-4 py-2 transition focus:outline-none focus:ring-2 disabled:cursor-not-allowed disabled:bg-gray-100 ${
-            errors.message
-              ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
-              : 'border-gray-300 focus:border-primary focus:ring-primary/20'
-          }`}
-        />
-        {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message.message}</p>}
-      </div>
+      <Controller
+        name="message"
+        control={control}
+        render={({ field }) => (
+          <TextArea
+            label="Správa"
+            placeholder="Napíšte nám vašu správu alebo otázku..."
+            rows={4}
+            isRequired
+            isDisabled={isSubmitting}
+            isInvalid={!!errors.message}
+            hint={errors.message?.message}
+            value={field.value}
+            onChange={field.onChange}
+            onBlur={field.onBlur}
+          />
+        )}
+      />
 
       {/* Consent */}
-      <div className="flex items-start gap-3">
-        <input
-          id="consent"
-          type="checkbox"
-          {...register('consent')}
-          disabled={isSubmitting}
-          className="mt-1 h-4 w-4 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary/20"
+      <div>
+        <Controller
+          name="consent"
+          control={control}
+          render={({ field }) => (
+            <Checkbox
+              isSelected={field.value}
+              onChange={field.onChange}
+              isDisabled={isSubmitting}
+              label={
+                <span className="text-sm text-gray-600">
+                  Súhlasím so{' '}
+                  <Link href="/ochrana-udajov" className="font-medium text-brand-600 hover:text-brand-700">
+                    spracovaním osobných údajov
+                  </Link>{' '}
+                  za účelom odpovede na moju správu.
+                </span>
+              }
+            />
+          )}
         />
-        <label htmlFor="consent" className="text-sm text-gray-700">
-          Súhlasím so{' '}
-          <a href="/ochrana-udajov" className="text-primary underline hover:text-primary-dark">
-            spracovaním osobných údajov
-          </a>{' '}
-          za účelom odpovede na moju správu. <span className="text-red-500">*</span>
-        </label>
+        {errors.consent && (
+          <p className="mt-1.5 text-sm text-error-600">{errors.consent.message}</p>
+        )}
       </div>
-      {errors.consent && <p className="text-sm text-red-500">{errors.consent.message}</p>}
 
       {/* Submit Button */}
-      <Button type="submit" variant="primary" size="lg" isLoading={isSubmitting} className="w-full">
+      <Button type="submit" color="primary" size="lg" isLoading={isSubmitting} className="w-full">
         {isSubmitting ? 'Odosiela sa...' : 'Odoslať správu'}
       </Button>
 
@@ -169,4 +212,3 @@ export function ContactForm() {
     </form>
   )
 }
-

@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
-import { LinkButton } from '@/components/ui'
+import { Button } from '@/components/base/buttons/button'
 import type { BlogPost } from '@/lib/blog'
 
 interface BlogClientProps {
@@ -19,12 +19,13 @@ export function BlogClient({ posts, categories, tags }: BlogClientProps) {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-primary/10 to-white px-4 py-16">
+      <section className="bg-gray-50 px-4 py-16">
         <div className="mx-auto max-w-6xl text-center">
-          <h1 className="mb-6 font-serif text-4xl font-bold text-primary md:text-5xl">
-            Blog
+          <p className="text-sm font-semibold text-brand-600">Blog</p>
+          <h1 className="mt-2 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
+            Články a tipy
           </h1>
-          <p className="text-xl text-gray-700">
+          <p className="mt-4 text-lg text-gray-500">
             Užitočné informácie, tipy a aktuality zo sveta estetickej medicíny
           </p>
         </div>
@@ -37,31 +38,31 @@ export function BlogClient({ posts, categories, tags }: BlogClientProps) {
             {/* Main Content */}
             <div className="lg:col-span-2">
               {posts.length === 0 ? (
-                <div className="text-center py-20">
-                  <p className="text-xl text-gray-600">
+                <div className="py-20 text-center">
+                  <p className="text-lg text-gray-500">
                     Pripravujeme pre vás zaujímavé články.
                   </p>
                 </div>
               ) : (
-                <div className="space-y-8">
+                <div className="space-y-6">
                   {posts.map((post) => (
                     <article
                       key={post.slug}
-                      className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm hover:shadow-md transition"
+                      className="rounded-xl border border-gray-200 bg-white p-6 transition-shadow hover:shadow-md"
                     >
                       <Link href={`/blog/${post.slug}`}>
-                        <h2 className="mb-4 font-serif text-2xl font-bold text-primary hover:text-primary-dark">
+                        <h2 className="text-xl font-semibold text-gray-900 hover:text-brand-600">
                           {post.title}
                         </h2>
                       </Link>
 
-                      <p className="mb-4 text-gray-700">{post.excerpt}</p>
+                      <p className="mt-2 text-gray-500">{post.excerpt}</p>
 
-                      <div className="mb-4 flex flex-wrap gap-2">
+                      <div className="mt-4 flex flex-wrap gap-2">
                         {post.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="rounded-full bg-accent-gold/10 px-3 py-1 text-xs font-medium text-accent-gold"
+                            className="rounded-full bg-brand-50 px-2.5 py-0.5 text-xs font-medium text-brand-700"
                           >
                             {tag}
                           </span>
@@ -69,16 +70,16 @@ export function BlogClient({ posts, categories, tags }: BlogClientProps) {
                       </div>
 
                       <div className="mt-4 flex items-center justify-between">
-                        <time className="text-sm text-gray-500">
+                        <time className="text-sm text-gray-400">
                           {new Date(post.date).toLocaleDateString('sk-SK', {
                             year: 'numeric',
                             month: 'long',
                             day: 'numeric',
                           })}
                         </time>
-                        <LinkButton href={`/blog/${post.slug}`} variant="outline" size="sm">
-                          Čítať viac →
-                        </LinkButton>
+                        <Button href={`/blog/${post.slug}`} color="tertiary" size="sm">
+                          Čítať viac
+                        </Button>
                       </div>
                     </article>
                   ))}
@@ -87,18 +88,16 @@ export function BlogClient({ posts, categories, tags }: BlogClientProps) {
             </div>
 
             {/* Sidebar */}
-            <aside className="space-y-8">
+            <aside className="space-y-6">
               {/* Categories */}
-              <div className="rounded-lg border border-gray-200 bg-white p-6">
-                <h3 className="mb-4 font-serif text-xl font-bold text-primary">
-                  Kategórie
-                </h3>
-                <ul className="space-y-2">
+              <div className="rounded-xl border border-gray-200 bg-white p-6">
+                <h3 className="font-semibold text-gray-900">Kategórie</h3>
+                <ul className="mt-4 space-y-2">
                   {categories.map((category) => (
                     <li key={category}>
                       <Link
                         href={`/blog?category=${category}`}
-                        className="text-gray-700 hover:text-primary transition"
+                        className="text-sm text-gray-500 transition-colors hover:text-brand-600"
                       >
                         {category}
                       </Link>
@@ -108,16 +107,14 @@ export function BlogClient({ posts, categories, tags }: BlogClientProps) {
               </div>
 
               {/* Popular Tags */}
-              <div className="rounded-lg border border-gray-200 bg-white p-6">
-                <h3 className="mb-4 font-serif text-xl font-bold text-primary">
-                  Populárne témy
-                </h3>
-                <div className="flex flex-wrap gap-2">
+              <div className="rounded-xl border border-gray-200 bg-white p-6">
+                <h3 className="font-semibold text-gray-900">Populárne témy</h3>
+                <div className="mt-4 flex flex-wrap gap-2">
                   {tags.map((tag) => (
                     <Link
                       key={tag}
                       href={`/blog?tag=${tag}`}
-                      className="rounded-full bg-primary/5 px-3 py-1 text-sm text-gray-700 hover:bg-primary/10 transition"
+                      className="rounded-full bg-gray-100 px-2.5 py-0.5 text-sm text-gray-600 transition-colors hover:bg-gray-200"
                     >
                       {tag}
                     </Link>
@@ -131,4 +128,3 @@ export function BlogClient({ posts, categories, tags }: BlogClientProps) {
     </div>
   )
 }
-

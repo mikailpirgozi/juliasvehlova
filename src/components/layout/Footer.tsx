@@ -3,161 +3,155 @@ import Link from 'next/link'
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
-  const quickLinks = [
-    { label: 'O nás', href: '/o-nas', icon: '👋' },
-    { label: 'Služby', href: '/sluzby', icon: '✨' },
-    { label: 'Cenník', href: '/cennik', icon: '💰' },
-    { label: 'Blog', href: '/blog', icon: '📝' },
-    { label: 'Kontakt', href: '#kontakt', icon: '📞' },
-  ]
+  const navigation = {
+    services: [
+      { name: 'Tvár', href: '/sluzby/kategoria/tvar' },
+      { name: 'Telo', href: '/sluzby/kategoria/telo' },
+      { name: 'Energy', href: '/sluzby/kategoria/energy' },
+      { name: 'Muži', href: '/sluzby/kategoria/muzi' },
+    ],
+    company: [
+      { name: 'O nás', href: '/o-nas' },
+      { name: 'Cenník', href: '/cennik' },
+      { name: 'Blog', href: '/blog' },
+      { name: 'Kontakt', href: '#kontakt' },
+    ],
+    legal: [
+      { name: 'Ochrana osobných údajov', href: '/ochrana-udajov' },
+      { name: 'Obchodné podmienky', href: '/obchodne-podmienky' },
+    ],
+  }
 
   const socialLinks = [
-    { label: 'Instagram', href: 'https://instagram.com', icon: '📷' },
-    { label: 'Facebook', href: 'https://facebook.com', icon: '📘' },
+    { 
+      name: 'Instagram', 
+      href: 'https://instagram.com',
+      icon: (
+        <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+          <path fillRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clipRule="evenodd" />
+        </svg>
+      ),
+    },
+    { 
+      name: 'Facebook', 
+      href: 'https://facebook.com',
+      icon: (
+        <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+          <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
+        </svg>
+      ),
+    },
   ]
 
   return (
-    <footer className="relative overflow-hidden border-t border-primary/10 bg-gradient-to-b from-neutral-cream to-white">
-      {/* Decorative background */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent-gold/5 rounded-full blur-3xl" />
-
-      <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-4 md:grid-cols-2">
-          {/* Company Info */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent-gold shadow-lg">
-                <span className="text-2xl">✨</span>
+    <footer className="border-t border-gray-200 bg-white">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+          {/* Brand */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-600 text-white">
+                <span className="text-xl">✨</span>
               </div>
-              <div>
-                <h3 className="font-serif text-2xl font-bold text-primary-dark">
-                  Julia Estetic Clinic
-                </h3>
-                <p className="text-xs text-gray-500 font-medium">Estetická medicína</p>
-              </div>
+              <span className="text-lg font-semibold text-gray-900">Julia Estetic Clinic</span>
             </div>
-            <p className="text-sm text-gray-600 leading-relaxed mb-6 max-w-md">
-              Profesionálne služby estetickej medicíny a permanentného make-upu v Malackách. 
-              Vaša krása je naša vášeň.
+            <p className="max-w-xs text-sm text-gray-500">
+              Profesionálne služby estetickej medicíny a permanentného make-upu v Malackách.
             </p>
-            
-            {/* Social Links */}
-            <div className="flex gap-3">
-              {socialLinks.map((social) => (
+            <div className="flex gap-4">
+              {socialLinks.map((item) => (
                 <a
-                  key={social.href}
-                  href={social.href}
+                  key={item.name}
+                  href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-accent-gold/20 text-2xl transition-all duration-300 hover:scale-110 hover:shadow-lg hover:from-primary hover:to-accent-gold"
-                  aria-label={social.label}
+                  className="text-gray-400 transition-colors hover:text-gray-500"
+                  aria-label={item.name}
                 >
-                  <span className="transition-transform duration-300 group-hover:scale-110">
-                    {social.icon}
-                  </span>
+                  {item.icon}
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="mb-6 font-serif text-lg font-bold text-primary-dark">
-              Rýchle odkazy
-            </h4>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
+          {/* Navigation */}
+          <div className="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+            <div className="md:grid md:grid-cols-2 md:gap-8">
+              <div>
+                <h3 className="text-sm font-semibold text-gray-900">Služby</h3>
+                <ul className="mt-4 space-y-3">
+                  {navigation.services.map((item) => (
+                    <li key={item.name}>
+                      <Link
+                        href={item.href}
+                        className="text-sm text-gray-500 transition-colors hover:text-gray-900"
+                      >
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-10 md:mt-0">
+                <h3 className="text-sm font-semibold text-gray-900">Spoločnosť</h3>
+                <ul className="mt-4 space-y-3">
+                  {navigation.company.map((item) => (
+                    <li key={item.name}>
+                      <Link
+                        href={item.href}
+                        className="text-sm text-gray-500 transition-colors hover:text-gray-900"
+                      >
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900">Kontakt</h3>
+              <ul className="mt-4 space-y-3">
+                <li>
                   <a
-                    href={link.href}
-                    className="group flex items-center gap-2 text-sm text-gray-600 transition-colors hover:text-primary-dark"
+                    href="tel:+421940123456"
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-900"
                   >
-                    <span className="text-lg transition-transform duration-300 group-hover:scale-125">
-                      {link.icon}
-                    </span>
-                    <span className="group-hover:translate-x-1 transition-transform duration-300">
-                      {link.label}
-                    </span>
+                    +421 940 123 456
                   </a>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="mb-6 font-serif text-lg font-bold text-primary-dark">Kontakt</h4>
-            <ul className="space-y-4 text-sm">
-              <li>
-                <a
-                  href="tel:+421940123456"
-                  className="group flex items-center gap-3 text-gray-600 transition-colors hover:text-primary-dark"
-                >
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-accent-gold/20 text-xl transition-transform duration-300 group-hover:scale-110">
-                    📞
-                  </div>
-                  <span>+421 940 123 456</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:info@juliaesteticclinic.sk"
-                  className="group flex items-center gap-3 text-gray-600 transition-colors hover:text-primary-dark"
-                >
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-accent-gold/20 text-xl transition-transform duration-300 group-hover:scale-110">
-                    📧
-                  </div>
-                  <span className="break-all">info@juliaesteticclinic.sk</span>
-                </a>
-              </li>
-              <li>
-                <div className="flex items-center gap-3 text-gray-600">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-accent-gold/20 text-xl">
-                    📍
-                  </div>
-                  <span>Malacky, Slovensko</span>
-                </div>
-              </li>
-            </ul>
+                <li>
+                  <a
+                    href="mailto:info@juliaesteticclinic.sk"
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-900"
+                  >
+                    info@juliaesteticclinic.sk
+                  </a>
+                </li>
+                <li className="text-sm text-gray-500">
+                  Malacky, Slovensko
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        {/* Divider with gradient */}
-        <div className="my-12 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-
-        {/* Bottom Section */}
-        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">💎</span>
-            <p className="text-sm text-gray-600">
-              &copy; {currentYear} Julia Estetic Clinic. Všetky práva vyhradené.
+        {/* Bottom */}
+        <div className="mt-12 border-t border-gray-200 pt-8">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+            <p className="text-sm text-gray-400">
+              © {currentYear} Julia Estetic Clinic. Všetky práva vyhradené.
             </p>
-          </div>
-          
-          <div className="flex flex-wrap gap-6 text-sm">
-            <Link
-              href="/ochrana-udajov"
-              className="text-gray-600 transition-colors hover:text-primary-dark"
-            >
-              Ochrana osobných údajov
-            </Link>
-            <Link
-              href="/obchodne-podmienky"
-              className="text-gray-600 transition-colors hover:text-primary-dark"
-            >
-              Obchodné podmienky
-            </Link>
-          </div>
-        </div>
-
-        {/* Trust Badge */}
-        <div className="mt-8 flex items-center justify-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary/10 to-accent-gold/10 px-6 py-3 text-sm">
-            <span className="text-xl">🏆</span>
-            <span className="font-medium text-gray-700">
-              Certifikovaná klinika estetickej medicíny
-            </span>
+            <div className="flex gap-6">
+              {navigation.legal.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-sm text-gray-400 transition-colors hover:text-gray-500"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>

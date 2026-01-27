@@ -1,14 +1,15 @@
 'use client'
 
-import { Button } from '@/components/ui'
-import Link from 'next/link'
+import Image from 'next/image'
+import { Button } from '@/components/base/buttons/button'
+import { FadeIn } from '@/components/ui'
 
 export function AboutSection() {
   const stats = [
-    { value: '10+', label: 'Rokov skúseností', icon: '⏱️' },
-    { value: '5000+', label: 'Spokojných klientov', icon: '⭐' },
-    { value: '15+', label: 'Procedúr', icon: '✨' },
-    { value: '100%', label: 'Bezpečnosť', icon: '🛡️' },
+    { value: '10+', label: 'Rokov skúseností' },
+    { value: '5000+', label: 'Spokojných klientov' },
+    { value: '15+', label: 'Procedúr' },
+    { value: '100%', label: 'Bezpečnosť' },
   ]
 
   const certificates = [
@@ -19,115 +20,123 @@ export function AboutSection() {
   ]
 
   return (
-    <section id="about" className="relative overflow-hidden bg-gradient-to-b from-accent-rose via-white to-neutral-cream px-4 py-20">
-      {/* Decorative elements */}
-      <div className="absolute top-10 left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-10 right-20 w-96 h-96 bg-accent-gold/10 rounded-full blur-3xl" />
+    <section id="about" className="relative overflow-hidden bg-gradient-to-br from-white via-brand-50/20 to-[#CDA882]/10 py-16 sm:py-24">
+      {/* Decorative background elements */}
+      <div className="pointer-events-none absolute top-10 left-10 h-48 w-48 rounded-full bg-brand-200/20 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-10 right-10 h-64 w-64 rounded-full bg-[#CDA882]/15 blur-3xl" />
       
-      <div className="relative z-10 mx-auto max-w-6xl">
-        <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
-          {/* Left - Text Content */}
-          <div className="order-2 lg:order-1">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-accent-gold">
-              O nás
-            </p>
-            <h2 className="mb-6 font-serif text-5xl font-bold text-primary-dark">
-              MUDr. Julia Svehlová
-            </h2>
-            <div className="space-y-4 text-lg leading-relaxed text-gray-700">
-              <p>
-                Vítajte v <span className="font-semibold text-primary-dark">Julia Estetic Clinic</span>, kde sa krása stretáva s odbornosťou. S viac ako
-                10-ročnou praxou v estetickej medicíne pomáham klientom dosiahnuť ich estetické
-                ciele bezpečným a profesionálnym spôsobom.
-              </p>
-              <p>
-                Moja filozofia je jednoduchá: <span className="font-semibold text-primary">prirodzené výsledky</span>, individuálny prístup a maximálna
-                bezpečnosť. Používam len certifikované produkty a najmodernejšie techniky, aby ste
-                sa cítili krásne a sebavedomé.
-              </p>
-              <div className="rounded-2xl bg-gradient-to-r from-primary/10 via-accent-gold/10 to-primary/10 p-6 border-l-4 border-accent-gold">
-                <p className="font-semibold text-primary-dark flex items-center gap-2">
-                  <span className="text-2xl">💎</span>
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-12 lg:items-center">
+          {/* Left - Image */}
+          <FadeIn direction="left" className="lg:col-span-5">
+            <div className="relative mx-auto max-w-sm lg:max-w-none">
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -left-4 h-full w-full rounded-2xl bg-gradient-to-br from-brand-200 to-[#CDA882]/50" />
+              <div className="absolute -bottom-4 -right-4 h-full w-full rounded-2xl border-2 border-brand-200" />
+              
+              {/* Image container */}
+              <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-2xl">
+                <Image
+                  src="/images/services/doctor-portrait.jpg"
+                  alt="MUDr. Julia Svehlová - Estetická medicína"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              
+              {/* Experience badge */}
+              <div className="absolute -bottom-6 -right-6 flex h-24 w-24 flex-col items-center justify-center rounded-full bg-gradient-to-br from-brand-600 to-brand-500 text-white shadow-lg">
+                <span className="text-2xl font-bold">10+</span>
+                <span className="text-xs">rokov</span>
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* Right - Text Content */}
+          <FadeIn direction="right" delay={0.2} className="mt-12 lg:mt-0 lg:col-span-7">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-[#CDA882]">O nás</p>
+              <h2 className="mt-2 font-serif text-3xl font-bold text-brand-700 sm:text-4xl">
+                MUDr. Julia Svehlová
+              </h2>
+              <div className="mt-6 space-y-4 text-gray-600">
+                <p>
+                  Vítajte v <span className="font-medium text-gray-900">Julia Estetic Clinic</span>, kde sa krása stretáva s odbornosťou. S viac ako
+                  10-ročnou praxou v estetickej medicíne pomáham klientom dosiahnuť ich estetické
+                  ciele bezpečným a profesionálnym spôsobom.
+                </p>
+                <p>
+                  Moja filozofia je jednoduchá: <span className="font-medium text-brand-600">prirodzené výsledky</span>, individuálny prístup a maximálna
+                  bezpečnosť. Používam len certifikované produkty a najmodernejšie techniky, aby ste
+                  sa cítili krásne a sebavedomé.
+                </p>
+              </div>
+
+              {/* Highlight box */}
+              <div className="mt-6 rounded-xl border-l-4 border-[#CDA882] bg-gradient-to-r from-brand-50 to-white p-4 shadow-sm">
+                <p className="font-medium text-brand-800">
                   Vaša spokojnosť a bezpečnosť sú mojou prioritou.
                 </p>
               </div>
-            </div>
 
-            <div className="mt-8">
-              <Link href="/o-nas">
-                <Button variant="outline" size="lg">
-                  Zistiť viac o mne →
+              <div className="mt-8">
+                <Button href="/o-nas" color="secondary" size="md">
+                  Zistiť viac o mne
                 </Button>
-              </Link>
+              </div>
             </div>
+          </FadeIn>
+
+        </div>
+
+        {/* Stats & Certificates - Below */}
+        <FadeIn delay={0.4}>
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className="rounded-2xl border border-brand-100 bg-white/80 p-6 text-center shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              >
+                <p className="text-3xl font-bold text-[#CDA882]">{stat.value}</p>
+                <p className="mt-1 text-sm text-gray-600">{stat.label}</p>
+              </div>
+            ))}
           </div>
+        </FadeIn>
 
-          {/* Right - Stats & Certificates */}
-          <div className="order-1 lg:order-2 space-y-8">
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((stat, index) => (
-                <div
-                  key={index}
-                  className="group relative overflow-hidden rounded-2xl border border-primary/20 bg-white p-6 text-center shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-1"
-                >
-                  {/* Gradient background on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent-gold/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  
-                  <div className="relative z-10">
-                    <p className="mb-2 text-3xl">{stat.icon}</p>
-                    <p className="mb-1 font-serif text-4xl font-bold text-primary-dark">{stat.value}</p>
-                    <p className="text-sm font-medium text-gray-600">{stat.label}</p>
-                  </div>
-
-                  {/* Decorative corner */}
-                  <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-accent-gold/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-              ))}
-            </div>
-
+        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+          <FadeIn delay={0.5}>
             {/* Certificates */}
-            <div className="relative overflow-hidden rounded-3xl border border-primary/20 bg-white/80 backdrop-blur-sm p-8 shadow-xl">
-              {/* Decorative gradient overlay */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent-gold to-primary" />
-              
-              <h3 className="mb-6 font-serif text-2xl font-bold text-primary-dark flex items-center gap-2">
-                <span className="text-3xl">📜</span>
+            <div className="rounded-2xl border border-brand-100 bg-white/80 p-6 shadow-lg backdrop-blur-sm">
+              <h3 className="text-lg font-semibold text-gray-900">
                 Kvalifikácie a certifikáty
               </h3>
-              <ul className="space-y-4">
+              <ul className="mt-4 space-y-3">
                 {certificates.map((cert, index) => (
-                  <li key={index} className="flex items-start gap-3 text-sm text-gray-700">
-                    <span className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent-gold/20 text-accent-gold font-bold">
-                      ✓
-                    </span>
-                    <span className="leading-relaxed">{cert}</span>
+                  <li key={index} className="flex items-start gap-3 text-sm text-gray-600">
+                    <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{cert}</span>
                   </li>
                 ))}
               </ul>
             </div>
+          </FadeIn>
 
+          <FadeIn delay={0.6}>
             {/* Trust Badge */}
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/20 via-accent-gold/20 to-primary-light/20 p-8 text-center shadow-lg">
-              {/* Glassmorphism effect */}
-              <div className="absolute inset-0 bg-white/40 backdrop-blur-sm" />
-              
-              <div className="relative z-10">
-                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-accent-gold to-primary shadow-lg">
-                  <p className="text-3xl">🏆</p>
-                </div>
-                <p className="mb-2 font-serif text-xl font-bold text-primary-dark">
-                  Dôveryhodný odborník
-                </p>
-                <p className="text-sm text-gray-700 font-medium">
-                  Členom Slovenskej spoločnosti estetickej medicíny
-                </p>
-              </div>
+            <div className="flex flex-col justify-center rounded-2xl bg-gradient-to-r from-brand-600 to-brand-500 p-8 text-center text-white shadow-lg">
+              <p className="text-2xl font-semibold">Dôveryhodný odborník</p>
+              <p className="mt-2 text-brand-100">
+                Členom Slovenskej spoločnosti estetickej medicíny
+              </p>
             </div>
-          </div>
+          </FadeIn>
         </div>
       </div>
     </section>
   )
 }
-

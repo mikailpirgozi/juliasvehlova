@@ -1,13 +1,9 @@
 import type { Metadata } from 'next'
 import { getBlogPosts, getAllBlogCategories, getAllBlogTags } from '@/lib/blog'
 import { BlogClient } from './BlogClient'
+import { generatePageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Blog - Estetická medicína | Julia Clinic',
-  description:
-    'Čítajte články o estetickej medicíne, botulotoxíne, kyselipe hyalurónové a ďalších procedúrach. Odborné tipy a informácie.',
-  keywords: ['blog', 'estetická medicína', 'botox', 'filery', 'permanentný makeup', 'laserová epilácia'],
-}
+export const metadata: Metadata = generatePageMetadata('blog')
 
 export default function BlogPage() {
   const posts = getBlogPosts()

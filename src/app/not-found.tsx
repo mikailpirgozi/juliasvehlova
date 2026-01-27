@@ -1,58 +1,44 @@
-import { LinkButton } from '@/components/ui'
+import { Button } from '@/components/base/buttons/button'
 
 export default function NotFound() {
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-accent-rose via-neutral-cream to-white px-4">
-      {/* Decorative elements */}
-      <div className="absolute top-20 left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent-gold/10 rounded-full blur-3xl" />
-      
-      <div className="relative z-10 max-w-2xl text-center">
-        <div className="mb-12">
-          <div className="mb-6 inline-flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent-gold/20 text-6xl shadow-xl">
-            😔
-          </div>
-          <h1 className="mb-4 font-serif text-9xl font-bold bg-gradient-to-r from-primary to-accent-gold bg-clip-text text-transparent">
-            404
-          </h1>
-          <h2 className="mb-6 text-4xl font-bold text-primary-dark">
-            Stránka nebola nájdená
-          </h2>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Ospravedlňujeme sa, ale stránka ktorú hľadáte neexistuje alebo bola presunutá.
-          </p>
-        </div>
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
+      <div className="max-w-md text-center">
+        <p className="text-sm font-semibold text-brand-600">404</p>
+        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
+          Stránka nebola nájdená
+        </h1>
+        <p className="mt-4 text-gray-500">
+          Ospravedlňujeme sa, ale stránka ktorú hľadáte neexistuje alebo bola presunutá.
+        </p>
 
-        <div className="flex flex-col gap-4 sm:flex-row sm:justify-center mb-12">
-          <LinkButton href="/" variant="primary" size="lg">
-            ← Späť na hlavnú stránku
-          </LinkButton>
-          <LinkButton href="/sluzby" variant="outline" size="lg">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+          <Button href="/" color="primary" size="md">
+            Späť na hlavnú stránku
+          </Button>
+          <Button href="/sluzby" color="secondary" size="md">
             Pozrieť služby
-          </LinkButton>
+          </Button>
         </div>
 
-        <div className="rounded-3xl bg-white/80 backdrop-blur-sm p-8 shadow-xl border border-primary/10">
-          <p className="mb-6 text-sm font-semibold text-gray-700 uppercase tracking-wider">
-            Možno vás zaujmú
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <LinkButton href="/cennik" variant="secondary" size="sm">
-              💰 Cenník
-            </LinkButton>
-            <LinkButton href="/o-nas" variant="secondary" size="sm">
-              👋 O nás
-            </LinkButton>
-            <LinkButton href="/blog" variant="secondary" size="sm">
-              📝 Blog
-            </LinkButton>
-            <LinkButton href="/rezervacia" variant="secondary" size="sm">
-              📅 Rezervácia
-            </LinkButton>
+        <div className="mt-12 rounded-xl border border-gray-200 bg-white p-6">
+          <p className="text-sm font-medium text-gray-900">Možno vás zaujmú</p>
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            <Button href="/cennik" color="tertiary" size="sm">
+              Cenník
+            </Button>
+            <Button href="/o-nas" color="tertiary" size="sm">
+              O nás
+            </Button>
+            <Button href="/blog" color="tertiary" size="sm">
+              Blog
+            </Button>
+            <Button href="/rezervacia" color="tertiary" size="sm">
+              Rezervácia
+            </Button>
           </div>
         </div>
       </div>
     </div>
   )
 }
-

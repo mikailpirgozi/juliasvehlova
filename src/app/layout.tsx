@@ -1,30 +1,23 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { inter, playfair } from '@/lib/fonts'
 import { MainLayout } from '@/components/MainLayout'
+import { MainSchemaMarkup } from '@/components/seo'
+import { getBaseMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Julia Estetic Clinic - Profesionálne služby estetickej medicíny',
-  description:
-    'Komplexné služby estetickej medicíny, permanentného make-upu a profesionálneho líčenia v Malackách. Viac ako 10 rokov skúseností.',
-  keywords: [
-    'estetická medicína',
-    'botulotoxín',
-    'kyselina hyalurónová',
-    'permanentný makeup',
-    'laserová epilácia',
-    'Malacky',
-  ],
-  openGraph: {
-    type: 'website',
-    locale: 'sk_SK',
-    url: 'https://juliaesteticclinic.sk',
-    siteName: 'Julia Estetic Clinic',
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+/**
+ * Root Metadata - provides base SEO configuration for all pages
+ * Using centralized SEO configuration from lib/seo
+ */
+export const metadata: Metadata = getBaseMetadata()
+
+/**
+ * Viewport configuration
+ */
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#B49D95',
 }
 
 export default function RootLayout({
@@ -34,11 +27,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="sk" className={`${inter.variable} ${playfair.variable}`}>
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
+      {/* 
+        Next.js automatically creates <head> and inserts metadata from Metadata API
+        No manual <head> element needed - prevents metadata rendering issues
+      */}
       <body>
+        {/* JSON-LD Structured Data for SEO */}
+        <MainSchemaMarkup />
+        
         <MainLayout>{children}</MainLayout>
       </body>
     </html>

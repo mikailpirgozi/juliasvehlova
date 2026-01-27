@@ -346,7 +346,7 @@ export function HeroSection() {
             <div
               className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-xl sm:text-2xl transition-all duration-300 ${
                 activeSection === section.id
-                  ? 'bg-white/30 backdrop-blur-md border border-white/50 shadow-lg shadow-primary/40'
+                  ? 'bg-white/30 backdrop-blur-md border border-white/50 shadow-lg shadow-brand-500/40'
                   : 'bg-white/15 backdrop-blur-sm border border-white/20 group-hover:bg-white/25'
               }`}
             >
@@ -431,7 +431,7 @@ export function HeroSection() {
                       </span>
                     </div>
                     {/* Glow effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-accent-gold/30 to-primary/30 blur-lg rounded-full -z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-brand-500/30 via-brand-300/30 to-brand-500/30 blur-lg rounded-full -z-10" />
                   </div>
                 </div>
               )}

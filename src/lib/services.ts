@@ -94,104 +94,125 @@ export type Service = z.infer<typeof serviceSchema>
 // Category Metadata
 // ========================================
 
+// Icon keys for categories - used to render icons from @untitledui/icons
+export type CategoryIconKey =
+  | 'face'
+  | 'body'
+  | 'energy'
+  | 'chakra'
+  | 'men'
+  | 'sparkle'
+  | 'droplet'
+  | 'brush'
+  | 'laser'
+  | 'star'
+  | 'clock'
+  | 'flower'
+  | 'eye'
+  | 'heart'
+  | 'device'
+  | 'injection'
+  | 'crown'
+  | 'gift'
+
 export const categoryMetadata: Record<
   ServiceCategory,
-  { title: string; description: string; icon: string }
+  { title: string; description: string; iconKey: CategoryIconKey }
 > = {
   face: {
     title: 'Tvár',
     description: 'Doprajte svojej tvári presne to čo potrebuje, aby ste sa cítili zdravá a krásna',
-    icon: '✨',
+    iconKey: 'face',
   },
   body: {
     title: 'Telo',
     description: 'Rýchle a efektívne riešenia pre pohodlný a spokojný pocit vo vlastnom tele',
-    icon: '💪',
+    iconKey: 'body',
   },
   energy: {
     title: 'Energy',
     description: 'Doprajte Vášmu telu, psychike a imunite energy booster, ktorý Vás postaví späť na nohy',
-    icon: '⚡',
+    iconKey: 'energy',
   },
   chakra_calibration: {
     title: 'Chakra Calibration',
     description: 'Odblokujte svoju energiu a cíťte sa ľahší a vitálnejší',
-    icon: '🔮',
+    iconKey: 'chakra',
   },
   men: {
     title: 'Muži',
     description: 'Komplexná ponuka služieb a ošetrení pre mužov',
-    icon: '👨',
+    iconKey: 'men',
   },
   botulotoxin: {
     title: 'Botulotoxín',
     description: 'Redukcia vrások a jemných línií s prírodzeným výsledkom',
-    icon: '✨',
+    iconKey: 'injection',
   },
   hyaluronic_acid: {
     title: 'Kyselina hyalurónová',
     description: 'Hydratácia a modelovanie tváre s elegantným účinkom',
-    icon: '💧',
+    iconKey: 'droplet',
   },
   permanent_makeup: {
     title: 'Permanentný make-up',
     description: 'Trvalý make-up pier, obočia a očných liniek',
-    icon: '💄',
+    iconKey: 'brush',
   },
   laser_epilation: {
     title: 'Laserová epilácia',
     description: 'Bezpečné a účinné odstránenie nežiaducich chĺpkov',
-    icon: '✨',
+    iconKey: 'laser',
   },
   face_procedures: {
     title: 'Procedúry na tvár',
     description: 'Zdravie a lesk vašej kože s modernými metódami',
-    icon: '🌟',
+    iconKey: 'star',
   },
   body_procedures: {
     title: 'Telové procedúry',
     description: 'Modelovanie postávy a redukcia tuku',
-    icon: '💪',
+    iconKey: 'body',
   },
   anti_aging: {
     title: 'Anti-aging ošetrenia',
     description: 'Profesionálne ošetrenia pre mladistvý vzhľad',
-    icon: '⏰',
+    iconKey: 'clock',
   },
   cosmetics: {
     title: 'Kozmetika',
     description: 'Klasické kozmetické ošetrenia pre zdravú pokožku',
-    icon: '🌸',
+    iconKey: 'flower',
   },
   eyebrows_lashes: {
     title: 'Obočie a mihalnice',
     description: 'Úprava, farbenie a laminovanie obočia a mihalníc',
-    icon: '👁',
+    iconKey: 'eye',
   },
   professional_makeup: {
     title: 'Profesionálne líčenie',
     description: 'Líčenie pre každú príležitosť',
-    icon: '💋',
+    iconKey: 'heart',
   },
   device_treatments: {
     title: 'Prístrojové ošetrenia',
     description: 'Moderné technológie pre efektívne výsledky',
-    icon: '⚙️',
+    iconKey: 'device',
   },
   mesotherapy: {
     title: 'Mezoterapia',
     description: 'Revitalizácia pokožky a vlasov',
-    icon: '💉',
+    iconKey: 'injection',
   },
   vip_services: {
     title: 'VIP služby',
     description: 'Exkluzívne balíčky pre výnimočné zážitky',
-    icon: '👑',
+    iconKey: 'crown',
   },
   gift_vouchers: {
     title: 'Darčekové poukážky',
     description: 'Darujte zážitok krásy a relaxácie',
-    icon: '🎁',
+    iconKey: 'gift',
   },
 }
 
@@ -1691,8 +1712,8 @@ const services: Service[] = [
         duration: '60 min',
       },
     ],
-    duration: '70 minút',
-    price: '50 €',
+    duration: '60 minút',
+    price: '100 €',
     images: [
       {
         url: '/images/services/pmu-correction.jpg',
@@ -1742,8 +1763,8 @@ const services: Service[] = [
         duration: '20 min',
       },
     ],
-    duration: '35 minút',
-    price: { from: 80, to: 120, currency: '€' },
+    duration: '60 minút',
+    price: '100 €',
     images: [
       {
         url: '/images/services/laser-removal.jpg',
@@ -2951,6 +2972,252 @@ const services: Service[] = [
     },
     featured: false,
   },
+
+  // ========================================
+  // MEZOTERAPIA
+  // ========================================
+  {
+    id: 'mezoterapia-tvar',
+    slug: 'mezoterapia-tvar',
+    title: 'Mezoterapia tváre',
+    shortDescription:
+      'Revitalizácia a omladzenie pokožky pomocou mikroinjekcií vitamínov a kyseliny hyalurónové.',
+    fullDescription:
+      'Mezoterapia tváre je neinvazívna metóda omladzenia pokožky, pri ktorej sa do kože aplikujú mikroinjekcie zmesi vitamínov, minerálov, aminokyselín a kyseliny hyalurónové. Stimuluje produkciu kolagénu, zlepšuje hydratáciu a celkový vzhľad pokožky.',
+    category: 'mesotherapy',
+    subcategory: undefined,
+    tags: [],
+    benefits: [
+      'Hlboká hydratácia pokožky',
+      'Stimulácia kolagénu',
+      'Zlepšenie textúry a tónu',
+      'Redukcia jemných vrások',
+      'Rozžiarená a zdravá pleť',
+    ],
+    process: [
+      {
+        step: 1,
+        title: 'Konzultácia',
+        description: 'Analýza stavu pokožky a určenie vhodného koktailu',
+        duration: '15 min',
+      },
+      {
+        step: 2,
+        title: 'Príprava',
+        description: 'Očistenie a dezinfekcia pokožky',
+        duration: '10 min',
+      },
+      {
+        step: 3,
+        title: 'Aplikácia',
+        description: 'Séria mikroinjekcií do dermálnej vrstvy',
+        duration: '30 min',
+      },
+    ],
+    duration: '55 minút',
+    price: { from: 80, to: 150, currency: '€' },
+    contraindications: [
+      'Tehotenstvo a dojčenie',
+      'Aktívne kožné infekcie',
+      'Alergia na zložky',
+      'Poruchy zrážanlivosti krvi',
+    ],
+    aftercare: [
+      'Žiadny makeup 24 hodín',
+      'Vyhnúť sa slnku 48 hodín',
+      'Mierny opuch je normálny',
+      'Séria 3-6 ošetrení pre optimálny efekt',
+    ],
+    images: [
+      {
+        url: '/images/services/biorevitalization.jpg',
+        alt: 'Mezoterapia tváre',
+        width: 800,
+        height: 600,
+      },
+    ],
+    seoMeta: {
+      title: 'Mezoterapia tváre Malacky | Julia Clinic',
+      description:
+        'Mezoterapia tváre v Malackách. Revitalizácia pokožky, stimulácia kolagénu, mladistvý vzhľad.',
+      keywords: ['mezoterapia tvár', 'revitalizácia pleti', 'omladzenie pokožky Malacky'],
+    },
+    featured: false,
+  },
+  {
+    id: 'mezoterapia-vlasy',
+    slug: 'mezoterapia-vlasova-pokozka',
+    title: 'Mezoterapia vlasovej pokožky',
+    shortDescription:
+      'Liečba vypadávania vlasov a posilnenie vlasových korienkov mezoterapiou.',
+    fullDescription:
+      'Mezoterapia vlasovej pokožky je účinná metóda na liečbu vypadávania vlasov a posilnenie vlasových korienkov. Mikroinjekcie vitamínov, minerálov a rastových faktorov stimulujú rast vlasov a zlepšujú ich kvalitu.',
+    category: 'mesotherapy',
+    subcategory: undefined,
+    tags: [],
+    benefits: [
+      'Zastavenie vypadávania vlasov',
+      'Stimulácia rastu nových vlasov',
+      'Posilnenie vlasových korienkov',
+      'Zlepšenie kvality vlasov',
+      'Zdravšia vlasová pokožka',
+    ],
+    process: [
+      {
+        step: 1,
+        title: 'Diagnostika',
+        description: 'Analýza stavu vlasov a vlasovej pokožky',
+        duration: '15 min',
+      },
+      {
+        step: 2,
+        title: 'Aplikácia',
+        description: 'Mikroinjekcie do vlasovej pokožky',
+        duration: '30 min',
+      },
+    ],
+    duration: '45 minút',
+    price: { from: 100, to: 180, currency: '€' },
+    contraindications: [
+      'Tehotenstvo a dojčenie',
+      'Kožné infekcie na hlave',
+      'Alergia na zložky',
+    ],
+    aftercare: [
+      'Neumývať vlasy 24 hodín',
+      'Vyhnúť sa intenzívnemu cvičeniu 24 hodín',
+      'Séria 6-10 ošetrení pre optimálny efekt',
+    ],
+    images: [
+      {
+        url: '/images/services/biorevitalization.jpg',
+        alt: 'Mezoterapia vlasov',
+        width: 800,
+        height: 600,
+      },
+    ],
+    seoMeta: {
+      title: 'Mezoterapia vlasov Malacky | Julia Clinic',
+      description:
+        'Mezoterapia vlasovej pokožky v Malackách. Liečba vypadávania vlasov, posilnenie korienkov.',
+      keywords: ['mezoterapia vlasy', 'vypadávanie vlasov', 'posilnenie vlasov Malacky'],
+    },
+    featured: false,
+  },
+
+  // ========================================
+  // VIP SLUŽBY
+  // ========================================
+  {
+    id: 'vip-balik',
+    slug: 'vip-vikendovy-balik',
+    title: 'VIP víkendový balík',
+    shortDescription:
+      'Exkluzívny balík služieb pre kompletný relax a skrášlenie.',
+    fullDescription:
+      'VIP víkendový balík je exkluzívna ponuka pre náročných klientov, ktorí hľadajú kompletný zážitok krásy a relaxácie. Balík zahŕňa kombináciu najobľúbenejších procedúr prispôsobených vašim potrebám.',
+    category: 'vip_services',
+    subcategory: undefined,
+    tags: [],
+    benefits: [
+      'Kompletná starostlivosť na jednom mieste',
+      'Zľava oproti jednotlivým procedúram',
+      'Prioritné rezervácie',
+      'Exkluzívne prostredie',
+      'Personalizovaný prístup',
+    ],
+    process: [
+      {
+        step: 1,
+        title: 'Konzultácia',
+        description: 'Výber procedúr podľa vašich potrieb',
+        duration: '15 min',
+      },
+      {
+        step: 2,
+        title: 'Procedúry',
+        description: 'Realizácia vybraných ošetrení',
+        duration: '180-240 min',
+      },
+      {
+        step: 3,
+        title: 'Relax',
+        description: 'Čas na oddych a regeneráciu',
+        duration: '30 min',
+      },
+    ],
+    duration: '3-5 hodín',
+    price: { from: 300, to: 600, currency: '€' },
+    images: [
+      {
+        url: '/images/services/face-category.jpg',
+        alt: 'VIP balík služieb',
+        width: 800,
+        height: 600,
+      },
+    ],
+    seoMeta: {
+      title: 'VIP služby Malacky | Julia Clinic',
+      description:
+        'VIP balíky služieb v Malackách. Exkluzívna starostlivosť, kompletný relax.',
+      keywords: ['VIP služby', 'balík procedúr', 'exkluzívna kozmetika Malacky'],
+    },
+    featured: false,
+  },
+
+  // ========================================
+  // DARČEKOVÉ POUKÁŽKY
+  // ========================================
+  {
+    id: 'darcekova-poukazka',
+    slug: 'darcekova-poukazka',
+    title: 'Darčeková poukážka',
+    shortDescription:
+      'Darujte zážitok krásy a relaxácie vašim blízkym.',
+    fullDescription:
+      'Darčeková poukážka na služby Julia Estetic Clinic je ideálnym darčekom pre každú príležitosť. Môžete si vybrať hodnotu poukážky alebo konkrétnu službu. Poukážka je platná 12 mesiacov od zakúpenia.',
+    category: 'gift_vouchers',
+    subcategory: undefined,
+    tags: [],
+    benefits: [
+      'Ideálny darček pre každú príležitosť',
+      'Výber hodnoty alebo konkrétnej služby',
+      'Platnosť 12 mesiacov',
+      'Elegantné balenie',
+      'Možnosť online objednávky',
+    ],
+    process: [
+      {
+        step: 1,
+        title: 'Výber',
+        description: 'Vyberte hodnotu alebo službu',
+        duration: '5 min',
+      },
+      {
+        step: 2,
+        title: 'Objednávka',
+        description: 'Online alebo osobne na klinike',
+        duration: '5 min',
+      },
+    ],
+    duration: 'Podľa zvolenej služby',
+    price: 'Od 50 €',
+    images: [
+      {
+        url: '/images/services/face-category.jpg',
+        alt: 'Darčeková poukážka',
+        width: 800,
+        height: 600,
+      },
+    ],
+    seoMeta: {
+      title: 'Darčekové poukážky Malacky | Julia Clinic',
+      description:
+        'Darčekové poukážky na estetické služby v Malackách. Darujte zážitok krásy.',
+      keywords: ['darčeková poukážka', 'darček kozmetika', 'poukážka Malacky'],
+    },
+    featured: false,
+  },
 ]
 
 // ========================================
@@ -3005,5 +3272,25 @@ export function getCategoryTitle(category: ServiceCategory): string {
 
 export function getCategoryDescription(category: ServiceCategory): string {
   return categoryMetadata[category]?.description ?? ''
+}
+
+export function getRelatedServices(service: Service, limit = 4): Service[] {
+  // Get services from the same category, excluding the current service
+  const sameCategory = allServices.filter(
+    (s) => s.category === service.category && s.id !== service.id
+  )
+  
+  // If we have enough from the same category, return those
+  if (sameCategory.length >= limit) {
+    return sameCategory.slice(0, limit)
+  }
+  
+  // Otherwise, add featured services from other categories
+  const featured = allServices.filter(
+    (s) => s.featured && s.id !== service.id && s.category !== service.category
+  )
+  
+  const combined = [...sameCategory, ...featured]
+  return combined.slice(0, limit)
 }
 
