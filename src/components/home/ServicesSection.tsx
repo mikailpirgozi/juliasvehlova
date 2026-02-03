@@ -8,7 +8,6 @@ import {
   HeartCircle,
   Lightning01,
   Sun,
-  User01,
   Stars01,
   Droplets01,
   Edit05,
@@ -35,7 +34,6 @@ const mainCategories: MainCategory[] = [
   { key: 'body', slug: 'telo', image: '/images/categories/body.jpg' },
   { key: 'energy', slug: 'energy', image: '/images/categories/energy.jpg' },
   { key: 'chakra_calibration', slug: 'chakra-calibration', image: '/images/categories/chakra.jpg' },
-  { key: 'men', slug: 'muzi', image: '/images/categories/men.jpg' },
 ]
 
 // Map icon keys to Untitled UI icon components
@@ -44,7 +42,6 @@ const iconComponents: Record<CategoryIconKey, FC<{ className?: string }>> = {
   body: HeartCircle,
   energy: Lightning01,
   chakra: Sun,
-  men: User01,
   sparkle: Stars01,
   droplet: Droplets01,
   brush: Edit05,
@@ -66,7 +63,6 @@ const categoryColors: Record<ServiceCategory, { bg: string; iconBg: string; icon
   body: { bg: 'from-orange-100/60 to-orange-200/40', iconBg: 'bg-orange-100', iconColor: 'text-orange-600' },
   energy: { bg: 'from-yellow-100/60 to-amber-200/40', iconBg: 'bg-yellow-100', iconColor: 'text-yellow-600' },
   chakra_calibration: { bg: 'from-amber-100/60 to-yellow-200/40', iconBg: 'bg-amber-100', iconColor: 'text-amber-600' },
-  men: { bg: 'from-gray-100/60 to-gray-200/40', iconBg: 'bg-gray-100', iconColor: 'text-gray-600' },
   botulotoxin: { bg: 'from-brand-100/60 to-brand-200/40', iconBg: 'bg-brand-100', iconColor: 'text-brand-600' },
   hyaluronic_acid: { bg: 'from-blue-100/60 to-blue-200/40', iconBg: 'bg-blue-100', iconColor: 'text-blue-600' },
   permanent_makeup: { bg: 'from-purple-100/60 to-purple-200/40', iconBg: 'bg-purple-100', iconColor: 'text-purple-600' },

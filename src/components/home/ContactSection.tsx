@@ -1,23 +1,6 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import { FadeIn } from '@/components/ui'
-
-// Dynamic import with ssr: false to avoid React Aria hydration mismatch
-const ContactForm = dynamic(
-  () => import('@/components/contact').then((mod) => mod.ContactForm),
-  { 
-    ssr: false,
-    loading: () => (
-      <div className="space-y-5 animate-pulse">
-        {[...Array(5)].map((_, i) => (
-          <div key={i} className="h-12 rounded-lg bg-gray-100" />
-        ))}
-        <div className="h-12 rounded-lg bg-brand-100" />
-      </div>
-    ),
-  }
-)
 
 export function ContactSection() {
   const contactInfo = [
@@ -77,25 +60,10 @@ export function ContactSection() {
           </div>
         </FadeIn>
 
-        <div className="mt-12 lg:grid lg:grid-cols-2 lg:gap-12">
-          {/* Left - Contact Form */}
-          <FadeIn direction="left" delay={0.1}>
-            <div className="rounded-2xl border border-brand-100 bg-white/80 p-6 shadow-lg backdrop-blur-sm lg:p-8">
-              <h3 className="text-lg font-semibold text-gray-900">
-                Kontaktný formulár
-              </h3>
-              <p className="mt-1 text-sm text-gray-500">
-                Vyplňte formulár a ozveme sa vám do 24 hodín
-              </p>
-              <div className="mt-6">
-                <ContactForm />
-              </div>
-            </div>
-          </FadeIn>
-
-          {/* Right - Contact Info */}
-          <FadeIn direction="right" delay={0.2}>
-            <div className="mt-10 lg:mt-0 space-y-6">
+        <div className="mt-12 mx-auto max-w-2xl">
+          {/* Contact Info */}
+          <FadeIn delay={0.1}>
+            <div className="space-y-6">
               {/* Contact Cards */}
               <div className="space-y-4">
                 {contactInfo.map((info, index) => (

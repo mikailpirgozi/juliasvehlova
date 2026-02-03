@@ -7,7 +7,6 @@ import {
   HeartCircle,
   Lightning01,
   Sun,
-  User01,
   ArrowLeft,
 } from '@untitledui/icons'
 import { Button } from '@/components/base/buttons/button'
@@ -25,7 +24,6 @@ const categorySlugMap: Record<string, ServiceCategory> = {
   telo: 'body',
   energy: 'energy',
   'chakra-calibration': 'chakra_calibration',
-  muzi: 'men',
 }
 
 const categoryImages: Record<string, string> = {
@@ -33,7 +31,6 @@ const categoryImages: Record<string, string> = {
   telo: '/images/categories/body.jpg',
   energy: '/images/categories/energy.jpg',
   'chakra-calibration': '/images/categories/chakra.jpg',
-  muzi: '/images/categories/men.jpg',
 }
 
 // Map icon keys to Untitled UI icon components (subset used in categories)
@@ -42,7 +39,6 @@ const iconComponents: Partial<Record<CategoryIconKey, FC<{ className?: string }>
   body: HeartCircle,
   energy: Lightning01,
   chakra: Sun,
-  men: User01,
 }
 
 export function generateStaticParams() {

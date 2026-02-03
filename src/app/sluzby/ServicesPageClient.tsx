@@ -8,7 +8,6 @@ import {
   HeartCircle,
   Lightning01,
   Sun,
-  User01,
 } from '@untitledui/icons'
 import { allServices, categoryMetadata, type ServiceCategory, type CategoryIconKey } from '@/lib/services'
 import { ServiceCard } from '@/components/services'
@@ -25,7 +24,6 @@ const iconComponents: Partial<Record<CategoryIconKey, FC<{ className?: string }>
   body: HeartCircle,
   energy: Lightning01,
   chakra: Sun,
-  men: User01,
 }
 
 const mainCategories: Array<{ key: ServiceCategory; slug: string; label: string; image: string }> = [
@@ -33,7 +31,6 @@ const mainCategories: Array<{ key: ServiceCategory; slug: string; label: string;
   { key: 'body', slug: 'telo', label: 'Telo', image: '/images/categories/body.jpg' },
   { key: 'energy', slug: 'energy', label: 'Energy', image: '/images/categories/energy.jpg' },
   { key: 'chakra_calibration', slug: 'chakra-calibration', label: 'Chakra Calibration', image: '/images/categories/chakra.jpg' },
-  { key: 'men', slug: 'muzi', label: 'Muži', image: '/images/categories/men.jpg' },
 ]
 
 export function ServicesPageClient() {
@@ -112,7 +109,7 @@ export function ServicesPageClient() {
           <h2 className="mb-8 text-center font-serif text-2xl font-bold text-gray-900">
             Kategórie služieb
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {mainCategories.map((cat) => {
               const count = allServices.filter((s) => s.category === cat.key).length
               const metadata = categoryMetadata[cat.key]

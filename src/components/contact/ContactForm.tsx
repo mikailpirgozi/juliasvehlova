@@ -64,13 +64,6 @@ const serviceOptions = [
   { id: 'laminovanie-mihalnic', label: 'Laminovanie mihalníc' },
   { id: 'lash-lifting', label: 'Lash Lifting' },
   
-  // Služby pre mužov
-  { id: 'muzi-laser-tvara', label: 'Pre mužov - Laserová epilácia tváre' },
-  { id: 'muzi-laser-chrbat', label: 'Pre mužov - Laserová epilácia chrbát' },
-  { id: 'muzi-botox', label: 'Pre mužov - Botulotoxín' },
-  { id: 'muzi-kyselina-hyaluronova', label: 'Pre mužov - Kyselina hyalurónová' },
-  { id: 'muzi-osetrenie-pleti', label: 'Pre mužov - Ošetrenie pleti' },
-  
   // Energy a Chakra
   { id: 'energy-boost', label: 'Energy Boost Session' },
   { id: 'chakra-calibration', label: 'Chakra Calibration' },

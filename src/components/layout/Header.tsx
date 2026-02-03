@@ -13,7 +13,6 @@ import {
   Lightning01,
   Menu01,
   Sun,
-  User01,
   Stars01,
   XClose,
   ArrowRight,
@@ -77,14 +76,6 @@ const serviceCategories: ServiceCategory[] = [
     color: 'purple',
     gradient: 'from-purple-100 to-purple-50',
   },
-  {
-    title: 'Muži',
-    Icon: User01,
-    href: '/sluzby/kategoria/muzi',
-    description: 'Špecializované služby pre mužov',
-    color: 'slate',
-    gradient: 'from-slate-100 to-slate-50',
-  },
 ]
 
 // Icon color mapping
@@ -112,12 +103,6 @@ const iconColorClasses: Record<string, { bg: string; bgHover: string; text: stri
     bgHover: 'group-hover:bg-purple-200',
     text: 'text-purple-600',
     textHover: 'group-hover:text-purple-700',
-  },
-  slate: {
-    bg: 'bg-slate-100',
-    bgHover: 'group-hover:bg-slate-200',
-    text: 'text-slate-600',
-    textHover: 'group-hover:text-slate-700',
   },
 }
 
@@ -214,7 +199,7 @@ export function Header() {
                             </motion.span>
                           </Link>
                           <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
-                            5 kategórií
+                            4 kategórie
                           </span>
                         </div>
 

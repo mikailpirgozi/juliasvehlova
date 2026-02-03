@@ -26,7 +26,6 @@ const imageMapping = {
     'face.jpg': null,
     'body.jpg': null,
     'energy.jpg': null,
-    'men.jpg': null,
     'chakra.jpg': null,
   },
   
@@ -83,14 +82,6 @@ const imageMapping = {
     
     // Telové procedúry
     'cryolipolysis.jpg': null,
-    
-    // Muži
-    'men-grooming.jpg': null,
-    'men-laser-face.jpg': null,
-    'men-laser-back.jpg': null,
-    'men-botox.jpg': null,
-    'men-filler.jpg': null,
-    'men-facial.jpg': null,
     
     // Kategórie služieb
     'face-category.jpg': null,
@@ -167,21 +158,12 @@ const placeholderImages = {
   // Body procedures
   'cryolipolysis.jpg': 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=600&fit=crop',
   
-  // Men's services
-  'men-grooming.jpg': 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=800&h=600&fit=crop',
-  'men-laser-face.jpg': 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=800&h=600&fit=crop',
-  'men-laser-back.jpg': 'https://images.unsplash.com/photo-1540206395-68808572332f?w=800&h=600&fit=crop',
-  'men-botox.jpg': 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=800&h=600&fit=crop',
-  'men-filler.jpg': 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=800&h=600&fit=crop',
-  'men-facial.jpg': 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=800&h=600&fit=crop',
-  
   // Category images
   'face-category.jpg': 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&h=600&fit=crop',
   'body-category.jpg': 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=600&fit=crop',
   'face.jpg': 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&h=600&fit=crop',
   'body.jpg': 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=600&fit=crop',
   'energy.jpg': 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=600&fit=crop',
-  'men.jpg': 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=800&h=600&fit=crop',
   'chakra.jpg': 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&h=600&fit=crop',
   
   // Energy and Chakra

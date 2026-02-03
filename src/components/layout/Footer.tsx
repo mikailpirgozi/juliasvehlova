@@ -9,7 +9,7 @@ export function Footer() {
       { name: 'Tvár', href: '/sluzby/kategoria/tvar' },
       { name: 'Telo', href: '/sluzby/kategoria/telo' },
       { name: 'Energy', href: '/sluzby/kategoria/energy' },
-      { name: 'Muži', href: '/sluzby/kategoria/muzi' },
+      { name: 'Chakra Calibration', href: '/sluzby/kategoria/chakra-calibration' },
     ],
     company: [
       { name: 'O nás', href: '/o-nas' },

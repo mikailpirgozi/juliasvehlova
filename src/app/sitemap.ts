@@ -78,7 +78,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
 
   // Service category pages
-  const mainCategories: ServiceCategory[] = ['face', 'body', 'energy', 'chakra_calibration', 'men']
+  const mainCategories: ServiceCategory[] = ['face', 'body', 'energy', 'chakra_calibration']
   const categoryPages: MetadataRoute.Sitemap = mainCategories
     .filter((cat) => categoryMetadata[cat])
     .map((category) => {
@@ -88,7 +88,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         body: 'telo',
         energy: 'energy',
         chakra_calibration: 'chakra-calibration',
-        men: 'muzi',
         botulotoxin: 'botulotoxin',
         hyaluronic_acid: 'kyselina-hyaluronova',
         permanent_makeup: 'permanentny-makeup',
