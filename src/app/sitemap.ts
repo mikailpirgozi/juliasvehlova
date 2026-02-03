@@ -49,12 +49,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${BASE_URL}/akcie`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.6,
-    },
-    {
       url: `${BASE_URL}/ochrana-udajov`,
       lastModified: now,
       changeFrequency: 'yearly',

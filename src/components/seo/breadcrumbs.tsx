@@ -134,7 +134,6 @@ export function generateBreadcrumbsFromPath(
     cennik: 'Cenník',
     rezervacia: 'Rezervácia',
     blog: 'Blog',
-    akcie: 'Akcie',
     kontakt: 'Kontakt',
     'ochrana-udajov': 'Ochrana údajov',
     'obchodne-podmienky': 'Obchodné podmienky',

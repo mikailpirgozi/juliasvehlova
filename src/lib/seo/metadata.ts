@@ -122,18 +122,6 @@ export const pageMetadata: Record<string, PageMetadataConfig> = {
       'malacky klinika',
     ],
   },
-  promotions: {
-    title: `Akcie a zvýhodnené balíčky | ${COMPANY_NAME}`,
-    description:
-      'Aktuálne akcie a zvýhodnené balíčky služieb estetickej medicíny. Využite špeciálne ponuky a ušetrite na vašich obľúbených procedúrach.',
-    keywords: [
-      ...DEFAULT_KEYWORDS,
-      'akcie',
-      'zľavy',
-      'balíčky',
-      'zvýhodnené ponuky',
-    ],
-  },
   privacy: {
     title: `Ochrana osobných údajov | ${COMPANY_NAME}`,
     description:
