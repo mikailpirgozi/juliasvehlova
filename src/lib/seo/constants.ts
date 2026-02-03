@@ -16,10 +16,10 @@ export const BASE_URL = 'https://juliaesteticclinic.sk'
 // =============================================================================
 
 export const CONTACT = {
-  phone: '+421 123 456 789', // TODO: Update with real phone
-  email: 'info@juliaesteticclinic.sk',
+  phone: '+421 911 992 211',
+  email: 'info@jec.sk',
   address: {
-    street: 'Hlavná ulica 1', // TODO: Update with real address
+    street: 'Javorová 2',
     city: 'Malacky',
     postalCode: '901 01',
     country: 'Slovakia',
@@ -36,7 +36,7 @@ export const CONTACT = {
 // =============================================================================
 
 export const SOCIAL_LINKS = {
-  facebook: 'https://www.facebook.com/juliaesteticclinic',
+  facebook: 'https://www.facebook.com/people/Julia-Estetic-Clinic/61560460323854/',
   instagram: 'https://www.instagram.com/juliaesteticclinic',
 } as const
 

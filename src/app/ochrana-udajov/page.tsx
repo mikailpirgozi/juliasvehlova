@@ -36,8 +36,9 @@ export default function PrivacyPage() {
             <div className="mt-4 rounded-lg border border-gray-200 bg-gray-50 p-4">
               <p className="font-medium text-gray-900">MUDr. Julia Svehlová</p>
               <p className="text-sm text-gray-600">Julia Estetic Clinic</p>
-              <p className="text-sm text-gray-600">Malacky, Slovensko</p>
-              <p className="text-sm text-gray-600">Email: info@juliaesteticclinic.sk</p>
+              <p className="text-sm text-gray-600">Javorová 2</p>
+              <p className="text-sm text-gray-600">901 01 Malacky</p>
+              <p className="text-sm text-gray-600">Email: info@jec.sk</p>
             </div>
           </section>
 
@@ -113,8 +114,8 @@ export default function PrivacyPage() {
             <h2 className="text-xl font-semibold text-gray-900">9. Kontakt</h2>
             <div className="mt-4 rounded-lg border border-gray-200 bg-gray-50 p-4">
               <p className="font-medium text-gray-900">MUDr. Julia Svehlová</p>
-              <p className="text-sm text-gray-600">Email: info@juliaesteticclinic.sk</p>
-              <p className="text-sm text-gray-600">Tel: +421 940 123 456</p>
+              <p className="text-sm text-gray-600">Email: info@jec.sk</p>
+              <p className="text-sm text-gray-600">Tel: +421 911 992 211</p>
             </div>
           </section>
 

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import type { FC } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -137,13 +138,16 @@ export function Header() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-18 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-600 text-white">
-              <Stars01 className="h-5 w-5" />
-            </div>
-            <div>
-              <span className="text-lg font-semibold text-gray-900">Julia Clinic</span>
-              <p className="text-xs text-gray-500">Estetická medicína</p>
+          <Link href="/" className="flex items-center">
+            <div className="relative h-14 w-32 overflow-hidden">
+              <Image
+                src="/images/branding/logo.svg"
+                alt="Julia Estetic Clinic"
+                width={258}
+                height={559}
+                className="absolute left-1/2 top-[47%] h-[300%] w-auto -translate-x-1/2 -translate-y-1/2"
+                priority
+              />
             </div>
           </Link>
 

@@ -1,7 +1,23 @@
 'use client'
 
-import { ContactForm } from '@/components/contact'
+import dynamic from 'next/dynamic'
 import { FadeIn } from '@/components/ui'
+
+// Dynamic import with ssr: false to avoid React Aria hydration mismatch
+const ContactForm = dynamic(
+  () => import('@/components/contact').then((mod) => mod.ContactForm),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="space-y-5 animate-pulse">
+        {[...Array(5)].map((_, i) => (
+          <div key={i} className="h-12 rounded-lg bg-gray-100" />
+        ))}
+        <div className="h-12 rounded-lg bg-brand-100" />
+      </div>
+    ),
+  }
+)
 
 export function ContactSection() {
   const contactInfo = [
@@ -12,9 +28,9 @@ export function ContactSection() {
         </svg>
       ),
       title: 'Telefón',
-      primary: '+421 940 123 456',
+      primary: '+421 911 992 211',
       secondary: 'Po - Pia: 9:00 - 18:00',
-      href: 'tel:+421940123456',
+      href: 'tel:+421911992211',
     },
     {
       icon: (
@@ -23,9 +39,9 @@ export function ContactSection() {
         </svg>
       ),
       title: 'Email',
-      primary: 'info@juliaesteticclinic.sk',
+      primary: 'info@jec.sk',
       secondary: 'Odpovieme do 24 hodín',
-      href: 'mailto:info@juliaesteticclinic.sk',
+      href: 'mailto:info@jec.sk',
     },
     {
       icon: (
@@ -35,8 +51,8 @@ export function ContactSection() {
         </svg>
       ),
       title: 'Adresa',
-      primary: 'Malacky, Slovensko',
-      secondary: 'Presnú adresu pošleme po rezervácii',
+      primary: 'Javorová 2, 901 01 Malacky',
+      secondary: 'Termíny len po objednaní vopred',
       href: null,
     },
   ]
@@ -144,8 +160,8 @@ export function ContactSection() {
                 </p>
                 <div className="mt-4 flex gap-3">
                   {[
-                    { label: 'Instagram', href: 'https://instagram.com' },
-                    { label: 'Facebook', href: 'https://facebook.com' },
+                    { label: 'Instagram', href: 'https://www.instagram.com/juliaesteticclinic' },
+                    { label: 'Facebook', href: 'https://www.facebook.com/people/Julia-Estetic-Clinic/61560460323854/' },
                   ].map((social, index) => (
                     <a
                       key={index}

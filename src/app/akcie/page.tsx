@@ -37,7 +37,7 @@ export default function AkciePage() {
           <p className="text-sm font-medium text-gray-900">Sledujte nás na sociálnych sieťach:</p>
           <div className="flex justify-center gap-3">
             <a
-              href="https://www.facebook.com/profile.php?id=61560460323854"
+              href="https://www.facebook.com/people/Julia-Estetic-Clinic/61560460323854/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/80 text-gray-600 shadow-md backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:bg-brand-50 hover:shadow-lg"

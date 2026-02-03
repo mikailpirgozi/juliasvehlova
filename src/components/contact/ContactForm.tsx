@@ -14,12 +14,71 @@ import Link from 'next/link'
 
 const serviceOptions = [
   { id: '', label: 'Vyberte službu' },
-  { id: 'botulotoxin', label: 'Botulotoxín' },
-  { id: 'hyaluronic_acid', label: 'Kyselina hyalurónová' },
-  { id: 'permanent_makeup', label: 'Permanentný make-up' },
-  { id: 'laser_epilation', label: 'Laserová epilácia' },
-  { id: 'face_procedures', label: 'Procedúry na tvár' },
-  { id: 'body_procedures', label: 'Telové procedúry' },
+  
+  // Botulotoxín
+  { id: 'botox-vrasky', label: 'Botulotoxín - Úprava mimických vrások' },
+  { id: 'botox-hyperhidroza', label: 'Botulotoxín - Liečba hyperhidrózy (nadmerné potenie)' },
+  
+  // Kyselina hyalurónová
+  { id: 'filler-pery', label: 'Kyselina hyalurónová - Zväčšenie a modelovanie pier' },
+  { id: 'filler-lica', label: 'Kyselina hyalurónová - Modelovanie líc' },
+  { id: 'filler-nosolzne', label: 'Kyselina hyalurónová - Výplň nososlzných rýh' },
+  
+  // Permanentný make-up
+  { id: 'pmu-microblading', label: 'Permanentný make-up - Microblading' },
+  { id: 'pmu-powder-brows', label: 'Permanentný make-up - Powder Brows' },
+  { id: 'pmu-tetovanie-pier', label: 'Permanentný make-up - Tetovanie pier' },
+  { id: 'pmu-hair-strokes', label: 'Permanentný make-up - Hair Strokes' },
+  { id: 'pmu-ocne-linky', label: 'Permanentný make-up - Očné linky' },
+  { id: 'pmu-korekcia', label: 'Permanentný make-up - Korekcia' },
+  { id: 'pmu-odstranenie-laser', label: 'Permanentný make-up - Odstránenie laserom' },
+  
+  // Laserová epilácia
+  { id: 'laser-tvara', label: 'Laserová epilácia - Tvár' },
+  { id: 'laser-epilacia-nohy-cele', label: 'Laserová epilácia - Nohy celé' },
+  { id: 'laser-epilacia-podpazie', label: 'Laserová epilácia - Podpazušie' },
+  { id: 'laser-epilacia-bikini', label: 'Laserová epilácia - Bikini' },
+  
+  // Procedúry na tvár
+  { id: 'chemicky-peeling', label: 'Chemický peeling' },
+  { id: 'microneedling', label: 'Microneedling' },
+  { id: 'biorevitalizacia-pleti', label: 'Biorevitalizácia pleti' },
+  { id: 'mezoterapia-tvar', label: 'Mezoterapia - Tvár' },
+  
+  // Telové procedúry
+  { id: 'kryolipolyza', label: 'Kryolipolýza' },
+  { id: 'inekcna-lipoliza', label: 'Injekčná lipolýza' },
+  { id: 'liftingove-nite', label: 'Liftingové nite' },
+  
+  // Profesionálne líčenie
+  { id: 'licenie-denne', label: 'Profesionálne líčenie - Denné' },
+  { id: 'licenie-vecerne', label: 'Profesionálne líčenie - Večerné' },
+  { id: 'licenie-svadobne', label: 'Profesionálne líčenie - Svadobné' },
+  { id: 'licenie-skusobne-svadobne', label: 'Profesionálne líčenie - Skúšobné svadobné' },
+  
+  // Obočie a mihalnice
+  { id: 'uprava-oboci', label: 'Úprava obočia' },
+  { id: 'farbenie-oboci', label: 'Farbenie obočia' },
+  { id: 'farbenie-mihalnic', label: 'Farbenie mihalníc' },
+  { id: 'laminovanie-oboci', label: 'Laminovanie obočia' },
+  { id: 'laminovanie-mihalnic', label: 'Laminovanie mihalníc' },
+  { id: 'lash-lifting', label: 'Lash Lifting' },
+  
+  // Služby pre mužov
+  { id: 'muzi-laser-tvara', label: 'Pre mužov - Laserová epilácia tváre' },
+  { id: 'muzi-laser-chrbat', label: 'Pre mužov - Laserová epilácia chrbát' },
+  { id: 'muzi-botox', label: 'Pre mužov - Botulotoxín' },
+  { id: 'muzi-kyselina-hyaluronova', label: 'Pre mužov - Kyselina hyalurónová' },
+  { id: 'muzi-osetrenie-pleti', label: 'Pre mužov - Ošetrenie pleti' },
+  
+  // Energy a Chakra
+  { id: 'energy-boost', label: 'Energy Boost Session' },
+  { id: 'chakra-calibration', label: 'Chakra Calibration' },
+  
+  // Ostatné
+  { id: 'mezoterapia-vlasy', label: 'Mezoterapia - Vlasy' },
+  { id: 'vip-balik', label: 'VIP Balík' },
+  { id: 'darcekova-poukazka', label: 'Darčeková poukážka' },
   { id: 'consultation', label: 'Všeobecná konzultácia' },
 ]
 
@@ -82,6 +141,7 @@ export function ContactForm() {
         control={control}
         render={({ field }) => (
           <Input
+            id="contact-name"
             label="Meno a priezvisko"
             placeholder="Vaše meno"
             isRequired
@@ -101,6 +161,7 @@ export function ContactForm() {
         control={control}
         render={({ field }) => (
           <Input
+            id="contact-email"
             label="Email"
             type="email"
             placeholder="vas@email.sk"
@@ -121,6 +182,7 @@ export function ContactForm() {
         control={control}
         render={({ field }) => (
           <Input
+            id="contact-phone"
             label="Telefón"
             type="tel"
             placeholder="+421 912 345 678"
@@ -140,6 +202,7 @@ export function ContactForm() {
         control={control}
         render={({ field }) => (
           <Select
+            id="contact-service"
             label="Služba (voliteľné)"
             placeholder="Vyberte službu"
             items={serviceOptions}
@@ -160,6 +223,7 @@ export function ContactForm() {
         control={control}
         render={({ field }) => (
           <TextArea
+            id="contact-message"
             label="Správa"
             placeholder="Napíšte nám vašu správu alebo otázku..."
             rows={4}
@@ -181,6 +245,7 @@ export function ContactForm() {
           control={control}
           render={({ field }) => (
             <Checkbox
+              id="contact-consent"
               isSelected={field.value}
               onChange={field.onChange}
               isDisabled={isSubmitting}

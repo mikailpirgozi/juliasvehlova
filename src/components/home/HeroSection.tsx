@@ -285,6 +285,8 @@ export function HeroSection() {
             loop
             muted
             playsInline
+            preload="metadata"
+            poster={`${currentSection.videoSrc}-poster.jpg`}
             className="absolute inset-0 w-full h-full object-cover object-center"
             style={{
               // Optimizes video display on mobile by focusing on center content
@@ -379,8 +381,8 @@ export function HeroSection() {
               style={{
                 top: pos.top,
                 left: pos.left,
-                width: '2rem',
-                height: '2rem',
+                width: '0.875rem',
+                height: '0.875rem',
                 transform: 'translate(-50%, -50%)',
               }}
               aria-label={`Prejsť na ${point.label}`}
@@ -390,18 +392,18 @@ export function HeroSection() {
             >
               {/* Main circle dot */}
               <div
-                className={`absolute inset-0 rounded-full transition-all duration-300 ${
+                className={`absolute inset-0 rounded-full transition-all duration-300 border ${
                   hoveredPoint === point.id
-                    ? 'bg-white/60 scale-100 shadow-[0_0_30px_rgba(255,255,255,0.8)]'
-                    : 'bg-white/40 scale-75'
+                    ? 'bg-white/30 scale-110 shadow-[0_0_8px_rgba(255,255,255,0.35)] border-white/50'
+                    : 'bg-white/20 scale-100 border-white/30'
                 } ${debugMode ? 'border-2 border-yellow-400' : ''}`}
               />
 
               {/* Ring animation on hover */}
               <div
-                className={`absolute inset-0 rounded-full border-2 border-white transition-all duration-300 ${
+                className={`absolute inset-0 rounded-full border border-white/50 transition-all duration-300 ${
                   hoveredPoint === point.id
-                    ? 'scale-150 opacity-50'
+                    ? 'scale-[1.6] opacity-40'
                     : 'scale-100 opacity-0'
                 }`}
               />

@@ -40,9 +40,9 @@ export function ReservationPageClient() {
               Ak máte problém s online rezerváciou, neváhajte nás kontaktovať priamo.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-              <a href="tel:+421940123456">
+              <a href="tel:+421911992211">
                 <Button color="primary" size="md">
-                  Zavolať: +421 940 123 456
+                  Zavolať: +421 911 992 211
                 </Button>
               </a>
               <Button href="/#kontakt" color="secondary" size="md">

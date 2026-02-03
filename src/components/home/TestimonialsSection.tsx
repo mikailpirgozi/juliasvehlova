@@ -1,8 +1,6 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
-import { Button } from '@/components/base/buttons/button'
 import { FadeIn } from '@/components/ui'
 
 interface Testimonial {
@@ -17,61 +15,23 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: 'Petra K.',
-    service: 'Botulotoxín',
-    text: 'Úžasné prostredie a profesionálny prístup. Pani doktorka ma detailne poradila a výsledok je presne taký, aký som chcela - prirodzený a svieži. Určite sa vrátim!',
+    name: 'Ema Fajnor (26)',
+    service: 'Permanentný make-up',
+    text: 'V salóne som navštívila procedúru permanentný make up pier a obočia. Ďakujem za krásny výsledok, namiesto ideálnu farbu práve na pery nie je jednoduché ale Julia to zvládla nad moje očakávania. Počas procedúry máte tiež oblasť diskomfortu nemusíte bať. Odporúčam!',
     rating: 5,
-    image: '/images/services/testimonial-1.jpg',
+    image: '/images/testimonials/ema-fajnor.jpg',
   },
   {
     id: 2,
-    name: 'Lucia M.',
-    service: 'Zväčšenie pier',
-    text: 'Bála som sa, že pery budú vyzerať umelé, ale výsledok je perfektný. Konečne mám pery, o ktorých som snívala. Ďakujem!',
+    name: 'Majself (37)',
+    service: 'Estetické zákroky',
+    text: 'Kliniku navštevujem pravidelne a využívam rôzne služby od depilácie až po estetické zákroky. Páči sa mi aj prístup pani doktorky, ktorá vždy veľmi profesionálne navrhne postup, s ktorým som vo výsledku naozaj spokojný.',
     rating: 5,
-    image: '/images/services/testimonial-2.jpg',
-  },
-  {
-    id: 3,
-    name: 'Zuzana H.',
-    service: 'Microblading',
-    text: 'Po rokoch líčenia obočia každé ráno je microblading pre mňa spása. Obočie vyzerá krásne a prirodzene. Odporúčam všetkým!',
-    rating: 5,
-    image: '/images/services/testimonial-3.jpg',
-  },
-  {
-    id: 4,
-    name: 'Martina S.',
-    service: 'Chemický peeling',
-    text: 'Pokožka mi po peelingu žiari a je hladká ako hodváb. Pigmentové škvrny sa výrazne zmenšili. Som nadšená!',
-    rating: 5,
-    image: '/images/services/testimonial-4.jpg',
-  },
-  {
-    id: 5,
-    name: 'Jana B.',
-    service: 'Laserová epilácia',
-    text: 'Po 6 ošetreniach nemám takmer žiadne chĺpky. Najlepšia investícia do seba, akú som urobila. Už žiadne bolestivé holenie!',
-    rating: 5,
-    image: '/images/services/testimonial-5.jpg',
-  },
-  {
-    id: 6,
-    name: 'Katarína V.',
-    service: 'Modelovanie líc',
-    text: 'Výsledok prekonal moje očakávania. Tvár vyzerá svieža a mladistvejšia. Všetci sa pýtajú, čo som urobila. Ďakujem za zlaté ruky!',
-    rating: 5,
-    image: '/images/services/testimonial-6.jpg',
+    image: '/images/testimonials/majself.jpg',
   },
 ]
 
 export function TestimonialsSection() {
-  const [visibleCount, setVisibleCount] = useState(3)
-
-  const showMore = (): void => {
-    setVisibleCount((prev) => Math.min(prev + 3, testimonials.length))
-  }
-
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-brand-50/50 via-white to-brand-50/30 py-16 sm:py-24">
       {/* Decorative background elements */}
@@ -92,17 +52,18 @@ export function TestimonialsSection() {
           </div>
         </FadeIn>
 
-        {/* Testimonials Grid - Modern Full Image Cards */}
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {testimonials.slice(0, visibleCount).map((testimonial, index) => (
+        {/* Testimonials Grid - 2 Column Layout */}
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:gap-12">
+          {testimonials.map((testimonial, index) => (
             <FadeIn key={testimonial.id} delay={index * 0.1}>
-              <div className="group relative h-[420px] overflow-hidden rounded-2xl shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
+              <div className="group relative h-[480px] overflow-hidden rounded-2xl shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
                 {/* Full Background Image */}
                 <Image
                   src={testimonial.image}
                   alt={testimonial.name}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                  priority={true}
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 
@@ -123,7 +84,7 @@ export function TestimonialsSection() {
                     {Array.from({ length: testimonial.rating }).map((_, i) => (
                       <svg
                         key={i}
-                        className="h-4 w-4 text-yellow-400"
+                        className="h-5 w-5 text-yellow-400"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -133,12 +94,12 @@ export function TestimonialsSection() {
                   </div>
 
                   {/* Testimonial text */}
-                  <p className="mt-3 text-sm leading-relaxed text-white/95 line-clamp-4">
+                  <p className="mt-4 text-base leading-relaxed text-white/95">
                     &ldquo;{testimonial.text}&rdquo;
                   </p>
 
                   {/* Author info */}
-                  <div className="mt-4 flex items-center gap-3 border-t border-white/20 pt-4">
+                  <div className="mt-6 flex items-center gap-3 border-t border-white/20 pt-4">
                     <div>
                       <p className="font-semibold text-white">{testimonial.name}</p>
                       <p className="text-sm text-white/70">{testimonial.service}</p>
@@ -153,23 +114,13 @@ export function TestimonialsSection() {
           ))}
         </div>
 
-        {visibleCount < testimonials.length && (
-          <FadeIn>
-            <div className="mt-12 text-center">
-              <Button onClick={showMore} color="secondary" size="md">
-                Zobraziť viac referencií
-              </Button>
-            </div>
-          </FadeIn>
-        )}
-
         {/* Stats */}
         <FadeIn delay={0.3}>
           <div className="mt-16 grid gap-6 sm:grid-cols-3">
             {[
-              { value: '4.9/5', label: 'Priemerné hodnotenie' },
+              { value: '5/5', label: 'Priemerné hodnotenie' },
               { value: '500+', label: 'Pozitívnych recenzií' },
-              { value: '98%', label: 'Odporúčajú priateľom' },
+              { value: '100%', label: 'Odporúčajú priateľom' },
             ].map((stat, index) => (
               <div
                 key={index}

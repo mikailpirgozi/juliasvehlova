@@ -26,11 +26,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="sk" className={`${inter.variable} ${playfair.variable}`}>
-      {/* 
-        Next.js automatically creates <head> and inserts metadata from Metadata API
-        No manual <head> element needed - prevents metadata rendering issues
-      */}
+    <html lang="sk" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Preconnect to external resources for faster loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* DNS prefetch for analytics */}
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
+      </head>
       <body>
         {/* JSON-LD Structured Data for SEO */}
         <MainSchemaMarkup />
