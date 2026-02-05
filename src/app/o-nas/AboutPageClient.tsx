@@ -253,7 +253,7 @@ export function AboutPageClient() {
             Pripravení začať svoju transformáciu?
           </h2>
           <p className="mt-4 text-gray-600">
-            Objednajte sa na bezplatnú konzultáciu a spoločne vytvoríme plán pre vašu krásu.
+            Objednajte sa na konzultáciu a spoločne vytvoríme plán pre vašu krásu.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Button href="#kontakt" color="primary" size="lg">

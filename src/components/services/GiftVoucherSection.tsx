@@ -23,11 +23,6 @@ const voucherOptions: VoucherOption[] = [
     description: 'Najpopulárnejšia voľba pre darček k narodeninám',
   },
   {
-    id: 'voucher-150',
-    value: 150,
-    description: 'Výborná voľba pre prémiové ošetrenia',
-  },
-  {
     id: 'voucher-200',
     value: 200,
     popular: true,
@@ -37,6 +32,16 @@ const voucherOptions: VoucherOption[] = [
     id: 'voucher-300',
     value: 300,
     description: 'Luxusný darček pre VIP zážitok',
+  },
+  {
+    id: 'voucher-400',
+    value: 400,
+    description: 'Exkluzívny balík pre kompletné ošetrenia',
+  },
+  {
+    id: 'voucher-500',
+    value: 500,
+    description: 'Prémiový darček pre najnáročnejších klientov',
   },
 ]
 
@@ -63,7 +68,7 @@ export function GiftVoucherSection() {
         </div>
 
         {/* Voucher Grid */}
-        <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {voucherOptions.map((voucher) => (
             <div
               key={voucher.id}
@@ -98,7 +103,7 @@ export function GiftVoucherSection() {
               <ul className="space-y-2 text-xs text-gray-600">
                 <li className="flex items-center gap-2">
                   <Heart className="h-3.5 w-3.5 flex-shrink-0 text-[#CDA882]" />
-                  <span>Platnosť 12 mesiacov</span>
+                  <span>Platnosť 3 mesiace</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <CreditCard02 className="h-3.5 w-3.5 flex-shrink-0 text-[#CDA882]" />

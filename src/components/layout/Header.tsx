@@ -379,7 +379,7 @@ export function Header() {
                                   Neviete si vybrať?
                                 </p>
                                 <p className="text-sm text-gray-600">
-                                  Objednajte sa na bezplatnú konzultáciu
+                                  Objednajte sa na konzultáciu
                                 </p>
                               </div>
                             </div>

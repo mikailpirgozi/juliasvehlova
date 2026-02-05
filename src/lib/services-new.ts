@@ -2794,3 +2794,38 @@ export function generateServiceStaticParams(): { category: string; subcategory: 
 export function categoryHasSubcategories(category: MainCategory): boolean {
   return !!category.subcategories && category.subcategories.length > 0
 }
+
+/**
+ * Get all service slugs for sitemap generation
+ * Returns flat array of all service routes
+ */
+export function getAllServiceSlugs(): string[] {
+  const slugs: string[] = []
+  
+  mainCategories.forEach((category) => {
+    // Direct services (no subcategory)
+    if (category.services) {
+      category.services.forEach((service) => {
+        slugs.push(`${category.slug}/${service.slug}`)
+      })
+    }
+    
+    // Services in subcategories
+    if (category.subcategories) {
+      category.subcategories.forEach((subcategory) => {
+        subcategory.services.forEach((service) => {
+          slugs.push(`${category.slug}/${subcategory.slug}/${service.slug}`)
+        })
+      })
+    }
+  })
+  
+  return slugs
+}
+
+/**
+ * Get main category slugs for sitemap
+ */
+export function getAllMainCategorySlugs(): string[] {
+  return mainCategories.map((cat) => cat.slug)
+}

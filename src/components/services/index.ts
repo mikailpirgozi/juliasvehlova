@@ -1,9 +1,5 @@
-export { ServiceCard } from './ServiceCard'
-export { PriceTable } from './PriceTable'
-export { ProcessTimeline } from './ProcessTimeline'
-export { ServiceFAQ } from './ServiceFAQ'
+// Legacy exports removed - using services-new.ts structure now
 export { BeforeAfterGallery } from './BeforeAfterGallery'
-export { RelatedServices } from './RelatedServices'
 export { CategoryCard } from './CategoryCard'
 export { SubcategoryCard } from './SubcategoryCard'
 export { ServicesPriceTable } from './ServicesPriceTable'

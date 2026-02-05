@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { getAllServiceSlugs, categoryMetadata, type ServiceCategory } from '@/lib/services'
+import { getAllServiceSlugs, getAllMainCategorySlugs } from '@/lib/services-new'
 import { getBlogPosts } from '@/lib/blog'
 import { BASE_URL } from '@/lib/seo/constants'
 
@@ -72,40 +72,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
 
   // Service category pages
-  const mainCategories: ServiceCategory[] = ['face', 'body', 'energy', 'chakra_calibration']
-  const categoryPages: MetadataRoute.Sitemap = mainCategories
-    .filter((cat) => categoryMetadata[cat])
-    .map((category) => {
-      // Map category to slug
-      const categorySlugMap: Record<ServiceCategory, string> = {
-        face: 'tvar',
-        body: 'telo',
-        energy: 'energy',
-        chakra_calibration: 'chakra-calibration',
-        botulotoxin: 'botulotoxin',
-        hyaluronic_acid: 'kyselina-hyaluronova',
-        permanent_makeup: 'permanentny-makeup',
-        laser_epilation: 'laserova-epilacia',
-        face_procedures: 'procedury-tvar',
-        body_procedures: 'procedury-telo',
-        anti_aging: 'anti-aging',
-        cosmetics: 'kozmetika',
-        eyebrows_lashes: 'obocie-mihalnice',
-        professional_makeup: 'licenie',
-        device_treatments: 'pristrojove-osetrenia',
-        mesotherapy: 'mezoterapia',
-        vip_services: 'vip',
-        gift_vouchers: 'darcekove-poukazky',
-      }
-      const slug = categorySlugMap[category] || category
-
-      return {
-        url: `${BASE_URL}/sluzby/kategoria/${slug}`,
-        lastModified: now,
-        changeFrequency: 'weekly' as const,
-        priority: 0.7,
-      }
-    })
+  const categorySlugs = getAllMainCategorySlugs()
+  const categoryPages: MetadataRoute.Sitemap = categorySlugs.map((slug) => ({
+    url: `${BASE_URL}/sluzby/${slug}`,
+    lastModified: now,
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+  }))
 
   // Blog posts
   let blogPages: MetadataRoute.Sitemap = []

@@ -146,7 +146,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             Chcete viac informácií?
           </h2>
           <p className="mt-4 text-gray-500">
-            Objednajte si bezplatnú konzultáciu a dozviete sa viac o procedúrach.
+            Objednajte si konzultáciu a dozviete sa viac o procedúrach.
           </p>
           <div className="mt-8">
             <Button href="/#kontakt" color="primary" size="lg">

@@ -642,7 +642,7 @@ export function CennikPageClient() {
         <div className="relative z-10 mx-auto max-w-3xl text-center">
           <h2 className="font-serif text-2xl font-bold text-brand-700">Máte otázky k cenám?</h2>
           <p className="mt-4 text-gray-600">
-            Objednajte sa na bezplatnú konzultáciu a získajte individuálnu cenovú ponuku.
+            Objednajte sa na konzultáciu a získajte individuálnu cenovú ponuku.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Button href="/rezervacia" color="primary" size="lg">

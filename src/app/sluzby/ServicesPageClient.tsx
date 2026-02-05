@@ -233,12 +233,11 @@ export function ServicesPageClient() {
             Nie ste si istí ktorú službu si vybrať?
           </h2>
           <p className="mt-4 text-gray-600">
-            Objednajte sa na bezplatnú konzultáciu a spoločne nájdeme ideálne riešenie pre vaše
-            potreby.
+            Objednajte sa na konzultáciu a spoločne nájdeme ideálne riešenie pre vaše potreby.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Button href="/rezervacia" color="primary" size="lg">
-              Bezplatná konzultácia
+              Rezervovať konzultáciu
             </Button>
             <Button href="/cennik" color="secondary" size="lg">
               Zobraziť cenník
