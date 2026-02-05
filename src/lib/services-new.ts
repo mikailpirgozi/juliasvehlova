@@ -64,6 +64,7 @@ export const mainCategorySchema = z.object({
   description: z.string().min(1),
   iconKey: categoryIconKeySchema,
   image: z.string().min(1),
+  imagePosition: z.string().optional(),
   subcategories: z.array(subcategorySchema).optional(),
   services: z.array(simpleServiceSchema).optional(),
 })
@@ -85,550 +86,7 @@ export type MainCategory = z.infer<typeof mainCategorySchema>
 
 export const mainCategories: MainCategory[] = [
   // ========================================
-  // 1. CHAKRA CALIBRATION
-  // ========================================
-  {
-    id: 'chakra-calibration',
-    slug: 'chakra-calibration',
-    title: 'Chakra Calibration',
-    description: 'Odblokujte svoju energiu a cíťte sa ľahší a vitálnejší. Energetická harmonizácia čakier pre duševnú a fyzickú rovnováhu.',
-    iconKey: 'chakra',
-    image: '/images/categories/chakra.jpg',
-    services: [
-      {
-        id: 'chakra-individual',
-        slug: 'chakra-calibration-individualna',
-        name: 'Chakra Calibration individuálna',
-        price: '200 €',
-        duration: '2h',
-        popular: true,
-        tagline: 'Obnovte vnútornú harmóniu',
-        shortDescription: 'Hlbinná kalibrácia energetických centier pre obnovenie prirodzenej rovnováhy tela a mysle.',
-        fullDescription: 'Chakra Calibration je holistická metóda, ktorá pracuje so siedmimi hlavnými energetickými centrami vášho tela. Počas sedenia identifikujeme bloky a nerovnováhy, ktoré môžu spôsobovať fyzické ťažkosti, emočnú nestabilitu alebo mentálnu únavu. Pomocou jemných techník a intuitívneho vedenia vám pomôžeme obnoviť prirodzený tok energie.',
-        benefits: [
-          {
-            icon: 'energy',
-            title: 'Zvýšená vitalita',
-            description: 'Cíťte sa energickejšie a plní sily',
-          },
-          {
-            icon: 'balance',
-            title: 'Emočná rovnováha',
-            description: 'Harmónia mysle a pocitov',
-          },
-          {
-            icon: 'clarity',
-            title: 'Mentálna jasnosť',
-            description: 'Lepšia koncentrácia a rozhodovanie',
-          },
-          {
-            icon: 'healing',
-            title: 'Hlboké uvoľnenie',
-            description: 'Uvoľnenie napätia a stresu',
-          },
-        ],
-        process: [
-          {
-            step: 1,
-            title: 'Úvodná konzultácia',
-            description: 'Preberiemo vaše potreby a aktuálny stav',
-          },
-          {
-            step: 2,
-            title: 'Diagnostika čakier',
-            description: 'Identifikácia blokov a nerovnováh',
-          },
-          {
-            step: 3,
-            title: 'Kalibrácia',
-            description: 'Jemná práca s energetickými centrami',
-          },
-          {
-            step: 4,
-            title: 'Integrácia',
-            description: 'Ukotvenie novej energie a odporúčania',
-          },
-        ],
-        forWhom: [
-          'Pre tých, kto cíti chronickú únavu',
-          'Pre ľudí v životných zmenách',
-          'Pre hľadajúcich vnútorný pokoj',
-          'Pre tých, kto chce hlbšie porozumieť sebe',
-        ],
-        note: 'Odporúčame pohodlné oblečenie a príchod v kľudnom rozpoložení.',
-      },
-      {
-        id: 'chakra-parova',
-        slug: 'chakra-calibration-parova',
-        name: 'Chakra Calibration párová (2 osoby)',
-        price: '300 €',
-        duration: '2h',
-        tagline: 'Posilnite vzájomné puto',
-        shortDescription: 'Spoločná kalibrácia čakier pre páry alebo blízkych ľudí. Harmonizujte energiu medzi vami.',
-        fullDescription: 'Párová Chakra Calibration je unikátna príležitosť prehĺbiť vzťah s partnerom, priateľom či rodinným príslušníkom na energetickej úrovni. Pracujeme s individuálnymi energetickými systémami oboch účastníkov a zároveň harmonizujeme vzájomnú dynamiku. Táto metóda pomáha odstrániť blokády v komunikácii, posilniť emočné spojenie a vytvoriť priestor pre hlbšie porozumenie.',
-        benefits: [
-          {
-            icon: 'connection',
-            title: 'Hlbšie spojenie',
-            description: 'Posilnenie vzájomného puta',
-          },
-          {
-            icon: 'communication',
-            title: 'Lepšia komunikácia',
-            description: 'Otvorenejší dialóg a porozumenie',
-          },
-          {
-            icon: 'harmony',
-            title: 'Vzájomná harmónia',
-            description: 'Synchronizácia energií oboch partnerov',
-          },
-          {
-            icon: 'growth',
-            title: 'Spoločný rast',
-            description: 'Podpora osobného rozvoja v páre',
-          },
-        ],
-        process: [
-          {
-            step: 1,
-            title: 'Spoločný úvod',
-            description: 'Definovanie spoločných cieľov sedenia',
-          },
-          {
-            step: 2,
-            title: 'Individuálna diagnostika',
-            description: 'Analýza čakier každého účastníka',
-          },
-          {
-            step: 3,
-            title: 'Párová kalibrácia',
-            description: 'Synchronizácia a harmonizácia energií',
-          },
-          {
-            step: 4,
-            title: 'Spoločná integrácia',
-            description: 'Upevnenie spojenia a zdieľanie zážitkov',
-          },
-        ],
-        forWhom: [
-          'Pre páry túžiace po hlbšom spojení',
-          'Pre rodičov s deťmi',
-          'Pre priateľov na spoločnej ceste rastu',
-          'Pre kohokoľvek, kto chce zdieľať túto skúsenosť',
-        ],
-        note: 'Ideálne pre páry, ktoré chcú posilniť svoj vzťah na hlbšej úrovni.',
-      },
-      {
-        id: 'theta-healing',
-        slug: 'theta-healing-individualne',
-        name: 'Theta Healing individuálne',
-        price: '100 €',
-        duration: '1h',
-        tagline: 'Prepíšte limitujúce vzorce',
-        shortDescription: 'Transformačná technika pre zmenu hlboko zakorenených presvedčení a vzorcov správania.',
-        fullDescription: 'Theta Healing je meditačná technika, ktorá pracuje s mozgovými vlnami v theta stave. V tomto stave hlbokej relaxácie máme prístup k podvedomiu, kde sú uložené naše presvedčenia, vzorce a bloky. Spoločne identifikujeme limitujúce presvedčenia, ktoré vám bránia žiť plnohodnotný život, a transformujeme ich na podporujúce.',
-        benefits: [
-          {
-            icon: 'transform',
-            title: 'Transformácia myslenia',
-            description: 'Zmena limitujúcich presvedčení',
-          },
-          {
-            icon: 'release',
-            title: 'Uvoľnenie blokov',
-            description: 'Zbavenie sa starých vzorcov',
-          },
-          {
-            icon: 'peace',
-            title: 'Vnútorný pokoj',
-            description: 'Hlboká relaxácia a pokoj mysle',
-          },
-          {
-            icon: 'potential',
-            title: 'Nový potenciál',
-            description: 'Otvorenie nových možností',
-          },
-        ],
-        process: [
-          {
-            step: 1,
-            title: 'Rozhovor',
-            description: 'Identifikácia témy na prácu',
-          },
-          {
-            step: 2,
-            title: 'Theta stav',
-            description: 'Uvedenie do hlbokej relaxácie',
-          },
-          {
-            step: 3,
-            title: 'Práca s presvedčeniami',
-            description: 'Identifikácia a transformácia blokov',
-          },
-          {
-            step: 4,
-            title: 'Integrácia',
-            description: 'Ukotvenie nových vzorcov',
-          },
-        ],
-        forWhom: [
-          'Pre tých, kto chce zmeniť negatívne vzorce',
-          'Pre ľudí bojujúcich s obavami a strachmi',
-          'Pre hľadajúcich životné zmeny',
-          'Pre kohokoľvek otvoreného transformácii',
-        ],
-        note: 'Sedenie prebieha v kľudnom prostredí. Prichádzajte s otvorenou mysľou.',
-      },
-    ],
-  },
-
-  // ========================================
-  // 2. DOPLNKOVÉ KOZMETICKÉ SLUŽBY
-  // ========================================
-  {
-    id: 'doplnkove-kozmeticke-sluzby',
-    slug: 'doplnkove-kozmeticke-sluzby',
-    title: 'Doplnkové kozmetické služby',
-    description: 'Laminácia, permanentný make-up a predlžovanie mihalníc pre dokonalý vzhľad každý deň.',
-    iconKey: 'eye',
-    image: '/images/categories/face.jpg',
-    subcategories: [
-      {
-        id: 'laminacia',
-        slug: 'laminacia',
-        title: 'Laminácia',
-        description: 'Laminácia obočia a mihalníc pre prirodzene krásny vzhľad.',
-        services: [
-          {
-            id: 'korekcia-farbenie-oboci',
-            slug: 'korekcia-farbenie-oboci',
-            name: 'Korekcia a farbenie obočia',
-            price: '20 €',
-            duration: '30min.',
-            tagline: 'Dokonalý rám tváre',
-            shortDescription: 'Precízna úprava tvaru obočia a profesionálne farbenie pre výraznejší pohľad.',
-            fullDescription: 'Obočie je rámom vašej tváre a jeho správny tvar dokáže opticky omladiť a zvýrazniť vaše črty. Naši špecialisti vám pomocou precíznej korekcie vytvoria ideálny tvar prispôsobený vašej tvári. Následné farbenie dodá obočiu hĺbku a definíciu.',
-            benefits: [
-              { icon: 'precision', title: 'Precízny tvar', description: 'Prispôsobený vašim črtám' },
-              { icon: 'natural', title: 'Prirodzený vzhľad', description: 'Jemné a elegantné' },
-              { icon: 'time', title: 'Rýchle ošetrenie', description: 'Len 30 minút' },
-              { icon: 'lasting', title: 'Dlhotrvajúci efekt', description: '3-4 týždne' },
-            ],
-            process: [
-              { step: 1, title: 'Konzultácia', description: 'Analýza tvaru tváre a výber ideálneho obočia' },
-              { step: 2, title: 'Korekcia', description: 'Precízna úprava tvaru' },
-              { step: 3, title: 'Farbenie', description: 'Aplikácia farby a fixácia' },
-            ],
-            forWhom: ['Pre tých, kto chce definované obočie', 'Pre svetlé alebo riedke obočie', 'Pre rýchlu dennú rutinu'],
-          },
-          {
-            id: 'laminacia-kombo',
-            slug: 'laminacia-kombo',
-            name: 'Laminácia - Kombo (Lash Lift + Brow Lift)',
-            price: '70 €',
-            duration: '1h',
-            popular: true,
-            tagline: 'Kompletná premena pohľadu',
-            shortDescription: 'Najobľúbenejšia kombinácia laminácie mihalníc a obočia pre maximálny efekt.',
-            fullDescription: 'Kombo ošetrenie je ideálnou voľbou pre tých, kto chce kompletne premeniť svoj pohľad v jednom sedení. Kombinácia Lash Lift a Brow Lift vytvorí dokonalú harmóniu medzi mihalnicami a obočím. Výsledkom je otvorený, mladistvý pohľad bez potreby denného líčenia.',
-            benefits: [
-              { icon: 'complete', title: 'Kompletné ošetrenie', description: 'Mihalnice aj obočie naraz' },
-              { icon: 'value', title: 'Výhodná cena', description: 'Ušetrite oproti jednotlivým ošetreniam' },
-              { icon: 'natural', title: 'Prirodzený výsledok', description: 'Vaše vlastné riasy a obočie' },
-              { icon: 'lasting', title: 'Dlhodobý efekt', description: '6-8 týždňov' },
-            ],
-            process: [
-              { step: 1, title: 'Príprava', description: 'Očistenie a príprava mihalníc aj obočia' },
-              { step: 2, title: 'Lash Lift', description: 'Zdvihnutie a tvarovanie mihalníc' },
-              { step: 3, title: 'Brow Lift', description: 'Laminácia a tvarovanie obočia' },
-              { step: 4, title: 'Finalizácia', description: 'Výživné sérum a záverečná úprava' },
-            ],
-            forWhom: ['Pre kompletný look bez líčenia', 'Pre šetrenie času', 'Pre prirodzenú krásu'],
-            note: 'Najobľúbenejšie ošetrenie u našich klientov.',
-          },
-          {
-            id: 'laminacia-mihalnic',
-            slug: 'laminacia-mihalnic-lash-lift',
-            name: 'Laminácia mihalníc - Lash Lift',
-            price: '40 €',
-            duration: '1h',
-            tagline: 'Prirodzene zdvihnuté riasy',
-            shortDescription: 'Lash Lift dodá vašim prirodzeným mihalniciam krásne zdvihnutie a zatočenie.',
-            fullDescription: 'Lash Lift je semi-permanentné ošetrenie, ktoré zdvíha vaše vlastné mihalnice od koreňa, čím vytvára efekt otvorených očí a dlhších rias. Na rozdiel od predlžovania používame vaše prirodzené mihalnice, takže výsledok je maximálne prirodzený a nevyžaduje špeciálnu starostlivosť.',
-            benefits: [
-              { icon: 'natural', title: '100% prirodzené', description: 'Vaše vlastné mihalnice' },
-              { icon: 'open', title: 'Otvorený pohľad', description: 'Opticky väčšie oči' },
-              { icon: 'easy', title: 'Bez údržby', description: 'Žiadna špeciálna starostlivosť' },
-              { icon: 'lasting', title: 'Vydrží 6-8 týždňov', description: 'Podľa rastu rias' },
-            ],
-            process: [
-              { step: 1, title: 'Očistenie', description: 'Dôkladné odstránenie make-upu' },
-              { step: 2, title: 'Aplikácia', description: 'Nanesenie na silikónové podložky' },
-              { step: 3, title: 'Lifting', description: 'Zdvíhací a fixačný prípravok' },
-              { step: 4, title: 'Výživa', description: 'Keratínové sérum pre zdravé riasy' },
-            ],
-            forWhom: ['Pre rovné alebo smerujúce nadol mihalnice', 'Pre alergikov na lepidlo', 'Pre aktívny životný štýl'],
-          },
-          {
-            id: 'laminacia-oboci',
-            slug: 'laminacia-oboci-brow-lift',
-            name: 'Laminácia obočia - Brow Lift',
-            price: '40 €',
-            duration: '1h',
-            tagline: 'Definované a plné obočie',
-            shortDescription: 'Brow Lift vytvaruje a fixuje obočie do požadovaného smeru pre plný, upravený vzhľad.',
-            fullDescription: 'Brow Lift je revolučná technika, ktorá umožňuje vytvarovať aj najneposlušnejšie chĺpky obočia. Ošetrenie zjemní štruktúru chĺpkov a umožní ich natrvalo zafixovať v požadovanom smere. Výsledkom je plné, upravené obočie s prirodzeným vzhľadom.',
-            benefits: [
-              { icon: 'fullness', title: 'Opticky plnšie', description: 'Maximálny objem' },
-              { icon: 'control', title: 'Skrotené chĺpky', description: 'Koniec neposlušnému obočiu' },
-              { icon: 'shape', title: 'Dokonalý tvar', description: 'Presne podľa vášho želania' },
-              { icon: 'lasting', title: 'Dlhodobý efekt', description: '4-6 týždňov' },
-            ],
-            process: [
-              { step: 1, title: 'Konzultácia', description: 'Určenie ideálneho tvaru a smeru' },
-              { step: 2, title: 'Laminácia', description: 'Zjemnenie a tvarovanie chĺpkov' },
-              { step: 3, title: 'Fixácia', description: 'Zafixovanie v požadovanom smere' },
-              { step: 4, title: 'Farbenie', description: 'Voliteľné dofarbenie pre hĺbku' },
-            ],
-            forWhom: ['Pre neposlušné obočie', 'Pre riedke obočie', 'Pre moderný "fluffy brows" look'],
-          },
-        ],
-      },
-      {
-        id: 'permanentny-makeup',
-        slug: 'permanentny-makeup',
-        title: 'Permanentný make-up',
-        description: 'Trvalý make-up obočia, pier a očných liniek pre dokonalý vzhľad bez denného líčenia.',
-        services: [
-          {
-            id: 'pmu-korekcia',
-            slug: 'permanentny-makeup-korekcia',
-            name: 'Permanentný make-up korekcia do 5 týždňov',
-            price: '100 €',
-            duration: '1h',
-            tagline: 'Dolaďte dokonalosť',
-            shortDescription: 'Korekčné ošetrenie pre doladenie tvaru a sýtosti pigmentu po prvom ošetrení.',
-            fullDescription: 'Korekcia je nevyhnutnou súčasťou procesu permanentného make-upu. Po zahojení prvého ošetrenia (4-5 týždňov) vykonáme korekciu, ktorá zabezpečí rovnomerné rozloženie pigmentu a doladí tvar podľa vašich predstáv. Tento krok je kľúčový pre dlhotrvajúci a dokonalý výsledok.',
-            benefits: [
-              { icon: 'perfect', title: 'Dokonalý výsledok', description: 'Doladenie detailov' },
-              { icon: 'lasting', title: 'Dlhšia výdrž', description: 'Lepšie uchytenie pigmentu' },
-              { icon: 'color', title: 'Intenzívnejšia farba', description: 'Sýtejší odtieň' },
-              { icon: 'shape', title: 'Presný tvar', description: 'Finálne úpravy' },
-            ],
-            process: [
-              { step: 1, title: 'Zhodnotenie', description: 'Posúdenie zahojenia a farby' },
-              { step: 2, title: 'Konzultácia', description: 'Diskusia o úpravách' },
-              { step: 3, title: 'Korekcia', description: 'Doplnenie pigmentu' },
-            ],
-            forWhom: ['Pre klientov po prvom PMU', 'Pre obnovu farby', 'Pre doladenie tvaru'],
-            note: 'Korekcia je zahrnutá v cene prvého ošetrenia, ak prebehne do 5 týždňov.',
-          },
-          {
-            id: 'pmu-hair-strokes',
-            slug: 'permanentny-makeup-hair-strokes',
-            name: 'Permanentný make-up obočie Hair Strokes',
-            price: '200 €',
-            duration: '2h',
-            popular: true,
-            tagline: 'Chĺpok po chĺpku',
-            shortDescription: 'Najrealistickejšia technika kresby jednotlivých chĺpkov pre absolútne prirodzený vzhľad.',
-            fullDescription: 'Hair Strokes technika je vrcholom umenia permanentného make-upu. Každý chĺpok je ručne nakreslený tak, aby napodobňoval prirodzený rast vášho obočia. Výsledok je tak realistický, že nikto nepozná, že ide o permanentný make-up. Ideálne pre tých, kto chce jemný, prirodzený vzhľad.',
-            benefits: [
-              { icon: 'realistic', title: 'Ultra realistické', description: 'Nerozoznateľné od prirodzeného' },
-              { icon: 'custom', title: 'Na mieru', description: 'Prispôsobené vašej tvári' },
-              { icon: 'natural', title: 'Prirodzený vzhľad', description: 'Jemná, elegantná kresba' },
-              { icon: 'lasting', title: 'Výdrž 1-2 roky', description: 'Podľa typu pleti' },
-            ],
-            process: [
-              { step: 1, title: 'Návrh tvaru', description: 'Predkreslenie a konzultácia' },
-              { step: 2, title: 'Príprava', description: 'Znecitlivenie oblasti' },
-              { step: 3, title: 'Kresba', description: 'Precízna aplikácia jednotlivých ťahov' },
-              { step: 4, title: 'Dokončenie', description: 'Ošetrenie a inštrukcie' },
-            ],
-            forWhom: ['Pre prirodzený look', 'Pre riedke obočie', 'Pre úplnú absenciu obočia'],
-            note: 'Odporúčané pre normálnu až suchú pleť.',
-          },
-          {
-            id: 'pmu-powder-brows',
-            slug: 'permanentny-makeup-powder-brows',
-            name: 'Permanentný make-up obočie Powder Brows',
-            price: '200 €',
-            duration: '2h',
-            popular: true,
-            tagline: 'Efekt púdrového make-upu',
-            shortDescription: 'Jemne tieňované obočie s efektom profesionálneho make-upu, ktorý vydrží roky.',
-            fullDescription: 'Powder Brows technika vytvára jemný, tieňovaný efekt podobný púdrovému make-upu. Výsledok je mäkší a menej definovaný ako Hair Strokes, čo je ideálne pre tých, kto preferuje výraznejší, ale stále prirodzený vzhľad. Táto technika je vhodná pre všetky typy pleti vrátane mastnej.',
-            benefits: [
-              { icon: 'soft', title: 'Mäkký efekt', description: 'Jemné tieňovanie' },
-              { icon: 'makeup', title: 'Efekt make-upu', description: 'Vždy upravený vzhľad' },
-              { icon: 'universal', title: 'Pre všetky typy pleti', description: 'Vrátane mastnej' },
-              { icon: 'lasting', title: 'Dlhá výdrž', description: '2-3 roky' },
-            ],
-            process: [
-              { step: 1, title: 'Návrh', description: 'Konzultácia tvaru a farby' },
-              { step: 2, title: 'Príprava', description: 'Znecitlivenie' },
-              { step: 3, title: 'Tieňovanie', description: 'Postupná aplikácia pigmentu' },
-              { step: 4, title: 'Dokončenie', description: 'Starostlivosť po ošetrení' },
-            ],
-            forWhom: ['Pre mastnú pleť', 'Pre výraznejší efekt', 'Pre každodenný upravený look'],
-          },
-          {
-            id: 'pmu-odstranenie',
-            slug: 'permanentny-makeup-odstranenie',
-            name: 'Permanentný make-up odstránenie obočia + umŕtvenie',
-            price: '100 €',
-            duration: '1h',
-            tagline: 'Nový začiatok',
-            shortDescription: 'Bezpečné odstránenie starého alebo nechceného permanentného make-upu.',
-            fullDescription: 'Ak nie ste spokojní so starým permanentným make-upom alebo potrebujete zmenu, ponúkame bezpečné odstránenie pomocou špeciálneho roztoku. Proces postupne vybieli pigment z pokožky, čím pripraví oblasť na nové ošetrenie alebo prirodzené hojenie.',
-            benefits: [
-              { icon: 'safe', title: 'Bezpečné', description: 'Šetrná metóda' },
-              { icon: 'fresh', title: 'Nový začiatok', description: 'Možnosť novej aplikácie' },
-              { icon: 'painless', title: 'S umŕtvením', description: 'Minimálna bolesť' },
-              { icon: 'professional', title: 'Odborné ošetrenie', description: 'Skúsené špecialistky' },
-            ],
-            process: [
-              { step: 1, title: 'Konzultácia', description: 'Posúdenie stavu pigmentu' },
-              { step: 2, title: 'Umŕtvenie', description: 'Aplikácia anestetika' },
-              { step: 3, title: 'Odstránenie', description: 'Aplikácia odstraňovacieho roztoku' },
-              { step: 4, title: 'Hojenie', description: 'Inštrukcie pre domácu starostlivosť' },
-            ],
-            forWhom: ['Pre nespokojných s výsledkom PMU', 'Pre zmenu tvaru', 'Pre vyblednutý starý PMU'],
-            note: 'Môže byť potrebných viac sedení podľa hĺbky pigmentu.',
-          },
-          {
-            id: 'pmu-ocne-linky',
-            slug: 'permanentny-makeup-ocne-linky',
-            name: 'Permanentný make-up očné linky',
-            price: '200 €',
-            duration: '2h',
-            tagline: 'Dokonalá linka bez námahy',
-            shortDescription: 'Permanentná očná linka pre výrazný pohľad bez denného maľovania.',
-            fullDescription: 'Permanentné očné linky zvýraznia vaše oči a ušetria čas strávený pred zrkadlom. Ponúkame rôzne štýly od jemnej linky v koreni rias až po dramatickejšiu winged linku. Výsledok je odolný voči vode, potu a slzám.',
-            benefits: [
-              { icon: 'dramatic', title: 'Výrazný pohľad', description: 'Zvýraznené oči' },
-              { icon: 'time', title: 'Úspora času', description: 'Žiadne denné kreslenie' },
-              { icon: 'waterproof', title: 'Odolné', description: 'Voči vode a potu' },
-              { icon: 'lasting', title: 'Dlhodobé', description: '2-3 roky' },
-            ],
-            process: [
-              { step: 1, title: 'Konzultácia', description: 'Výber štýlu linky' },
-              { step: 2, title: 'Príprava', description: 'Znecitlivenie viečok' },
-              { step: 3, title: 'Aplikácia', description: 'Precízna kresba linky' },
-              { step: 4, title: 'Dokončenie', description: 'Ochladenie a inštrukcie' },
-            ],
-            forWhom: ['Pre každodenný make-up look', 'Pre citlivé oči', 'Pre aktívny životný štýl'],
-          },
-          {
-            id: 'pmu-pery',
-            slug: 'permanentny-makeup-pery',
-            name: 'Permanentný make-up pery',
-            price: '200 €',
-            duration: '2h',
-            tagline: 'Plné, farebné pery 24/7',
-            shortDescription: 'Permanentný rúž, ktorý zvýrazní farbu a tvar vašich pier.',
-            fullDescription: 'Permanentný make-up pier dodá vašim perám krásnu farbu a definíciu. Môžeme vytvoriť jemný, prirodzený nádych farby alebo výraznejší efekt plných pier. Ošetrenie tiež opticky vyrovná asymetriu a dodá perám mladistvý vzhľad.',
-            benefits: [
-              { icon: 'color', title: 'Stála farba', description: 'Bez nutnosti rúžu' },
-              { icon: 'shape', title: 'Definovaný tvar', description: 'Symetrické pery' },
-              { icon: 'youthful', title: 'Mladistvý vzhľad', description: 'Plnšie pery' },
-              { icon: 'lasting', title: 'Vydrží 2-3 roky', description: 'Dlhodobý efekt' },
-            ],
-            process: [
-              { step: 1, title: 'Konzultácia', description: 'Výber farby a intenzity' },
-              { step: 2, title: 'Predkresba', description: 'Návrh kontúry pier' },
-              { step: 3, title: 'Pigmentácia', description: 'Postupná aplikácia farby' },
-              { step: 4, title: 'Dokončenie', description: 'Hojivá starostlivosť' },
-            ],
-            forWhom: ['Pre bledé pery', 'Pre asymetrické pery', 'Pre tých, kto chce vždy krásne pery'],
-          },
-        ],
-      },
-      {
-        id: 'predlzovanie-mihalnic',
-        slug: 'predlzovanie-mihalnic',
-        title: 'Predlžovanie mihalníc',
-        description: 'Profesionálne predlžovanie a úprava mihalníc pre výrazný pohľad.',
-        services: [
-          {
-            id: 'odstranovanie-mihalnic',
-            slug: 'odstranovanie-mihalnic',
-            name: 'Odstraňovanie mihalníc',
-            price: '20 €',
-            duration: '30min.',
-            tagline: 'Bezpečná starostlivosť',
-            shortDescription: 'Šetrné a profesionálne odstránenie predĺžených mihalníc bez poškodenia vlastných.',
-            fullDescription: 'Profesionálne odstránenie mihalníc je dôležité pre zdravie vašich prirodzených rias. Používame špeciálne gély, ktoré bezpečne rozpustia lepidlo bez ťahania a poškodenia. Po odstránení vaše prirodzené mihalnice zostávajú zdravé a pripravené na nový set.',
-            benefits: [
-              { icon: 'safe', title: 'Bezpečné', description: 'Šetrné k prirodzeným riasam' },
-              { icon: 'professional', title: 'Profesionálne', description: 'Správna technika' },
-              { icon: 'quick', title: 'Rýchle', description: 'Len 30 minút' },
-              { icon: 'healthy', title: 'Zdravé riasy', description: 'Bez poškodenia' },
-            ],
-            process: [
-              { step: 1, title: 'Aplikácia gélu', description: 'Nanesenie odstraňovača' },
-              { step: 2, title: 'Pôsobenie', description: 'Rozpustenie lepidla' },
-              { step: 3, title: 'Odstránenie', description: 'Jemné zloženie rias' },
-              { step: 4, title: 'Ošetrenie', description: 'Výživné sérum pre prirodzené riasy' },
-            ],
-            forWhom: ['Pre výmenu setu', 'Pre oddych pre prirodzené riasy', 'Pre zmenu štýlu'],
-          },
-          {
-            id: 'predlzovanie-doplnka',
-            slug: 'predlzovanie-mihalnic-doplnka',
-            name: 'Predlžovanie mihalníc - Doplnka (po 3 týždňoch)',
-            price: '50 €',
-            duration: '1h 30min.',
-            tagline: 'Vždy dokonalé',
-            shortDescription: 'Pravidelná údržba pre zachovanie plného a krásneho vzhľadu mihalníc.',
-            fullDescription: 'Doplnka je nevyhnutná pre udržanie plného vzhľadu predĺžených mihalníc. Počas prirodzeného rastu a obnovy rias vypadávajú aj aplikované extenzie. Doplnka nahrádza vypadané riasy a udržiava váš pohľad dokonalý. Odporúčame doplnku každé 2-3 týždne.',
-            benefits: [
-              { icon: 'fullness', title: 'Plný vzhľad', description: 'Doplnenie medzier' },
-              { icon: 'maintain', title: 'Údržba', description: 'Predĺženie životnosti setu' },
-              { icon: 'value', title: 'Výhodné', description: 'Lacnejšie ako nový set' },
-              { icon: 'fresh', title: 'Svieži look', description: 'Vždy upravené' },
-            ],
-            process: [
-              { step: 1, title: 'Kontrola', description: 'Posúdenie stavu rias' },
-              { step: 2, title: 'Očistenie', description: 'Odstránenie nečistôt' },
-              { step: 3, title: 'Doplnenie', description: 'Aplikácia nových extenzií' },
-              { step: 4, title: 'Finalizácia', description: 'Tvarovanie a kontrola' },
-            ],
-            forWhom: ['Pre pravidelných klientov', 'Pre udržanie plného setu', 'Pre ekonomickú voľbu'],
-            note: 'Ideálny interval doplnky je 2-3 týždne.',
-          },
-          {
-            id: 'predlzovanie-novy-set',
-            slug: 'predlzovanie-mihalnic-novy-set',
-            name: 'Predlžovanie mihalníc - Nový set',
-            price: '80 €',
-            duration: '2h',
-            popular: true,
-            tagline: 'Dramatická premena pohľadu',
-            shortDescription: 'Kompletný nový set predĺžených mihalníc pre výrazný a sebaistý pohľad.',
-            fullDescription: 'Nový set predĺžených mihalníc kompletne premení váš pohľad. Individuálne extenzie aplikujeme na každú vašu prirodzenú riasu, čím vytvoríme objem, dĺžku a tvar podľa vášho želania. Ponúkame rôzne štýly od prirodzeného po dramatický. Výsledkom sú krásne, dlhé mihalnice, ktoré zdôraznia váš pohľad.',
-            benefits: [
-              { icon: 'dramatic', title: 'Výrazný pohľad', description: 'Okamžitá premena' },
-              { icon: 'custom', title: 'Na mieru', description: 'Štýl podľa vášho želania' },
-              { icon: 'lasting', title: 'Dlhotrvajúce', description: '3-4 týždne s doplnkami' },
-              { icon: 'nomakeup', title: 'Bez mascary', description: 'Ušetrite čas' },
-            ],
-            process: [
-              { step: 1, title: 'Konzultácia', description: 'Výber štýlu, dĺžky a tvaru' },
-              { step: 2, title: 'Príprava', description: 'Očistenie a ochrana dolných rias' },
-              { step: 3, title: 'Aplikácia', description: 'Presná aplikácia extenzií' },
-              { step: 4, title: 'Dokončenie', description: 'Inštrukcie pre starostlivosť' },
-            ],
-            forWhom: ['Pre novinky vo svete rias', 'Pre špeciálne príležitosti', 'Pre každodenný glamour'],
-            note: 'Vyhnite sa vode a pare 24 hodín po aplikácii.',
-          },
-        ],
-      },
-    ],
-  },
-
-  // ========================================
-  // 3. ESTETICKÁ MEDICÍNA
+  // 1. ESTETICKÁ MEDICÍNA
   // ========================================
   {
     id: 'esteticka-medicina',
@@ -636,7 +94,7 @@ export const mainCategories: MainCategory[] = [
     title: 'Estetická medicína',
     description: 'Profesionálne estetické zákroky vrátane botulotoxínu, výplní kyselinou hyalurónovou a liftingových nití.',
     iconKey: 'syringe',
-    image: '/images/categories/body.jpg',
+    image: '/images/services/biorevitalizacia-pleti.webp',
     subcategories: [
       {
         id: 'biorevitalizacia',
@@ -1236,7 +694,7 @@ export const mainCategories: MainCategory[] = [
   },
 
   // ========================================
-  // 4. KOZMETIKA
+  // 2. KOZMETIKA
   // ========================================
   {
     id: 'kozmetika',
@@ -1244,7 +702,7 @@ export const mainCategories: MainCategory[] = [
     title: 'Kozmetika',
     description: 'Profesionálne kozmetické ošetrenia pre zdravú a žiarivú pokožku.',
     iconKey: 'sparkle',
-    image: '/images/categories/face.jpg',
+    image: '/images/services/kozmeticke-osetrenia.webp',
     subcategories: [
       {
         id: 'konzultacia-kozmeticka',
@@ -1604,11 +1062,342 @@ export const mainCategories: MainCategory[] = [
           },
         ],
       },
+      {
+        id: 'laminacia',
+        slug: 'laminacia',
+        title: 'Laminácia',
+        description: 'Laminácia obočia a mihalníc pre prirodzene krásny vzhľad.',
+        services: [
+          {
+            id: 'korekcia-farbenie-oboci',
+            slug: 'korekcia-farbenie-oboci',
+            name: 'Korekcia a farbenie obočia',
+            price: '20 €',
+            duration: '30min.',
+            tagline: 'Dokonalý rám tváre',
+            shortDescription: 'Precízna úprava tvaru obočia a profesionálne farbenie pre výraznejší pohľad.',
+            fullDescription: 'Obočie je rámom vašej tváre a jeho správny tvar dokáže opticky omladiť a zvýrazniť vaše črty. Naši špecialisti vám pomocou precíznej korekcie vytvoria ideálny tvar prispôsobený vašej tvári. Následné farbenie dodá obočiu hĺbku a definíciu.',
+            benefits: [
+              { icon: 'precision', title: 'Precízny tvar', description: 'Prispôsobený vašim črtám' },
+              { icon: 'natural', title: 'Prirodzený vzhľad', description: 'Jemné a elegantné' },
+              { icon: 'time', title: 'Rýchle ošetrenie', description: 'Len 30 minút' },
+              { icon: 'lasting', title: 'Dlhotrvajúci efekt', description: '3-4 týždne' },
+            ],
+            process: [
+              { step: 1, title: 'Konzultácia', description: 'Analýza tvaru tváre a výber ideálneho obočia' },
+              { step: 2, title: 'Korekcia', description: 'Precízna úprava tvaru' },
+              { step: 3, title: 'Farbenie', description: 'Aplikácia farby a fixácia' },
+            ],
+            forWhom: ['Pre tých, kto chce definované obočie', 'Pre svetlé alebo riedke obočie', 'Pre rýchlu dennú rutinu'],
+          },
+          {
+            id: 'laminacia-kombo',
+            slug: 'laminacia-kombo',
+            name: 'Laminácia - Kombo (Lash Lift + Brow Lift)',
+            price: '70 €',
+            duration: '1h',
+            popular: true,
+            tagline: 'Kompletná premena pohľadu',
+            shortDescription: 'Najobľúbenejšia kombinácia laminácie mihalníc a obočia pre maximálny efekt.',
+            fullDescription: 'Kombo ošetrenie je ideálnou voľbou pre tých, kto chce kompletne premeniť svoj pohľad v jednom sedení. Kombinácia Lash Lift a Brow Lift vytvorí dokonalú harmóniu medzi mihalnicami a obočím. Výsledkom je otvorený, mladistvý pohľad bez potreby denného líčenia.',
+            benefits: [
+              { icon: 'complete', title: 'Kompletné ošetrenie', description: 'Mihalnice aj obočie naraz' },
+              { icon: 'value', title: 'Výhodná cena', description: 'Ušetrite oproti jednotlivým ošetreniam' },
+              { icon: 'natural', title: 'Prirodzený výsledok', description: 'Vaše vlastné riasy a obočie' },
+              { icon: 'lasting', title: 'Dlhodobý efekt', description: '6-8 týždňov' },
+            ],
+            process: [
+              { step: 1, title: 'Príprava', description: 'Očistenie a príprava mihalníc aj obočia' },
+              { step: 2, title: 'Lash Lift', description: 'Zdvihnutie a tvarovanie mihalníc' },
+              { step: 3, title: 'Brow Lift', description: 'Laminácia a tvarovanie obočia' },
+              { step: 4, title: 'Finalizácia', description: 'Výživné sérum a záverečná úprava' },
+            ],
+            forWhom: ['Pre kompletný look bez líčenia', 'Pre šetrenie času', 'Pre prirodzenú krásu'],
+            note: 'Najobľúbenejšie ošetrenie u našich klientov.',
+          },
+          {
+            id: 'laminacia-mihalnic',
+            slug: 'laminacia-mihalnic-lash-lift',
+            name: 'Laminácia mihalníc - Lash Lift',
+            price: '40 €',
+            duration: '1h',
+            tagline: 'Prirodzene zdvihnuté riasy',
+            shortDescription: 'Lash Lift dodá vašim prirodzeným mihalniciam krásne zdvihnutie a zatočenie.',
+            fullDescription: 'Lash Lift je semi-permanentné ošetrenie, ktoré zdvíha vaše vlastné mihalnice od koreňa, čím vytvára efekt otvorených očí a dlhších rias. Na rozdiel od predlžovania používame vaše prirodzené mihalnice, takže výsledok je maximálne prirodzený a nevyžaduje špeciálnu starostlivosť.',
+            benefits: [
+              { icon: 'natural', title: '100% prirodzené', description: 'Vaše vlastné mihalnice' },
+              { icon: 'open', title: 'Otvorený pohľad', description: 'Opticky väčšie oči' },
+              { icon: 'easy', title: 'Bez údržby', description: 'Žiadna špeciálna starostlivosť' },
+              { icon: 'lasting', title: 'Vydrží 6-8 týždňov', description: 'Podľa rastu rias' },
+            ],
+            process: [
+              { step: 1, title: 'Očistenie', description: 'Dôkladné odstránenie make-upu' },
+              { step: 2, title: 'Aplikácia', description: 'Nanesenie na silikónové podložky' },
+              { step: 3, title: 'Lifting', description: 'Zdvíhací a fixačný prípravok' },
+              { step: 4, title: 'Výživa', description: 'Keratínové sérum pre zdravé riasy' },
+            ],
+            forWhom: ['Pre rovné alebo smerujúce nadol mihalnice', 'Pre alergikov na lepidlo', 'Pre aktívny životný štýl'],
+          },
+          {
+            id: 'laminacia-oboci',
+            slug: 'laminacia-oboci-brow-lift',
+            name: 'Laminácia obočia - Brow Lift',
+            price: '40 €',
+            duration: '1h',
+            tagline: 'Definované a plné obočie',
+            shortDescription: 'Brow Lift vytvaruje a fixuje obočie do požadovaného smeru pre plný, upravený vzhľad.',
+            fullDescription: 'Brow Lift je revolučná technika, ktorá umožňuje vytvarovať aj najneposlušnejšie chĺpky obočia. Ošetrenie zjemní štruktúru chĺpkov a umožní ich natrvalo zafixovať v požadovanom smere. Výsledkom je plné, upravené obočie s prirodzeným vzhľadom.',
+            benefits: [
+              { icon: 'fullness', title: 'Opticky plnšie', description: 'Maximálny objem' },
+              { icon: 'control', title: 'Skrotené chĺpky', description: 'Koniec neposlušnému obočiu' },
+              { icon: 'shape', title: 'Dokonalý tvar', description: 'Presne podľa vášho želania' },
+              { icon: 'lasting', title: 'Dlhodobý efekt', description: '4-6 týždňov' },
+            ],
+            process: [
+              { step: 1, title: 'Konzultácia', description: 'Určenie ideálneho tvaru a smeru' },
+              { step: 2, title: 'Laminácia', description: 'Zjemnenie a tvarovanie chĺpkov' },
+              { step: 3, title: 'Fixácia', description: 'Zafixovanie v požadovanom smere' },
+              { step: 4, title: 'Farbenie', description: 'Voliteľné dofarbenie pre hĺbku' },
+            ],
+            forWhom: ['Pre neposlušné obočie', 'Pre riedke obočie', 'Pre moderný "fluffy brows" look'],
+          },
+        ],
+      },
+      {
+        id: 'permanentny-makeup',
+        slug: 'permanentny-makeup',
+        title: 'Permanentný make-up',
+        description: 'Trvalý make-up obočia, pier a očných liniek pre dokonalý vzhľad bez denného líčenia.',
+        services: [
+          {
+            id: 'pmu-korekcia',
+            slug: 'permanentny-makeup-korekcia',
+            name: 'Permanentný make-up korekcia do 5 týždňov',
+            price: '100 €',
+            duration: '1h',
+            tagline: 'Dolaďte dokonalosť',
+            shortDescription: 'Korekčné ošetrenie pre doladenie tvaru a sýtosti pigmentu po prvom ošetrení.',
+            fullDescription: 'Korekcia je nevyhnutnou súčasťou procesu permanentného make-upu. Po zahojení prvého ošetrenia (4-5 týždňov) vykonáme korekciu, ktorá zabezpečí rovnomerné rozloženie pigmentu a doladí tvar podľa vašich predstáv. Tento krok je kľúčový pre dlhotrvajúci a dokonalý výsledok.',
+            benefits: [
+              { icon: 'perfect', title: 'Dokonalý výsledok', description: 'Doladenie detailov' },
+              { icon: 'lasting', title: 'Dlhšia výdrž', description: 'Lepšie uchytenie pigmentu' },
+              { icon: 'color', title: 'Intenzívnejšia farba', description: 'Sýtejší odtieň' },
+              { icon: 'shape', title: 'Presný tvar', description: 'Finálne úpravy' },
+            ],
+            process: [
+              { step: 1, title: 'Zhodnotenie', description: 'Posúdenie zahojenia a farby' },
+              { step: 2, title: 'Konzultácia', description: 'Diskusia o úpravách' },
+              { step: 3, title: 'Korekcia', description: 'Doplnenie pigmentu' },
+            ],
+            forWhom: ['Pre klientov po prvom PMU', 'Pre obnovu farby', 'Pre doladenie tvaru'],
+            note: 'Korekcia je zahrnutá v cene prvého ošetrenia, ak prebehne do 5 týždňov.',
+          },
+          {
+            id: 'pmu-hair-strokes',
+            slug: 'permanentny-makeup-hair-strokes',
+            name: 'Permanentný make-up obočie Hair Strokes',
+            price: '200 €',
+            duration: '2h',
+            popular: true,
+            tagline: 'Chĺpok po chĺpku',
+            shortDescription: 'Najrealistickejšia technika kresby jednotlivých chĺpkov pre absolútne prirodzený vzhľad.',
+            fullDescription: 'Hair Strokes technika je vrcholom umenia permanentného make-upu. Každý chĺpok je ručne nakreslený tak, aby napodobňoval prirodzený rast vášho obočia. Výsledok je tak realistický, že nikto nepozná, že ide o permanentný make-up. Ideálne pre tých, kto chce jemný, prirodzený vzhľad.',
+            benefits: [
+              { icon: 'realistic', title: 'Ultra realistické', description: 'Nerozoznateľné od prirodzeného' },
+              { icon: 'custom', title: 'Na mieru', description: 'Prispôsobené vašej tvári' },
+              { icon: 'natural', title: 'Prirodzený vzhľad', description: 'Jemná, elegantná kresba' },
+              { icon: 'lasting', title: 'Výdrž 1-2 roky', description: 'Podľa typu pleti' },
+            ],
+            process: [
+              { step: 1, title: 'Návrh tvaru', description: 'Predkreslenie a konzultácia' },
+              { step: 2, title: 'Príprava', description: 'Znecitlivenie oblasti' },
+              { step: 3, title: 'Kresba', description: 'Precízna aplikácia jednotlivých ťahov' },
+              { step: 4, title: 'Dokončenie', description: 'Ošetrenie a inštrukcie' },
+            ],
+            forWhom: ['Pre prirodzený look', 'Pre riedke obočie', 'Pre úplnú absenciu obočia'],
+            note: 'Odporúčané pre normálnu až suchú pleť.',
+          },
+          {
+            id: 'pmu-powder-brows',
+            slug: 'permanentny-makeup-powder-brows',
+            name: 'Permanentný make-up obočie Powder Brows',
+            price: '200 €',
+            duration: '2h',
+            popular: true,
+            tagline: 'Efekt púdrového make-upu',
+            shortDescription: 'Jemne tieňované obočie s efektom profesionálneho make-upu, ktorý vydrží roky.',
+            fullDescription: 'Powder Brows technika vytvára jemný, tieňovaný efekt podobný púdrovému make-upu. Výsledok je mäkší a menej definovaný ako Hair Strokes, čo je ideálne pre tých, kto preferuje výraznejší, ale stále prirodzený vzhľad. Táto technika je vhodná pre všetky typy pleti vrátane mastnej.',
+            benefits: [
+              { icon: 'soft', title: 'Mäkký efekt', description: 'Jemné tieňovanie' },
+              { icon: 'makeup', title: 'Efekt make-upu', description: 'Vždy upravený vzhľad' },
+              { icon: 'universal', title: 'Pre všetky typy pleti', description: 'Vrátane mastnej' },
+              { icon: 'lasting', title: 'Dlhá výdrž', description: '2-3 roky' },
+            ],
+            process: [
+              { step: 1, title: 'Návrh', description: 'Konzultácia tvaru a farby' },
+              { step: 2, title: 'Príprava', description: 'Znecitlivenie' },
+              { step: 3, title: 'Tieňovanie', description: 'Postupná aplikácia pigmentu' },
+              { step: 4, title: 'Dokončenie', description: 'Starostlivosť po ošetrení' },
+            ],
+            forWhom: ['Pre mastnú pleť', 'Pre výraznejší efekt', 'Pre každodenný upravený look'],
+          },
+          {
+            id: 'pmu-odstranenie',
+            slug: 'permanentny-makeup-odstranenie',
+            name: 'Permanentný make-up odstránenie obočia + umŕtvenie',
+            price: '100 €',
+            duration: '1h',
+            tagline: 'Nový začiatok',
+            shortDescription: 'Bezpečné odstránenie starého alebo nechceného permanentného make-upu.',
+            fullDescription: 'Ak nie ste spokojní so starým permanentným make-upom alebo potrebujete zmenu, ponúkame bezpečné odstránenie pomocou špeciálneho roztoku. Proces postupne vybieli pigment z pokožky, čím pripraví oblasť na nové ošetrenie alebo prirodzené hojenie.',
+            benefits: [
+              { icon: 'safe', title: 'Bezpečné', description: 'Šetrná metóda' },
+              { icon: 'fresh', title: 'Nový začiatok', description: 'Možnosť novej aplikácie' },
+              { icon: 'painless', title: 'S umŕtvením', description: 'Minimálna bolesť' },
+              { icon: 'professional', title: 'Odborné ošetrenie', description: 'Skúsené špecialistky' },
+            ],
+            process: [
+              { step: 1, title: 'Konzultácia', description: 'Posúdenie stavu pigmentu' },
+              { step: 2, title: 'Umŕtvenie', description: 'Aplikácia anestetika' },
+              { step: 3, title: 'Odstránenie', description: 'Aplikácia odstraňovacieho roztoku' },
+              { step: 4, title: 'Hojenie', description: 'Inštrukcie pre domácu starostlivosť' },
+            ],
+            forWhom: ['Pre nespokojných s výsledkom PMU', 'Pre zmenu tvaru', 'Pre vyblednutý starý PMU'],
+            note: 'Môže byť potrebných viac sedení podľa hĺbky pigmentu.',
+          },
+          {
+            id: 'pmu-ocne-linky',
+            slug: 'permanentny-makeup-ocne-linky',
+            name: 'Permanentný make-up očné linky',
+            price: '200 €',
+            duration: '2h',
+            tagline: 'Dokonalá linka bez námahy',
+            shortDescription: 'Permanentná očná linka pre výrazný pohľad bez denného maľovania.',
+            fullDescription: 'Permanentné očné linky zvýraznia vaše oči a ušetria čas strávený pred zrkadlom. Ponúkame rôzne štýly od jemnej linky v koreni rias až po dramatickejšiu winged linku. Výsledok je odolný voči vode, potu a slzám.',
+            benefits: [
+              { icon: 'dramatic', title: 'Výrazný pohľad', description: 'Zvýraznené oči' },
+              { icon: 'time', title: 'Úspora času', description: 'Žiadne denné kreslenie' },
+              { icon: 'waterproof', title: 'Odolné', description: 'Voči vode a potu' },
+              { icon: 'lasting', title: 'Dlhodobé', description: '2-3 roky' },
+            ],
+            process: [
+              { step: 1, title: 'Konzultácia', description: 'Výber štýlu linky' },
+              { step: 2, title: 'Príprava', description: 'Znecitlivenie viečok' },
+              { step: 3, title: 'Aplikácia', description: 'Precízna kresba linky' },
+              { step: 4, title: 'Dokončenie', description: 'Ochladenie a inštrukcie' },
+            ],
+            forWhom: ['Pre každodenný make-up look', 'Pre citlivé oči', 'Pre aktívny životný štýl'],
+          },
+          {
+            id: 'pmu-pery',
+            slug: 'permanentny-makeup-pery',
+            name: 'Permanentný make-up pery',
+            price: '200 €',
+            duration: '2h',
+            tagline: 'Plné, farebné pery 24/7',
+            shortDescription: 'Permanentný rúž, ktorý zvýrazní farbu a tvar vašich pier.',
+            fullDescription: 'Permanentný make-up pier dodá vašim perám krásnu farbu a definíciu. Môžeme vytvoriť jemný, prirodzený nádych farby alebo výraznejší efekt plných pier. Ošetrenie tiež opticky vyrovná asymetriu a dodá perám mladistvý vzhľad.',
+            benefits: [
+              { icon: 'color', title: 'Stála farba', description: 'Bez nutnosti rúžu' },
+              { icon: 'shape', title: 'Definovaný tvar', description: 'Symetrické pery' },
+              { icon: 'youthful', title: 'Mladistvý vzhľad', description: 'Plnšie pery' },
+              { icon: 'lasting', title: 'Vydrží 2-3 roky', description: 'Dlhodobý efekt' },
+            ],
+            process: [
+              { step: 1, title: 'Konzultácia', description: 'Výber farby a intenzity' },
+              { step: 2, title: 'Predkresba', description: 'Návrh kontúry pier' },
+              { step: 3, title: 'Pigmentácia', description: 'Postupná aplikácia farby' },
+              { step: 4, title: 'Dokončenie', description: 'Hojivá starostlivosť' },
+            ],
+            forWhom: ['Pre bledé pery', 'Pre asymetrické pery', 'Pre tých, kto chce vždy krásne pery'],
+          },
+        ],
+      },
+      {
+        id: 'predlzovanie-mihalnic',
+        slug: 'predlzovanie-mihalnic',
+        title: 'Predlžovanie mihalníc',
+        description: 'Profesionálne predlžovanie a úprava mihalníc pre výrazný pohľad.',
+        services: [
+          {
+            id: 'odstranovanie-mihalnic',
+            slug: 'odstranovanie-mihalnic',
+            name: 'Odstraňovanie mihalníc',
+            price: '20 €',
+            duration: '30min.',
+            tagline: 'Bezpečná starostlivosť',
+            shortDescription: 'Šetrné a profesionálne odstránenie predĺžených mihalníc bez poškodenia vlastných.',
+            fullDescription: 'Profesionálne odstránenie mihalníc je dôležité pre zdravie vašich prirodzených rias. Používame špeciálne gély, ktoré bezpečne rozpustia lepidlo bez ťahania a poškodenia. Po odstránení vaše prirodzené mihalnice zostávajú zdravé a pripravené na nový set.',
+            benefits: [
+              { icon: 'safe', title: 'Bezpečné', description: 'Šetrné k prirodzeným riasam' },
+              { icon: 'professional', title: 'Profesionálne', description: 'Správna technika' },
+              { icon: 'quick', title: 'Rýchle', description: 'Len 30 minút' },
+              { icon: 'healthy', title: 'Zdravé riasy', description: 'Bez poškodenia' },
+            ],
+            process: [
+              { step: 1, title: 'Aplikácia gélu', description: 'Nanesenie odstraňovača' },
+              { step: 2, title: 'Pôsobenie', description: 'Rozpustenie lepidla' },
+              { step: 3, title: 'Odstránenie', description: 'Jemné zloženie rias' },
+              { step: 4, title: 'Ošetrenie', description: 'Výživné sérum pre prirodzené riasy' },
+            ],
+            forWhom: ['Pre výmenu setu', 'Pre oddych pre prirodzené riasy', 'Pre zmenu štýlu'],
+          },
+          {
+            id: 'predlzovanie-doplnka',
+            slug: 'predlzovanie-mihalnic-doplnka',
+            name: 'Predlžovanie mihalníc - Doplnka (po 3 týždňoch)',
+            price: '50 €',
+            duration: '1h 30min.',
+            tagline: 'Vždy dokonalé',
+            shortDescription: 'Pravidelná údržba pre zachovanie plného a krásneho vzhľadu mihalníc.',
+            fullDescription: 'Doplnka je nevyhnutná pre udržanie plného vzhľadu predĺžených mihalníc. Počas prirodzeného rastu a obnovy rias vypadávajú aj aplikované extenzie. Doplnka nahrádza vypadané riasy a udržiava váš pohľad dokonalý. Odporúčame doplnku každé 2-3 týždne.',
+            benefits: [
+              { icon: 'fullness', title: 'Plný vzhľad', description: 'Doplnenie medzier' },
+              { icon: 'maintain', title: 'Údržba', description: 'Predĺženie životnosti setu' },
+              { icon: 'value', title: 'Výhodné', description: 'Lacnejšie ako nový set' },
+              { icon: 'fresh', title: 'Svieži look', description: 'Vždy upravené' },
+            ],
+            process: [
+              { step: 1, title: 'Kontrola', description: 'Posúdenie stavu rias' },
+              { step: 2, title: 'Očistenie', description: 'Odstránenie nečistôt' },
+              { step: 3, title: 'Doplnenie', description: 'Aplikácia nových extenzií' },
+              { step: 4, title: 'Finalizácia', description: 'Tvarovanie a kontrola' },
+            ],
+            forWhom: ['Pre pravidelných klientov', 'Pre udržanie plného setu', 'Pre ekonomickú voľbu'],
+            note: 'Ideálny interval doplnky je 2-3 týždne.',
+          },
+          {
+            id: 'predlzovanie-novy-set',
+            slug: 'predlzovanie-mihalnic-novy-set',
+            name: 'Predlžovanie mihalníc - Nový set',
+            price: '80 €',
+            duration: '2h',
+            popular: true,
+            tagline: 'Dramatická premena pohľadu',
+            shortDescription: 'Kompletný nový set predĺžených mihalníc pre výrazný a sebaistý pohľad.',
+            fullDescription: 'Nový set predĺžených mihalníc kompletne premení váš pohľad. Individuálne extenzie aplikujeme na každú vašu prirodzenú riasu, čím vytvoríme objem, dĺžku a tvar podľa vášho želania. Ponúkame rôzne štýly od prirodzeného po dramatický. Výsledkom sú krásne, dlhé mihalnice, ktoré zdôraznia váš pohľad.',
+            benefits: [
+              { icon: 'dramatic', title: 'Výrazný pohľad', description: 'Okamžitá premena' },
+              { icon: 'custom', title: 'Na mieru', description: 'Štýl podľa vášho želania' },
+              { icon: 'lasting', title: 'Dlhotrvajúce', description: '3-4 týždne s doplnkami' },
+              { icon: 'nomakeup', title: 'Bez mascary', description: 'Ušetrite čas' },
+            ],
+            process: [
+              { step: 1, title: 'Konzultácia', description: 'Výber štýlu, dĺžky a tvaru' },
+              { step: 2, title: 'Príprava', description: 'Očistenie a ochrana dolných rias' },
+              { step: 3, title: 'Aplikácia', description: 'Presná aplikácia extenzií' },
+              { step: 4, title: 'Dokončenie', description: 'Inštrukcie pre starostlivosť' },
+            ],
+            forWhom: ['Pre novinky vo svete rias', 'Pre špeciálne príležitosti', 'Pre každodenný glamour'],
+            note: 'Vyhnite sa vode a pare 24 hodín po aplikácii.',
+          },
+        ],
+      },
     ],
   },
 
   // ========================================
-  // 5. LASEROVÁ EPILÁCIA
+  // 3. LASEROVÁ EPILÁCIA
   // ========================================
   {
     id: 'laserova-epilacia',
@@ -1616,7 +1405,7 @@ export const mainCategories: MainCategory[] = [
     title: 'Laserová epilácia',
     description: 'Bezpečné a účinné trvalé odstránenie nežiaducich chĺpkov laserom.',
     iconKey: 'laser',
-    image: '/images/categories/body.jpg',
+    image: '/images/services/laserova-epilacia.webp',
     subcategories: [
       {
         id: 'laser-damy',
@@ -1939,7 +1728,7 @@ export const mainCategories: MainCategory[] = [
   },
 
   // ========================================
-  // 6. MADEROTERAPIA
+  // 4. MADEROTERAPIA
   // ========================================
   {
     id: 'maderoterapia',
@@ -1947,7 +1736,7 @@ export const mainCategories: MainCategory[] = [
     title: 'Maderoterapia',
     description: 'Prírodná masážna technika drevenými nástrojmi pre modelovanie postavy a redukciu celulitídy.',
     iconKey: 'massage',
-    image: '/images/categories/body.jpg',
+    image: '/images/services/masaze-maderoterapia/masaze-maderoterapia-07.webp',
     services: [
       {
         id: 'maderoterapia-celotelova',
@@ -2022,7 +1811,7 @@ export const mainCategories: MainCategory[] = [
   },
 
   // ========================================
-  // 7. MASÁŽ
+  // 5. MASÁŽ
   // ========================================
   {
     id: 'masaz',
@@ -2030,7 +1819,7 @@ export const mainCategories: MainCategory[] = [
     title: 'Masáž',
     description: 'Relaxačné a terapeutické masáže pre uvoľnenie napätia a regeneráciu tela.',
     iconKey: 'heart',
-    image: '/images/categories/energy.jpg',
+    image: '/images/services/masaze-maderoterapia.webp',
     services: [
       {
         id: 'masaz-60',
@@ -2105,7 +1894,7 @@ export const mainCategories: MainCategory[] = [
   },
 
   // ========================================
-  // 8. PIERCING
+  // 6. PIERCING
   // ========================================
   {
     id: 'piercing',
@@ -2113,7 +1902,8 @@ export const mainCategories: MainCategory[] = [
     title: 'Piercing',
     description: 'Profesionálny piercing tváre, trupu a uší v sterilnom prostredí.',
     iconKey: 'piercing',
-    image: '/images/categories/face.jpg',
+    image: '/images/services/piercing.webp',
+    imagePosition: 'center 70%',
     subcategories: [
       {
         id: 'microdermal',
@@ -2356,7 +2146,7 @@ export const mainCategories: MainCategory[] = [
   },
 
   // ========================================
-  // 9. PROFESIONÁLNE LÍČENIE
+  // 7. PROFESIONÁLNE LÍČENIE
   // ========================================
   {
     id: 'profesionalne-licenie',
@@ -2364,7 +2154,7 @@ export const mainCategories: MainCategory[] = [
     title: 'Profesionálne líčenie',
     description: 'Profesionálne líčenie pre každú príležitosť - svadobné, večerné, foto/TV.',
     iconKey: 'brush',
-    image: '/images/categories/face.jpg',
+    image: '/images/services/profesionalne-licenie.webp',
     services: [
       {
         id: 'denne-licenie',
@@ -2465,7 +2255,7 @@ export const mainCategories: MainCategory[] = [
   },
 
   // ========================================
-  // 10. TETOVANIE
+  // 8. TETOVANIE
   // ========================================
   {
     id: 'tetovanie',
@@ -2473,7 +2263,7 @@ export const mainCategories: MainCategory[] = [
     title: 'Tetovanie',
     description: 'Profesionálne tetovanie od mini motívov po veľké projekty.',
     iconKey: 'tattoo',
-    image: '/images/categories/body.jpg',
+    image: '/images/services/tetovanie.webp',
     services: [
       {
         id: 'male-tetovanie',
@@ -2554,7 +2344,7 @@ export const mainCategories: MainCategory[] = [
   },
 
   // ========================================
-  // 11. VÍKENDOVÉ VIP SLUŽBY
+  // 9. VÍKENDOVÉ VIP SLUŽBY
   // ========================================
   {
     id: 'vikendove-vip-sluzby',
@@ -2562,7 +2352,7 @@ export const mainCategories: MainCategory[] = [
     title: 'Víkendové VIP služby',
     description: 'Exkluzívne víkendové ošetrenia pre náročných klientov.',
     iconKey: 'crown',
-    image: '/images/categories/chakra.jpg',
+    image: '/images/services/chakra-calibration.webp',
     services: [
       {
         id: 'vikendove-osetrenie',
@@ -2580,6 +2370,204 @@ export const mainCategories: MainCategory[] = [
         forWhom: ['Pre zaneprázdnených klientov', 'Pre VIP udalosti', 'Pre maximálne súkromie'],
         price: 'na vyžiadanie',
         duration: '1h',
+      },
+    ],
+  },
+
+  // ========================================
+  // 10. CHAKRA CALIBRATION
+  // ========================================
+  {
+    id: 'chakra-calibration',
+    slug: 'chakra-calibration',
+    title: 'Chakra Calibration',
+    description: 'Odblokujte svoju energiu a cíťte sa ľahší a vitálnejší. Energetická harmonizácia čakier pre duševnú a fyzickú rovnováhu.',
+    iconKey: 'chakra',
+    image: '/images/services/chakra-calibration.webp',
+    services: [
+      {
+        id: 'chakra-individual',
+        slug: 'chakra-calibration-individualna',
+        name: 'Chakra Calibration individuálna',
+        price: '200 €',
+        duration: '2h',
+        popular: true,
+        tagline: 'Obnovte vnútornú harmóniu',
+        shortDescription: 'Hlbinná kalibrácia energetických centier pre obnovenie prirodzenej rovnováhy tela a mysle.',
+        fullDescription: 'Chakra Calibration je holistická metóda, ktorá pracuje so siedmimi hlavnými energetickými centrami vášho tela. Počas sedenia identifikujeme bloky a nerovnováhy, ktoré môžu spôsobovať fyzické ťažkosti, emočnú nestabilitu alebo mentálnu únavu. Pomocou jemných techník a intuitívneho vedenia vám pomôžeme obnoviť prirodzený tok energie.',
+        benefits: [
+          {
+            icon: 'energy',
+            title: 'Zvýšená vitalita',
+            description: 'Cíťte sa energickejšie a plní sily',
+          },
+          {
+            icon: 'balance',
+            title: 'Emočná rovnováha',
+            description: 'Harmónia mysle a pocitov',
+          },
+          {
+            icon: 'clarity',
+            title: 'Mentálna jasnosť',
+            description: 'Lepšia koncentrácia a rozhodovanie',
+          },
+          {
+            icon: 'healing',
+            title: 'Hlboké uvoľnenie',
+            description: 'Uvoľnenie napätia a stresu',
+          },
+        ],
+        process: [
+          {
+            step: 1,
+            title: 'Úvodná konzultácia',
+            description: 'Preberiemo vaše potreby a aktuálny stav',
+          },
+          {
+            step: 2,
+            title: 'Diagnostika čakier',
+            description: 'Identifikácia blokov a nerovnováh',
+          },
+          {
+            step: 3,
+            title: 'Kalibrácia',
+            description: 'Jemná práca s energetickými centrami',
+          },
+          {
+            step: 4,
+            title: 'Integrácia',
+            description: 'Ukotvenie novej energie a odporúčania',
+          },
+        ],
+        forWhom: [
+          'Pre tých, kto cíti chronickú únavu',
+          'Pre ľudí v životných zmenách',
+          'Pre hľadajúcich vnútorný pokoj',
+          'Pre tých, kto chce hlbšie porozumieť sebe',
+        ],
+        note: 'Odporúčame pohodlné oblečenie a príchod v kľudnom rozpoložení.',
+      },
+      {
+        id: 'chakra-parova',
+        slug: 'chakra-calibration-parova',
+        name: 'Chakra Calibration párová (2 osoby)',
+        price: '300 €',
+        duration: '2h',
+        tagline: 'Posilnite vzájomné puto',
+        shortDescription: 'Spoločná kalibrácia čakier pre páry alebo blízkych ľudí. Harmonizujte energiu medzi vami.',
+        fullDescription: 'Párová Chakra Calibration je unikátna príležitosť prehĺbiť vzťah s partnerom, priateľom či rodinným príslušníkom na energetickej úrovni. Pracujeme s individuálnymi energetickými systémami oboch účastníkov a zároveň harmonizujeme vzájomnú dynamiku. Táto metóda pomáha odstrániť blokády v komunikácii, posilniť emočné spojenie a vytvoriť priestor pre hlbšie porozumenie.',
+        benefits: [
+          {
+            icon: 'connection',
+            title: 'Hlbšie spojenie',
+            description: 'Posilnenie vzájomného puta',
+          },
+          {
+            icon: 'communication',
+            title: 'Lepšia komunikácia',
+            description: 'Otvorenejší dialóg a porozumenie',
+          },
+          {
+            icon: 'harmony',
+            title: 'Vzájomná harmónia',
+            description: 'Synchronizácia energií oboch partnerov',
+          },
+          {
+            icon: 'growth',
+            title: 'Spoločný rast',
+            description: 'Podpora osobného rozvoja v páre',
+          },
+        ],
+        process: [
+          {
+            step: 1,
+            title: 'Spoločný úvod',
+            description: 'Definovanie spoločných cieľov sedenia',
+          },
+          {
+            step: 2,
+            title: 'Individuálna diagnostika',
+            description: 'Analýza čakier každého účastníka',
+          },
+          {
+            step: 3,
+            title: 'Párová kalibrácia',
+            description: 'Synchronizácia a harmonizácia energií',
+          },
+          {
+            step: 4,
+            title: 'Spoločná integrácia',
+            description: 'Upevnenie spojenia a zdieľanie zážitkov',
+          },
+        ],
+        forWhom: [
+          'Pre páry túžiace po hlbšom spojení',
+          'Pre rodičov s deťmi',
+          'Pre priateľov na spoločnej ceste rastu',
+          'Pre kohokoľvek, kto chce zdieľať túto skúsenosť',
+        ],
+        note: 'Ideálne pre páry, ktoré chcú posilniť svoj vzťah na hlbšej úrovni.',
+      },
+      {
+        id: 'theta-healing',
+        slug: 'theta-healing-individualne',
+        name: 'Theta Healing individuálne',
+        price: '100 €',
+        duration: '1h',
+        tagline: 'Prepíšte limitujúce vzorce',
+        shortDescription: 'Transformačná technika pre zmenu hlboko zakorenených presvedčení a vzorcov správania.',
+        fullDescription: 'Theta Healing je meditačná technika, ktorá pracuje s mozgovými vlnami v theta stave. V tomto stave hlbokej relaxácie máme prístup k podvedomiu, kde sú uložené naše presvedčenia, vzorce a bloky. Spoločne identifikujeme limitujúce presvedčenia, ktoré vám bránia žiť plnohodnotný život, a transformujeme ich na podporujúce.',
+        benefits: [
+          {
+            icon: 'transform',
+            title: 'Transformácia myslenia',
+            description: 'Zmena limitujúcich presvedčení',
+          },
+          {
+            icon: 'release',
+            title: 'Uvoľnenie blokov',
+            description: 'Zbavenie sa starých vzorcov',
+          },
+          {
+            icon: 'peace',
+            title: 'Vnútorný pokoj',
+            description: 'Hlboká relaxácia a pokoj mysle',
+          },
+          {
+            icon: 'potential',
+            title: 'Nový potenciál',
+            description: 'Otvorenie nových možností',
+          },
+        ],
+        process: [
+          {
+            step: 1,
+            title: 'Rozhovor',
+            description: 'Identifikácia témy na prácu',
+          },
+          {
+            step: 2,
+            title: 'Theta stav',
+            description: 'Uvedenie do hlbokej relaxácie',
+          },
+          {
+            step: 3,
+            title: 'Práca s presvedčeniami',
+            description: 'Identifikácia a transformácia blokov',
+          },
+          {
+            step: 4,
+            title: 'Integrácia',
+            description: 'Ukotvenie nových vzorcov',
+          },
+        ],
+        forWhom: [
+          'Pre tých, kto chce zmeniť negatívne vzorce',
+          'Pre ľudí bojujúcich s obavami a strachmi',
+          'Pre hľadajúcich životné zmeny',
+          'Pre kohokoľvek otvoreného transformácii',
+        ],
+        note: 'Sedenie prebieha v kľudnom prostredí. Prichádzajte s otvorenou mysľou.',
       },
     ],
   },

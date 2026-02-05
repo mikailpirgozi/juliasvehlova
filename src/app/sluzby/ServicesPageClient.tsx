@@ -212,9 +212,9 @@ export function ServicesPageClient() {
               </p>
             </div>
 
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {mainCategories.map((category) => (
-                <CategoryCard key={category.id} category={category} />
+            <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+              {mainCategories.map((category, index) => (
+                <CategoryCard key={category.id} category={category} priority={index < 3} />
               ))}
             </div>
           </div>

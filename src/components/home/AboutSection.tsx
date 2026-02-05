@@ -35,7 +35,7 @@ export function AboutSection() {
               <div className="absolute -bottom-4 -right-4 h-full w-full rounded-2xl border-2 border-brand-200" />
               
               {/* Image container */}
-              <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-2xl">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
                 <Image
                   src="/images/services/doctor-portrait.jpg"
                   alt="MUDr. Julia Svehlová - Estetická medicína"
@@ -43,6 +43,13 @@ export function AboutSection() {
                   sizes="(max-width: 768px) 100vw, 40vw"
                   className="object-cover"
                   priority
+                />
+                {/* Brand color vignette from bottom */}
+                <div 
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background: 'linear-gradient(to top, rgba(216, 167, 177, 0.65) 0%, rgba(216, 167, 177, 0.3) 25%, rgba(216, 167, 177, 0.1) 45%, transparent 65%)',
+                  }}
                 />
               </div>
               

@@ -1,8 +1,60 @@
 'use client'
 
+import { useState } from 'react'
+import Image from 'next/image'
 import { Button } from '@/components/base/buttons/button'
+import { Tabs } from '@/components/application/tabs/tabs'
+
+const teamCertificates = [
+  {
+    id: 'julia-svehlova',
+    name: 'Júlia Švehlová',
+    certificates: [
+      '/certificates/julia-svehlova/cert-1.webp',
+      '/certificates/julia-svehlova/cert-2.webp',
+      '/certificates/julia-svehlova/cert-3.webp',
+      '/certificates/julia-svehlova/cert-4.webp',
+      '/certificates/julia-svehlova/cert-5.webp',
+      '/certificates/julia-svehlova/cert-6.webp',
+    ],
+  },
+  {
+    id: 'daria-schmuliak',
+    name: 'Daria Schmuliak',
+    certificates: [
+      '/certificates/daria-schmuliak/cert-1.webp',
+      '/certificates/daria-schmuliak/cert-2.webp',
+      '/certificates/daria-schmuliak/cert-3.webp',
+      '/certificates/daria-schmuliak/cert-4.webp',
+      '/certificates/daria-schmuliak/cert-5.webp',
+      '/certificates/daria-schmuliak/cert-6.webp',
+    ],
+  },
+  {
+    id: 'tatiana-kubovic',
+    name: 'Bc. Tatiana Kubovič',
+    certificates: [
+      '/certificates/tatiana-kubovic/cert-1.webp',
+      '/certificates/tatiana-kubovic/cert-2.webp',
+      '/certificates/tatiana-kubovic/cert-3.webp',
+    ],
+  },
+  {
+    id: 'yasmin-betakova',
+    name: 'Dr. Yasmin Betáková',
+    certificates: [
+      '/certificates/yasmin-betakova/cert-1.webp',
+      '/certificates/yasmin-betakova/cert-2.webp',
+      '/certificates/yasmin-betakova/cert-3.webp',
+      '/certificates/yasmin-betakova/cert-4.webp',
+      '/certificates/yasmin-betakova/cert-5.webp',
+    ],
+  },
+]
 
 export function AboutPageClient() {
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null)
+
   const timeline = [
     {
       year: '2013',
@@ -33,39 +85,6 @@ export function AboutPageClient() {
       year: '2025',
       title: 'Dnes',
       description: 'Viac ako 5000 spokojných klientov a neustále vzdelávanie',
-    },
-  ]
-
-  const certificates = [
-    {
-      title: 'Lekárska fakulta UK Bratislava',
-      description: 'Všeobecné lekárstvo',
-      year: '2013',
-    },
-    {
-      title: 'Certifikát estetickej medicíny',
-      description: 'Slovenská spoločnosť estetickej medicíny',
-      year: '2015',
-    },
-    {
-      title: 'Botulotoxín & Filery',
-      description: 'Advanced Aesthetic Medicine Course, Londýn',
-      year: '2016',
-    },
-    {
-      title: 'Permanentný make-up',
-      description: 'PhiBrows Academy International',
-      year: '2019',
-    },
-    {
-      title: 'Laserová medicína',
-      description: 'European Laser Safety Course',
-      year: '2020',
-    },
-    {
-      title: 'Master Class Lip Fillers',
-      description: 'Dr. Tijion Esho Academy, Londýn',
-      year: '2022',
     },
   ]
 
@@ -197,21 +216,57 @@ export function AboutPageClient() {
               Certifikácie a vzdelávanie
             </h2>
             <p className="mt-2 text-gray-600">
-              Neustále sa vzdelávam, aby som vám priniesla najlepšie služby
+              Náš tím neustále rozširuje svoje znalosti a odbornosť
             </p>
           </div>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {certificates.map((cert, index) => (
-              <div
-                key={index}
-                className="rounded-2xl border border-brand-100 bg-white/80 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+          <div className="mt-12">
+            <Tabs defaultSelectedKey={teamCertificates[0]?.id ?? 'julia-svehlova'}>
+              <Tabs.List
+                items={teamCertificates.map((m) => ({ id: m.id, label: m.name }))}
+                type="underline"
+                size="md"
+                className="justify-center"
               >
-                <p className="text-xs font-medium text-[#CDA882]">{cert.year}</p>
-                <h3 className="mt-2 font-semibold text-gray-900">{cert.title}</h3>
-                <p className="mt-1 text-sm text-gray-600">{cert.description}</p>
-              </div>
-            ))}
+                {(item) => (
+                  <Tabs.Item key={item.id} id={item.id}>
+                    {item.label}
+                  </Tabs.Item>
+                )}
+              </Tabs.List>
+
+              {teamCertificates.map((member) => (
+                <Tabs.Panel key={member.id} id={member.id} className="mt-8">
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {member.certificates.map((cert, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        onClick={() => setLightboxImage(cert)}
+                        className="group cursor-pointer overflow-hidden rounded-2xl border border-brand-100 bg-white/80 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+                      >
+                        <div className="relative aspect-[4/3] w-full">
+                          <Image
+                            src={cert}
+                            alt={`Certifikát ${index + 1} - ${member.name}`}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/20">
+                            <span className="rounded-full bg-white/90 p-2 opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100">
+                              <svg className="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </span>
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </Tabs.Panel>
+              ))}
+            </Tabs>
           </div>
 
           <div className="mt-8 rounded-2xl border border-brand-100 bg-white/80 p-6 text-center shadow-lg backdrop-blur-sm">
@@ -265,6 +320,38 @@ export function AboutPageClient() {
           </div>
         </div>
       </section>
+
+      {/* Lightbox Modal */}
+      {lightboxImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+          onClick={() => setLightboxImage(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setLightboxImage(null)}
+            className="absolute top-4 right-4 rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
+            aria-label="Zavrieť"
+          >
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div
+            className="relative max-h-[90vh] max-w-[90vw]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={lightboxImage}
+              alt="Certifikát - zväčšený náhľad"
+              width={1200}
+              height={900}
+              className="max-h-[90vh] w-auto rounded-lg object-contain"
+              priority
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }

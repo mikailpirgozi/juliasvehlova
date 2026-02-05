@@ -23,6 +23,7 @@ import { Button } from '@/components/base/buttons/button'
 import { SubcategoryCard, ServicesPriceTable } from '@/components/services'
 import type { MainCategory, CategoryIconKey, SimpleService } from '@/lib/services-new'
 import { categoryHasSubcategories } from '@/lib/services-new'
+import { getServiceImage } from '@/lib/service-images'
 
 // Map icon keys to Untitled UI icon components
 const iconComponents: Record<CategoryIconKey, FC<{ className?: string }>> = {
@@ -44,31 +45,35 @@ interface CategoryPageClientProps {
 }
 
 // Service Card Component for rich content services
-function ServiceCard({ service, categorySlug }: { service: SimpleService; categorySlug: string }) {
+function ServiceCard({ service, categorySlug, index = 1 }: { service: SimpleService; categorySlug: string; index?: number }) {
+  const serviceImage = getServiceImage(categorySlug, index)
+
   return (
     <Link
       href={`/sluzby/${categorySlug}/${service.slug}`}
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white transition-all duration-300 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-100/50"
     >
-      {/* Header with gradient */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-brand-50 to-brand-100/50 px-6 pb-8 pt-6">
-        {/* Decorative circle */}
-        <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-brand-200/30" />
-        <div className="pointer-events-none absolute -bottom-4 -left-4 h-20 w-20 rounded-full bg-white/30" />
-
-        <div className="relative z-10">
-          {/* Price & Popular badge */}
-          <div className="mb-4 flex items-center justify-between">
-            <span className="text-3xl font-bold text-brand-700">{service.price}</span>
+      {/* Image Header */}
+      <div className="relative h-48 w-full overflow-hidden">
+        <Image
+          src={serviceImage}
+          alt={service.name}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+        
+        {/* Price & Popular badge overlay */}
+        <div className="absolute bottom-0 left-0 right-0 p-4">
+          <div className="flex items-center justify-between">
+            <span className="text-2xl font-bold text-white drop-shadow-lg">{service.price}</span>
             {service.popular && (
               <span className="flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-1 text-xs font-medium text-amber-700">
                 <Star01 className="h-3 w-3" /> Obľúbené
               </span>
             )}
           </div>
-
-          {/* Duration */}
-          <div className="flex items-center gap-1.5 text-sm text-brand-600">
+          <div className="mt-1 flex items-center gap-1.5 text-sm text-white/80">
             <Clock className="h-4 w-4" />
             <span>{service.duration}</span>
           </div>
@@ -209,11 +214,12 @@ export function CategoryPageClient({ category }: CategoryPageClientProps) {
                         </p>
                       </div>
                       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                        {category.services.map((service) => (
+                        {category.services.map((service, index) => (
                           <ServiceCard
                             key={service.id}
                             service={service}
                             categorySlug={category.slug}
+                            index={index + 1}
                           />
                         ))}
                       </div>

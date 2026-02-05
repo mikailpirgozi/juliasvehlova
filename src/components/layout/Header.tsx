@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import type { FC } from 'react'
@@ -128,6 +129,7 @@ const iconColorClasses: Record<CategoryIconKey, { bg: string; bgHover: string; t
 }
 
 export function Header() {
+  const router = useRouter()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null)
@@ -138,6 +140,7 @@ export function Header() {
   const navLinks = [
     { label: 'O nás', href: '/o-nas' },
     { label: 'Cenník', href: '/cennik' },
+    { label: 'Darčekové poukážky', href: '/darcekove-poukazky' },
     { label: 'Kontakt', href: '#contact' },
   ]
 
@@ -243,12 +246,23 @@ export function Header() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.3, delay: index * 0.03 }}
                               >
-                                <Link
-                                  href={`/sluzby/${category.slug}`}
-                                  className="group relative block overflow-hidden rounded-xl border border-gray-100 bg-white p-3 transition-all duration-300 hover:border-brand-200 hover:shadow-lg"
+                                <div
+                                  role="button"
+                                  tabIndex={0}
+                                  className="group relative block cursor-pointer overflow-hidden rounded-xl border border-gray-100 bg-white p-3 transition-all duration-300 hover:border-brand-200 hover:shadow-lg"
                                   onMouseEnter={() => setHoveredCategory(category.slug)}
                                   onMouseLeave={() => setHoveredCategory(null)}
-                                  onClick={() => setIsServicesDropdownOpen(false)}
+                                  onClick={() => {
+                                    setIsServicesDropdownOpen(false)
+                                    router.push(`/sluzby/${category.slug}`)
+                                  }}
+                                  onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                      e.preventDefault()
+                                      setIsServicesDropdownOpen(false)
+                                      router.push(`/sluzby/${category.slug}`)
+                                    }
+                                  }}
                                 >
                                   {/* Animated background gradient on hover */}
                                   <motion.div
@@ -356,7 +370,7 @@ export function Header() {
                                       <ChevronRight className="h-3 w-3" />
                                     </motion.div>
                                   </div>
-                                </Link>
+                                </div>
                               </motion.div>
                             )
                           })}

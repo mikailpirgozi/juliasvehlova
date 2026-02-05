@@ -134,6 +134,20 @@ export const pageMetadata: Record<string, PageMetadataConfig> = {
       'Obchodné podmienky poskytovania služieb estetickej medicíny a kozmetiky v Julia Estetic Clinic.',
     keywords: ['obchodné podmienky', 'podmienky služieb'],
   },
+  giftVouchers: {
+    title: `Darčekové poukážky | ${COMPANY_NAME}`,
+    description:
+      'Darujte krásu a pohodu. Darčekové poukážky na estetickú medicínu a kozmetické služby v hodnote 50€ až 500€. Ideálny darček na narodeniny, meniny či sviatok. Platnosť 3 mesiace.',
+    keywords: [
+      ...DEFAULT_KEYWORDS,
+      'darčekové poukážky',
+      'darčeková poukážka malacky',
+      'darček estetická medicína',
+      'voucher kozmetika',
+      'darček pre ženu',
+      'darčekový certifikát',
+    ],
+  },
 }
 
 // =============================================================================

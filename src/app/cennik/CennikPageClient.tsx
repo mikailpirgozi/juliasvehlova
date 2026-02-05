@@ -7,6 +7,7 @@ import {
   Eye,
   MedicalCross,
   Stars01,
+  Star01,
   Zap,
   HeartCircle,
   Circle,
@@ -23,6 +24,8 @@ import {
 } from '@untitledui/icons'
 import { Button } from '@/components/base/buttons/button'
 import { InputBase } from '@/components/base/input/input'
+import { BadgeWithIcon } from '@/components/base/badges/badges'
+import { cx } from '@/cx'
 import {
   getAllMainCategories,
   searchServices,
@@ -453,7 +456,7 @@ export function CennikPageClient() {
                           </th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-gray-100 bg-white">
+                      <tbody className="divide-y divide-gray-200 bg-white">
                         {searchResults.map((item, index) => {
                           const isExpanded = expandedServices.has(item.service.id)
                           return (
@@ -461,7 +464,12 @@ export function CennikPageClient() {
                               <tr
                                 key={`${item.service.id}-${index}`}
                                 onClick={() => toggleService(item.service.id)}
-                                className="cursor-pointer transition-colors hover:bg-gray-50"
+                                className={cx(
+                                  'cursor-pointer transition-all',
+                                  item.service.popular
+                                    ? 'border-l-2 border-l-amber-400 bg-amber-50/50 hover:bg-amber-50 hover:shadow-sm'
+                                    : 'border-l-2 border-l-transparent hover:bg-gray-50 hover:shadow-sm'
+                                )}
                               >
                                 <td className="px-6 py-4">
                                   <div className="flex items-center gap-3">
@@ -476,7 +484,14 @@ export function CennikPageClient() {
                                       )}
                                     </button>
                                     {item.service.popular && (
-                                      <span className="flex-shrink-0 text-sm text-yellow-500">★</span>
+                                      <BadgeWithIcon
+                                        type="pill-color"
+                                        size="sm"
+                                        color="warning"
+                                        iconLeading={Star01}
+                                      >
+                                        Obľúbené
+                                      </BadgeWithIcon>
                                     )}
                                     <span className="font-medium text-gray-900">
                                       {item.service.name}
@@ -490,7 +505,12 @@ export function CennikPageClient() {
                                   {item.service.duration}
                                 </td>
                                 <td className="px-6 py-4 text-right">
-                                  <span className="text-lg font-semibold text-gray-900">
+                                  <span className={cx(
+                                    'text-lg',
+                                    item.service.popular
+                                      ? 'font-bold text-brand-600'
+                                      : 'font-semibold text-gray-900'
+                                  )}>
                                     {item.service.price}
                                   </span>
                                 </td>
@@ -569,7 +589,7 @@ export function CennikPageClient() {
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-100 bg-white">
+                    <tbody className="divide-y divide-gray-200 bg-white">
                       {displayServicesWithUrls.map(({ service, url }, index) => {
                         const isExpanded = expandedServices.has(service.id)
                         return (
@@ -577,7 +597,12 @@ export function CennikPageClient() {
                             <tr
                               key={`${service.id}-${index}`}
                               onClick={() => toggleService(service.id)}
-                              className="cursor-pointer transition-colors hover:bg-gray-50"
+                              className={cx(
+                                'cursor-pointer transition-all',
+                                service.popular
+                                  ? 'border-l-2 border-l-amber-400 bg-amber-50/50 hover:bg-amber-50 hover:shadow-sm'
+                                  : 'border-l-2 border-l-transparent hover:bg-gray-50 hover:shadow-sm'
+                              )}
                             >
                               <td className="px-6 py-4">
                                 <div className="flex items-center gap-3">
@@ -592,10 +617,20 @@ export function CennikPageClient() {
                                     )}
                                   </button>
                                   {service.popular && (
-                                    <span className="flex-shrink-0 text-sm text-yellow-500">★</span>
+                                    <BadgeWithIcon
+                                      type="pill-color"
+                                      size="sm"
+                                      color="warning"
+                                      iconLeading={Star01}
+                                    >
+                                      Obľúbené
+                                    </BadgeWithIcon>
                                   )}
                                   <div>
-                                    <span className="font-medium text-gray-900">{service.name}</span>
+                                    <span className={cx(
+                                      'font-medium',
+                                      service.popular ? 'text-gray-900' : 'text-gray-900'
+                                    )}>{service.name}</span>
                                     <p className="mt-1 text-sm text-gray-500 sm:hidden">
                                       {service.duration}
                                     </p>
@@ -606,7 +641,12 @@ export function CennikPageClient() {
                                 {service.duration}
                               </td>
                               <td className="px-6 py-4 text-right">
-                                <span className="text-lg font-semibold text-gray-900">
+                                <span className={cx(
+                                  'text-lg',
+                                  service.popular
+                                    ? 'font-bold text-brand-600'
+                                    : 'font-semibold text-gray-900'
+                                )}>
                                   {service.price}
                                 </span>
                               </td>
@@ -627,7 +667,17 @@ export function CennikPageClient() {
 
                 {/* Legend */}
                 {displayServices.some((s) => s.popular) && (
-                  <p className="mt-4 text-xs text-gray-500">★ — Obľúbené služby</p>
+                  <div className="mt-4 flex items-center gap-2">
+                    <BadgeWithIcon
+                      type="pill-color"
+                      size="sm"
+                      color="warning"
+                      iconLeading={Star01}
+                    >
+                      Obľúbené
+                    </BadgeWithIcon>
+                    <span className="text-xs text-gray-500">— Najobľúbenejšie služby našich klientov</span>
+                  </div>
                 )}
               </div>
             )}
