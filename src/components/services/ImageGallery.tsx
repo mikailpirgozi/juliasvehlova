@@ -96,84 +96,89 @@ export function ImageGallery({ images, alt }: ImageGalleryProps) {
 
       {/* Lightbox Modal */}
       <AnimatePresence>
-        {isOpen && lightboxIndex !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center"
-            onClick={close}
-          >
-            {/* Backdrop */}
-            <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" />
+        {isOpen && lightboxIndex !== null && (() => {
+          const currentImage = images[lightboxIndex]
+          if (!currentImage) return null
 
-            {/* Close button */}
-            <button
-              type="button"
-              onClick={close}
-              className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
-              aria-label="Zatvoriť"
-            >
-              <XClose className="h-5 w-5" />
-            </button>
-
-            {/* Counter */}
-            <div className="absolute left-1/2 top-4 z-10 -translate-x-1/2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
-              {lightboxIndex + 1} / {images.length}
-            </div>
-
-            {/* Prev button */}
-            {images.length > 1 && (
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  goPrev()
-                }}
-                className="absolute left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
-                aria-label="Predchádzajúci obrázok"
-              >
-                <ArrowLeft className="h-5 w-5" />
-              </button>
-            )}
-
-            {/* Next button */}
-            {images.length > 1 && (
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  goNext()
-                }}
-                className="absolute right-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
-                aria-label="Ďalší obrázok"
-              >
-                <ArrowRight className="h-5 w-5" />
-              </button>
-            )}
-
-            {/* Main Image */}
+          return (
             <motion.div
-              key={lightboxIndex}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="relative mx-16 my-16 h-[calc(100vh-8rem)] w-[calc(100vw-8rem)] max-w-6xl"
-              onClick={(e) => e.stopPropagation()}
+              className="fixed inset-0 z-[100] flex items-center justify-center"
+              onClick={close}
             >
-              <Image
-                src={images[lightboxIndex]}
-                alt={`${alt} - obrázok ${lightboxIndex + 1}`}
-                fill
-                sizes="100vw"
-                className="object-contain"
-                priority
-              />
+              {/* Backdrop */}
+              <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" />
+
+              {/* Close button */}
+              <button
+                type="button"
+                onClick={close}
+                className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+                aria-label="Zatvoriť"
+              >
+                <XClose className="h-5 w-5" />
+              </button>
+
+              {/* Counter */}
+              <div className="absolute left-1/2 top-4 z-10 -translate-x-1/2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
+                {lightboxIndex + 1} / {images.length}
+              </div>
+
+              {/* Prev button */}
+              {images.length > 1 && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    goPrev()
+                  }}
+                  className="absolute left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+                  aria-label="Predchádzajúci obrázok"
+                >
+                  <ArrowLeft className="h-5 w-5" />
+                </button>
+              )}
+
+              {/* Next button */}
+              {images.length > 1 && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    goNext()
+                  }}
+                  className="absolute right-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+                  aria-label="Ďalší obrázok"
+                >
+                  <ArrowRight className="h-5 w-5" />
+                </button>
+              )}
+
+              {/* Main Image */}
+              <motion.div
+                key={lightboxIndex}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="relative mx-16 my-16 h-[calc(100vh-8rem)] w-[calc(100vw-8rem)] max-w-6xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Image
+                  src={currentImage}
+                  alt={`${alt} - obrázok ${lightboxIndex + 1}`}
+                  fill
+                  sizes="100vw"
+                  className="object-contain"
+                  priority
+                />
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
+          )
+        })()}
       </AnimatePresence>
     </>
   )
