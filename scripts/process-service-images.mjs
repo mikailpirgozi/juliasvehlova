@@ -64,19 +64,37 @@ async function convertToWebP(sourcePath, destPath) {
 }
 
 /**
- * Get all image files from a directory
+ * Check if a filename is a duplicate (e.g. "IMG_0010 2.jpg", "IMG_0029 (1).jpg")
+ */
+function isDuplicateFile(filename) {
+  const name = path.basename(filename, path.extname(filename))
+  // Match patterns like " 2", " (1)", " (1) 2", " copy" at the end of filename
+  return / \d+$/.test(name) || / \(\d+\)/.test(name) || / copy/i.test(name)
+}
+
+/**
+ * Get all image files from a directory, filtering out duplicates
  */
 async function getImageFiles(dirPath) {
   const entries = await fs.readdir(dirPath, { withFileTypes: true })
   const imageFiles = []
+  let skippedDuplicates = 0
   
   for (const entry of entries) {
     if (entry.isFile()) {
       const ext = path.extname(entry.name).toLowerCase()
       if (['.jpg', '.jpeg', '.png', '.webp'].includes(ext)) {
+        if (isDuplicateFile(entry.name)) {
+          skippedDuplicates++
+          continue
+        }
         imageFiles.push(path.join(dirPath, entry.name))
       }
     }
+  }
+  
+  if (skippedDuplicates > 0) {
+    console.log(`  Skipped ${skippedDuplicates} duplicate files`)
   }
   
   return imageFiles.sort()
@@ -99,10 +117,20 @@ async function processFolder(sourceFolderPath, destFolderName, limit = 12) {
     return
   }
   
-  console.log(`  Found ${imageFiles.length} images, processing up to ${limit}...`)
+  console.log(`  Found ${imageFiles.length} images, selecting up to ${limit} with even spacing...`)
   
-  // Process up to 'limit' images
-  const filesToProcess = imageFiles.slice(0, limit)
+  // Select images with even spacing across the collection for visual diversity
+  let filesToProcess
+  if (imageFiles.length <= limit) {
+    filesToProcess = imageFiles
+  } else {
+    filesToProcess = []
+    const step = imageFiles.length / limit
+    for (let i = 0; i < limit; i++) {
+      const index = Math.floor(i * step)
+      filesToProcess.push(imageFiles[index])
+    }
+  }
   let processed = 0
   
   for (let i = 0; i < filesToProcess.length; i++) {

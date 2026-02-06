@@ -51,57 +51,67 @@ function ServiceCard({ service, categorySlug, index = 1 }: { service: SimpleServ
   return (
     <Link
       href={`/sluzby/${categorySlug}/${service.slug}`}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white transition-all duration-300 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-100/50"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-brand-100 bg-white transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
     >
-      {/* Image Header */}
-      <div className="relative h-48 w-full overflow-hidden">
+      {/* Image */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden">
         <Image
           src={serviceImage}
           alt={service.name}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-        
-        {/* Price & Popular badge overlay */}
-        <div className="absolute bottom-0 left-0 right-0 p-4">
-          <div className="flex items-center justify-between">
-            <span className="text-2xl font-bold text-white drop-shadow-lg">{service.price}</span>
+        {/* Brand vignette */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to top, rgba(216, 167, 177, 0.45) 0%, rgba(216, 167, 177, 0.15) 30%, transparent 55%)',
+          }}
+        />
+      </div>
+
+      {/* Content */}
+      <div
+        className="relative flex flex-1 flex-col justify-between p-5"
+        style={{
+          boxShadow: 'inset 0 40px 50px -15px rgba(216, 167, 177, 0.5), inset 0 20px 25px -5px rgba(216, 167, 177, 0.3)',
+        }}
+      >
+        <div>
+          <div className="flex items-start justify-between gap-2">
+            <h3 className="font-serif text-xl font-bold text-brand-800 transition-colors duration-300 group-hover:text-brand-600">
+              {service.name}
+            </h3>
             {service.popular && (
-              <span className="flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-1 text-xs font-medium text-amber-700">
+              <span className="mt-0.5 flex shrink-0 items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700">
                 <Star01 className="h-3 w-3" /> Obľúbené
               </span>
             )}
           </div>
-          <div className="mt-1 flex items-center gap-1.5 text-sm text-white/80">
-            <Clock className="h-4 w-4" />
-            <span>{service.duration}</span>
+
+          {service.shortDescription && (
+            <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-gray-500">
+              {service.shortDescription}
+            </p>
+          )}
+
+          {/* Price & Duration */}
+          <div className="mt-3 flex items-center gap-3 border-t border-brand-100/60 pt-3">
+            <span className="text-lg font-bold text-brand-700">{service.price}</span>
+            <span className="flex items-center gap-1 text-xs text-gray-400">
+              <Clock className="h-3.5 w-3.5" />
+              {service.duration}
+            </span>
           </div>
         </div>
-      </div>
 
-      {/* Content */}
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="mb-2 text-xl font-semibold text-gray-900 transition-colors group-hover:text-brand-600">
-          {service.name}
-        </h3>
-
-        {service.tagline && (
-          <p className="mb-3 text-sm font-medium text-brand-600">
-            {service.tagline}
-          </p>
-        )}
-
-        {service.shortDescription && (
-          <p className="mb-6 flex-1 text-sm leading-relaxed text-gray-500">
-            {service.shortDescription}
-          </p>
-        )}
-
-        {/* CTA */}
-        <div className="flex items-center gap-2 text-sm font-medium text-brand-600 transition-colors group-hover:text-brand-700">
-          <span>Zistiť viac</span>
-          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        <div className="mt-4 flex items-center justify-end border-t border-brand-100 pt-4">
+          <span className="flex items-center gap-1.5 text-sm font-semibold text-[#CDA882] transition-all duration-300 group-hover:gap-2.5">
+            Zobraziť
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+          </span>
         </div>
       </div>
     </Link>

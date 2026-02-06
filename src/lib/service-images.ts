@@ -7,7 +7,7 @@
 const IMAGE_FOLDERS: Record<string, number> = {
   'biorevitalizacia-pleti': 12,
   'botulotoxin': 12,
-  'chakra-calibration': 6,
+  'chakra-calibration': 2,
   'kozmeticke-osetrenia': 12,
   'laserova-epilacia': 12,
   'masaze-maderoterapia': 12,

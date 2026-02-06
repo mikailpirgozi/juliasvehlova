@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowLeft, ChevronRight, Home02, Clock, Check, Users01, Lightbulb01, Heart, Zap, Target01, Star01, RefreshCw01 } from '@untitledui/icons'
 import { Button } from '@/components/base/buttons/button'
+import { ImageGallery } from '@/components/services'
 import type { MainCategory, SimpleService, ServiceBenefit, ProcessStep } from '@/lib/services-new'
 import { getServiceGalleryImages } from '@/lib/service-images'
 
@@ -38,7 +38,7 @@ export function DirectServicePageClient({ category, service }: DirectServicePage
   const relatedServices = category.services?.filter((s) => s.id !== service.id).slice(0, 4) || []
   
   // Get service images
-  const galleryImages = getServiceGalleryImages(category.slug, 4)
+  const galleryImages = getServiceGalleryImages(category.slug, 8)
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-white">
@@ -173,32 +173,7 @@ export function DirectServicePageClient({ category, service }: DirectServicePage
       )}
 
       {/* Image Gallery Section */}
-      {galleryImages.length > 0 && (
-        <section className="relative z-10 border-t border-gray-100 px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-          <div className="mx-auto max-w-6xl">
-            <div className="mb-12 text-center">
-              <h2 className="font-serif text-3xl font-bold text-gray-900 sm:text-4xl">
-                Galéria
-              </h2>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {galleryImages.map((image, index) => (
-                <div
-                  key={index}
-                  className="group relative aspect-[4/3] overflow-hidden rounded-xl"
-                >
-                  <Image
-                    src={image}
-                    alt={`${service.name} - obrázok ${index + 1}`}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      <ImageGallery images={galleryImages} alt={service.name} />
 
       {/* Benefits Section */}
       {service.benefits && service.benefits.length > 0 && (
