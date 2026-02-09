@@ -82,19 +82,20 @@ export function HeroSection() {
         <div className="relative min-h-[100dvh]">
           {/* Background image */}
           <Image
-            src="/images/hero-v2.webp"
+            src="/images/hero/Hero 2.png"
             alt="Profesionálny tím Julia Estetic Clinic"
             fill
             className="object-cover object-[75%_center]"
             priority
+            quality={90}
             sizes="100vw"
           />
 
-          {/* Left gradient overlay */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#8a9eaa]/90 via-[#8a9eaa]/50 via-35% to-transparent to-60%" />
+          {/* Left gradient overlay – covers text area only, keeps team photo sharp */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#8a9eaa]/95 via-[#8a9eaa]/60 via-30% to-transparent to-45%" />
 
-          {/* Bottom gradient for depth */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#6b8290]/50 to-transparent" />
+          {/* Bottom gradient for depth – subtle, avoids darkening the team */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#6b8290]/30 to-transparent" />
 
           {/* Content */}
           <div className="relative z-10 flex min-h-[100dvh] items-center">
