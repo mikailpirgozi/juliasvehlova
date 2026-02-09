@@ -40,6 +40,7 @@ export const subcategorySchema = z.object({
   slug: z.string().min(1),
   title: z.string().min(1),
   description: z.string().optional(),
+  image: z.string().optional(),
   services: z.array(simpleServiceSchema),
 })
 
@@ -413,6 +414,7 @@ export const mainCategories: MainCategory[] = [
         slug: 'injekcna-lipolyza',
         title: 'Injekčná lipolýza',
         description: 'Neinvazívna redukcia tukových buniek v problémových oblastiach.',
+        image: '/images/services/injekcna-lipolyza-hero.png',
         services: [
           {
             id: 'lipolyza-zona',
@@ -461,6 +463,7 @@ export const mainCategories: MainCategory[] = [
         slug: 'konzultacia',
         title: 'Konzultácia',
         description: 'Odborná konzultácia estetických zákrokov s našimi špecialistami.',
+        image: '/images/services/esteticka-konzultacia-hero.png',
         services: [
           {
             id: 'konzultacia-estetickych-zakrokov',
@@ -532,6 +535,7 @@ export const mainCategories: MainCategory[] = [
         slug: 'vyplne-kyselinou-hyaluronovou',
         title: 'Výplne kyselinou hyalurónovou',
         description: 'Modelovanie a zväčšovanie pomocou kvalitných výplní na báze kyseliny hyalurónové.',
+        image: '/images/services/vyplne-kyselinou-hyaluronovou-hero.png',
         services: [
           {
             id: 'brazilsky-zadocek',
@@ -709,6 +713,7 @@ export const mainCategories: MainCategory[] = [
         slug: 'konzultacia',
         title: 'Konzultácia',
         description: 'Odborná konzultácia kozmetických ošetrení.',
+        image: '/images/services/kozmetika-konzultacia-hero.png',
         services: [
           {
             id: 'konzultacia-kozmetickych-osetreni',
@@ -731,6 +736,7 @@ export const mainCategories: MainCategory[] = [
         slug: 'kozmeticke-osetrenia',
         title: 'Kozmetické ošetrenia',
         description: 'Komplexné kozmetické ošetrenia pre všetky typy pleti.',
+        image: '/images/services/kozmeticke-osetrenia-hero.png',
         services: [
           {
             id: 'age-element-maska',
@@ -795,6 +801,7 @@ export const mainCategories: MainCategory[] = [
         slug: 'liecba-akne',
         title: 'Liečba akné',
         description: 'Špecializované ošetrenia pre problematickú pleť a akné.',
+        image: '/images/services/liecba-akne-hero.png',
         services: [
           {
             id: 'chemicky-peeling-maska',
@@ -853,6 +860,7 @@ export const mainCategories: MainCategory[] = [
         slug: 'prevencia-starnutia',
         title: 'Prevencia starnutia',
         description: 'Anti-aging ošetrenia pre mladistvý vzhľad.',
+        image: '/images/services/prevencia-starnutia-hero.png',
         services: [
           {
             id: 'bio-c-peeling',
@@ -894,6 +902,7 @@ export const mainCategories: MainCategory[] = [
         slug: 'pristrojove-osetrenia',
         title: 'Prístrojové ošetrenia',
         description: 'Moderné technológie pre efektívne výsledky.',
+        image: '/images/services/pristrojove-osetrenia-hero.png',
         services: [
           {
             id: 'aqua-star-exclusive',
@@ -1063,11 +1072,13 @@ export const mainCategories: MainCategory[] = [
         ],
       },
       {
-        id: 'laminacia',
-        slug: 'laminacia',
-        title: 'Laminácia',
-        description: 'Laminácia obočia a mihalníc pre prirodzene krásny vzhľad.',
+        id: 'doplnkove-kozmeticke-sluzby',
+        slug: 'doplnkove-kozmeticke-sluzby',
+        title: 'Doplnkové kozmetické služby',
+        description: 'Laminácia, permanentný make-up a predlžovanie mihalníc pre dokonalý vzhľad.',
+        image: '/images/services/laminacia-hero.png',
         services: [
+          // Laminácia
           {
             id: 'korekcia-farbenie-oboci',
             slug: 'korekcia-farbenie-oboci',
@@ -1161,14 +1172,7 @@ export const mainCategories: MainCategory[] = [
             ],
             forWhom: ['Pre neposlušné obočie', 'Pre riedke obočie', 'Pre moderný "fluffy brows" look'],
           },
-        ],
-      },
-      {
-        id: 'permanentny-makeup',
-        slug: 'permanentny-makeup',
-        title: 'Permanentný make-up',
-        description: 'Trvalý make-up obočia, pier a očných liniek pre dokonalý vzhľad bez denného líčenia.',
-        services: [
+          // Permanentný make-up
           {
             id: 'pmu-korekcia',
             slug: 'permanentny-makeup-korekcia',
@@ -1311,14 +1315,7 @@ export const mainCategories: MainCategory[] = [
             ],
             forWhom: ['Pre bledé pery', 'Pre asymetrické pery', 'Pre tých, kto chce vždy krásne pery'],
           },
-        ],
-      },
-      {
-        id: 'predlzovanie-mihalnic',
-        slug: 'predlzovanie-mihalnic',
-        title: 'Predlžovanie mihalníc',
-        description: 'Profesionálne predlžovanie a úprava mihalníc pre výrazný pohľad.',
-        services: [
+          // Predlžovanie mihalníc
           {
             id: 'odstranovanie-mihalnic',
             slug: 'odstranovanie-mihalnic',
@@ -1405,13 +1402,14 @@ export const mainCategories: MainCategory[] = [
     title: 'Laserová epilácia',
     description: 'Bezpečné a účinné trvalé odstránenie nežiaducich chĺpkov laserom.',
     iconKey: 'laser',
-    image: '/images/services/laserova-epilacia.webp',
+    image: '/images/services/laserova-epilacia-hero.png',
     subcategories: [
       {
         id: 'laser-damy',
         slug: 'laserova-epilacia-damy',
         title: 'Laserová epilácia dámy',
         description: 'Laserová epilácia pre dámy - všetky oblasti tela.',
+        image: '/images/services/laserova-epilacia-damy-hero.png',
         services: [
           {
             id: 'laser-bikiny',
@@ -1620,6 +1618,7 @@ export const mainCategories: MainCategory[] = [
         slug: 'laserova-epilacia-pani',
         title: 'Laserová epilácia páni',
         description: 'Laserová epilácia pre pánov - hruď, chrbát, nohy a ďalšie.',
+        image: '/images/services/laserova-epilacia-pani-hero.png',
         services: [
           {
             id: 'laser-brucho-p',
@@ -1728,167 +1727,184 @@ export const mainCategories: MainCategory[] = [
   },
 
   // ========================================
-  // 4. MADEROTERAPIA
+  // 4. REGENERÁCIA TELA (Masáže + Maderoterapia)
   // ========================================
   {
-    id: 'maderoterapia',
-    slug: 'maderoterapia',
-    title: 'Maderoterapia',
-    description: 'Prírodná masážna technika drevenými nástrojmi pre modelovanie postavy a redukciu celulitídy.',
-    iconKey: 'massage',
-    image: '/images/services/masaze-maderoterapia/masaze-maderoterapia-07.webp',
-    services: [
-      {
-        id: 'maderoterapia-celotelova',
-        slug: 'celotelova-maderoterapia',
-        name: 'Celotelová maderoterapia',
-        price: '65 €',
-        duration: '1h 45min.',
-        popular: true,
-        tagline: 'Komplexné modelovanie postavy',
-        shortDescription: 'Intenzívna celoteľová masáž drevenými nástrojmi pre redukciu celulitídy a tvarovanie postavy.',
-        fullDescription: 'Celotelová maderoterapia je prírodná metóda pochádzajúca z Kolumbie. Špeciálne drevené nástroje masírujú telo, rozbíjajú tukové bunky, zlepšujú lymfatický obeh a redukujú celulitídu. Výsledkom je pevnejšia, hladšia pokožka a tvarovanejšia postava.',
-        benefits: [
-          { icon: 'sculpting', title: 'Modelovanie', description: 'Tvarovanie postavy' },
-          { icon: 'cellulite', title: 'Redukcia celulitídy', description: 'Hladšia pokožka' },
-          { icon: 'circulation', title: 'Lepší obeh', description: 'Lymfatická drenáž' },
-          { icon: 'natural', title: '100% prírodné', description: 'Bez chemikálií' },
-        ],
-        process: [
-          { step: 1, title: 'Príprava', description: 'Nanesenie oleja' },
-          { step: 2, title: 'Masáž', description: 'Práca s drevenými nástrojmi' },
-          { step: 3, title: 'Lymfodrenáž', description: 'Podpora odtoku lymfy' },
-          { step: 4, title: 'Dokončenie', description: 'Upokojujúci krém' },
-        ],
-        forWhom: ['Pre redukciu celulitídy', 'Pre tvarovanie postavy', 'Pre detox tela'],
-        note: 'Odporúčame sériu 8-12 ošetrení pre optimálne výsledky.',
-      },
-      {
-        id: 'maderoterapia-trup',
-        slug: 'maderoterapia-trup-horne-koncatiny',
-        name: 'Maderoterapia - trup a horné končatiny',
-        price: '40 €',
-        duration: '1h 15min.',
-        tagline: 'Spevnenie hornej časti tela',
-        shortDescription: 'Cielená maderoterapia trupu a rúk pre spevnenie a tonizáciu.',
-        benefits: [
-          { icon: 'toning', title: 'Tonizácia', description: 'Spevnenie svalov' },
-          { icon: 'arms', title: 'Pevné ruky', description: 'Redukcia povislej kože' },
-          { icon: 'back', title: 'Chrbát', description: 'Uvoľnenie napätia' },
-        ],
-      },
-      {
-        id: 'maderoterapia-tvar',
-        slug: 'maderoterapia-tvar',
-        name: 'Maderoterapia - tvár',
-        price: '22 €',
-        duration: '35min.',
-        tagline: 'Prirodzený liftingový efekt',
-        shortDescription: 'Jemná maderoterapia tváre pre spevnenie kontúr a prirodzený anti-aging efekt.',
-        benefits: [
-          { icon: 'lifting', title: 'Liftingový efekt', description: 'Pevnejšie kontúry' },
-          { icon: 'circulation', title: 'Lepšie prekrvenie', description: 'Žiarivá pleť' },
-          { icon: 'relaxation', title: 'Relaxácia', description: 'Uvoľnenie tváre' },
-        ],
-        forWhom: ['Pre povädnutú pleť', 'Pre relaxáciu', 'Pre prirodzený anti-aging'],
-      },
-      {
-        id: 'maderoterapia-zadok',
-        slug: 'maderoterapia-zadok-dolne-koncatiny',
-        name: 'Maderoterapia - zadok a dolné končatiny',
-        price: '40 €',
-        duration: '1h 15min.',
-        tagline: 'Pevný zadok a stehná',
-        shortDescription: 'Intenzívna maderoterapia problémových partií - zadok, stehná a lýtka.',
-        benefits: [
-          { icon: 'buttocks', title: 'Brazílsky zadok', description: 'Zdvihnutie a spevnenie' },
-          { icon: 'thighs', title: 'Stehná bez celulitídy', description: 'Hladká pokožka' },
-          { icon: 'legs', title: 'Ľahšie nohy', description: 'Redukcia opuchov' },
-        ],
-        forWhom: ['Pre celulitídu', 'Pre tvarovanie zadku', 'Pre ťažké nohy'],
-      },
-    ],
-  },
-
-  // ========================================
-  // 5. MASÁŽ
-  // ========================================
-  {
-    id: 'masaz',
-    slug: 'masaz',
-    title: 'Masáž',
-    description: 'Relaxačné a terapeutické masáže pre uvoľnenie napätia a regeneráciu tela.',
+    id: 'regeneracia-tela',
+    slug: 'regeneracia-tela',
+    title: 'Regenerácia tela',
+    description: 'Relaxačné masáže, lymfodrenáže a maderoterapia pre regeneráciu, uvoľnenie napätia a modelovanie postavy.',
     iconKey: 'heart',
     image: '/images/services/masaze-maderoterapia.webp',
-    services: [
+    subcategories: [
       {
-        id: 'masaz-60',
-        slug: '60-minutova-masaz',
-        name: '60 minútová masáž',
-        price: '40 €',
-        duration: '1h',
-        tagline: 'Rýchla regenerácia',
-        shortDescription: 'Klasická relaxačná masáž pre uvoľnenie napätia a rýchlu regeneráciu.',
-        benefits: [
-          { icon: 'relaxation', title: 'Relaxácia', description: 'Hlboké uvoľnenie' },
-          { icon: 'tension', title: 'Uvoľnenie napätia', description: 'Svaly bez bolesti' },
-          { icon: 'energy', title: 'Nová energia', description: 'Revitalizácia tela' },
+        id: 'masaze',
+        slug: 'masaze',
+        title: 'Masáže',
+        description: 'Relaxačné a terapeutické masáže pre uvoľnenie napätia a regeneráciu tela.',
+        services: [
+          {
+            id: 'masaz-60',
+            slug: '60-minutova-masaz',
+            name: '60 minútová masáž',
+            price: '40 €',
+            duration: '1h',
+            tagline: 'Rýchla regenerácia',
+            shortDescription: 'Klasická relaxačná masáž pre uvoľnenie napätia a rýchlu regeneráciu.',
+            benefits: [
+              { icon: 'relaxation', title: 'Relaxácia', description: 'Hlboké uvoľnenie' },
+              { icon: 'tension', title: 'Uvoľnenie napätia', description: 'Svaly bez bolesti' },
+              { icon: 'energy', title: 'Nová energia', description: 'Revitalizácia tela' },
+            ],
+            forWhom: ['Pre pravidelnú relaxáciu', 'Pre sedavé zamestnanie', 'Pre stres'],
+          },
+          {
+            id: 'masaz-90',
+            slug: '90-minutova-masaz',
+            name: '90 minútová masáž',
+            price: '55 €',
+            duration: '1h 30min.',
+            popular: true,
+            tagline: 'Hĺbková regenerácia',
+            shortDescription: 'Predĺžená relaxačná masáž pre dôkladné uvoľnenie celého tela.',
+            fullDescription: '90-minútová masáž poskytuje dostatok času na dôkladné ošetrenie celého tela. Masér sa môže venovať problémovým oblastiam a zabezpečiť hĺbkové uvoľnenie svalov. Ideálna voľba pre tých, kto chce skutočne oddýchnuť.',
+            benefits: [
+              { icon: 'complete', title: 'Kompletné ošetrenie', description: 'Celé telo' },
+              { icon: 'deep', title: 'Hĺbková práca', description: 'Uvoľnenie kontraktúr' },
+              { icon: 'wellbeing', title: 'Celková pohoda', description: 'Fyzická aj psychická' },
+              { icon: 'value', title: 'Najobľúbenejšie', description: 'Ideálny pomer cena/čas' },
+            ],
+            process: [
+              { step: 1, title: 'Konzultácia', description: 'Identifikácia problémových oblastí' },
+              { step: 2, title: 'Zahriatie', description: 'Príprava svalov' },
+              { step: 3, title: 'Hĺbková masáž', description: 'Uvoľnenie napätia' },
+              { step: 4, title: 'Relaxácia', description: 'Záverečné upokojenie' },
+            ],
+            forWhom: ['Pre chronické napätie', 'Pre športovcov', 'Pre maximálnu relaxáciu'],
+          },
+          {
+            id: 'lymfodrenaz-60',
+            slug: 'lymfodrenaz-60min',
+            name: 'Lymfodrenáž 60 min',
+            price: '45 €',
+            duration: '1h',
+            tagline: 'Základná lymfodrenáž',
+            shortDescription: 'Základná lymfodrenáž pre podporu lymfatického systému a detox organizmu.',
+            benefits: [
+              { icon: 'detox', title: 'Detoxikácia', description: 'Odstránenie toxínov' },
+              { icon: 'drainage', title: 'Odvodnenie', description: 'Redukcia opuchov' },
+              { icon: 'immunity', title: 'Imunita', description: 'Posilnenie obranyschopnosti' },
+            ],
+            forWhom: ['Pre ľahké opuchy', 'Pre pravidelnú údržbu', 'Pre detox'],
+          },
+          {
+            id: 'lymfodrenaz-90',
+            slug: 'lymfodrenaz-90min',
+            name: 'Lymfodrenáž 90 min',
+            price: '60 €',
+            duration: '1h 30min.',
+            tagline: 'Detox a odvodnenie',
+            shortDescription: 'Špeciálna masážna technika pre podporu lymfatického systému a detox.',
+            benefits: [
+              { icon: 'detox', title: 'Detoxikácia', description: 'Odstránenie toxínov' },
+              { icon: 'drainage', title: 'Odvodnenie', description: 'Redukcia opuchov' },
+              { icon: 'immunity', title: 'Imunita', description: 'Posilnenie obranyschopnosti' },
+            ],
+            forWhom: ['Pre opuchy', 'Pre detox', 'Po operáciách'],
+          },
+          {
+            id: 'lymfodrenaz-120',
+            slug: 'lymfodrenaz-120min',
+            name: 'Lymfodrenáž 120 min',
+            price: '85 €',
+            duration: '2h',
+            tagline: 'Intenzívna lymfodrenáž',
+            shortDescription: 'Predĺžená lymfodrenáž pre maximálny detoxikačný efekt celého tela.',
+            benefits: [
+              { icon: 'intensive', title: 'Intenzívna', description: 'Maximálny efekt' },
+              { icon: 'complete', title: 'Celé telo', description: 'Vrátane tváre' },
+              { icon: 'lasting', title: 'Dlhodobý efekt', description: 'Až niekoľko dní' },
+            ],
+            forWhom: ['Pre výrazné opuchy', 'Pre celulitídu', 'Pre pravidelnú detoxikáciu'],
+          },
         ],
-        forWhom: ['Pre pravidelnú relaxáciu', 'Pre sedavé zamestnanie', 'Pre stres'],
       },
       {
-        id: 'masaz-90',
-        slug: '90-minutova-masaz',
-        name: '90 minútová masáž',
-        price: '55 €',
-        duration: '1h 30min.',
-        popular: true,
-        tagline: 'Hĺbková regenerácia',
-        shortDescription: 'Predĺžená relaxačná masáž pre dôkladné uvoľnenie celého tela.',
-        fullDescription: '90-minútová masáž poskytuje dostatok času na dôkladné ošetrenie celého tela. Masér sa môže venovať problémovým oblastiam a zabezpečiť hĺbkové uvoľnenie svalov. Ideálna voľba pre tých, kto chce skutočne oddýchnuť.',
-        benefits: [
-          { icon: 'complete', title: 'Kompletné ošetrenie', description: 'Celé telo' },
-          { icon: 'deep', title: 'Hĺbková práca', description: 'Uvoľnenie kontraktúr' },
-          { icon: 'wellbeing', title: 'Celková pohoda', description: 'Fyzická aj psychická' },
-          { icon: 'value', title: 'Najobľúbenejšie', description: 'Ideálny pomer cena/čas' },
+        id: 'maderoterapia',
+        slug: 'maderoterapia',
+        title: 'Maderoterapia',
+        description: 'Prírodná masážna technika drevenými nástrojmi pre modelovanie postavy a redukciu celulitídy.',
+        services: [
+          {
+            id: 'maderoterapia-celotelova',
+            slug: 'celotelova-maderoterapia',
+            name: 'Celotelová maderoterapia',
+            price: '65 €',
+            duration: '1h 45min.',
+            popular: true,
+            tagline: 'Komplexné modelovanie postavy',
+            shortDescription: 'Intenzívna celoteľová masáž drevenými nástrojmi pre redukciu celulitídy a tvarovanie postavy.',
+            fullDescription: 'Celotelová maderoterapia je prírodná metóda pochádzajúca z Kolumbie. Špeciálne drevené nástroje masírujú telo, rozbíjajú tukové bunky, zlepšujú lymfatický obeh a redukujú celulitídu. Výsledkom je pevnejšia, hladšia pokožka a tvarovanejšia postava.',
+            benefits: [
+              { icon: 'sculpting', title: 'Modelovanie', description: 'Tvarovanie postavy' },
+              { icon: 'cellulite', title: 'Redukcia celulitídy', description: 'Hladšia pokožka' },
+              { icon: 'circulation', title: 'Lepší obeh', description: 'Lymfatická drenáž' },
+              { icon: 'natural', title: '100% prírodné', description: 'Bez chemikálií' },
+            ],
+            process: [
+              { step: 1, title: 'Príprava', description: 'Nanesenie oleja' },
+              { step: 2, title: 'Masáž', description: 'Práca s drevenými nástrojmi' },
+              { step: 3, title: 'Lymfodrenáž', description: 'Podpora odtoku lymfy' },
+              { step: 4, title: 'Dokončenie', description: 'Upokojujúci krém' },
+            ],
+            forWhom: ['Pre redukciu celulitídy', 'Pre tvarovanie postavy', 'Pre detox tela'],
+            note: 'Odporúčame sériu 8-12 ošetrení pre optimálne výsledky.',
+          },
+          {
+            id: 'maderoterapia-trup',
+            slug: 'maderoterapia-trup-horne-koncatiny',
+            name: 'Maderoterapia - trup a horné končatiny',
+            price: '40 €',
+            duration: '1h 15min.',
+            tagline: 'Spevnenie hornej časti tela',
+            shortDescription: 'Cielená maderoterapia trupu a rúk pre spevnenie a tonizáciu.',
+            benefits: [
+              { icon: 'toning', title: 'Tonizácia', description: 'Spevnenie svalov' },
+              { icon: 'arms', title: 'Pevné ruky', description: 'Redukcia povislej kože' },
+              { icon: 'back', title: 'Chrbát', description: 'Uvoľnenie napätia' },
+            ],
+          },
+          {
+            id: 'maderoterapia-tvar',
+            slug: 'maderoterapia-tvar',
+            name: 'Maderoterapia - tvár',
+            price: '22 €',
+            duration: '35min.',
+            tagline: 'Prirodzený liftingový efekt',
+            shortDescription: 'Jemná maderoterapia tváre pre spevnenie kontúr a prirodzený anti-aging efekt.',
+            benefits: [
+              { icon: 'lifting', title: 'Liftingový efekt', description: 'Pevnejšie kontúry' },
+              { icon: 'circulation', title: 'Lepšie prekrvenie', description: 'Žiarivá pleť' },
+              { icon: 'relaxation', title: 'Relaxácia', description: 'Uvoľnenie tváre' },
+            ],
+            forWhom: ['Pre povädnutú pleť', 'Pre relaxáciu', 'Pre prirodzený anti-aging'],
+          },
+          {
+            id: 'maderoterapia-zadok',
+            slug: 'maderoterapia-zadok-dolne-koncatiny',
+            name: 'Maderoterapia - zadok a dolné končatiny',
+            price: '40 €',
+            duration: '1h 15min.',
+            tagline: 'Pevný zadok a stehná',
+            shortDescription: 'Intenzívna maderoterapia problémových partií - zadok, stehná a lýtka.',
+            benefits: [
+              { icon: 'buttocks', title: 'Brazílsky zadok', description: 'Zdvihnutie a spevnenie' },
+              { icon: 'thighs', title: 'Stehná bez celulitídy', description: 'Hladká pokožka' },
+              { icon: 'legs', title: 'Ľahšie nohy', description: 'Redukcia opuchov' },
+            ],
+            forWhom: ['Pre celulitídu', 'Pre tvarovanie zadku', 'Pre ťažké nohy'],
+          },
         ],
-        process: [
-          { step: 1, title: 'Konzultácia', description: 'Identifikácia problémových oblastí' },
-          { step: 2, title: 'Zahriatie', description: 'Príprava svalov' },
-          { step: 3, title: 'Hĺbková masáž', description: 'Uvoľnenie napätia' },
-          { step: 4, title: 'Relaxácia', description: 'Záverečné upokojenie' },
-        ],
-        forWhom: ['Pre chronické napätie', 'Pre športovcov', 'Pre maximálnu relaxáciu'],
-      },
-      {
-        id: 'lymfodrenaz-90',
-        slug: 'lymfodrenaz-90min',
-        name: 'Lymfodrenáž 90 min',
-        price: '45 €',
-        duration: '1h 30min.',
-        tagline: 'Detox a odvodnenie',
-        shortDescription: 'Špeciálna masážna technika pre podporu lymfatického systému a detox.',
-        benefits: [
-          { icon: 'detox', title: 'Detoxikácia', description: 'Odstránenie toxínov' },
-          { icon: 'drainage', title: 'Odvodnenie', description: 'Redukcia opuchov' },
-          { icon: 'immunity', title: 'Imunita', description: 'Posilnenie obranyschopnosti' },
-        ],
-        forWhom: ['Pre opuchy', 'Pre detox', 'Po operáciách'],
-      },
-      {
-        id: 'lymfodrenaz-120',
-        slug: 'lymfodrenaz-120min',
-        name: 'Lymfodrenáž 120 min',
-        price: '75 €',
-        duration: '2h',
-        tagline: 'Intenzívna lymfodrenáž',
-        shortDescription: 'Predĺžená lymfodrenáž pre maximálny detoxikačný efekt celého tela.',
-        benefits: [
-          { icon: 'intensive', title: 'Intenzívna', description: 'Maximálny efekt' },
-          { icon: 'complete', title: 'Celé telo', description: 'Vrátane tváre' },
-          { icon: 'lasting', title: 'Dlhodobý efekt', description: 'Až niekoľko dní' },
-        ],
-        forWhom: ['Pre výrazné opuchy', 'Pre celulitídu', 'Pre pravidelnú detoxikáciu'],
       },
     ],
   },
@@ -1902,8 +1918,7 @@ export const mainCategories: MainCategory[] = [
     title: 'Piercing',
     description: 'Profesionálny piercing tváre, trupu a uší v sterilnom prostredí.',
     iconKey: 'piercing',
-    image: '/images/services/piercing.webp',
-    imagePosition: 'center 70%',
+    image: '/images/services/piercing-hero.png',
     subcategories: [
       {
         id: 'microdermal',
@@ -2154,7 +2169,7 @@ export const mainCategories: MainCategory[] = [
     title: 'Profesionálne líčenie',
     description: 'Profesionálne líčenie pre každú príležitosť - svadobné, večerné, foto/TV.',
     iconKey: 'brush',
-    image: '/images/services/profesionalne-licenie.webp',
+    image: '/images/services/profesionalne-licenie-hero.png',
     services: [
       {
         id: 'denne-licenie',
@@ -2352,7 +2367,7 @@ export const mainCategories: MainCategory[] = [
     title: 'Víkendové VIP služby',
     description: 'Exkluzívne víkendové ošetrenia pre náročných klientov.',
     iconKey: 'crown',
-    image: '/images/services/chakra-calibration.webp',
+    image: '/images/services/vikendove-vip-sluzby-hero.png',
     services: [
       {
         id: 'vikendove-osetrenie',

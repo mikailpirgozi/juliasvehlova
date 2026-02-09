@@ -18,7 +18,7 @@ export function SubcategoryCard({ subcategory, categorySlug, priority = false }:
   const previewServices = popularServices.length > 0
     ? popularServices
     : subcategory.services.slice(0, 2)
-  const heroImage = getSubcategoryHeroImage(subcategory.slug)
+  const heroImage = subcategory.image ?? getSubcategoryHeroImage(subcategory.slug)
   const hasMoreServices = serviceCount > 2
 
   return (

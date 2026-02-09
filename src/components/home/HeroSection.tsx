@@ -1,460 +1,185 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowRight } from '@untitledui/icons'
 
-interface InteractivePoint {
-  id: string
-  label: string
-  href: string
-  top: string
-  left: string
-  topMobile?: string
-  leftMobile?: string
-  topTablet?: string
-  leftTablet?: string
-}
-
-type BreakPoint = 'mobile' | 'tablet' | 'desktop'
-
-// Hook na detekciu breakpointu
-function useBreakpoint(): BreakPoint {
-  const [breakpoint, setBreakpoint] = useState<BreakPoint>('desktop')
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setBreakpoint('mobile')
-      } else if (window.innerWidth < 1024) {
-        setBreakpoint('tablet')
-      } else {
-        setBreakpoint('desktop')
-      }
-    }
-
-    handleResize()
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
-  return breakpoint
-}
-
-interface SectionConfig {
-  id: 'face' | 'body'
-  label: string
-  icon: string
-  videoSrc?: string
-  imageSrc?: string
-  points: InteractivePoint[]
-}
-
-const sections: SectionConfig[] = [
-  {
-    id: 'face',
-    label: 'Tvár',
-    icon: '👤',
-    videoSrc: '/videos/klinika_tvar_3',
-    points: [
-      {
-        id: 'forehead',
-        label: 'Čelo',
-        href: '/sluzby/botulotoxin-mimicke-vrasky',
-        top: '26.79%',
-        left: '49.41%',
-        topMobile: '28.29%',
-        leftMobile: '47.95%',
-        topTablet: '27.54%',
-        leftTablet: '48.68%',
-      },
-      {
-        id: 'eyebrows',
-        label: 'Obočie',
-        href: '/sluzby/permanentny-makeup-hair-strokes',
-        top: '33.96%',
-        left: '55.62%',
-        topMobile: '34.72%',
-        leftMobile: '59.07%',
-        topTablet: '34.34%',
-        leftTablet: '57.35%',
-      },
-      {
-        id: 'eyes-left',
-        label: 'Oči',
-        href: '/sluzby/lash-lifting',
-        top: '41.31%',
-        left: '42.34%',
-        topMobile: '42.33%',
-        leftMobile: '31.05%',
-        topTablet: '41.82%',
-        leftTablet: '36.70%',
-      },
-      {
-        id: 'cheeks-left',
-        label: 'Líca',
-        href: '/sluzby/kyselina-hyaluronova-modelovanie-lic',
-        top: '50.50%',
-        left: '40.93%',
-        topMobile: '54.95%',
-        leftMobile: '30.76%',
-        topTablet: '52.73%',
-        leftTablet: '35.85%',
-      },
-      {
-        id: 'lips',
-        label: 'Pery',
-        href: '/sluzby/permanentny-makeup-tetovanie-pier',
-        top: '64.84%',
-        left: '50.20%',
-        topMobile: '64.99%',
-        leftMobile: '51.15%',
-        topTablet: '64.92%',
-        leftTablet: '50.68%',
-      },
-    ],
-  },
-  {
-    id: 'body',
-    label: 'Telo',
-    icon: '👗',
-    videoSrc: '/videos/klinika_body_3_blur',
-    points: [
-      {
-        id: 'chest',
-        label: 'Hrudník / Dekolt',
-        href: '/sluzby/kategoria/energy',
-        top: '28%',
-        left: '50%',
-        topMobile: '23.23%',
-        leftMobile: '55.47%',
-        topTablet: '25.65%',
-        leftTablet: '52.74%',
-      },
-      {
-        id: 'abdomen',
-        label: 'Brušo',
-        href: '/sluzby/kategoria/energy',
-        top: '48%',
-        left: '50%',
-        topMobile: '37.58%',
-        leftMobile: '55.92%',
-        topTablet: '42.79%',
-        leftTablet: '52.96%',
-      },
-      {
-        id: 'arms-right',
-        label: 'Paže',
-        href: '/sluzby/laserova-epilacia-podpazie',
-        top: '22.03%',
-        left: '47.32%',
-        topMobile: '22.42%',
-        leftMobile: '44.38%',
-        topTablet: '22.23%',
-        leftTablet: '45.85%',
-      },
-      {
-        id: 'legs',
-        label: 'Nohy',
-        href: '/sluzby/laserova-epilacia-nohy-cele',
-        top: '68.84%',
-        left: '58.37%',
-        topMobile: '69.80%',
-        leftMobile: '67.81%',
-        topTablet: '69.32%',
-        leftTablet: '63.09%',
-      },
-      {
-        id: 'bikini',
-        label: 'Bikini zóna',
-        href: '/sluzby/laserova-epilacia-bikini',
-        top: '50.48%',
-        left: '52.42%',
-        topMobile: '51.27%',
-        leftMobile: '56.67%',
-        topTablet: '50.88%',
-        leftTablet: '54.55%',
-      },
-    ],
-  },
-]
-
+// ---------------------------------------------------------------------------
+// Component
+// ---------------------------------------------------------------------------
 export function HeroSection() {
-  const router = useRouter()
-  const breakpoint = useBreakpoint()
-  const [activeSection, setActiveSection] = useState<'face' | 'body'>('face')
-  const [hoveredPoint, setHoveredPoint] = useState<string | null>(null)
-  const [debugMode, setDebugMode] = useState(false)
-  const [positions, setPositions] = useState<Record<string, { top: string; left: string }>>({})
-  const containerRef = React.useRef<HTMLDivElement>(null)
-  const draggingRef = React.useRef<string | null>(null)
-
-  const currentSection = sections.find((s) => s.id === activeSection)!
-
-  // Logika na získanie správnej pozície podľa breakpointu
-  const getResponsivePosition = (point: InteractivePoint) => {
-    if (breakpoint === 'mobile' && point.topMobile && point.leftMobile) {
-      return { top: point.topMobile, left: point.leftMobile }
-    }
-    if (breakpoint === 'tablet' && point.topTablet && point.leftTablet) {
-      return { top: point.topTablet, left: point.leftTablet }
-    }
-    return { top: point.top, left: point.left }
-  }
-
-  const handlePointClick = (href: string) => {
-    if (debugMode) return
-    router.push(href)
-  }
-
-  const handlePointerDown = (e: React.PointerEvent, pointId: string) => {
-    if (!debugMode) return
-    e.preventDefault()
-    e.stopPropagation()
-    draggingRef.current = pointId
-  }
-
-  React.useEffect(() => {
-    if (!debugMode || !containerRef.current) return
-
-    const container = containerRef.current
-
-    const handlePointerMove = (e: PointerEvent) => {
-      if (!draggingRef.current || !container) return
-
-      const rect = container.getBoundingClientRect()
-      const top = ((e.clientY - rect.top) / rect.height) * 100
-      const left = ((e.clientX - rect.left) / rect.width) * 100
-
-      setPositions((prev) => ({
-        ...prev,
-        [draggingRef.current!]: {
-          top: `${Math.max(0, Math.min(100, top))}%`,
-          left: `${Math.max(0, Math.min(100, left))}%`,
-        },
-      }))
-    }
-
-    const handlePointerUp = () => {
-      draggingRef.current = null
-    }
-
-    document.addEventListener('pointermove', handlePointerMove)
-    document.addEventListener('pointerup', handlePointerUp)
-
-    return () => {
-      document.removeEventListener('pointermove', handlePointerMove)
-      document.removeEventListener('pointerup', handlePointerUp)
-    }
-  }, [debugMode])
-
-  const getPointPosition = (pointId: string, defaultTop: string, defaultLeft: string) => {
-    if (positions[pointId]) return positions[pointId]
-    return { top: defaultTop, left: defaultLeft }
-  }
-
-  const exportPositions = () => {
-    const output = currentSection.points
-      .map((p) => {
-        const pos = getPointPosition(p.id, p.top, p.left)
-        return `{
-        id: '${p.id}',
-        label: '${p.label}',
-        href: '${p.href}',
-        top: '${pos.top}',
-        left: '${pos.left}',
-      },`
-      })
-      .join('\n')
-
-    // eslint-disable-next-line no-console
-    console.log(output)
-    alert('Pozície kopírované do console! Otvor Developer Tools (F12) a skopíruj text.')
-  }
-
   return (
-    <section className="relative min-h-[70vh] sm:min-h-[80vh] md:min-h-[85vh] lg:h-screen overflow-hidden">
-      {/* Background - Video for Face, Image for Body */}
-      <div
-        ref={containerRef}
-        className="absolute inset-0"
-      >
-               {currentSection?.videoSrc ? (
-          <video
-            key={`video-${currentSection.id}`}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            poster={`${currentSection.videoSrc}-poster.jpg`}
-            className="absolute inset-0 w-full h-full object-cover object-center"
-            style={{
-              // Optimizes video display on mobile by focusing on center content
-              objectPosition: 'center 30%',
-            }}
-          >
-            <source src={`${currentSection.videoSrc}.webm`} type="video/webm" />
-            <source src={`${currentSection.videoSrc}.mp4`} type="video/mp4" />
-          </video>
-        ) : currentSection?.imageSrc ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            key="image"
-            src={currentSection.imageSrc}
-            alt="Media"
-            className="absolute inset-0 w-full h-full object-cover object-center"
-          />
-        ) : null}
-
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/20 z-5" />
-
-        {/* Debug Mode Toggle */}
-        {process.env.NODE_ENV === 'development' && (
-          <button
-            onClick={() => {
-              setDebugMode(!debugMode)
-              setPositions({})
-            }}
-            className="absolute top-4 right-4 z-50 px-3 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-600"
-          >
-            {debugMode ? '❌ Vypnúť Debug' : '🐛 Debug Režim'}
-          </button>
-        )}
-
-        {/* Export Button (visible only in debug mode) */}
-        {debugMode && (
-          <button
-            onClick={exportPositions}
-            className="absolute top-4 right-28 z-50 px-3 py-1 bg-green-500 text-white text-xs rounded hover:bg-green-600"
-          >
-            ✅ Exportovať Pozície
-          </button>
-        )}
-      </div>
-
-      {/* Section Toggle - Left Sidebar */}
-      <div className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-3 sm:gap-4 md:gap-6">
-        {sections.map((section) => (
-          <button
-            key={section.id}
-            onClick={() => setActiveSection(section.id)}
-            className={`group relative flex flex-col items-center gap-2 transition-all duration-300 ${
-              activeSection === section.id ? 'scale-110' : 'opacity-60 hover:opacity-100'
-            }`}
-            aria-label={`Prepnúť na ${section.label}`}
-          >
-            {/* Icon with background */}
-            <div
-              className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center text-xl sm:text-2xl transition-all duration-300 ${
-                activeSection === section.id
-                  ? 'bg-white/30 backdrop-blur-md border border-white/50 shadow-lg shadow-brand-500/40'
-                  : 'bg-white/15 backdrop-blur-sm border border-white/20 group-hover:bg-white/25'
-              }`}
-            >
-              {section.icon}
+    <section className="relative min-h-[100dvh] overflow-hidden">
+      {/* ================================================================ */}
+      {/* MOBILE LAYOUT – text top, image bottom (mousse.sk style)         */}
+      {/* ================================================================ */}
+      <div className="flex min-h-[100dvh] flex-col lg:hidden">
+        {/* Text section – clean background matching the image tones */}
+        <div className="bg-[#9ab0b9] px-6 pt-24 pb-8 text-center sm:px-10">
+          <div className="animate-[fadeInUp_0.8s_ease-out_0.1s_both]">
+            {/* Badge */}
+            <div className="mb-5">
+              <span className="inline-flex items-center gap-2.5 text-xs font-semibold tracking-[0.2em] text-white/80 uppercase">
+                <span className="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-brand-300" />
+                Julia Estetic Clinic
+              </span>
             </div>
-            {/* Label */}
-            <span
-              className={`text-xs font-semibold whitespace-nowrap drop-shadow-lg transition-all duration-300 ${
-                activeSection === section.id
-                  ? 'text-white opacity-100'
-                  : 'text-white/70 opacity-0 group-hover:opacity-100'
-              }`}
-            >
-              {section.label}
-            </span>
-          </button>
-        ))}
+
+            {/* Heading */}
+            <h1 className="font-serif text-[2rem] leading-[1.1] font-bold tracking-tight text-white uppercase sm:text-[2.5rem]">
+              Klinika krásy,
+              <br />
+              <span className="text-brand-200">kde sa cítite</span>
+              <br />
+              výnimočne
+            </h1>
+
+            {/* Subtitle */}
+            <p className="mx-auto mt-4 max-w-sm text-sm leading-relaxed text-white/75 sm:text-base">
+              Vďaka skúsenostiam, odbornosti a individuálnemu prístupu vám
+              pomáhame objaviť a zvýrazniť vašu prirodzenú krásu.
+            </p>
+
+            {/* CTAs */}
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <Link
+                href="/sluzby"
+                className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20"
+              >
+                Naše služby
+              </Link>
+              <Link
+                href="/rezervacia"
+                className="group inline-flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-800/30 transition-all duration-200 hover:bg-brand-600"
+              >
+                Objednať sa
+                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Image section – team photo, zoomed in on the team */}
+        <div className="relative flex-1 overflow-hidden">
+          <Image
+            src="/images/hero/hero-mobile.jpeg"
+            alt="Profesionálny tím Julia Estetic Clinic"
+            width={1024}
+            height={1024}
+            className="w-full scale-125 origin-[center_35%]"
+            priority
+            sizes="100vw"
+          />
+          {/* Top fade for seamless blend with text section */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#9ab0b9] to-transparent" />
+        </div>
       </div>
 
-      {/* Interactive Points Overlay */}
-      <div className="absolute inset-0 z-10">
-        {currentSection.points.map((point) => {
-          const responsivePos = getResponsivePosition(point)
-          const pos = getPointPosition(point.id, responsivePos.top, responsivePos.left)
-          return (
-            <button
-              key={point.id}
-              onClick={() => handlePointClick(point.href)}
-              className={`absolute group cursor-pointer ${debugMode ? 'cursor-grab active:cursor-grabbing' : ''}`}
-              style={{
-                top: pos.top,
-                left: pos.left,
-                width: '0.875rem',
-                height: '0.875rem',
-                transform: 'translate(-50%, -50%)',
-              }}
-              aria-label={`Prejsť na ${point.label}`}
-              onMouseEnter={() => setHoveredPoint(point.id)}
-              onMouseLeave={() => setHoveredPoint(null)}
-              onPointerDown={(e) => handlePointerDown(e, point.id)}
-            >
-              {/* Main circle dot */}
-              <div
-                className={`absolute inset-0 rounded-full transition-all duration-300 border ${
-                  hoveredPoint === point.id
-                    ? 'bg-white/30 scale-110 shadow-[0_0_8px_rgba(255,255,255,0.35)] border-white/50'
-                    : 'bg-white/20 scale-100 border-white/30'
-                } ${debugMode ? 'border-2 border-yellow-400' : ''}`}
-              />
+      {/* ================================================================ */}
+      {/* DESKTOP LAYOUT – full-width image with text overlay left         */}
+      {/* ================================================================ */}
+      <div className="hidden lg:block">
+        <div className="relative min-h-[100dvh]">
+          {/* Background image */}
+          <Image
+            src="/images/hero-v2.webp"
+            alt="Profesionálny tím Julia Estetic Clinic"
+            fill
+            className="object-cover object-[75%_center]"
+            priority
+            sizes="100vw"
+          />
 
-              {/* Ring animation on hover */}
-              <div
-                className={`absolute inset-0 rounded-full border border-white/50 transition-all duration-300 ${
-                  hoveredPoint === point.id
-                    ? 'scale-[1.6] opacity-40'
-                    : 'scale-100 opacity-0'
-                }`}
-              />
+          {/* Left gradient overlay */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#8a9eaa]/90 via-[#8a9eaa]/50 via-35% to-transparent to-60%" />
 
-              {/* Debug Label (visible in debug mode) */}
-              {debugMode && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 z-30 whitespace-nowrap mt-2">
-                  <div className="flex flex-col gap-1 items-center">
-                    <div className="bg-blue-600 text-white text-xs px-2 py-1 rounded font-bold">
-                      {point.label}
-                    </div>
-                    <div className="bg-yellow-400 text-black text-xs px-2 py-1 rounded font-bold">
-                      {pos.top} / {pos.left}
-                    </div>
-                  </div>
+          {/* Bottom gradient for depth */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#6b8290]/50 to-transparent" />
+
+          {/* Content */}
+          <div className="relative z-10 flex min-h-[100dvh] items-center">
+            <div className="w-full max-w-[45%] px-16 py-24 xl:max-w-[42%] xl:px-24">
+              <div className="max-w-xl animate-[fadeInUp_0.8s_ease-out_0.1s_both]">
+                {/* Badge */}
+                <div className="mb-8">
+                  <span className="inline-flex items-center gap-2.5 text-sm font-semibold tracking-[0.2em] text-white/90 uppercase">
+                    <span className="h-px w-6 bg-brand-300" />
+                    Julia Estetic Clinic
+                  </span>
                 </div>
-              )}
 
-              {/* Tooltip Label */}
-              {hoveredPoint === point.id && !debugMode && (
-                <div className="absolute -top-12 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
-                  <div className="relative">
-                    {/* Glassmorphism badge */}
-                    <div className="backdrop-blur-md bg-white/25 border border-white/50 rounded-full px-4 py-1.5 shadow-2xl whitespace-nowrap">
-                      <span className="text-white font-semibold text-xs drop-shadow-lg">
-                        {point.label}
-                      </span>
-                    </div>
-                    {/* Glow effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-brand-500/30 via-brand-300/30 to-brand-500/30 blur-lg rounded-full -z-10" />
-                  </div>
+                {/* Heading */}
+                <h1 className="font-serif text-[3.25rem] leading-[1.08] font-bold tracking-tight text-white uppercase xl:text-[3.75rem]">
+                  Klinika krásy,
+                  <br />
+                  <span className="text-brand-200">kde sa cítite</span>
+                  <br />
+                  výnimočne
+                </h1>
+
+                {/* Subtitle */}
+                <p className="mt-6 max-w-md text-lg leading-relaxed text-white/80">
+                  Vďaka skúsenostiam, odbornosti a individuálnemu prístupu vám
+                  pomáhame objaviť a zvýrazniť vašu prirodzenú krásu.
+                </p>
+
+                {/* CTAs */}
+                <div className="mt-10 flex flex-wrap items-center gap-4">
+                  <Link
+                    href="/sluzby"
+                    className="inline-flex items-center gap-2 rounded-lg border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white shadow-lg backdrop-blur-sm transition-all duration-200 hover:border-white/50 hover:bg-white/20"
+                  >
+                    Naše služby
+                  </Link>
+                  <Link
+                    href="/rezervacia"
+                    className="group inline-flex items-center gap-2 rounded-lg bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-800/30 transition-all duration-200 hover:bg-brand-600 hover:shadow-xl hover:shadow-brand-800/40"
+                  >
+                    Objednať sa
+                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </Link>
                 </div>
-              )}
-            </button>
-          )
-        })}
-      </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-        <svg
-          className="w-6 h-6 text-white drop-shadow-lg"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
+                {/* Trust badges */}
+                <div className="mt-12 flex items-center gap-8 border-t border-white/20 pt-8">
+                  {[
+                    { value: '10+', label: 'Rokov praxe' },
+                    { value: '5000+', label: 'Klientov' },
+                    { value: '100%', label: 'Bezpečnosť' },
+                  ].map((stat) => (
+                    <div key={stat.label} className="text-center">
+                      <div className="text-xl font-bold text-white">
+                        {stat.value}
+                      </div>
+                      <div className="mt-0.5 text-sm text-white/60">
+                        {stat.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Scroll indicator */}
+          <div className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2">
+            <div className="animate-bounce">
+              <svg
+                className="h-5 w-5 text-white/50"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )

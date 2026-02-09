@@ -81,7 +81,7 @@ export async function generateMetadata({ params }: SubcategoryPageProps): Promis
       description:
         subcategory.description ||
         `${subcategory.title} - ${subcategory.services.length} služieb.`,
-      images: [cat.image],
+      images: [subcategory.image ?? cat.image],
     },
     keywords: [
       subcategory.title,

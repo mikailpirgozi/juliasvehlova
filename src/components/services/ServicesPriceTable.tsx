@@ -48,10 +48,10 @@ export function ServicesPriceTable({
               <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
                 Služba
               </th>
-              <th className="hidden px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 sm:table-cell">
+              <th className="hidden whitespace-nowrap px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 sm:table-cell">
                 Trvanie
               </th>
-              <th className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
+              <th className="whitespace-nowrap px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
                 Cena
               </th>
               {showDetailLinks && (
@@ -75,10 +75,10 @@ export function ServicesPriceTable({
                     </div>
                   </div>
                 </td>
-                <td className="hidden px-6 py-4 text-sm text-gray-500 sm:table-cell">
+                <td className="hidden whitespace-nowrap px-6 py-4 text-sm text-gray-500 sm:table-cell">
                   {service.duration}
                 </td>
-                <td className="px-6 py-4 text-right">
+                <td className="whitespace-nowrap px-6 py-4 text-right">
                   <span className="text-lg font-semibold text-gray-900">{service.price}</span>
                 </td>
                 {showDetailLinks && (

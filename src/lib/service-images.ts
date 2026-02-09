@@ -34,8 +34,11 @@ const SUBCATEGORY_TO_IMAGE_FOLDER: Record<string, string> = {
   'liecba-akne': 'kozmeticke-osetrenia', // fallback
   'prevencia-starnutia': 'kozmeticke-osetrenia', // fallback
   'pristrojove-osetrenia': 'kozmeticke-osetrenia', // fallback
-  'laminacia': 'kozmeticke-osetrenia', // fallback
-  'predlzovanie-mihalnic': 'kozmeticke-osetrenia', // fallback
+  'doplnkove-kozmeticke-sluzby': 'permanentny-makeup',
+  
+  // Regenerácia tela
+  'masaze': 'masaze-maderoterapia',
+  'maderoterapia': 'masaze-maderoterapia',
   
   // Laserová epilácia
   'laserova-epilacia-damy': 'laserova-epilacia',
@@ -55,8 +58,7 @@ const CATEGORY_TO_IMAGE_FOLDER: Record<string, string> = {
   'esteticka-medicina': 'biorevitalizacia-pleti',
   'kozmetika': 'kozmeticke-osetrenia',
   'laserova-epilacia': 'laserova-epilacia',
-  'maderoterapia': 'masaze-maderoterapia',
-  'masaz': 'masaze-maderoterapia',
+  'regeneracia-tela': 'masaze-maderoterapia',
   'piercing': 'piercing',
   'profesionalne-licenie': 'profesionalne-licenie',
   'tetovanie': 'tetovanie',
