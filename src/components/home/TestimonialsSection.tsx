@@ -33,17 +33,14 @@ const testimonials: Testimonial[] = [
 
 export function TestimonialsSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-brand-50/50 via-white to-brand-50/30 py-16 sm:py-24">
-      {/* Decorative background elements */}
-      <div className="pointer-events-none absolute top-20 left-1/4 h-56 w-56 rounded-full bg-brand-200/25 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-20 right-1/4 h-72 w-72 rounded-full bg-[#CDA882]/15 blur-3xl" />
+    <section className="bg-white py-16 sm:py-24">
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <FadeIn>
           <div className="text-center">
             <p className="text-sm font-semibold uppercase tracking-wider text-[#CDA882]">Referencie klientov</p>
-            <h2 className="mt-2 font-serif text-3xl font-bold text-brand-700 sm:text-4xl">
+            <h2 className="mt-2 font-serif text-3xl font-bold text-gray-900 sm:text-4xl">
               Čo hovoria naši klienti
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
@@ -67,8 +64,8 @@ export function TestimonialsSection() {
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+                {/* Gradient Overlay – branded dark blue-gray instead of pure black */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#3a4e5b]/95 via-[#4a5e6b]/50 to-[#4a5e6b]/15" />
                 
                 {/* Quote icon */}
                 <div className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
@@ -124,9 +121,9 @@ export function TestimonialsSection() {
             ].map((stat, index) => (
               <div
                 key={index}
-                className="rounded-2xl border border-brand-100 bg-white/80 p-6 text-center shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="rounded-2xl border border-gray-100 bg-gray-50/50 p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
               >
-                <p className="text-3xl font-bold text-brand-700">{stat.value}</p>
+                <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
                 <p className="mt-1 text-sm text-gray-600">{stat.label}</p>
               </div>
             ))}

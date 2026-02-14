@@ -19,6 +19,11 @@ const TestimonialsSection = dynamic(
   { ssr: true }
 )
 
+const InstagramSection = dynamic(
+  () => import('@/components/home/InstagramSection').then((mod) => mod.InstagramSection),
+  { ssr: true }
+)
+
 const ContactSection = dynamic(
   () => import('@/components/home/ContactSection').then((mod) => mod.ContactSection),
   { ssr: true }
@@ -31,6 +36,7 @@ export function HomePageClient() {
       <ServicesSection />
       <AboutSection />
       <TestimonialsSection />
+      <InstagramSection />
       <ContactSection />
     </>
   )

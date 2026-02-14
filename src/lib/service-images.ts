@@ -8,11 +8,13 @@ const IMAGE_FOLDERS: Record<string, number> = {
   'biorevitalizacia-pleti': 12,
   'botulotoxin': 12,
   'chakra-calibration': 2,
+  'hollywood-peeling': 1,
   'kozmeticke-osetrenia': 12,
   'laserova-epilacia': 12,
+  'masaze': 1,
   'masaze-maderoterapia': 12,
-  'permanentny-makeup': 12,
-  'piercing': 10,
+  'permanentny-makeup': 13,
+  'piercing': 15,
   'profesionalne-licenie': 12,
   'tetovanie': 12,
   'vyplne-kyselinou-hyaluronovou': 12,
@@ -34,10 +36,11 @@ const SUBCATEGORY_TO_IMAGE_FOLDER: Record<string, string> = {
   'liecba-akne': 'kozmeticke-osetrenia', // fallback
   'prevencia-starnutia': 'kozmeticke-osetrenia', // fallback
   'pristrojove-osetrenia': 'kozmeticke-osetrenia', // fallback
+  'hollywood-carbon-peel': 'hollywood-peeling',
   'doplnkove-kozmeticke-sluzby': 'permanentny-makeup',
   
   // Regenerácia tela
-  'masaze': 'masaze-maderoterapia',
+  'masaze': 'masaze',
   'maderoterapia': 'masaze-maderoterapia',
   
   // Laserová epilácia

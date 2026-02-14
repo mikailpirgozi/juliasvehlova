@@ -20,7 +20,7 @@ export function HeroSection() {
             {/* Badge */}
             <div className="mb-5">
               <span className="inline-flex items-center gap-2.5 text-xs font-semibold tracking-[0.2em] text-white/80 uppercase">
-                <span className="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-brand-300" />
+                <span className="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-[#CDA882]" />
                 Julia Estetic Clinic
               </span>
             </div>
@@ -72,6 +72,8 @@ export function HeroSection() {
           />
           {/* Top fade for seamless blend with text section */}
           <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#9ab0b9] to-transparent" />
+          {/* Bottom fade for seamless blend into next section */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white/80 to-transparent" />
         </div>
       </div>
 
@@ -94,8 +96,8 @@ export function HeroSection() {
           {/* Left gradient overlay – covers text area only, keeps team photo sharp */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#8a9eaa]/95 via-[#8a9eaa]/60 via-30% to-transparent to-45%" />
 
-          {/* Bottom gradient for depth – subtle, avoids darkening the team */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#6b8290]/30 to-transparent" />
+          {/* Bottom gradient for depth + subtle fade to white */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white/70 to-transparent" />
 
           {/* Content */}
           <div className="relative z-10 flex min-h-[100dvh] items-center">
@@ -104,7 +106,7 @@ export function HeroSection() {
                 {/* Badge */}
                 <div className="mb-8">
                   <span className="inline-flex items-center gap-2.5 text-sm font-semibold tracking-[0.2em] text-white/90 uppercase">
-                    <span className="h-px w-6 bg-brand-300" />
+                    <span className="h-px w-6 bg-[#CDA882]" />
                     Julia Estetic Clinic
                   </span>
                 </div>
@@ -163,7 +165,7 @@ export function HeroSection() {
           </div>
 
           {/* Scroll indicator */}
-          <div className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2">
+          <div className="absolute bottom-10 left-1/2 z-20 -translate-x-1/2">
             <div className="animate-bounce">
               <svg
                 className="h-5 w-5 text-white/50"
