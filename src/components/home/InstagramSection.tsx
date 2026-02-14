@@ -47,7 +47,9 @@ function VideoCard({ post }: { post: InstagramPost }) {
     const card = cardRef.current
     if (!card) return
     const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
+      ([entry]) => {
+        if (entry) setIsVisible(entry.isIntersecting)
+      },
       { threshold: 0.3 }
     )
     observer.observe(card)
