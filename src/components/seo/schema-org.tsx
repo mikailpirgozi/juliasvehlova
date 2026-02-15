@@ -28,7 +28,7 @@ export function OrganizationSchema() {
     name: COMPANY_NAME,
     alternateName: COMPANY_LEGAL_NAME,
     url: BASE_URL,
-    logo: `${BASE_URL}/images/branding/logo.png`,
+    logo: `${BASE_URL}/images/branding/logo.svg`,
     description:
       'Profesionálna klinika estetickej medicíny v Malackách. Botulotoxín, kyselina hyalurónová, permanentný make-up, laserová epilácia a kozmetické ošetrenia.',
     image: `${BASE_URL}/images/og-image.jpg`,

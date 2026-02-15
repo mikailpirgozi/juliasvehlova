@@ -176,16 +176,14 @@ export function Header() {
         <div className="flex h-18 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="relative h-14 w-32 overflow-hidden">
-              <Image
-                src={isTransparent ? '/images/branding/logo-white.svg' : '/images/branding/logo.svg'}
-                alt="Julia Estetic Clinic"
-                width={258}
-                height={559}
-                className="absolute left-1/2 top-[47%] h-[300%] w-auto -translate-x-1/2 -translate-y-1/2"
-                priority
-              />
-            </div>
+            <Image
+              src={isTransparent ? '/images/branding/logo-white.svg' : '/images/branding/logo.svg'}
+              alt="Julia Estetic Clinic"
+              width={2824}
+              height={993}
+              className="h-10 w-auto sm:h-12"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}

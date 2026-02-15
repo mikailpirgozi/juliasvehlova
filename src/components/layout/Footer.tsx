@@ -52,15 +52,13 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <Link href="/" className="inline-block">
-              <div className="relative h-16 w-36 overflow-hidden">
-                <Image
-                  src="/images/branding/logo.svg"
-                  alt="Julia Estetic Clinic"
-                  width={258}
-                  height={559}
-                  className="absolute left-1/2 top-[47%] h-[300%] w-auto -translate-x-1/2 -translate-y-1/2"
-                />
-              </div>
+              <Image
+                src="/images/branding/logo.svg"
+                alt="Julia Estetic Clinic"
+                width={2824}
+                height={993}
+                className="h-12 w-auto"
+              />
             </Link>
             <p className="max-w-xs text-sm text-gray-500">
               Profesionálne služby estetickej medicíny a permanentného make-upu v Malackách.
