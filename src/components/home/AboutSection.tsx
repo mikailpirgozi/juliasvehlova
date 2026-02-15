@@ -20,10 +20,7 @@ export function AboutSection() {
   ]
 
   return (
-    <section id="about" className="relative overflow-hidden bg-gradient-to-br from-white via-brand-50/20 to-[#CDA882]/10 py-16 sm:py-24">
-      {/* Decorative background elements */}
-      <div className="pointer-events-none absolute top-10 left-10 h-48 w-48 rounded-full bg-brand-200/20 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-10 right-10 h-64 w-64 rounded-full bg-[#CDA882]/15 blur-3xl" />
+    <section id="about" className="relative overflow-hidden bg-gray-50 py-16 sm:py-24">
       
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-12 lg:items-center">
@@ -31,8 +28,8 @@ export function AboutSection() {
           <FadeIn direction="left" className="lg:col-span-5">
             <div className="relative mx-auto max-w-sm lg:max-w-none">
               {/* Decorative elements */}
-              <div className="absolute -top-4 -left-4 h-full w-full rounded-2xl bg-gradient-to-br from-brand-200 to-[#CDA882]/50" />
-              <div className="absolute -bottom-4 -right-4 h-full w-full rounded-2xl border-2 border-brand-200" />
+              <div className="absolute -top-4 -left-4 h-full w-full rounded-2xl bg-gradient-to-br from-[#9ab0b9]/60 to-[#8a9eaa]/50" />
+              <div className="absolute -bottom-4 -right-4 h-full w-full rounded-2xl border-2 border-[#9ab0b9]/50" />
               
               {/* Image container */}
               <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
@@ -48,7 +45,7 @@ export function AboutSection() {
                 <div 
                   className="pointer-events-none absolute inset-0"
                   style={{
-                    background: 'linear-gradient(to top, rgba(216, 167, 177, 0.65) 0%, rgba(216, 167, 177, 0.3) 25%, rgba(216, 167, 177, 0.1) 45%, transparent 65%)',
+                    background: 'linear-gradient(to top, rgba(154, 176, 185, 0.65) 0%, rgba(154, 176, 185, 0.3) 25%, rgba(154, 176, 185, 0.1) 45%, transparent 65%)',
                   }}
                 />
               </div>
@@ -65,7 +62,7 @@ export function AboutSection() {
           <FadeIn direction="right" delay={0.2} className="mt-12 lg:mt-0 lg:col-span-7">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-[#CDA882]">O nás</p>
-              <h2 className="mt-2 font-serif text-3xl font-bold text-brand-700 sm:text-4xl">
+              <h2 className="mt-2 font-serif text-3xl font-bold text-gray-900 sm:text-4xl">
                 MUDr. Julia Svehlová
               </h2>
               <div className="mt-6 space-y-4 text-gray-600">
@@ -104,7 +101,7 @@ export function AboutSection() {
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="rounded-2xl border border-brand-100 bg-white/80 p-6 text-center shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
               >
                 <p className="text-3xl font-bold text-[#CDA882]">{stat.value}</p>
                 <p className="mt-1 text-sm text-gray-600">{stat.label}</p>
@@ -116,7 +113,7 @@ export function AboutSection() {
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           <FadeIn delay={0.5}>
             {/* Certificates */}
-            <div className="rounded-2xl border border-brand-100 bg-white/80 p-6 shadow-lg backdrop-blur-sm">
+            <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900">
                 Kvalifikácie a certifikáty
               </h3>

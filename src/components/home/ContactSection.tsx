@@ -41,108 +41,101 @@ export function ContactSection() {
   ]
 
   return (
-    <section id="kontakt" className="relative overflow-hidden bg-gradient-to-br from-white via-brand-50/30 to-[#CDA882]/10 py-16 sm:py-24">
-      {/* Decorative background elements */}
-      <div className="pointer-events-none absolute top-10 right-1/4 h-64 w-64 rounded-full bg-brand-200/25 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-10 left-10 h-56 w-56 rounded-full bg-[#CDA882]/20 blur-3xl" />
-
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="kontakt" className="bg-white py-16 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <FadeIn>
           <div className="text-center">
             <p className="text-sm font-semibold uppercase tracking-wider text-[#CDA882]">Kontakt</p>
-            <h2 className="mt-2 font-serif text-3xl font-bold text-brand-700 sm:text-4xl">
+            <h2 className="mt-2 font-serif text-3xl font-bold text-gray-900 sm:text-4xl">
               Napíšte nám
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-500">
               Máte otázku alebo chcete rezervovať termín? Sme tu pre vás a radi vám pomôžeme
             </p>
           </div>
         </FadeIn>
 
-        <div className="mt-12 mx-auto max-w-2xl">
-          {/* Contact Info */}
+        <div className="mt-12 mx-auto max-w-3xl">
           <FadeIn delay={0.1}>
-            <div className="space-y-6">
-              {/* Contact Cards */}
-              <div className="space-y-4">
-                {contactInfo.map((info, index) => (
-                  <div
-                    key={index}
-                    className="rounded-xl border border-brand-100 bg-white/80 p-4 shadow-md backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-100 to-brand-200 text-brand-600">
-                        {info.icon}
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-sm font-medium text-gray-900">{info.title}</h4>
-                        {info.href ? (
-                          <a
-                            href={info.href}
-                            className="mt-1 block text-sm text-brand-600 hover:text-brand-700"
-                          >
-                            {info.primary}
-                          </a>
-                        ) : (
-                          <p className="mt-1 text-sm text-gray-900">{info.primary}</p>
-                        )}
-                        <p className="mt-0.5 text-xs text-gray-500">{info.secondary}</p>
-                      </div>
-                    </div>
+            {/* Contact Cards — horizontal row on desktop */}
+            <div className="grid gap-4 sm:grid-cols-3">
+              {contactInfo.map((info, index) => (
+                <div
+                  key={index}
+                  className="rounded-2xl border border-gray-100 bg-gray-50/50 p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                >
+                  <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+                    {info.icon}
                   </div>
-                ))}
-              </div>
-
-              {/* Opening Hours */}
-              <div className="rounded-2xl border border-brand-100 bg-white/80 p-6 shadow-lg backdrop-blur-sm">
-                <h4 className="text-lg font-semibold text-gray-900">
-                  Otváracie hodiny
-                </h4>
-                <div className="mt-4 space-y-2 text-sm">
-                  <div className="flex justify-between py-2 border-b border-brand-100">
-                    <span className="text-gray-600">Pondelok - Piatok</span>
-                    <span className="font-medium text-gray-900">9:00 - 18:00</span>
-                  </div>
-                  <div className="flex justify-between py-2 border-b border-brand-100">
-                    <span className="text-gray-600">Sobota</span>
-                    <span className="font-medium text-gray-900">9:00 - 14:00</span>
-                  </div>
-                  <div className="flex justify-between py-2">
-                    <span className="text-gray-600">Nedeľa</span>
-                    <span className="font-medium text-gray-500">Zatvorené</span>
-                  </div>
-                </div>
-                <div className="mt-4 rounded-xl bg-gradient-to-r from-brand-50 to-white p-3">
-                  <p className="text-xs text-gray-600">
-                    Termíny len po objednaní vopred
-                  </p>
-                </div>
-              </div>
-
-              {/* Social */}
-              <div className="rounded-2xl bg-gradient-to-r from-brand-600 to-brand-500 p-6 text-white shadow-lg">
-                <h4 className="text-lg font-semibold">Sledujte nás</h4>
-                <p className="mt-1 text-sm text-brand-100">
-                  Inšpirujte sa našimi výsledkami a zostaňte v obraze o novinkách
-                </p>
-                <div className="mt-4 flex gap-3">
-                  {[
-                    { label: 'Instagram', href: 'https://www.instagram.com/juliaesteticclinic' },
-                    { label: 'Facebook', href: 'https://www.facebook.com/people/Julia-Estetic-Clinic/61560460323854/' },
-                  ].map((social, index) => (
+                  <h4 className="mt-3 text-sm font-medium text-gray-500">{info.title}</h4>
+                  {info.href ? (
                     <a
-                      key={index}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded-xl bg-white/20 px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-white/30 hover:scale-105"
-                      aria-label={social.label}
+                      href={info.href}
+                      className="mt-1 block text-sm font-semibold text-gray-900 hover:text-brand-600 transition-colors"
                     >
-                      {social.label}
+                      {info.primary}
                     </a>
-                  ))}
+                  ) : (
+                    <p className="mt-1 text-sm font-semibold text-gray-900">{info.primary}</p>
+                  )}
+                  <p className="mt-0.5 text-xs text-gray-400">{info.secondary}</p>
                 </div>
+              ))}
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.2}>
+            {/* Opening Hours */}
+            <div className="mt-8 rounded-2xl border border-gray-100 bg-gray-50/50 p-6">
+              <h4 className="text-lg font-semibold text-gray-900">
+                Otváracie hodiny
+              </h4>
+              <div className="mt-4 space-y-2 text-sm">
+                <div className="flex justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-500">Pondelok - Piatok</span>
+                  <span className="font-medium text-gray-900">9:00 - 18:00</span>
+                </div>
+                <div className="flex justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-500">Sobota</span>
+                  <span className="font-medium text-gray-900">9:00 - 14:00</span>
+                </div>
+                <div className="flex justify-between py-2">
+                  <span className="text-gray-500">Nedeľa</span>
+                  <span className="font-medium text-gray-400">Zatvorené</span>
+                </div>
+              </div>
+              <div className="mt-4 rounded-xl bg-brand-50/50 p-3">
+                <p className="text-xs text-gray-500">
+                  Termíny len po objednaní vopred
+                </p>
+              </div>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.3}>
+            {/* Social */}
+            <div className="mt-8 rounded-2xl bg-gray-900 p-6 text-center">
+              <h4 className="text-lg font-semibold text-white">Sledujte nás</h4>
+              <p className="mt-1 text-sm text-gray-400">
+                Inšpirujte sa našimi výsledkami a zostaňte v obraze o novinkách
+              </p>
+              <div className="mt-4 flex justify-center gap-3">
+                {[
+                  { label: 'Instagram', href: 'https://www.instagram.com/juliaesteticclinic' },
+                  { label: 'Facebook', href: 'https://www.facebook.com/people/Julia-Estetic-Clinic/61560460323854/' },
+                ].map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full border border-gray-700 bg-gray-800 px-5 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-gray-700"
+                    aria-label={social.label}
+                  >
+                    {social.label}
+                  </a>
+                ))}
               </div>
             </div>
           </FadeIn>

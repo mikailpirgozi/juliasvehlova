@@ -16,11 +16,8 @@ export function ServicesSection() {
   return (
     <section
       id="services"
-      className="relative overflow-hidden bg-gradient-to-b from-white via-brand-50/30 to-brand-100/20 px-4 py-20 sm:py-28"
+      className="relative overflow-hidden bg-white px-4 py-20 sm:py-28"
     >
-      {/* Decorative background elements */}
-      <div className="pointer-events-none absolute right-10 top-20 h-64 w-64 rounded-full bg-brand-200/30 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-20 left-10 h-80 w-80 rounded-full bg-[#CDA882]/20 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-6xl">
         <FadeIn>
@@ -28,7 +25,7 @@ export function ServicesSection() {
             <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#CDA882]">
               Naše služby
             </p>
-            <h2 className="mb-4 font-serif text-4xl font-bold text-brand-700 sm:text-5xl">
+            <h2 className="mb-4 font-serif text-4xl font-bold text-gray-900 sm:text-5xl">
               Komplexná starostlivosť o vašu krásu
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600">

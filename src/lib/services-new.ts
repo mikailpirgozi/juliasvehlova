@@ -487,6 +487,7 @@ export const mainCategories: MainCategory[] = [
         slug: 'liftingove-nite',
         title: 'Liftingové nite',
         description: 'Nechirurgický lifting tváre pomocou resorbovateľných nití.',
+        image: '/images/services/liftingove-nite.webp',
         services: [
           {
             id: 'aptos-nite',
@@ -1742,6 +1743,7 @@ export const mainCategories: MainCategory[] = [
         slug: 'masaze',
         title: 'Masáže',
         description: 'Relaxačné a terapeutické masáže pre uvoľnenie napätia a regeneráciu tela.',
+        image: '/images/services/masaze.webp',
         services: [
           {
             id: 'masaz-60',
@@ -1834,6 +1836,7 @@ export const mainCategories: MainCategory[] = [
         slug: 'maderoterapia',
         title: 'Maderoterapia',
         description: 'Prírodná masážna technika drevenými nástrojmi pre modelovanie postavy a redukciu celulitídy.',
+        image: '/images/services/masaze-maderoterapia.webp',
         services: [
           {
             id: 'maderoterapia-celotelova',
