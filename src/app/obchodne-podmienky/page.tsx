@@ -38,11 +38,11 @@ export default function TermsPage() {
           <section className="mb-10">
             <h2 className="text-xl font-semibold text-gray-900">2. Poskytovateľ</h2>
             <div className="mt-4 rounded-lg border border-gray-200 bg-gray-50 p-4">
-              <p className="font-medium text-gray-900">MUDr. Julia Svehlová</p>
+              <p className="font-medium text-gray-900">Julia Svehlová</p>
               <p className="text-sm text-gray-600">Julia Estetic Clinic</p>
               <p className="text-sm text-gray-600">Javorová 2</p>
               <p className="text-sm text-gray-600">901 01 Malacky</p>
-              <p className="text-sm text-gray-600">Email: info@jec.sk</p>
+              <p className="text-sm text-gray-600">Email: juliaesteticclinic@gmail.com</p>
               <p className="text-sm text-gray-600">Tel: +421 911 992 211</p>
             </div>
           </section>
@@ -53,7 +53,7 @@ export default function TermsPage() {
             <ul className="mt-2 list-disc space-y-1 pl-5 text-gray-600">
               <li>Online cez rezervačný systém Bookio</li>
               <li>Telefonicky na tel. čísle: +421 911 992 211</li>
-              <li>Emailom: info@jec.sk</li>
+              <li>Emailom: juliaesteticclinic@gmail.com</li>
             </ul>
 
             <h3 className="mt-4 text-base font-medium text-gray-900">3.2 Potvrdenie rezervácie:</h3>
@@ -123,7 +123,7 @@ export default function TermsPage() {
             <h2 className="text-xl font-semibold text-gray-900">9. Kontakt</h2>
             <div className="mt-4 rounded-lg border border-gray-200 bg-gray-50 p-4">
               <p className="font-medium text-gray-900">Julia Estetic Clinic</p>
-              <p className="text-sm text-gray-600">Email: info@jec.sk</p>
+              <p className="text-sm text-gray-600">Email: juliaesteticclinic@gmail.com</p>
               <p className="text-sm text-gray-600">Tel: +421 911 992 211</p>
               <p className="text-sm text-gray-600">Adresa: Javorová 2, 901 01 Malacky</p>
             </div>

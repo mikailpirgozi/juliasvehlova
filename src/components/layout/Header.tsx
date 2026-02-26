@@ -159,7 +159,7 @@ export function Header() {
     { label: 'O nás', href: '/o-nas' },
     { label: 'Cenník', href: '/cennik' },
     { label: 'Darčekové poukážky', href: '/darcekove-poukazky' },
-    { label: 'Kontakt', href: '#contact' },
+    { label: 'Kontakt', href: '/#contact' },
   ]
 
   return (
@@ -177,11 +177,11 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
-              src={isTransparent ? '/images/branding/logo-white.svg' : '/images/branding/logo.svg'}
+              src="/images/branding/logo-white.svg"
               alt="Julia Estetic Clinic"
               width={2824}
               height={993}
-              className="h-10 w-auto sm:h-12"
+              className={`h-10 w-auto sm:h-12 transition-all duration-300 ${!isTransparent ? 'invert' : ''}`}
               priority
             />
           </Link>

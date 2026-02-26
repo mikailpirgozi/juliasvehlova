@@ -16,7 +16,7 @@ export function Footer() {
       { name: 'Cenník', href: '/cennik' },
       { name: 'Darčekové poukážky', href: '/darcekove-poukazky' },
       { name: 'Blog', href: '/blog' },
-      { name: 'Kontakt', href: '#kontakt' },
+      { name: 'Kontakt', href: '/#contact' },
     ],
     legal: [
       { name: 'Ochrana osobných údajov', href: '/ochrana-udajov' },
@@ -46,21 +46,24 @@ export function Footer() {
   ]
 
   return (
-    <footer className="border-t border-gray-200 bg-white">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+    <footer className="relative bg-[#faf7f5] overflow-hidden">
+      {/* Top soft border/transition */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-200/50 to-transparent" />
+      
+      <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16 z-10">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           {/* Brand */}
-          <div className="space-y-4">
-            <Link href="/" className="inline-block">
+          <div className="space-y-6">
+            <Link href="/" className="inline-block group">
               <Image
-                src="/images/branding/logo.svg"
+                src="/images/branding/logo-white.svg"
                 alt="Julia Estetic Clinic"
                 width={2824}
                 height={993}
-                className="h-12 w-auto"
+                className="h-16 w-auto invert opacity-90 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105"
               />
             </Link>
-            <p className="max-w-xs text-sm text-gray-500">
+            <p className="max-w-sm text-base font-medium text-gray-700 leading-relaxed">
               Profesionálne služby estetickej medicíny a permanentného make-upu v Malackách.
             </p>
             <div className="flex gap-4">
@@ -70,7 +73,7 @@ export function Footer() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 transition-colors hover:text-gray-500"
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-500 text-white shadow-lg transition-all hover:bg-brand-600 hover:-translate-y-1 hover:shadow-brand-800/30"
                   aria-label={item.name}
                 >
                   {item.icon}
@@ -83,13 +86,13 @@ export function Footer() {
           <div className="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold text-gray-900">Služby</h3>
+                <h3 className="text-sm font-bold tracking-widest uppercase text-brand-800">Služby</h3>
                 <ul className="mt-4 space-y-3">
                   {navigation.services.map((item) => (
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className="text-sm text-gray-500 transition-colors hover:text-gray-900"
+                        className="text-base text-gray-700 transition-colors hover:text-brand-600 font-medium"
                       >
                         {item.name}
                       </Link>
@@ -98,13 +101,13 @@ export function Footer() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold text-gray-900">Spoločnosť</h3>
+                <h3 className="text-sm font-bold tracking-widest uppercase text-brand-800">Spoločnosť</h3>
                 <ul className="mt-4 space-y-3">
                   {navigation.company.map((item) => (
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className="text-sm text-gray-500 transition-colors hover:text-gray-900"
+                        className="text-base text-gray-700 transition-colors hover:text-brand-600 font-medium"
                       >
                         {item.name}
                       </Link>
@@ -114,25 +117,25 @@ export function Footer() {
               </div>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-gray-900">Kontakt</h3>
+              <h3 className="text-sm font-bold tracking-widest uppercase text-brand-800">Kontakt</h3>
               <ul className="mt-4 space-y-3">
                 <li>
                   <a
                     href="tel:+421911992211"
-                    className="text-sm text-gray-500 transition-colors hover:text-gray-900"
+                    className="text-base text-gray-700 transition-colors hover:text-brand-600 font-medium"
                   >
                     +421 911 992 211
                   </a>
                 </li>
                 <li>
                   <a
-                    href="mailto:info@jec.sk"
-                    className="text-sm text-gray-500 transition-colors hover:text-gray-900"
+                    href="mailto:juliaesteticclinic@gmail.com"
+                    className="text-base text-gray-700 transition-colors hover:text-brand-600 font-medium"
                   >
-                    info@jec.sk
+                    juliaesteticclinic@gmail.com
                   </a>
                 </li>
-                <li className="text-sm text-gray-500">
+                <li className="text-base text-gray-700 font-medium">
                   Javorová 2, 901 01 Malacky
                 </li>
               </ul>
@@ -141,9 +144,9 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 border-t border-gray-200 pt-8">
+        <div className="mt-12 border-t border-brand-200/50 pt-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="text-sm text-gray-400">
+            <p className="text-sm font-medium text-[#8698a4]">
               © {currentYear} Julia Estetic Clinic. Všetky práva vyhradené.
             </p>
             <div className="flex gap-6">
@@ -151,7 +154,7 @@ export function Footer() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-sm text-gray-400 transition-colors hover:text-gray-500"
+                  className="text-sm font-medium text-[#8698a4] transition-colors hover:text-brand-600"
                 >
                   {item.name}
                 </Link>

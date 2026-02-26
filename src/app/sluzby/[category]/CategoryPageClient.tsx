@@ -134,7 +134,7 @@ export function CategoryPageClient({ category }: CategoryPageClientProps) {
 
       {/* Hero Section - Modern, clean design */}
       <section className="relative overflow-hidden">
-        <div className="relative h-64 w-full sm:h-80 lg:h-[28rem]">
+        <div className="relative h-52 w-full sm:h-64 lg:h-80">
           <Image
             src={category.image}
             alt={category.title}
@@ -142,39 +142,38 @@ export function CategoryPageClient({ category }: CategoryPageClientProps) {
             priority
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
 
           {/* Content Overlay */}
-          <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8 lg:p-12">
+          <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-7 lg:p-10">
             <div className="mx-auto w-full max-w-6xl">
               {/* Back Link */}
               <Link
                 href="/sluzby"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-white/70 transition hover:text-white"
+                className="mb-4 inline-flex items-center gap-1.5 text-xs text-white/60 transition hover:text-white"
               >
-                <ArrowLeft className="h-4 w-4" />
+                <ArrowLeft className="h-3.5 w-3.5" />
                 Všetky služby
               </Link>
 
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-                <div className="flex items-start gap-5">
-                  <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm">
-                    <IconComponent className="h-8 w-8 text-white" />
+              <div className="flex items-end justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm">
+                    <IconComponent className="h-5 w-5 text-white" />
                   </div>
                   <div>
-                    <h1 className="font-serif text-4xl font-bold leading-tight text-white drop-shadow-lg sm:text-5xl lg:text-6xl">
+                    <h1 className="font-serif text-2xl font-bold leading-tight text-white sm:text-3xl lg:text-4xl">
                       {category.title}
                     </h1>
-                    <p className="mt-3 max-w-xl text-lg leading-relaxed text-white/80">
+                    <p className="mt-1 max-w-xl text-sm leading-relaxed text-white/70">
                       {category.description}
                     </p>
                   </div>
                 </div>
 
-                {/* Service count badge */}
                 {category.services && (
-                  <div className="flex-shrink-0">
-                    <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+                  <div className="hidden flex-shrink-0 sm:block">
+                    <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
                       {category.services.length} služieb
                     </span>
                   </div>
@@ -186,18 +185,18 @@ export function CategoryPageClient({ category }: CategoryPageClientProps) {
       </section>
 
       {/* Content Section */}
-      <section className="relative z-10 px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <section className="relative z-10 px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
         <div className="mx-auto max-w-6xl">
           {hasSubcategories ? (
             <>
               {/* Subcategories Grid */}
               <div className="mb-8">
-                <div className="mb-10 text-center">
-                  <h2 className="font-serif text-3xl font-bold text-gray-900 sm:text-4xl">
-                    Vyberte si kategóriu
-                  </h2>
-                </div>
-                <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+                  <div className="mb-6 text-center">
+                    <h2 className="font-serif text-xl font-bold text-gray-900 sm:text-2xl">
+                      Vyberte si kategóriu
+                    </h2>
+                  </div>
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
                   {category.subcategories!.map((subcategory) => (
                     <SubcategoryCard
                       key={subcategory.id}

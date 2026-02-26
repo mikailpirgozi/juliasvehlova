@@ -15,7 +15,7 @@ export function HeroSection() {
       {/* ================================================================ */}
       <div className="flex min-h-[100dvh] flex-col lg:hidden">
         {/* Text section – clean background matching the image tones */}
-        <div className="bg-[#9ab0b9] px-6 pt-24 pb-8 text-center sm:px-10">
+        <div className="bg-[#8698a4] px-6 pt-24 pb-8 text-center sm:px-10">
           <div className="animate-[fadeInUp_0.8s_ease-out_0.1s_both]">
             {/* Badge */}
             <div className="mb-5">
@@ -35,22 +35,22 @@ export function HeroSection() {
             </h1>
 
             {/* Subtitle */}
-            <p className="mx-auto mt-4 max-w-sm text-sm leading-relaxed text-white/75 sm:text-base">
+            <p className="mx-auto mt-6 max-w-sm text-base leading-relaxed text-white/90 sm:text-lg">
               Vďaka skúsenostiam, odbornosti a individuálnemu prístupu vám
               pomáhame objaviť a zvýrazniť vašu prirodzenú krásu.
             </p>
 
             {/* CTAs */}
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/sluzby"
-                className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20"
+                className="inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/10 px-6 py-3 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 hover:border-white hover:scale-105"
               >
                 Naše služby
               </Link>
               <Link
                 href="/rezervacia"
-                className="group inline-flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-800/30 transition-all duration-200 hover:bg-brand-600"
+                className="group relative inline-flex items-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-base font-semibold text-white shadow-[0_0_20px_rgba(216,167,177,0.4)] transition-all duration-300 hover:bg-brand-600 hover:shadow-[0_0_30px_rgba(216,167,177,0.6)] hover:scale-105"
               >
                 Objednať sa
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -71,7 +71,7 @@ export function HeroSection() {
             sizes="100vw"
           />
           {/* Top fade for seamless blend with text section */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#9ab0b9] to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#8698a4] to-transparent" />
           {/* Bottom fade for seamless blend into next section */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white/80 to-transparent" />
         </div>
@@ -94,10 +94,8 @@ export function HeroSection() {
           />
 
           {/* Left gradient overlay – covers text area only, keeps team photo sharp */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#8a9eaa]/95 via-[#8a9eaa]/60 via-30% to-transparent to-45%" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#8698a4]/95 via-[#8698a4]/60 via-30% to-transparent to-45%" />
 
-          {/* Bottom gradient for depth + subtle fade to white */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white/70 to-transparent" />
 
           {/* Content */}
           <div className="relative z-10 flex min-h-[100dvh] items-center">
@@ -121,7 +119,7 @@ export function HeroSection() {
                 </h1>
 
                 {/* Subtitle */}
-                <p className="mt-6 max-w-md text-lg leading-relaxed text-white/80">
+                <p className="mt-8 max-w-md text-xl font-medium leading-relaxed text-white/90">
                   Vďaka skúsenostiam, odbornosti a individuálnemu prístupu vám
                   pomáhame objaviť a zvýrazniť vašu prirodzenú krásu.
                 </p>
@@ -130,13 +128,13 @@ export function HeroSection() {
                 <div className="mt-10 flex flex-wrap items-center gap-4">
                   <Link
                     href="/sluzby"
-                    className="inline-flex items-center gap-2 rounded-lg border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white shadow-lg backdrop-blur-sm transition-all duration-200 hover:border-white/50 hover:bg-white/20"
+                    className="inline-flex items-center gap-2 rounded-lg border border-white/40 bg-white/10 px-7 py-3.5 text-base font-semibold text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white/20 hover:-translate-y-1"
                   >
                     Naše služby
                   </Link>
                   <Link
                     href="/rezervacia"
-                    className="group inline-flex items-center gap-2 rounded-lg bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-800/30 transition-all duration-200 hover:bg-brand-600 hover:shadow-xl hover:shadow-brand-800/40"
+                    className="group relative inline-flex items-center gap-2 rounded-lg bg-brand-500 px-7 py-3.5 text-base font-semibold text-white shadow-[0_0_25px_rgba(216,167,177,0.4)] transition-all duration-300 hover:bg-brand-600 hover:shadow-[0_0_40px_rgba(216,167,177,0.6)] hover:-translate-y-1"
                   >
                     Objednať sa
                     <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -144,17 +142,17 @@ export function HeroSection() {
                 </div>
 
                 {/* Trust badges */}
-                <div className="mt-12 flex items-center gap-8 border-t border-white/20 pt-8">
+                <div className="mt-14 flex items-center gap-10 border-t border-white/30 pt-10">
                   {[
                     { value: '10+', label: 'Rokov praxe' },
                     { value: '5000+', label: 'Klientov' },
                     { value: '100%', label: 'Bezpečnosť' },
                   ].map((stat) => (
-                    <div key={stat.label} className="text-center">
-                      <div className="text-xl font-bold text-white">
+                    <div key={stat.label} className="text-center group">
+                      <div className="text-2xl font-bold text-white drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)] transition-all duration-300 group-hover:scale-110 group-hover:text-brand-200">
                         {stat.value}
                       </div>
-                      <div className="mt-0.5 text-sm text-white/60">
+                      <div className="mt-1.5 text-sm font-medium uppercase tracking-wider text-white/70">
                         {stat.label}
                       </div>
                     </div>

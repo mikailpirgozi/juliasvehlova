@@ -22,25 +22,26 @@ export function ServicesPageClient() {
   }, [mainCategories])
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-white via-brand-50/30 to-brand-100/20">
+    <div className="relative min-h-screen overflow-hidden bg-[#faf7f5]">
       {/* Global decorative background elements */}
-      <div className="pointer-events-none fixed right-10 top-20 h-64 w-64 rounded-full bg-brand-200/20 blur-3xl" />
-      <div className="pointer-events-none fixed bottom-20 left-10 h-80 w-80 rounded-full bg-[#CDA882]/15 blur-3xl" />
-      <div className="pointer-events-none fixed left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-100/15 blur-3xl" />
+      <div className="pointer-events-none fixed right-10 top-20 h-64 w-64 rounded-full bg-[#8698a4]/5 blur-3xl" />
+      <div className="pointer-events-none fixed bottom-20 left-10 h-80 w-80 rounded-full bg-brand-300/5 blur-3xl" />
+      <div className="pointer-events-none fixed left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8698a4]/5 blur-3xl" />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-50/50 via-white to-[#CDA882]/10 px-4 py-16">
-        <div className="pointer-events-none absolute left-10 top-10 h-32 w-32 rounded-full bg-brand-200/30 blur-2xl" />
-        <div className="pointer-events-none absolute bottom-10 right-10 h-40 w-40 rounded-full bg-[#CDA882]/20 blur-2xl" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#8698a4] to-[#718593] px-4 pb-16 pt-24 sm:pt-32">
+        <div className="pointer-events-none absolute left-10 top-10 h-64 w-64 rounded-full bg-brand-300/40 blur-3xl" />
+        <div className="pointer-events-none absolute right-10 bottom-10 h-80 w-80 rounded-full bg-brand-400/30 blur-3xl" />
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-brand-200/20 blur-3xl mix-blend-overlay" />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-wider text-[#CDA882]">
+          <p className="text-sm font-bold uppercase tracking-widest text-brand-200">
             Naše služby
           </p>
-          <h1 className="mt-2 font-serif text-3xl font-bold text-brand-700 sm:text-4xl lg:text-5xl">
-            Komplexná starostlivosť o vašu krásu
+          <h1 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
+            Komplexná starostlivosť o <span className="text-brand-200">vašu krásu</span>
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-            Ponúkame {totalServices}+ profesionálnych služieb v {mainCategories.length} kategóriách
+          <p className="mx-auto mt-6 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
+            Ponúkame <span className="text-white font-bold">{totalServices}+</span> profesionálnych služieb v <span className="text-white font-bold">{mainCategories.length}</span> kategóriách
             estetickej medicíny, kozmetiky a wellness s dôrazom na bezpečnosť a individuálny
             prístup.
           </p>
@@ -48,18 +49,18 @@ export function ServicesPageClient() {
       </section>
 
       {/* Search Section */}
-      <section className="relative z-10 border-b border-brand-100 bg-white/80 px-4 py-6 backdrop-blur-sm">
+      <section className="relative z-10 bg-white/60 px-4 py-8 backdrop-blur-md shadow-sm border-y border-white/40">
         <div className="mx-auto max-w-3xl">
-          <div className="relative">
+          <div className="relative group">
             <InputBase
               type="text"
               placeholder="Hľadať službu (napr. botox, líčenie, epilácia...)"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="py-3 pl-12 pr-12"
+              className="py-4 pl-14 pr-14 rounded-2xl bg-white/80 border-white/50 shadow-inner focus:bg-white transition-all text-lg"
             />
             <svg
-              className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+              className="pointer-events-none absolute left-5 top-1/2 h-6 w-6 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-500 transition-colors"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -74,9 +75,9 @@ export function ServicesPageClient() {
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand-500 transition-colors"
               >
-                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -201,18 +202,18 @@ export function ServicesPageClient() {
 
       {/* Main Categories Grid */}
       {!searchResults && (
-        <section className="relative z-10 px-4 py-16">
+        <section className="relative z-10 px-4 py-16 bg-gradient-to-b from-white to-[#faf7f5]/30">
           <div className="mx-auto max-w-7xl">
-            <div className="mb-10 text-center">
-              <h2 className="font-serif text-2xl font-bold text-gray-900 sm:text-3xl">
+            <div className="mb-12 text-center">
+              <h2 className="font-serif text-3xl font-bold text-gray-900 sm:text-4xl">
                 Kategórie služieb
               </h2>
-              <p className="mt-2 text-gray-600">
+              <p className="mt-4 text-lg text-gray-600">
                 Vyberte kategóriu pre zobrazenie dostupných služieb
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {mainCategories.map((category, index) => (
                 <CategoryCard key={category.id} category={category} priority={index < 3} />
               ))}
@@ -225,21 +226,23 @@ export function ServicesPageClient() {
       {!searchResults && <GiftVoucherSection />}
 
       {/* CTA Section */}
-      <section className="relative z-10 overflow-hidden bg-gradient-to-br from-brand-50/50 via-white to-[#CDA882]/10 px-4 py-16">
-        <div className="pointer-events-none absolute right-10 top-10 h-32 w-32 rounded-full bg-brand-200/30 blur-2xl" />
-        <div className="pointer-events-none absolute bottom-10 left-10 h-40 w-40 rounded-full bg-[#CDA882]/20 blur-2xl" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#8698a4] to-[#718593] px-4 py-16 sm:py-20">
+        <div className="pointer-events-none absolute right-10 top-10 h-64 w-64 rounded-full bg-brand-300/40 blur-3xl" />
+        <div className="pointer-events-none absolute left-10 bottom-10 h-80 w-80 rounded-full bg-brand-400/30 blur-3xl" />
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-brand-200/20 blur-3xl mix-blend-overlay" />
+        
         <div className="relative z-10 mx-auto max-w-3xl text-center">
-          <h2 className="font-serif text-2xl font-bold text-brand-700">
-            Nie ste si istí ktorú službu si vybrať?
+          <h2 className="font-serif text-2xl font-bold text-white sm:text-3xl">
+            Nie ste si istí ktorú <span className="text-brand-200">službu si vybrať?</span>
           </h2>
-          <p className="mt-4 text-gray-600">
+          <p className="mt-4 text-white/90 text-lg font-medium">
             Objednajte sa na konzultáciu a spoločne nájdeme ideálne riešenie pre vaše potreby.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <Button href="/rezervacia" color="primary" size="lg">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
+            <Button href="/rezervacia" color="primary" size="lg" className="shadow-[0_0_20px_rgba(216,167,177,0.4)] hover:scale-105 transition-all">
               Rezervovať konzultáciu
             </Button>
-            <Button href="/cennik" color="secondary" size="lg">
+            <Button href="/cennik" color="secondary" size="lg" className="bg-white/10 text-white border-white/30 hover:bg-white/20 hover:border-brand-300 backdrop-blur-md transition-all">
               Zobraziť cenník
             </Button>
           </div>

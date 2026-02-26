@@ -418,6 +418,7 @@
      LEGACY/PROJECT COLORS (for custom components)
      ======================================== */
 
+  --color-brand-blue: #8698a4;
   --color-accent-rose: #F8EEF0;
   --color-accent-gold: #CDA882;
   --color-accent-gold-dark: #B89566;
@@ -507,7 +508,7 @@
     pointer-events: none;
   }
 
-  [data-icon-only="true"] {
-    aspect-ratio: 1;
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 }

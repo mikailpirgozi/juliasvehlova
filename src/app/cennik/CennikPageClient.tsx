@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
 import type { FC } from 'react'
 import {
   Sun,
@@ -273,22 +273,23 @@ export function CennikPageClient() {
   }, [selectedItem])
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-white via-brand-50/30 to-brand-100/20">
+    <div className="relative min-h-screen overflow-hidden bg-[#faf7f5]">
       {/* Global decorative background elements */}
-      <div className="pointer-events-none fixed right-10 top-20 h-64 w-64 rounded-full bg-brand-200/20 blur-3xl" />
-      <div className="pointer-events-none fixed bottom-20 left-10 h-80 w-80 rounded-full bg-[#CDA882]/15 blur-3xl" />
-      <div className="pointer-events-none fixed left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-100/15 blur-3xl" />
+      <div className="pointer-events-none fixed right-10 top-20 h-64 w-64 rounded-full bg-[#8698a4]/5 blur-3xl" />
+      <div className="pointer-events-none fixed bottom-20 left-10 h-80 w-80 rounded-full bg-brand-300/5 blur-3xl" />
+      <div className="pointer-events-none fixed left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8698a4]/5 blur-3xl" />
 
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-brand-100 bg-gradient-to-br from-brand-50/50 via-white to-[#CDA882]/10 px-4 py-16">
-        <div className="pointer-events-none absolute left-10 top-10 h-32 w-32 rounded-full bg-brand-200/30 blur-2xl" />
-        <div className="pointer-events-none absolute bottom-10 right-10 h-40 w-40 rounded-full bg-[#CDA882]/20 blur-2xl" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#8698a4] to-[#718593] px-4 pb-16 pt-24 sm:pt-32">
+        <div className="pointer-events-none absolute left-10 top-10 h-64 w-64 rounded-full bg-brand-300/40 blur-3xl" />
+        <div className="pointer-events-none absolute right-10 bottom-10 h-80 w-80 rounded-full bg-brand-400/30 blur-3xl" />
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-brand-200/20 blur-3xl mix-blend-overlay" />
         <div className="relative z-10 mx-auto max-w-7xl">
-          <p className="text-sm font-semibold uppercase tracking-wider text-[#CDA882]">Cenník</p>
-          <h1 className="mt-2 font-serif text-3xl font-bold text-brand-700 sm:text-4xl">
-            Transparentné ceny
+          <p className="text-sm font-bold uppercase tracking-widest text-brand-200">Cenník</p>
+          <h1 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">
+            Transparentné <span className="text-brand-200">ceny</span>
           </h1>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-6 text-lg text-white/90 font-medium">
             Kompletný prehľad cien všetkých služieb v {mainCategories.length} kategóriách
           </p>
         </div>
@@ -308,7 +309,7 @@ export function CennikPageClient() {
                     placeholder="Hľadať službu..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pr-10"
+                    className="pr-10 rounded-xl bg-white/80 border-gray-200 shadow-inner focus:bg-white transition-all"
                   />
                   <svg
                     className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400"
@@ -460,9 +461,8 @@ export function CennikPageClient() {
                         {searchResults.map((item, index) => {
                           const isExpanded = expandedServices.has(item.service.id)
                           return (
-                            <>
+                            <React.Fragment key={`${item.service.id}-${index}`}>
                               <tr
-                                key={`${item.service.id}-${index}`}
                                 onClick={() => toggleService(item.service.id)}
                                 className={cx(
                                   'cursor-pointer transition-all',
@@ -529,7 +529,7 @@ export function CennikPageClient() {
                                   </td>
                                 </tr>
                               )}
-                            </>
+                            </React.Fragment>
                           )
                         })}
                       </tbody>
@@ -593,9 +593,8 @@ export function CennikPageClient() {
                       {displayServicesWithUrls.map(({ service, url }, index) => {
                         const isExpanded = expandedServices.has(service.id)
                         return (
-                          <>
+                          <React.Fragment key={`${service.id}-${index}`}>
                             <tr
-                              key={`${service.id}-${index}`}
                               onClick={() => toggleService(service.id)}
                               className={cx(
                                 'cursor-pointer transition-all',
@@ -658,7 +657,7 @@ export function CennikPageClient() {
                                 </td>
                               </tr>
                             )}
-                          </>
+                          </React.Fragment>
                         )
                       })}
                     </tbody>
@@ -686,19 +685,20 @@ export function CennikPageClient() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative z-10 overflow-hidden border-t border-brand-100 bg-gradient-to-br from-brand-50/50 via-white to-[#CDA882]/10 px-4 py-16">
-        <div className="pointer-events-none absolute right-10 top-10 h-32 w-32 rounded-full bg-brand-200/30 blur-2xl" />
-        <div className="pointer-events-none absolute bottom-10 left-10 h-40 w-40 rounded-full bg-[#CDA882]/20 blur-2xl" />
+      <section className="relative z-10 overflow-hidden bg-gradient-to-b from-[#8698a4] to-[#718593] px-4 py-16 sm:py-20">
+        <div className="pointer-events-none absolute right-10 top-10 h-64 w-64 rounded-full bg-brand-300/40 blur-3xl" />
+        <div className="pointer-events-none absolute left-10 bottom-10 h-80 w-80 rounded-full bg-brand-400/30 blur-3xl" />
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-brand-200/20 blur-3xl mix-blend-overlay" />
         <div className="relative z-10 mx-auto max-w-3xl text-center">
-          <h2 className="font-serif text-2xl font-bold text-brand-700">Máte otázky k cenám?</h2>
-          <p className="mt-4 text-gray-600">
+          <h2 className="font-serif text-2xl font-bold text-white sm:text-3xl">Máte otázky <span className="text-brand-200">k cenám?</span></h2>
+          <p className="mt-4 text-white/90 text-lg font-medium">
             Objednajte sa na konzultáciu a získajte individuálnu cenovú ponuku.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <Button href="/rezervacia" color="primary" size="lg">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
+            <Button href="/rezervacia" color="primary" size="lg" className="shadow-[0_0_20px_rgba(216,167,177,0.4)] hover:scale-105 transition-all">
               Rezervovať konzultáciu
             </Button>
-            <Button href="/sluzby" color="secondary" size="lg">
+            <Button href="/sluzby" color="secondary" size="lg" className="bg-white/10 text-white border-white/30 hover:bg-white/20 hover:border-brand-300 backdrop-blur-md transition-all">
               Zobraziť služby
             </Button>
           </div>

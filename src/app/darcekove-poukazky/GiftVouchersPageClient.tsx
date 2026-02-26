@@ -96,7 +96,7 @@ const faqItems = [
   {
     question: 'Ako si môžem poukážku objednať?',
     answer:
-      'Poukážku si môžete objednať telefonicky na +421 911 992 211, emailom na info@jec.sk alebo osobne v našej klinike v Malackách.',
+      'Poukážku si môžete objednať telefonicky na +421 911 992 211, emailom na juliaesteticclinic@gmail.com alebo osobne v našej klinike v Malackách.',
   },
   {
     question: 'Ako prebieha doručenie poukážky?',
@@ -111,17 +111,21 @@ export function GiftVouchersPageClient() {
       <main className="min-h-screen">
 
       {/* Hero Section */}
-      <section className="relative px-4 pb-16 pt-24 sm:pt-32">
-        <div className="mx-auto max-w-7xl">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#8698a4] to-[#718593] px-4 pb-16 pt-24 sm:pt-32">
+        <div className="pointer-events-none absolute left-10 top-10 h-64 w-64 rounded-full bg-brand-300/40 blur-3xl" />
+        <div className="pointer-events-none absolute right-10 bottom-10 h-80 w-80 rounded-full bg-brand-400/30 blur-3xl" />
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-brand-200/20 blur-3xl mix-blend-overlay" />
+        
+        <div className="mx-auto max-w-7xl relative z-10">
           <FadeIn>
             <div className="text-center">
-              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#CDA882] to-[#B8956E] shadow-lg">
-                <Gift01 className="h-8 w-8 text-white" />
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 shadow-[0_0_20px_rgba(216,167,177,0.3)] backdrop-blur-md border border-brand-300/30">
+                <Gift01 className="h-8 w-8 text-brand-200" />
               </div>
-              <h1 className="font-serif text-3xl font-bold text-brand-700 sm:text-4xl md:text-5xl">
-                Darčekové poukážky
+              <h1 className="font-serif text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+                Darčekové <span className="text-brand-200">poukážky</span>
               </h1>
-              <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600 sm:text-xl">
+              <p className="mx-auto mt-6 max-w-2xl text-lg font-medium text-white/90 sm:text-xl">
                 Darujte krásu, pohodu a sebadôveru. Naše darčekové poukážky sú ideálnym
                 prekvapením pre vašich blízkych ku každej príležitosti.
               </p>
@@ -138,41 +142,41 @@ export function GiftVouchersPageClient() {
               {voucherOptions.map((voucher) => (
                 <div
                   key={voucher.id}
-                  className={`group relative overflow-hidden rounded-2xl border-2 bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+                  className={`group relative overflow-hidden rounded-2xl border-2 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
                     voucher.popular
-                      ? 'border-[#CDA882] ring-2 ring-[#CDA882]/20'
-                      : 'border-gray-100 hover:border-[#CDA882]/50'
+                      ? 'border-brand-300 ring-4 ring-brand-500/10'
+                      : 'border-gray-100 hover:border-brand-200'
                   }`}
                 >
                   {/* Popular Badge */}
                   {voucher.popular && (
-                    <div className="absolute -right-8 top-4 rotate-45 bg-gradient-to-r from-[#CDA882] to-[#B8956E] px-10 py-1 text-xs font-semibold text-white shadow-sm">
+                    <div className="absolute -right-8 top-5 rotate-45 bg-brand-500 px-10 py-1 text-xs font-semibold text-white shadow-sm">
                       Obľúbené
                     </div>
                   )}
 
                   {/* Value */}
                   <div className="mb-3 text-center">
-                    <span className="font-serif text-4xl font-bold text-brand-700">
+                    <span className="font-serif text-4xl font-bold text-gray-900">
                       {voucher.value}
                     </span>
-                    <span className="ml-1 text-xl font-medium text-[#CDA882]">€</span>
+                    <span className="ml-1 text-xl font-medium text-brand-500">€</span>
                   </div>
 
                   {/* Description */}
                   <p className="mb-4 text-center text-sm text-gray-500">{voucher.description}</p>
 
                   {/* Decorative line */}
-                  <div className="mx-auto mb-4 h-px w-12 bg-gradient-to-r from-transparent via-[#CDA882]/50 to-transparent" />
+                  <div className="mx-auto mb-4 h-px w-12 bg-gradient-to-r from-transparent via-brand-300 to-transparent" />
 
                   {/* Features */}
                   <ul className="space-y-2 text-xs text-gray-600">
                     <li className="flex items-center gap-2">
-                      <Heart className="h-3.5 w-3.5 flex-shrink-0 text-[#CDA882]" />
+                      <Heart className="h-4 w-4 flex-shrink-0 text-brand-400" />
                       <span>Platnosť 3 mesiace</span>
                     </li>
                     <li className="flex items-center gap-2">
-                      <CreditCard02 className="h-3.5 w-3.5 flex-shrink-0 text-[#CDA882]" />
+                      <CreditCard02 className="h-4 w-4 flex-shrink-0 text-brand-400" />
                       <span>Všetky služby</span>
                     </li>
                   </ul>
@@ -181,7 +185,7 @@ export function GiftVouchersPageClient() {
             </div>
 
             {/* Custom Value Info */}
-            <div className="mb-8 rounded-xl border border-[#CDA882]/20 bg-gradient-to-r from-[#CDA882]/5 to-brand-50/50 p-6 text-center">
+            <div className="mb-8 rounded-xl border border-brand-200/50 bg-gradient-to-r from-brand-50 to-white p-6 text-center">
               <p className="text-gray-700">
                 <span className="font-semibold">Potrebujete inú hodnotu?</span> Poukážky vytvárame
                 aj na mieru podľa vašich požiadaviek.
@@ -206,7 +210,7 @@ export function GiftVouchersPageClient() {
         <div className="mx-auto max-w-7xl">
           <FadeIn>
             <div className="mb-12 text-center">
-              <h2 className="font-serif text-2xl font-bold text-brand-700 sm:text-3xl">
+              <h2 className="font-serif text-2xl font-bold text-gray-900 sm:text-3xl">
                 Ako to funguje?
               </h2>
               <p className="mx-auto mt-3 max-w-2xl text-gray-600">
@@ -217,7 +221,7 @@ export function GiftVouchersPageClient() {
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
               {howItWorks.map((item) => (
                 <div key={item.step} className="text-center">
-                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#CDA882] to-[#B8956E] font-serif text-xl font-bold text-white shadow-lg">
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-500 shadow-sm">
                     {item.step}
                   </div>
                   <h3 className="mb-2 font-semibold text-gray-900">{item.title}</h3>
@@ -230,34 +234,40 @@ export function GiftVouchersPageClient() {
       </section>
 
       {/* Benefits Section */}
-      <section className="bg-gradient-to-br from-[#CDA882]/5 via-white to-brand-50/20 px-4 py-16">
+      <section className="bg-gradient-to-br from-[#faf7f5] via-white to-brand-50/50 px-4 py-16">
         <div className="mx-auto max-w-7xl">
           <FadeIn>
             <div className="mb-12 text-center">
-              <h2 className="font-serif text-2xl font-bold text-brand-700 sm:text-3xl">
+              <h2 className="font-serif text-2xl font-bold text-gray-900 sm:text-3xl">
                 Prečo darčeková poukážka?
               </h2>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              <div className="rounded-xl bg-white p-6 shadow-sm">
-                <CheckCircle className="mb-3 h-8 w-8 text-[#CDA882]" />
+              <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
+                  <CheckCircle className="h-6 w-6" />
+                </div>
                 <h3 className="mb-2 font-semibold text-gray-900">Univerzálny darček</h3>
                 <p className="text-sm text-gray-600">
                   Obdarovaný si môže vybrať presne tú službu, ktorú chce
                 </p>
               </div>
 
-              <div className="rounded-xl bg-white p-6 shadow-sm">
-                <Heart className="mb-3 h-8 w-8 text-[#CDA882]" />
+              <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
+                  <Heart className="h-6 w-6" />
+                </div>
                 <h3 className="mb-2 font-semibold text-gray-900">Osobný prístup</h3>
                 <p className="text-sm text-gray-600">
                   Každá poukážka je doručená v elegantnom balení
                 </p>
               </div>
 
-              <div className="rounded-xl bg-white p-6 shadow-sm">
-                <CreditCard02 className="mb-3 h-8 w-8 text-[#CDA882]" />
+              <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
+                  <CreditCard02 className="h-6 w-6" />
+                </div>
                 <h3 className="mb-2 font-semibold text-gray-900">Flexibilné použitie</h3>
                 <p className="text-sm text-gray-600">
                   Platná na všetky služby estetickej medicíny a kozmetiky
@@ -273,7 +283,7 @@ export function GiftVouchersPageClient() {
         <div className="mx-auto max-w-3xl">
           <FadeIn>
             <div className="mb-12 text-center">
-              <h2 className="font-serif text-2xl font-bold text-brand-700 sm:text-3xl">
+              <h2 className="font-serif text-2xl font-bold text-gray-900 sm:text-3xl">
                 Často kladené otázky
               </h2>
             </div>
@@ -291,34 +301,35 @@ export function GiftVouchersPageClient() {
       </section>
 
       {/* Contact CTA Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#CDA882]/10 via-white to-brand-50/30 px-4 py-16">
-        <div className="pointer-events-none absolute right-10 top-10 h-32 w-32 rounded-full bg-brand-200/30 blur-2xl" />
-        <div className="pointer-events-none absolute bottom-10 left-10 h-40 w-40 rounded-full bg-[#CDA882]/20 blur-2xl" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#8698a4] to-[#718593] px-4 py-16">
+        <div className="pointer-events-none absolute right-10 top-10 h-64 w-64 rounded-full bg-brand-300/40 blur-3xl" />
+        <div className="pointer-events-none absolute left-10 bottom-10 h-80 w-80 rounded-full bg-brand-400/30 blur-3xl" />
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-brand-200/20 blur-3xl mix-blend-overlay" />
 
         <div className="relative z-10 mx-auto max-w-3xl text-center">
-          <h2 className="font-serif text-2xl font-bold text-brand-700 sm:text-3xl">
-            Máte otázky k darčekovým poukážkam?
+          <h2 className="font-serif text-2xl font-bold text-white sm:text-3xl">
+            Máte otázky <span className="text-brand-200">k darčekovým poukážkam?</span>
           </h2>
-          <p className="mt-4 text-gray-600">
+          <p className="mt-4 text-white/90 text-lg font-medium">
             Radi vám poradíme s výberom darčekovej poukážky alebo vytvoríme poukážku presne podľa
             vašich predstáv.
           </p>
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Button href="tel:+421911992211" color="primary" size="lg" iconLeading={Phone}>
+            <Button href="tel:+421911992211" color="primary" size="lg" iconLeading={Phone} className="shadow-[0_0_20px_rgba(216,167,177,0.4)] hover:scale-105 transition-all">
               +421 911 992 211
             </Button>
-            <Button href="mailto:info@jec.sk" color="secondary" size="lg" iconLeading={Mail01}>
-              info@jec.sk
+            <Button href="mailto:juliaesteticclinic@gmail.com" color="secondary" size="lg" iconLeading={Mail01} className="bg-white/10 text-white border-white/30 hover:bg-white/20 hover:border-brand-300 backdrop-blur-md transition-all">
+              juliaesteticclinic@gmail.com
             </Button>
           </div>
 
-          <div className="mt-8 flex items-center justify-center gap-2 text-sm text-gray-600">
-            <MarkerPin01 className="h-4 w-4 text-[#CDA882]" />
+          <div className="mt-8 flex items-center justify-center gap-2 text-sm font-medium text-brand-100">
+            <MarkerPin01 className="h-5 w-5 text-brand-300" />
             <span>Javorová 2, 901 01 Malacky</span>
           </div>
 
-          <p className="mt-6 text-sm text-gray-500">
+          <p className="mt-6 text-sm font-medium text-white/70">
             Poukážky doručujeme osobne alebo poštou v elegantnom balení.
             <br />
             Možnosť vyzdvihnutia v salóne alebo expresného doručenia v Malackách a okolí.

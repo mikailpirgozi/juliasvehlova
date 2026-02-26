@@ -66,12 +66,12 @@ function VideoCard({ post }: { post: InstagramPost }) {
 
   useEffect(() => {
     if (!isMobile) return
-    isVisible ? playVideo() : pauseVideo()
+    if (isVisible) playVideo(); else pauseVideo()
   }, [isMobile, isVisible, playVideo, pauseVideo])
 
   useEffect(() => {
     if (isMobile) return
-    isHovered && isVisible ? playVideo() : pauseVideo()
+    if (isHovered && isVisible) playVideo(); else pauseVideo()
   }, [isMobile, isHovered, isVisible, playVideo, pauseVideo])
 
   return (
@@ -107,6 +107,7 @@ function VideoCard({ post }: { post: InstagramPost }) {
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
       {/* Instagram icon on hover */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-brand-900/30 mix-blend-overlay" />
       <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
         <svg
           className="h-7 w-7 text-white drop-shadow-lg md:h-8 md:w-8"
@@ -129,7 +130,7 @@ function VideoCard({ post }: { post: InstagramPost }) {
 
 export function InstagramSection() {
   return (
-    <section className="relative bg-white py-12 sm:py-16">
+    <section className="relative bg-gradient-to-b from-white to-[#faf7f5]/30 py-16 sm:py-20">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         {/* Compact grid - square cells, fits on one screen */}
         <div className="relative grid grid-cols-2 gap-2 sm:gap-2.5 md:grid-cols-4 md:gap-3">
@@ -145,20 +146,20 @@ export function InstagramSection() {
               rel="noopener noreferrer"
               className="pointer-events-auto group relative"
             >
-              <div className="absolute inset-0 -mx-2 -my-1.5 rounded-lg bg-black/70 backdrop-blur-sm md:-mx-5 md:-my-3 md:rounded-xl md:bg-gradient-to-br md:from-black/75 md:via-black/85 md:to-black/75 md:backdrop-blur-md" />
-              <div className="relative flex items-center gap-1.5 px-2 py-1.5 md:flex-col md:gap-1.5 md:px-5 md:py-3 md:text-center">
+              <div className="absolute inset-0 -mx-2 -my-1.5 rounded-lg bg-black/70 backdrop-blur-sm md:-mx-5 md:-my-3 md:rounded-xl md:bg-gradient-to-br md:from-black/80 md:via-black/90 md:to-black/80 md:backdrop-blur-md shadow-2xl ring-1 ring-white/10" />
+              <div className="relative flex items-center gap-1.5 px-2 py-1.5 md:flex-col md:gap-2 md:px-6 md:py-4 md:text-center animate-pulse-slow hover:animate-none">
                 <svg
-                  className="h-4 w-4 shrink-0 text-white transition-transform duration-300 group-hover:scale-110 md:h-6 md:w-6"
+                  className="h-4 w-4 shrink-0 text-brand-300 transition-transform duration-300 group-hover:scale-110 md:h-8 md:w-8"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
                   <path d={INSTAGRAM_ICON_PATH} />
                 </svg>
                 <div className="whitespace-nowrap">
-                  <div className="hidden text-[9px] font-medium tracking-[0.2em] text-white/80 uppercase md:block">
+                  <div className="hidden text-[10px] font-bold tracking-[0.25em] text-white/80 uppercase md:block">
                     Sledujte nás na instagrame
                   </div>
-                  <div className="bg-gradient-to-r from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] bg-clip-text text-xs font-semibold text-transparent md:mt-0.5 md:text-sm lg:text-base">
+                  <div className="bg-gradient-to-r from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] bg-clip-text text-sm font-bold text-transparent md:mt-1 md:text-lg lg:text-xl">
                     @{INSTAGRAM_HANDLE}
                   </div>
                 </div>

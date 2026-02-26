@@ -20,9 +20,9 @@ export function ServicesSection() {
     >
 
       <div className="relative z-10 mx-auto max-w-6xl">
-        <FadeIn>
+        <FadeIn delay={0.2}>
           <div className="mb-16 text-center">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#CDA882]">
+            <p className="mb-4 text-sm font-bold uppercase tracking-widest text-[#CDA882]">
               Naše služby
             </p>
             <h2 className="mb-4 font-serif text-4xl font-bold text-gray-900 sm:text-5xl">
@@ -37,7 +37,7 @@ export function ServicesSection() {
 
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           {displayCategories.map((category, index) => (
-            <FadeIn key={category.id} delay={index * 0.08}>
+            <FadeIn key={category.id} delay={0.3 + index * 0.1}>
               <Link
                 href={`/sluzby/${category.slug}`}
                 className="group relative block aspect-[4/5] overflow-hidden rounded-xl"
@@ -51,12 +51,17 @@ export function ServicesSection() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 
+                <div className="absolute inset-0 bg-brand-900/40 opacity-0 transition-opacity duration-500 group-hover:opacity-100 mix-blend-multiply z-10" />
+                
+                {/* Glass border effect that appears on hover */}
+                <div className="absolute inset-0 border-2 border-transparent bg-gradient-to-br from-white/30 to-transparent opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:border-white/40 rounded-xl z-20" />
+                
                 {/* Subtle dark gradient at bottom for text readability */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
 
                 {/* Category title */}
-                <div className="absolute inset-x-0 bottom-0 p-4">
-                  <h3 className="text-sm font-semibold tracking-wide text-white sm:text-base">
+                <div className="absolute inset-x-0 bottom-0 p-5 z-30 transform transition-transform duration-500 group-hover:-translate-y-1">
+                  <h3 className="text-base font-bold tracking-wide text-white sm:text-lg drop-shadow-md">
                     {category.title}
                   </h3>
                 </div>
@@ -65,7 +70,7 @@ export function ServicesSection() {
           ))}
         </div>
 
-        <FadeIn delay={0.6}>
+        <FadeIn delay={0.8}>
           <div className="mt-16 text-center">
             <Button href="/sluzby" color="primary" size="lg">
               Všetky služby ({allCategories.length} kategórií)

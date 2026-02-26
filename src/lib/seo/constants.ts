@@ -17,7 +17,7 @@ export const BASE_URL = 'https://juliaesteticclinic.sk'
 
 export const CONTACT = {
   phone: '+421 911 992 211',
-  email: 'info@jec.sk',
+  email: 'juliaesteticclinic@gmail.com',
   address: {
     street: 'Javorová 2',
     city: 'Malacky',

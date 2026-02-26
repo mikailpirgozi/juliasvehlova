@@ -6,7 +6,7 @@ export function ContactSection() {
   const contactInfo = [
     {
       icon: (
-        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
         </svg>
       ),
@@ -17,18 +17,18 @@ export function ContactSection() {
     },
     {
       icon: (
-        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       ),
       title: 'Email',
-      primary: 'info@jec.sk',
+      primary: 'juliaesteticclinic@gmail.com',
       secondary: 'Odpovieme do 24 hodín',
-      href: 'mailto:info@jec.sk',
+      href: 'mailto:juliaesteticclinic@gmail.com',
     },
     {
       icon: (
-        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
@@ -41,86 +41,86 @@ export function ContactSection() {
   ]
 
   return (
-    <section id="kontakt" className="bg-white py-16 sm:py-24">
+    <section id="contact" className="bg-gradient-to-b from-[#718593] to-[#5c6e7b] py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <FadeIn>
+        <FadeIn delay={0.2}>
           <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-wider text-[#CDA882]">Kontakt</p>
-            <h2 className="mt-2 font-serif text-3xl font-bold text-gray-900 sm:text-4xl">
+            <p className="text-xs font-semibold uppercase tracking-widest text-brand-300">Kontakt</p>
+            <h2 className="mt-2 font-serif text-3xl font-bold text-white sm:text-4xl">
               Napíšte nám
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-500">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-white/80">
               Máte otázku alebo chcete rezervovať termín? Sme tu pre vás a radi vám pomôžeme
             </p>
           </div>
         </FadeIn>
 
         <div className="mt-12 mx-auto max-w-3xl">
-          <FadeIn delay={0.1}>
+          <FadeIn delay={0.4}>
             {/* Contact Cards — horizontal row on desktop */}
             <div className="grid gap-4 sm:grid-cols-3">
               {contactInfo.map((info, index) => (
                 <div
                   key={index}
-                  className="rounded-2xl border border-gray-100 bg-gray-50/50 p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                  className="rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-white/20 hover:shadow-xl"
                 >
-                  <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-white/10 text-white shadow-inner border border-white/20">
                     {info.icon}
                   </div>
-                  <h4 className="mt-3 text-sm font-medium text-gray-500">{info.title}</h4>
+                  <h4 className="mt-3 text-sm font-medium text-brand-200">{info.title}</h4>
                   {info.href ? (
                     <a
                       href={info.href}
-                      className="mt-1 block text-sm font-semibold text-gray-900 hover:text-brand-600 transition-colors"
+                      className="mt-1 block text-sm font-semibold text-white hover:text-brand-300 transition-colors"
                     >
                       {info.primary}
                     </a>
                   ) : (
-                    <p className="mt-1 text-sm font-semibold text-gray-900">{info.primary}</p>
+                    <p className="mt-1 text-sm font-semibold text-white">{info.primary}</p>
                   )}
-                  <p className="mt-0.5 text-xs text-gray-400">{info.secondary}</p>
+                  <p className="mt-0.5 text-xs text-white/60">{info.secondary}</p>
                 </div>
               ))}
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.2}>
+          <FadeIn delay={0.6}>
             {/* Opening Hours */}
-            <div className="mt-8 rounded-2xl border border-gray-100 bg-gray-50/50 p-6">
-              <h4 className="text-lg font-semibold text-gray-900">
+            <div className="mt-8 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md p-6">
+              <h4 className="text-xl font-serif font-semibold text-white">
                 Otváracie hodiny
               </h4>
-              <div className="mt-4 space-y-2 text-sm">
-                <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-500">Pondelok - Piatok</span>
-                  <span className="font-medium text-gray-900">9:00 - 18:00</span>
+              <div className="mt-6 space-y-3 text-sm">
+                <div className="flex justify-between py-2 border-b border-white/10">
+                  <span className="text-white/80">Pondelok - Piatok</span>
+                  <span className="font-medium text-white">9:00 - 18:00</span>
                 </div>
-                <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-500">Sobota</span>
-                  <span className="font-medium text-gray-900">9:00 - 14:00</span>
+                <div className="flex justify-between py-2 border-b border-white/10">
+                  <span className="text-white/80">Sobota</span>
+                  <span className="font-medium text-white">9:00 - 14:00</span>
                 </div>
                 <div className="flex justify-between py-2">
-                  <span className="text-gray-500">Nedeľa</span>
-                  <span className="font-medium text-gray-400">Zatvorené</span>
+                  <span className="text-white/80">Nedeľa</span>
+                  <span className="font-medium text-white/50 uppercase text-xs tracking-wider">Zatvorené</span>
                 </div>
               </div>
-              <div className="mt-4 rounded-xl bg-brand-50/50 p-3">
-                <p className="text-xs text-gray-500">
+              <div className="mt-4 rounded-xl bg-brand-500/10 p-3">
+                <p className="text-xs text-brand-200">
                   Termíny len po objednaní vopred
                 </p>
               </div>
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.3}>
+          <FadeIn delay={0.8}>
             {/* Social */}
-            <div className="mt-8 rounded-2xl bg-gray-900 p-6 text-center">
-              <h4 className="text-lg font-semibold text-white">Sledujte nás</h4>
-              <p className="mt-1 text-sm text-gray-400">
+            <div className="mt-8 rounded-2xl bg-white/5 backdrop-blur-md p-8 text-center shadow-xl border border-white/20">
+              <h4 className="text-xl font-serif font-semibold text-white">Sledujte nás</h4>
+              <p className="mt-2 text-base text-white/80">
                 Inšpirujte sa našimi výsledkami a zostaňte v obraze o novinkách
               </p>
-              <div className="mt-4 flex justify-center gap-3">
+              <div className="mt-4 flex justify-center gap-4">
                 {[
                   { label: 'Instagram', href: 'https://www.instagram.com/juliaesteticclinic' },
                   { label: 'Facebook', href: 'https://www.facebook.com/people/Julia-Estetic-Clinic/61560460323854/' },
@@ -130,7 +130,7 @@ export function ContactSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-full border border-gray-700 bg-gray-800 px-5 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-gray-700"
+                    className="group flex items-center justify-center rounded-full bg-brand-500 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand-800/30 transition-all duration-300 hover:bg-brand-600 hover:shadow-xl hover:shadow-brand-800/40 hover:-translate-y-1"
                     aria-label={social.label}
                   >
                     {social.label}

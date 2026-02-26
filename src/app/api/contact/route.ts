@@ -62,7 +62,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     // Send email to clinic
     const { error } = await resend.emails.send({
-      from: 'Julia Clinic <noreply@jec.sk>',
+      from: 'Julia Clinic <juliaesteticclinic@gmail.com>',
       to: env.CONTACT_EMAIL,
       replyTo: sanitizedData.email,
       subject: `Nová správa z webu - ${sanitizedData.name}`,
@@ -95,7 +95,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     // Send auto-reply to customer
     await resend.emails.send({
-      from: 'Julia Clinic <noreply@jec.sk>',
+      from: 'Julia Clinic <juliaesteticclinic@gmail.com>',
       to: sanitizedData.email,
       subject: 'Ďakujeme za vašu správu - Julia Clinic',
       html: `
@@ -116,7 +116,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           <div style="color: #888; font-size: 14px;">
             <p><strong>Julia Estetic Clinic</strong></p>
             <p>📞 +421 911 992 211</p>
-            <p>📧 info@jec.sk</p>
+            <p>📧 juliaesteticclinic@gmail.com</p>
             <p>📍 Javorová 2, 901 01 Malacky</p>
           </div>
         </div>

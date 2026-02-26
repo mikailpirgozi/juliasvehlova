@@ -20,7 +20,7 @@ export function AboutSection() {
   ]
 
   return (
-    <section id="about" className="relative overflow-hidden bg-gray-50 py-16 sm:py-24">
+    <section id="about" className="relative overflow-hidden bg-white py-16 sm:py-24">
       
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-12 lg:items-center">
@@ -28,13 +28,13 @@ export function AboutSection() {
           <FadeIn direction="left" className="lg:col-span-5">
             <div className="relative mx-auto max-w-sm lg:max-w-none">
               {/* Decorative elements */}
-              <div className="absolute -top-4 -left-4 h-full w-full rounded-2xl bg-gradient-to-br from-[#9ab0b9]/60 to-[#8a9eaa]/50" />
-              <div className="absolute -bottom-4 -right-4 h-full w-full rounded-2xl border-2 border-[#9ab0b9]/50" />
+              <div className="absolute -top-6 -left-6 h-full w-full rounded-[2rem] bg-gradient-to-br from-[#8698a4]/60 to-brand-300/40 transform -rotate-3 transition-transform duration-700 hover:rotate-0" />
+              <div className="absolute -bottom-6 -right-6 h-full w-full rounded-[2rem] border-2 border-[#8698a4]/30 transform rotate-3 transition-transform duration-700 hover:rotate-0" />
               
               {/* Image container */}
-              <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] shadow-2xl">
                 <Image
-                  src="/images/services/doctor-portrait.jpg"
+                  src="/images/services/doctor-portrait.webp"
                   alt="MUDr. Julia Svehlová - Estetická medicína"
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"
@@ -45,7 +45,7 @@ export function AboutSection() {
                 <div 
                   className="pointer-events-none absolute inset-0"
                   style={{
-                    background: 'linear-gradient(to top, rgba(154, 176, 185, 0.65) 0%, rgba(154, 176, 185, 0.3) 25%, rgba(154, 176, 185, 0.1) 45%, transparent 65%)',
+                    background: 'linear-gradient(to top, rgba(134, 152, 164, 0.65) 0%, rgba(134, 152, 164, 0.3) 25%, rgba(134, 152, 164, 0.1) 45%, transparent 65%)',
                   }}
                 />
               </div>
@@ -59,11 +59,11 @@ export function AboutSection() {
           </FadeIn>
 
           {/* Right - Text Content */}
-          <FadeIn direction="right" delay={0.2} className="mt-12 lg:mt-0 lg:col-span-7">
+          <FadeIn direction="right" delay={0.3} className="mt-12 lg:mt-0 lg:col-span-7">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wider text-[#CDA882]">O nás</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-[#CDA882]">O nás</p>
               <h2 className="mt-2 font-serif text-3xl font-bold text-gray-900 sm:text-4xl">
-                MUDr. Julia Svehlová
+                Julia Svehlová
               </h2>
               <div className="mt-6 space-y-4 text-gray-600">
                 <p>
@@ -79,14 +79,15 @@ export function AboutSection() {
               </div>
 
               {/* Highlight box */}
-              <div className="mt-6 rounded-xl border-l-4 border-[#CDA882] bg-gradient-to-r from-brand-50 to-white p-4 shadow-sm">
-                <p className="font-medium text-brand-800">
-                  Vaša spokojnosť a bezpečnosť sú mojou prioritou.
+              <div className="relative mt-10 rounded-2xl bg-gradient-to-r from-[#faf7f5] to-white p-8 shadow-lg border border-brand-100 overflow-hidden">
+                <div className="absolute -left-4 -top-4 text-brand-200/40 text-[8rem] font-serif leading-none select-none">&ldquo;</div>
+                <p className="relative font-serif text-xl italic text-gray-800 leading-relaxed z-10 text-center">
+                  Vaša spokojnosť a bezpečnosť sú mojou absolútnou prioritou.
                 </p>
               </div>
 
               <div className="mt-8">
-                <Button href="/o-nas" color="secondary" size="md">
+                <Button href="/o-nas" color="primary" size="md">
                   Zistiť viac o mne
                 </Button>
               </div>
@@ -96,7 +97,7 @@ export function AboutSection() {
         </div>
 
         {/* Stats & Certificates - Below */}
-        <FadeIn delay={0.4}>
+        <FadeIn delay={0.6}>
           <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((stat, index) => (
               <div
@@ -111,7 +112,7 @@ export function AboutSection() {
         </FadeIn>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          <FadeIn delay={0.5}>
+          <FadeIn delay={0.8}>
             {/* Certificates */}
             <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900">
@@ -130,7 +131,7 @@ export function AboutSection() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.6}>
+          <FadeIn delay={1.0}>
             {/* Trust Badge */}
             <div className="flex flex-col justify-center rounded-2xl bg-gradient-to-r from-brand-600 to-brand-500 p-8 text-center text-white shadow-lg">
               <p className="text-2xl font-semibold">Dôveryhodný odborník</p>
