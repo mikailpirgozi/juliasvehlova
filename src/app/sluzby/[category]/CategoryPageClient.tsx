@@ -44,75 +44,35 @@ interface CategoryPageClientProps {
   category: MainCategory
 }
 
-// Service Card Component for rich content services
+// Service Card Component — consistent with SubcategoryCard style
 function ServiceCard({ service, categorySlug, index = 1 }: { service: SimpleService; categorySlug: string; index?: number }) {
   const serviceImage = getServiceImage(categorySlug, index)
 
   return (
     <Link
       href={`/sluzby/${categorySlug}/${service.slug}`}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-brand-100 bg-white transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
+      className="group relative block aspect-[3/2] overflow-hidden rounded-2xl"
     >
-      {/* Image */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden">
-        <Image
-          src={serviceImage}
-          alt={service.name}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-        {/* Brand vignette */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(to top, rgba(216, 167, 177, 0.45) 0%, rgba(216, 167, 177, 0.15) 30%, transparent 55%)',
-          }}
-        />
-      </div>
-
-      {/* Content */}
-      <div
-        className="relative flex flex-1 flex-col justify-between p-5"
-        style={{
-          boxShadow: 'inset 0 40px 50px -15px rgba(216, 167, 177, 0.5), inset 0 20px 25px -5px rgba(216, 167, 177, 0.3)',
-        }}
-      >
-        <div>
-          <div className="flex items-start justify-between gap-2">
-            <h3 className="font-serif text-xl font-bold text-brand-800 transition-colors duration-300 group-hover:text-brand-600">
-              {service.name}
-            </h3>
-            {service.popular && (
-              <span className="mt-0.5 flex shrink-0 items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700">
-                <Star01 className="h-3 w-3" /> Obľúbené
-              </span>
-            )}
-          </div>
-
-          {service.shortDescription && (
-            <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-gray-500">
-              {service.shortDescription}
-            </p>
-          )}
-
-          {/* Price & Duration */}
-          <div className="mt-3 flex items-center gap-3 border-t border-brand-100/60 pt-3">
-            <span className="text-lg font-bold text-brand-700">{service.price}</span>
-            <span className="flex items-center gap-1 text-xs text-gray-400">
-              <Clock className="h-3.5 w-3.5" />
-              {service.duration}
-            </span>
-          </div>
-        </div>
-
-        <div className="mt-4 flex items-center justify-end border-t border-brand-100 pt-4">
-          <span className="flex items-center gap-1.5 text-sm font-semibold text-[#CDA882] transition-all duration-300 group-hover:gap-2.5">
-            Zobraziť
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+      <Image
+        src={serviceImage}
+        alt={service.name}
+        fill
+        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+        className="object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 p-3.5">
+        {service.popular && (
+          <span className="mb-1.5 inline-flex items-center gap-1 rounded-full bg-amber-400/90 px-2 py-0.5 text-xs font-semibold text-white">
+            <Star01 className="h-3 w-3" /> Obľúbené
           </span>
-        </div>
+        )}
+        <h3 className="text-sm font-semibold leading-snug tracking-wide text-white drop-shadow-sm">
+          {service.name}
+        </h3>
+        <p className="mt-0.5 text-xs text-white/75">
+          {service.price} · {service.duration}
+        </p>
       </div>
     </Link>
   )
@@ -196,12 +156,13 @@ export function CategoryPageClient({ category }: CategoryPageClientProps) {
                       Vyberte si kategóriu
                     </h2>
                   </div>
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                <div className={category.slug === 'piercing' ? 'flex flex-col gap-2' : 'grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4'}>
                   {category.subcategories!.map((subcategory) => (
                     <SubcategoryCard
                       key={subcategory.id}
                       subcategory={subcategory}
                       categorySlug={category.slug}
+                      noImage={category.slug === 'piercing'}
                     />
                   ))}
                 </div>
@@ -214,15 +175,12 @@ export function CategoryPageClient({ category }: CategoryPageClientProps) {
                 <div className="mb-8">
                   {hasRichServices ? (
                     <>
-                      <div className="mb-12 text-center">
-                        <h2 className="font-serif text-3xl font-bold text-gray-900 sm:text-4xl">
-                          Naše služby
+                      <div className="mb-6 text-center">
+                        <h2 className="font-serif text-xl font-bold text-gray-900 sm:text-2xl">
+                          Vyberte si službu
                         </h2>
-                        <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-500">
-                          Vyberte si službu a dozviete sa viac o tom, ako vám môžeme pomôcť.
-                        </p>
                       </div>
-                      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
                         {category.services.map((service, index) => (
                           <ServiceCard
                             key={service.id}
