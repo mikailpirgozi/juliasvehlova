@@ -15,8 +15,6 @@ import {
   Brush01,
   Award01,
   ArrowLeft,
-  ArrowRight,
-  Clock,
   Star01,
 } from '@untitledui/icons'
 import { Button } from '@/components/base/buttons/button'
