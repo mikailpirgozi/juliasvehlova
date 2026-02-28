@@ -10,7 +10,7 @@ export default function TermsPage() {
   const lastUpdated = '1. november 2025'
 
   return (
-    <div className="bg-white py-16 sm:py-24">
+    <div className="bg-white pb-16 pt-24 sm:pb-24 sm:pt-36">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12">

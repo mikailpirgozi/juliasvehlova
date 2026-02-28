@@ -19,8 +19,7 @@ export function HeroSection() {
           <div className="animate-[fadeInUp_0.8s_ease-out_0.1s_both]">
             {/* Badge */}
             <div className="mb-5 flex flex-col items-center gap-2">
-              <span className="inline-flex items-center gap-2.5 text-xs font-semibold tracking-[0.2em] text-white/80 uppercase">
-                <span className="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-white/70" />
+              <span className="inline-flex items-center text-xs font-semibold tracking-[0.2em] text-white/80 uppercase">
                 Julia Estetic Clinic
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-3 py-1 text-[0.65rem] font-semibold tracking-widest text-white/90 uppercase backdrop-blur-sm">
@@ -111,8 +110,7 @@ export function HeroSection() {
               <div className="max-w-xl animate-[fadeInUp_0.8s_ease-out_0.1s_both]">
                 {/* Badge */}
                 <div className="mb-8 flex flex-col gap-3">
-                  <span className="inline-flex items-center gap-2.5 text-sm font-semibold tracking-[0.2em] text-white/90 uppercase">
-                    <span className="h-px w-6 bg-white/60" />
+                  <span className="inline-flex items-center text-sm font-semibold tracking-[0.2em] text-white/90 uppercase">
                     Julia Estetic Clinic
                   </span>
                   <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-widest text-white/90 uppercase backdrop-blur-sm">

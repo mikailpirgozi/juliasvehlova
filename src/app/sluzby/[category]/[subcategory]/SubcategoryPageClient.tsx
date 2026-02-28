@@ -16,7 +16,7 @@ export function SubcategoryPageClient({ category, subcategory }: SubcategoryPage
     <div className="relative min-h-screen overflow-hidden bg-white">
 
       {/* ─── HERO — modrý banner ──────────────────────────────── */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#8698a4] to-[#718593]">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#8698a4] to-[#718593] pt-[72px]">
         {/* subtle texture blobs */}
         <div className="pointer-events-none absolute -top-20 -right-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-10 -left-10 h-56 w-56 rounded-full bg-white/5 blur-3xl" />

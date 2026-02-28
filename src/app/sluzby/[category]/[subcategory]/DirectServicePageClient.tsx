@@ -41,7 +41,7 @@ export function DirectServicePageClient({ category, service }: DirectServicePage
       <div className="pointer-events-none fixed inset-0 bg-gradient-to-b from-brand-50/20 via-white to-brand-50/10" />
 
       {/* Breadcrumb Navigation */}
-      <nav className="relative z-10 border-b border-gray-100 bg-white/80 px-4 py-3 backdrop-blur-md sm:px-6 lg:px-8">
+      <nav className="relative z-10 border-b border-gray-100 bg-white/80 px-4 pb-3 pt-[calc(72px+0.75rem)] backdrop-blur-md sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <ol className="flex flex-wrap items-center gap-2 text-sm">
             <li>

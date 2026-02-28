@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import type { FC } from 'react'
@@ -130,24 +130,21 @@ const iconColorClasses: Record<CategoryIconKey, { bg: string; bgHover: string; t
 
 export function Header() {
   const router = useRouter()
-  const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
 
-  const isHomePage = pathname === '/'
-  const isTransparent = isHomePage && !isScrolled && !isMobileMenuOpen
+  const isTransparent = !isScrolled && !isMobileMenuOpen
 
   useEffect(() => {
-    if (!isHomePage) return
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [isHomePage])
+  }, [])
 
   const mainCategories = getAllMainCategories()
   const totalCategories = mainCategories.length
@@ -167,9 +164,7 @@ export function Header() {
 
   return (
     <header
-      className={`top-0 z-50 w-full transition-all duration-300 ${
-        isHomePage ? 'fixed' : 'sticky'
-      } ${
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         isTransparent
           ? 'border-b border-transparent bg-transparent'
           : 'border-b border-gray-200 bg-white/95 backdrop-blur-sm'
@@ -195,7 +190,7 @@ export function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
                   isTransparent
                     ? 'text-white/90 hover:bg-white/10 hover:text-white'
                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'

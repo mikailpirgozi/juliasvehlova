@@ -19,7 +19,7 @@ export function BlogClient({ posts, categories, tags }: BlogClientProps) {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="bg-gray-50 px-4 py-16">
+      <section className="bg-gray-50 px-4 pb-16 pt-24">
         <div className="mx-auto max-w-6xl text-center">
           <p className="text-sm font-semibold text-brand-600">Blog</p>
           <h1 className="mt-2 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">

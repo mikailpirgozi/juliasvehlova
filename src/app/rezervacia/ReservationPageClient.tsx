@@ -17,15 +17,15 @@ export function ReservationPageClient({ preselectedService, preselectedCategory 
       <div className="pointer-events-none fixed top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-100/15 blur-3xl" />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#8698a4]/15 via-white to-brand-50/30 px-4 py-16">
-        <div className="pointer-events-none absolute top-10 left-10 h-32 w-32 rounded-full bg-[#8698a4]/20 blur-2xl" />
-        <div className="pointer-events-none absolute bottom-10 right-10 h-40 w-40 rounded-full bg-[#8698a4]/15 blur-2xl" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#8698a4] to-[#718593] px-4 pb-16 pt-24">
+        <div className="pointer-events-none absolute left-10 top-10 h-64 w-64 rounded-full bg-brand-300/40 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-10 right-10 h-80 w-80 rounded-full bg-brand-400/30 blur-3xl" />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-wider text-[#8698a4]">Rezervácia</p>
-          <h1 className="mt-2 font-serif text-3xl font-bold text-brand-700 sm:text-4xl">
+          <p className="text-sm font-bold uppercase tracking-widest text-brand-200">Rezervácia</p>
+          <h1 className="mt-4 font-serif text-3xl font-bold text-white sm:text-4xl">
             Rezervácia termínu
           </h1>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg text-white/80">
             Vyberte si službu a vhodný termín. Tešíme sa na vás!
           </p>
         </div>

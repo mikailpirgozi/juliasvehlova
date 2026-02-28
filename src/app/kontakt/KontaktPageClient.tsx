@@ -72,7 +72,7 @@ export function KontaktPageClient() {
   return (
     <main className="min-h-screen bg-white">
       {/* ─── Hero ─── */}
-      <section className="bg-gradient-to-br from-[#8698a4] via-[#718593] to-[#5c6e7b] py-8 sm:py-10">
+      <section className="bg-gradient-to-br from-[#8698a4] via-[#718593] to-[#5c6e7b] pb-8 pt-24 sm:pb-10 sm:pt-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <FadeIn delay={0.1}>
             <p className="text-xs font-semibold uppercase tracking-widest text-white">

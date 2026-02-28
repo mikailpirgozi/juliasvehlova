@@ -51,7 +51,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="bg-gray-50 px-4 py-12">
+      <section className="bg-gray-50 px-4 pb-12 pt-24">
         <div className="mx-auto max-w-3xl">
           <Link href="/blog" className="mb-6 inline-flex items-center text-sm text-gray-500 hover:text-gray-700">
             <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
