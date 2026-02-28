@@ -13,7 +13,9 @@ export const env = {
   RESEND_API_KEY: process.env.RESEND_API_KEY || '',
   CONTACT_EMAIL: process.env.CONTACT_EMAIL || '',
   NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
-  NEXT_PUBLIC_BOOKIO_WIDGET_URL: process.env.NEXT_PUBLIC_BOOKIO_WIDGET_URL,
+  NEXT_PUBLIC_BOOKIO_WIDGET_URL:
+    process.env.NEXT_PUBLIC_BOOKIO_WIDGET_URL ||
+    'https://services.bookio.com/julia-estetic-clinic/widget?lang=sk',
 } as const
 
 // Runtime validation helper for API routes
