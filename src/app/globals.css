@@ -420,8 +420,8 @@
 
   --color-brand-blue: #8698a4;
   --color-accent-rose: #F8EEF0;
-  --color-accent-gold: #CDA882;
-  --color-accent-gold-dark: #B89566;
+  --color-accent-gold: #8698a4;
+  --color-accent-gold-dark: #6a7c87;
   --color-neutral-cream: #FFF9FA;
 }
 
@@ -486,8 +486,12 @@
   }
 
   .outline-focus-ring {
-    outline: 2px solid var(--color-brand-500);
+    outline: 2px solid transparent;
     outline-offset: 2px;
+  }
+
+  .outline-focus-ring:focus-visible {
+    outline-color: var(--color-brand-500);
   }
 
   /* Mask utilities for gradients */

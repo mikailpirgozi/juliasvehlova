@@ -162,7 +162,7 @@ export function Header() {
 
   const navLinksEnd = [
     { label: 'Darčekové poukážky', href: '/darcekove-poukazky' },
-    { label: 'Kontakt', href: '/#contact' },
+    { label: 'Kontakt', href: '/kontakt' },
   ]
 
   return (

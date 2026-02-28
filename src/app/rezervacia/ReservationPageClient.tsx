@@ -13,15 +13,15 @@ export function ReservationPageClient({ preselectedService, preselectedCategory 
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-white via-brand-50/30 to-brand-100/20">
       {/* Global decorative background elements */}
       <div className="pointer-events-none fixed top-20 right-10 h-64 w-64 rounded-full bg-brand-200/20 blur-3xl" />
-      <div className="pointer-events-none fixed bottom-20 left-10 h-80 w-80 rounded-full bg-[#CDA882]/15 blur-3xl" />
+      <div className="pointer-events-none fixed bottom-20 left-10 h-80 w-80 rounded-full bg-[#8698a4]/10 blur-3xl" />
       <div className="pointer-events-none fixed top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-100/15 blur-3xl" />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-50/50 via-white to-[#CDA882]/10 px-4 py-16">
-        <div className="pointer-events-none absolute top-10 left-10 h-32 w-32 rounded-full bg-brand-200/30 blur-2xl" />
-        <div className="pointer-events-none absolute bottom-10 right-10 h-40 w-40 rounded-full bg-[#CDA882]/20 blur-2xl" />
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#8698a4]/15 via-white to-brand-50/30 px-4 py-16">
+        <div className="pointer-events-none absolute top-10 left-10 h-32 w-32 rounded-full bg-[#8698a4]/20 blur-2xl" />
+        <div className="pointer-events-none absolute bottom-10 right-10 h-40 w-40 rounded-full bg-[#8698a4]/15 blur-2xl" />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-wider text-[#CDA882]">Rezervácia</p>
+          <p className="text-sm font-semibold uppercase tracking-wider text-[#8698a4]">Rezervácia</p>
           <h1 className="mt-2 font-serif text-3xl font-bold text-brand-700 sm:text-4xl">
             Rezervácia termínu
           </h1>
@@ -59,9 +59,9 @@ export function ReservationPageClient({ preselectedService, preselectedCategory 
       </section>
 
       {/* Info Section */}
-      <section className="relative z-10 overflow-hidden bg-gradient-to-br from-brand-50/50 via-white to-[#CDA882]/10 px-4 py-16">
-        <div className="pointer-events-none absolute top-10 right-10 h-32 w-32 rounded-full bg-brand-200/30 blur-2xl" />
-        <div className="pointer-events-none absolute bottom-10 left-10 h-40 w-40 rounded-full bg-[#CDA882]/20 blur-2xl" />
+      <section className="relative z-10 overflow-hidden bg-gradient-to-br from-[#8698a4]/12 via-white to-brand-50/30 px-4 py-16">
+        <div className="pointer-events-none absolute top-10 right-10 h-32 w-32 rounded-full bg-[#8698a4]/20 blur-2xl" />
+        <div className="pointer-events-none absolute bottom-10 left-10 h-40 w-40 rounded-full bg-[#8698a4]/15 blur-2xl" />
         <div className="relative z-10 mx-auto max-w-4xl">
           <h2 className="text-center font-serif text-2xl font-bold text-brand-700">
             Dôležité informácie

@@ -38,6 +38,8 @@ export const CONTACT = {
 export const SOCIAL_LINKS = {
   facebook: 'https://www.facebook.com/people/Julia-Estetic-Clinic/61560460323854/',
   instagram: 'https://www.instagram.com/juliaesteticclinic',
+  youtube: 'https://youtube.com/@juliaesteticclinic',
+  tiktok: 'https://www.tiktok.com/@juliaesteticclinic_',
 } as const
 
 // =============================================================================

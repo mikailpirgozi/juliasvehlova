@@ -20,19 +20,16 @@ export function AboutSection() {
   ]
 
   return (
-    <section id="about" className="relative overflow-hidden bg-white py-16 sm:py-24">
+    <section id="about" className="relative overflow-hidden bg-gradient-to-b from-[#8698a4]/10 via-white to-brand-50/30 py-16 sm:py-24">
       
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-12 lg:items-center">
           {/* Left - Image */}
           <FadeIn direction="left" className="lg:col-span-5">
             <div className="relative mx-auto max-w-sm lg:max-w-none">
-              {/* Decorative elements */}
-              <div className="absolute -top-6 -left-6 h-full w-full rounded-[2rem] bg-gradient-to-br from-[#8698a4]/60 to-brand-300/40 transform -rotate-3 transition-transform duration-700 hover:rotate-0" />
-              <div className="absolute -bottom-6 -right-6 h-full w-full rounded-[2rem] border-2 border-[#8698a4]/30 transform rotate-3 transition-transform duration-700 hover:rotate-0" />
               
               {/* Image container */}
-              <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] shadow-2xl">
+              <div className="relative aspect-[3/4] overflow-hidden shadow-2xl">
                 <Image
                   src="/images/services/doctor-portrait.webp"
                   alt="MUDr. Júlia Švehlová - Estetická medicína"
@@ -61,7 +58,7 @@ export function AboutSection() {
           {/* Right - Text Content */}
           <FadeIn direction="right" delay={0.3} className="mt-12 lg:mt-0 lg:col-span-7">
             <div>
-              <p className="text-sm font-bold uppercase tracking-widest text-[#CDA882]">O nás</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-[#8698a4]">O nás</p>
               <h2 className="mt-2 font-serif text-3xl font-bold text-gray-900 sm:text-4xl">
                 Júlia Švehlová
               </h2>
@@ -79,10 +76,10 @@ export function AboutSection() {
               </div>
 
               {/* Highlight box */}
-              <div className="relative mt-10 rounded-2xl bg-gradient-to-r from-[#faf7f5] to-white p-8 shadow-lg border border-brand-100 overflow-hidden">
+              <div className="relative mt-10 rounded-2xl bg-gradient-to-r from-[#8698a4]/10 to-white p-8 shadow-lg border border-[#8698a4]/20 overflow-hidden">
                 <div className="absolute -left-4 -top-4 text-brand-200/40 text-[8rem] font-serif leading-none select-none">&ldquo;</div>
                 <p className="relative font-serif text-xl italic text-gray-800 leading-relaxed z-10 text-center">
-                  Vaša spokojnosť a bezpečnosť sú mojou absolútnou prioritou.
+                  SebaLáska na počkanie
                 </p>
               </div>
 
@@ -104,7 +101,7 @@ export function AboutSection() {
                 key={index}
                 className="rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
               >
-                <p className="text-3xl font-bold text-[#CDA882]">{stat.value}</p>
+                <p className="text-3xl font-bold text-[#8698a4]">{stat.value}</p>
                 <p className="mt-1 text-sm text-gray-600">{stat.label}</p>
               </div>
             ))}

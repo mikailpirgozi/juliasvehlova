@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ChevronRight } from '@untitledui/icons'
+import { ChevronRight, Clock, Star01 } from '@untitledui/icons'
 import type { SimpleService } from '@/lib/services-new'
 
 interface ServicesPriceTableProps {
@@ -24,7 +24,6 @@ export function ServicesPriceTable({
 }: ServicesPriceTableProps) {
   const getServiceLink = (service: SimpleService) => {
     if (isDirectService) {
-      // For categories without subcategories: /sluzby/[category]/[service]
       return `/sluzby/${categorySlug}/${service.slug}`
     }
     if (subcategorySlug) {
@@ -34,76 +33,86 @@ export function ServicesPriceTable({
   }
 
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
+    <div className="flex flex-col gap-6">
       {title && (
-        <div className="border-b border-gray-100 bg-gray-50 px-6 py-4">
-          <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-        </div>
+        <h3 className="font-serif text-2xl font-bold text-gray-900">{title}</h3>
       )}
 
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
-                Služba
-              </th>
-              <th className="hidden whitespace-nowrap px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 sm:table-cell">
-                Trvanie
-              </th>
-              <th className="whitespace-nowrap px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
-                Cena
-              </th>
-              {showDetailLinks && (
-                <th className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
-                  <span className="sr-only">Akcie</span>
-                </th>
-              )}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            {services.map((service) => (
-              <tr key={service.id} className="transition-colors hover:bg-gray-50">
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-3">
-                    {service.popular && (
-                      <span className="flex-shrink-0 text-sm text-yellow-500">★</span>
-                    )}
-                    <div>
-                      <span className="font-medium text-gray-900">{service.name}</span>
-                      <p className="mt-1 text-sm text-gray-500 sm:hidden">{service.duration}</p>
-                    </div>
+      <div className="flex flex-col gap-3">
+        {services.map((service) => {
+          const serviceLink = getServiceLink(service)
+          const Content = (
+            <>
+              <div className="flex flex-1 items-start gap-4">
+                {service.popular ? (
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-amber-50">
+                    <Star01 className="h-5 w-5 text-amber-500" />
                   </div>
-                </td>
-                <td className="hidden whitespace-nowrap px-6 py-4 text-sm text-gray-500 sm:table-cell">
-                  {service.duration}
-                </td>
-                <td className="whitespace-nowrap px-6 py-4 text-right">
-                  <span className="text-lg font-semibold text-gray-900">{service.price}</span>
-                </td>
-                {showDetailLinks && (
-                  <td className="px-6 py-4 text-right">
-                    <Link
-                      href={getServiceLink(service)}
-                      className="inline-flex items-center gap-1 text-sm font-medium text-brand-600 hover:text-brand-700"
-                    >
-                      <span className="hidden sm:inline">Detail</span>
-                      <ChevronRight className="h-4 w-4" />
-                    </Link>
-                  </td>
+                ) : (
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-brand-50">
+                    <span className="font-serif text-lg font-medium text-brand-600">
+                      {service.name.charAt(0)}
+                    </span>
+                  </div>
                 )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                <div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h4 className="font-semibold text-gray-900 transition-colors group-hover:text-brand-600">
+                      {service.name}
+                    </h4>
+                    {service.popular && (
+                      <span className="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700">
+                        Obľúbené
+                      </span>
+                    )}
+                  </div>
+                  {service.tagline ? (
+                    <p className="mt-1 text-sm text-gray-500 line-clamp-2">{service.tagline}</p>
+                  ) : service.shortDescription ? (
+                    <p className="mt-1 text-sm text-gray-500 line-clamp-2">{service.shortDescription}</p>
+                  ) : null}
+                  <div className="mt-2 flex items-center gap-4 text-sm text-gray-500">
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="h-4 w-4" />
+                      {service.duration}
+                    </span>
+                  </div>
+                </div>
+              </div>
 
-      {/* Legend */}
-      {services.some((s) => s.popular) && (
-        <div className="border-t border-gray-100 bg-gray-50 px-6 py-3">
-          <p className="text-xs text-gray-500">★ — Obľúbené služby</p>
-        </div>
-      )}
+              <div className="mt-4 flex items-center justify-between gap-6 border-t border-gray-100 pt-4 sm:mt-0 sm:border-0 sm:pt-0">
+                <div className="text-left sm:text-right">
+                  <p className="text-xs font-medium uppercase tracking-wider text-gray-400 sm:hidden">Cena</p>
+                  <p className="text-xl font-bold text-gray-900 sm:text-2xl">{service.price}</p>
+                </div>
+                
+                {showDetailLinks && (
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gray-50 text-gray-400 transition-colors group-hover:bg-brand-50 group-hover:text-brand-600">
+                    <ChevronRight className="h-5 w-5" />
+                  </div>
+                )}
+              </div>
+            </>
+          )
+
+          return showDetailLinks ? (
+            <Link
+              key={service.id}
+              href={serviceLink}
+              className="group relative flex flex-col justify-between gap-4 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all hover:border-brand-200 hover:shadow-md sm:flex-row sm:items-center sm:p-6"
+            >
+              {Content}
+            </Link>
+          ) : (
+            <div
+              key={service.id}
+              className="group relative flex flex-col justify-between gap-4 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all sm:flex-row sm:items-center sm:p-6"
+            >
+              {Content}
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }

@@ -22,7 +22,7 @@ export function ServicesSection() {
       <div className="relative z-10 mx-auto max-w-6xl">
         <FadeIn delay={0.2}>
           <div className="mb-16 text-center">
-            <p className="mb-4 text-sm font-bold uppercase tracking-widest text-[#CDA882]">
+            <p className="mb-4 text-sm font-bold uppercase tracking-widest text-[#8698a4]">
               Naše služby
             </p>
             <h2 className="mb-4 font-serif text-4xl font-bold text-gray-900 sm:text-5xl">
@@ -40,7 +40,7 @@ export function ServicesSection() {
             <FadeIn key={category.id} delay={0.3 + index * 0.1}>
               <Link
                 href={`/sluzby/${category.slug}`}
-                className="group relative block aspect-[4/5] overflow-hidden rounded-xl"
+                className="group relative block aspect-[4/5] overflow-hidden"
               >
                 <Image
                   src={category.image}
@@ -54,7 +54,7 @@ export function ServicesSection() {
                 <div className="absolute inset-0 bg-brand-900/40 opacity-0 transition-opacity duration-500 group-hover:opacity-100 mix-blend-multiply z-10" />
                 
                 {/* Glass border effect that appears on hover */}
-                <div className="absolute inset-0 border-2 border-transparent bg-gradient-to-br from-white/30 to-transparent opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:border-white/40 rounded-xl z-20" />
+                <div className="absolute inset-0 border-2 border-transparent bg-gradient-to-br from-white/30 to-transparent opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:border-white/40 z-20" />
                 
                 {/* Subtle dark gradient at bottom for text readability */}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />

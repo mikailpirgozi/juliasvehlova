@@ -78,7 +78,7 @@ function VideoCard({ post }: { post: InstagramPost }) {
   return (
     <div
       ref={cardRef}
-      className={`group relative overflow-hidden rounded-lg aspect-square ${
+      className={`group relative overflow-hidden aspect-square ${
         post.id > 6 ? 'hidden md:block' : ''
       }`}
       onMouseEnter={() => setIsHovered(true)}

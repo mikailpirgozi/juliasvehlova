@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import {
   Gift01,
   CreditCard02,
@@ -140,9 +141,10 @@ export function GiftVouchersPageClient() {
           <FadeIn>
             <div className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
               {voucherOptions.map((voucher) => (
-                <div
+                <Link
+                  href="/rezervacia"
                   key={voucher.id}
-                  className={`group relative overflow-hidden rounded-2xl border-2 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+                  className={`group relative block overflow-hidden rounded-2xl border-2 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
                     voucher.popular
                       ? 'border-brand-300 ring-4 ring-brand-500/10'
                       : 'border-gray-100 hover:border-brand-200'
@@ -180,7 +182,7 @@ export function GiftVouchersPageClient() {
                       <span>Všetky služby</span>
                     </li>
                   </ul>
-                </div>
+                </Link>
               ))}
             </div>
 

@@ -72,7 +72,7 @@ export function ImageGallery({ images, alt }: ImageGalleryProps) {
                 key={index}
                 type="button"
                 onClick={() => setLightboxIndex(index)}
-                className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+                className="group relative aspect-[4/3] cursor-pointer overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
               >
                 <Image
                   src={image}

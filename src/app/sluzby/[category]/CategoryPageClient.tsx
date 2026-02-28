@@ -49,7 +49,7 @@ function ServiceCard({ service, categorySlug, index = 1 }: { service: SimpleServ
   return (
     <Link
       href={`/sluzby/${categorySlug}/${service.slug}`}
-      className="group relative block aspect-[3/2] overflow-hidden rounded-2xl"
+      className="group relative block aspect-[3/2] overflow-hidden"
     >
       <Image
         src={serviceImage}
@@ -212,21 +212,23 @@ export function CategoryPageClient({ category }: CategoryPageClientProps) {
       </section>
 
       {/* CTA Section */}
-      <section className="relative z-10 border-t border-gray-100 bg-brand-600 px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#8698a4] to-[#718593] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <div className="pointer-events-none absolute top-10 right-10 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-10 left-10 h-40 w-40 rounded-full bg-white/5 blur-3xl" />
+        <div className="relative z-10 mx-auto max-w-3xl text-center">
+          <h2 className="font-serif text-3xl font-bold text-brand-200 sm:text-4xl">
             Máte záujem o naše služby?
           </h2>
-          <p className="mt-4 text-lg text-brand-100">
+          <p className="mt-4 text-lg text-white/85">
             Objednajte sa na konzultáciu a spoločne nájdeme ideálne riešenie pre vaše potreby.
           </p>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <Button href="/rezervacia" color="secondary" size="lg">
+            <Button href="/rezervacia" color="primary" size="lg">
               Rezervovať termín
             </Button>
             <Link
               href="/cennik"
-              className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-white/30 px-4 py-2.5 text-md font-semibold text-white transition hover:bg-white/10"
+              className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-white px-4 py-2.5 text-md font-semibold text-gray-700 shadow-xs transition hover:bg-gray-50"
             >
               Zobraziť cenník
             </Link>

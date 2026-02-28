@@ -675,7 +675,7 @@ export function CennikPageClient() {
                     >
                       Obľúbené
                     </BadgeWithIcon>
-                    <span className="text-xs text-gray-500">— Najobľúbenejšie služby našich klientov</span>
+                    <span className="text-xs text-gray-500">- Najobľúbenejšie služby našich klientov</span>
                   </div>
                 )}
               </div>

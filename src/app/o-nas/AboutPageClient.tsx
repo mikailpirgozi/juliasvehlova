@@ -60,8 +60,8 @@ const teamMembers = [
     photo: '/images/team/julia-svehlova.png',
     bio: [
       'V beauty a estetickej sfére pôsobím viac ako 28 rokov. Moja profesionálna cesta zahŕňa oblasti kozmetológie, dekoratívnej a korektívnej vizážistiky, dermopigmentácie (permanentného make-upu), stylingu mihalníc a obočia, ako aj dlhoročnú činnosť v oblasti vzdelávania, lektorskej činnosti a vedenia odborných kurzov.',
-      'Roky praxe ma prirodzene priviedli k hlbšiemu pohľadu na krásu — na prepojenie tela, psychiky a vnútorného nastavenia. Svoje odborné zázemie som preto postupne rozšírila o terapeutické, psychoterapeutické a holistické prístupy, vrátane práce s energiou a vedomého vnímania človeka ako celku.',
-      'Na tomto základe vznikla Julia Estetic Clinic — miesto, kde sa moderná estetická starostlivosť spája s citom, prirodzenosťou a rešpektom k jedinečnosti každého klienta.',
+      'Roky praxe ma prirodzene priviedli k hlbšiemu pohľadu na krásu - na prepojenie tela, psychiky a vnútorného nastavenia. Svoje odborné zázemie som preto postupne rozšírila o terapeutické, psychoterapeutické a holistické prístupy, vrátane práce s energiou a vedomého vnímania človeka ako celku.',
+      'Na tomto základe vznikla Julia Estetic Clinic - miesto, kde sa moderná estetická starostlivosť spája s citom, prirodzenosťou a rešpektom k jedinečnosti každého klienta.',
     ],
   },
   {
@@ -81,7 +81,7 @@ const teamMembers = [
     role: 'Kozmetička',
     photo: '/images/team/daria-shmuliak.png',
     bio: [
-      'Som kozmetička s medzinárodnými skúsenosťami v oblasti starostlivosti o pleť. Špecializujem sa na prácu s problematickou pleťou — od tínedžerského akné až po akné a postakné u dospelých.',
+      'Som kozmetička s medzinárodnými skúsenosťami v oblasti starostlivosti o pleť. Špecializujem sa na prácu s problematickou pleťou - od tínedžerského akné až po akné a postakné u dospelých.',
       'Vo svojej praxi spájam moderné protokoly, evidence-based prístup a individuálne vedenie. Verím, že zdravá pleť nie je o zakrývaní nedokonalostí, ale o systematickej a vedomej starostlivosti.',
       'Neustále sa vzdelávam, každý mesiac absolvujem nové školenia a odborné kurzy. Mojou misiou je pomôcť vám obľúbiť si svoju pleť a cítiť sa lepšie každý deň.',
     ],
@@ -94,7 +94,7 @@ const teamMembers = [
     bio: [
       'Som fyzioterapeutka v závere magisterského štúdia a piercerka, ktorá vníma telo ako jedinečné umelecké dielo. Ku každému klientovi pristupujem individuálne, s rešpektom, precíznosťou a citom pre detail.',
       'Vo svojej praxi prepájam fyzioterapiu s masážnymi technikami, mobilizáciami, bankovaním či maderoterapiou. Neponúkam iba relax, ale cielenú starostlivosť zameranú na konkrétny problém a dlhodobý výsledok.',
-      'Piercing pre mňa predstavuje osobný symbol — premenu, sebavyjadrenie a krásu, ktorá môže zažiariť aj na mieste dotyku ihly.',
+      'Piercing pre mňa predstavuje osobný symbol - premenu, sebavyjadrenie a krásu, ktorá môže zažiariť aj na mieste dotyku ihly.',
     ],
   },
   {
@@ -104,8 +104,8 @@ const teamMembers = [
     photo: '/images/team/nicol-jurkackova.png',
     bio: [
       'Som tatérka a tetovanie pre mňa nie je len kresba na koži. Je to tichý detail, ktorý podčiarkne osobnosť toho, kto ho nosí. Vo svojej tvorbe sa sústreďujem najmä na menšie, subtílne a elegantné tetovania s dôrazom na čistú líniu a nadčasovosť.',
-      'Najdôležitejšie je pre mňa, aby sa u mňa klienti cítili príjemne, pokojne, sebavedomo a vypočutí — aby samotný proces bol rovnako krásny ako výsledok.',
-      'Ku každému pristupujem individuálne a návrh tvorím na mieru — s dôrazom na harmóniu, citlivé prevedenie a prirodzený výsledok.',
+      'Najdôležitejšie je pre mňa, aby sa u mňa klienti cítili príjemne, pokojne, sebavedomo a vypočutí - aby samotný proces bol rovnako krásny ako výsledok.',
+      'Ku každému pristupujem individuálne a návrh tvorím na mieru - s dôrazom na harmóniu, citlivé prevedenie a prirodzený výsledok.',
     ],
   },
   {
@@ -145,39 +145,6 @@ export function AboutPageClient() {
     return () => window.removeEventListener('keydown', handleKey)
   }, [lightbox, closeLightbox, goNext, goPrev])
 
-  const timeline = [
-    {
-      year: '2013',
-      title: 'Začiatok medicínskej kariéry',
-      description: 'Absolvovala Lekársku fakultu Univerzity Komenského v Bratislave',
-    },
-    {
-      year: '2015',
-      title: 'Špecializácia na estetickú medicínu',
-      description: 'Získanie certifikácie v odbore estetická medicína',
-    },
-    {
-      year: '2017',
-      title: 'Medzinárodné školenia',
-      description: 'Účasť na prestížnych kongresoch v Paríži a Londýne',
-    },
-    {
-      year: '2019',
-      title: 'Rozšírenie služieb',
-      description: 'Certifikácia pre permanentný make-up a pokročilé filler techniky',
-    },
-    {
-      year: '2021',
-      title: 'Julia Estetic Clinic',
-      description: 'Otvorenie vlastnej kliniky v Malackách',
-    },
-    {
-      year: '2025',
-      title: 'Dnes',
-      description: 'Viac ako 5000 spokojných klientov a neustále vzdelávanie',
-    },
-  ]
-
   const values = [
     {
       title: 'Prirodzené výsledky',
@@ -202,39 +169,36 @@ export function AboutPageClient() {
   ]
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-white via-brand-50/30 to-brand-100/20">
-      {/* Global decorative background elements */}
-      <div className="pointer-events-none fixed top-20 right-10 h-64 w-64 rounded-full bg-brand-200/20 blur-3xl" />
-      <div className="pointer-events-none fixed bottom-20 left-10 h-80 w-80 rounded-full bg-[#CDA882]/15 blur-3xl" />
-      <div className="pointer-events-none fixed top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-100/15 blur-3xl" />
+    <div className="min-h-screen overflow-hidden bg-white">
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-50/50 via-white to-[#CDA882]/10 px-4 py-16 sm:py-24">
-        <div className="pointer-events-none absolute top-10 left-10 h-32 w-32 rounded-full bg-brand-200/30 blur-2xl" />
-        <div className="pointer-events-none absolute bottom-10 right-10 h-40 w-40 rounded-full bg-[#CDA882]/20 blur-2xl" />
+      {/* Hero Section – solid blue like homepage */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#8698a4] to-[#718593] px-4 py-20 sm:py-28">
+        <div className="pointer-events-none absolute top-10 left-10 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-10 right-10 h-56 w-56 rounded-full bg-white/5 blur-3xl" />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-wider text-[#CDA882]">O klinike</p>
-          <h1 className="mt-2 font-serif text-3xl font-bold text-brand-700 sm:text-4xl">
+          <span className="inline-flex items-center gap-2.5 text-xs font-semibold tracking-[0.2em] text-white/80 uppercase">
+            <span className="h-px w-6 bg-white/60" />
+            Julia Estetic Clinic
+          </span>
+          <h1 className="mt-4 font-serif text-3xl font-bold text-brand-200 sm:text-5xl uppercase tracking-tight">
             Náš tím
           </h1>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg text-white/85 max-w-xl mx-auto leading-relaxed">
             Odborníci s vášňou pre krásu, individualitu a starostlivosť o každého klienta
           </p>
         </div>
       </section>
 
-      {/* Vision Section */}
-      <section className="relative z-10 overflow-hidden px-4 py-16 sm:py-20">
-        <div className="pointer-events-none absolute top-10 right-10 h-40 w-40 rounded-full bg-brand-200/20 blur-3xl" />
-        <div className="pointer-events-none absolute bottom-10 left-10 h-40 w-40 rounded-full bg-[#CDA882]/15 blur-3xl" />
-        <div className="relative mx-auto max-w-4xl">
+      {/* Vision Section – white */}
+      <section className="relative bg-white px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-4xl">
           <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-wider text-[#CDA882]">Naša vízia</p>
-            <h2 className="mt-2 font-serif text-2xl font-bold text-brand-700 sm:text-3xl">
+            <p className="text-xs font-semibold uppercase tracking-widest text-brand-500">Naša vízia</p>
+            <h2 className="mt-2 font-serif text-2xl font-bold text-gray-900 sm:text-3xl">
               Julia Estetic Clinic
             </h2>
           </div>
-          <div className="mt-10 rounded-3xl border border-brand-100 bg-white/80 p-8 shadow-xl backdrop-blur-sm sm:p-12">
+          <div className="mt-10 rounded-3xl border border-gray-100 bg-white p-8 shadow-xl sm:p-12">
             <div className="space-y-5 text-gray-600 leading-relaxed">
               <p>
                 V Julia Estetic Clinic veríme, že krása má zmysel vtedy, keď je v súlade s tým, ako sa žena cíti vo vnútri. Našou víziou je prepájať modernú estetickú medicínu s vnútorným pokojom, profesionalitu s ľudským prístupom a technológie s citom.
@@ -246,9 +210,9 @@ export function AboutPageClient() {
                 Ku každej klientke pristupujeme individuálne a komplexne. Počúvame, vysvetľujeme a hľadáme riešenia, ktoré rešpektujú jej potreby, osobnosť aj prirodzenosť.
               </p>
               <p>
-                Zároveň vytvárame prostredie, kde sa môžete cítiť bezpečne a ako doma — bez tlaku, bez masiek, bez pretvárky. Miesto, kde môžete byť sami sebou.
+                Zároveň vytvárame prostredie, kde sa môžete cítiť bezpečne a ako doma - bez tlaku, bez masiek, bez pretvárky. Miesto, kde môžete byť sami sebou.
               </p>
-              <p className="font-medium text-gray-700">
+              <p className="font-medium text-gray-800">
                 Nadštandardná komunikácia, dôkladné konzultácie a starostlivosť pred aj po ošetrení sú pre nás samozrejmosťou. Pretože veríme, že skutočná krása vzniká tam, kde je dôvera.
               </p>
             </div>
@@ -256,14 +220,13 @@ export function AboutPageClient() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="relative z-10 overflow-hidden bg-gradient-to-br from-brand-50/30 via-white to-[#CDA882]/10 px-4 py-16 sm:py-20">
-        <div className="pointer-events-none absolute top-0 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-brand-100/30 blur-3xl" />
-        <div className="relative mx-auto max-w-6xl">
+      {/* Team Section – white */}
+      <section className="relative bg-white px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl">
           <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-wider text-[#CDA882]">Ľudia za klinikou</p>
-            <h2 className="mt-2 font-serif text-2xl font-bold text-brand-700 sm:text-3xl">Zoznámte sa s nami</h2>
-            <p className="mt-3 text-gray-600">Každý člen nášho tímu prináša unikátnu odbornosť a vášeň pre svoju prácu</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-brand-500">Ľudia za klinikou</p>
+            <h2 className="mt-2 font-serif text-2xl font-bold text-gray-900 sm:text-3xl">Zoznámte sa s nami</h2>
+            <p className="mt-3 text-gray-500">Každý člen nášho tímu prináša unikátnu odbornosť a vášeň pre svoju prácu</p>
           </div>
 
           <div className="mt-14 space-y-16">
@@ -276,8 +239,8 @@ export function AboutPageClient() {
                 <div className="flex-shrink-0 lg:w-[340px]">
                   {member.photo ? (
                     <div className="relative mx-auto w-64 lg:w-full">
-                      <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-brand-200/40 to-[#CDA882]/30 blur-xl" />
-                      <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+                      <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-[#8698a4]/30 to-brand-200/20 blur-xl" />
+                      <div className="relative overflow-hidden shadow-2xl">
                         <Image
                           src={member.photo}
                           alt={member.name}
@@ -286,13 +249,13 @@ export function AboutPageClient() {
                           className="aspect-[3/4] w-full object-cover object-top"
                           sizes="(max-width: 1024px) 256px, 340px"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-brand-900/20 via-transparent to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#8698a4]/30 via-transparent to-transparent" />
                       </div>
                     </div>
                   ) : (
                     <div className="relative mx-auto w-64 lg:w-full">
-                      <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-brand-200/40 to-[#CDA882]/30 blur-xl" />
-                      <div className="relative flex aspect-[3/4] w-full items-center justify-center overflow-hidden rounded-3xl bg-gradient-to-br from-brand-100 to-[#CDA882]/20 shadow-2xl">
+                      <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-[#8698a4]/30 to-brand-200/20 blur-xl" />
+                      <div className="relative flex aspect-[3/4] w-full items-center justify-center overflow-hidden bg-gradient-to-br from-[#8698a4]/20 to-brand-100/30 shadow-2xl">
                         <span className="text-6xl font-serif text-brand-300">{member.name.charAt(0)}</span>
                       </div>
                     </div>
@@ -301,9 +264,9 @@ export function AboutPageClient() {
 
                 {/* Bio */}
                 <div className="flex-1">
-                  <p className="text-sm font-semibold uppercase tracking-wider text-[#CDA882]">{member.role}</p>
+                  <p className="text-sm font-semibold uppercase tracking-wider text-brand-500">{member.role}</p>
                   <h3 className="mt-1 font-serif text-2xl font-bold text-gray-900 sm:text-3xl">{member.name}</h3>
-                  <div className="mt-1 h-0.5 w-12 rounded-full bg-gradient-to-r from-brand-400 to-[#CDA882]" />
+                  <div className="mt-1 h-0.5 w-12 rounded-full bg-gradient-to-r from-brand-400 to-brand-300" />
                   <div className="mt-5 space-y-3">
                     {member.bio.map((paragraph, i) => (
                       <p key={i} className="text-gray-600 leading-relaxed">{paragraph}</p>
@@ -317,8 +280,8 @@ export function AboutPageClient() {
             {teamMembers.filter(m => m.bio.length === 0).map(member => (
               <div key={member.id} className="flex justify-center">
                 <div className="relative w-64">
-                  <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-brand-200/40 to-[#CDA882]/30 blur-xl" />
-                  <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+                  <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-[#8698a4]/30 to-brand-200/20 blur-xl" />
+                  <div className="relative overflow-hidden shadow-2xl">
                     {member.photo && (
                       <Image
                         src={member.photo}
@@ -330,7 +293,7 @@ export function AboutPageClient() {
                       />
                     )}
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-5">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-[#CDA882]">{member.role}</p>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-brand-300">{member.role}</p>
                       <p className="mt-0.5 font-serif text-lg font-bold text-white">{member.name}</p>
                     </div>
                   </div>
@@ -341,21 +304,22 @@ export function AboutPageClient() {
         </div>
       </section>
 
-      {/* Values */}
-      <section className="relative z-10 overflow-hidden bg-gradient-to-br from-brand-50/50 via-white to-[#CDA882]/10 px-4 py-16">
-        <div className="pointer-events-none absolute top-10 right-10 h-32 w-32 rounded-full bg-brand-200/30 blur-2xl" />
-        <div className="pointer-events-none absolute bottom-10 left-10 h-40 w-40 rounded-full bg-[#CDA882]/20 blur-2xl" />
+      {/* Values – solid blue like testimonials */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#8698a4] to-[#718593] px-4 py-16">
+        <div className="pointer-events-none absolute top-10 right-10 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-10 left-10 h-40 w-40 rounded-full bg-white/5 blur-3xl" />
         <div className="relative z-10 mx-auto max-w-6xl">
           <div className="text-center">
-            <h2 className="font-serif text-2xl font-bold text-brand-700">Moja filozofia</h2>
-            <p className="mt-2 text-gray-600">Hodnoty, ktoré ma vedú v každodennej práci</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-white/70">Naše hodnoty</p>
+            <h2 className="mt-2 font-serif text-2xl font-bold text-brand-200 sm:text-3xl">Moja filozofia</h2>
+            <p className="mt-2 text-white/75">Hodnoty, ktoré ma vedú v každodennej práci</p>
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {values.map((value, index) => (
               <div
                 key={index}
-                className="rounded-2xl border border-brand-100 bg-white/80 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="rounded-2xl border-2 border-white/50 bg-white/95 p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <h3 className="text-lg font-semibold text-gray-900">{value.title}</h3>
                 <p className="mt-2 text-sm text-gray-600">{value.description}</p>
@@ -365,42 +329,18 @@ export function AboutPageClient() {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="relative z-10 px-4 py-16">
-        <div className="mx-auto max-w-4xl">
-          <div className="text-center">
-            <h2 className="font-serif text-2xl font-bold text-brand-700">Moja cesta</h2>
-            <p className="mt-2 text-gray-600">Od medicíny k estetickej špecializácii</p>
-          </div>
 
-          <div className="mt-12 space-y-6">
-            {timeline.map((item, index) => (
-              <div key={index} className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <span className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-brand-600 to-brand-500 px-3 py-1 text-xs font-medium text-white shadow-md">
-                    {item.year}
-                  </span>
-                </div>
-                <div className="flex-1 rounded-2xl border border-brand-100 bg-white/80 p-4 shadow-md backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                  <h3 className="font-semibold text-gray-900">{item.title}</h3>
-                  <p className="mt-1 text-sm text-gray-600">{item.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Certificates */}
-      <section className="relative z-10 overflow-hidden bg-gradient-to-br from-brand-50/50 via-white to-[#CDA882]/10 px-4 py-16">
-        <div className="pointer-events-none absolute top-10 left-10 h-32 w-32 rounded-full bg-brand-200/30 blur-2xl" />
-        <div className="pointer-events-none absolute bottom-10 right-10 h-40 w-40 rounded-full bg-[#CDA882]/20 blur-2xl" />
+      {/* Certificates – light background */}
+      <section className="relative overflow-hidden bg-gray-50 px-4 py-16">
+        <div className="pointer-events-none absolute top-10 left-10 h-40 w-40 rounded-full bg-[#8698a4]/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-10 right-10 h-40 w-40 rounded-full bg-brand-100/20 blur-3xl" />
         <div className="relative z-10 mx-auto max-w-6xl">
           <div className="text-center">
-            <h2 className="font-serif text-2xl font-bold text-brand-700">
+            <p className="text-xs font-semibold uppercase tracking-widest text-brand-500">Odbornosť</p>
+            <h2 className="mt-2 font-serif text-2xl font-bold text-gray-900 sm:text-3xl">
               Certifikácie a vzdelávanie
             </h2>
-            <p className="mt-2 text-gray-600">
+            <p className="mt-2 text-gray-500">
               Náš tím neustále rozširuje svoje znalosti a odbornosť
             </p>
           </div>
@@ -428,7 +368,7 @@ export function AboutPageClient() {
                         key={index}
                         type="button"
                         onClick={() => openLightbox(member.certificates, index)}
-                        className="group cursor-pointer overflow-hidden rounded-2xl border border-brand-100 bg-white/80 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+                        className="group cursor-pointer overflow-hidden border border-gray-100 bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2"
                       >
                         <div className="relative aspect-[4/3] w-full">
                           <Image
@@ -454,7 +394,7 @@ export function AboutPageClient() {
             </Tabs>
           </div>
 
-          <div className="mt-8 rounded-2xl border border-brand-100 bg-white/80 p-6 text-center shadow-lg backdrop-blur-sm">
+          <div className="mt-8 rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-lg">
             <p className="font-medium text-gray-900">
               Pravidelná účasť na medzinárodných konferenciách
             </p>
@@ -465,8 +405,8 @@ export function AboutPageClient() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="relative z-10 px-4 py-16">
+      {/* Stats – white */}
+      <section className="relative bg-white px-4 py-16">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-6 sm:grid-cols-4">
             {[
@@ -475,8 +415,8 @@ export function AboutPageClient() {
               { value: '15+', label: 'Procedúr' },
               { value: '100%', label: 'Bezpečnosť' },
             ].map((stat, index) => (
-              <div key={index} className="rounded-2xl border border-brand-100 bg-white/80 p-6 text-center shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                <p className="text-3xl font-bold text-[#CDA882]">{stat.value}</p>
+              <div key={index} className="rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                <p className="text-3xl font-bold text-brand-500">{stat.value}</p>
                 <p className="mt-1 text-sm text-gray-600">{stat.label}</p>
               </div>
             ))}
@@ -484,19 +424,19 @@ export function AboutPageClient() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative z-10 overflow-hidden bg-gradient-to-br from-brand-50/50 via-white to-[#CDA882]/10 px-4 py-16">
-        <div className="pointer-events-none absolute top-10 right-10 h-32 w-32 rounded-full bg-brand-200/30 blur-2xl" />
-        <div className="pointer-events-none absolute bottom-10 left-10 h-40 w-40 rounded-full bg-[#CDA882]/20 blur-2xl" />
+      {/* CTA Section – solid blue */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#8698a4] to-[#718593] px-4 py-16">
+        <div className="pointer-events-none absolute top-10 right-10 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-10 left-10 h-40 w-40 rounded-full bg-white/5 blur-3xl" />
         <div className="relative z-10 mx-auto max-w-3xl text-center">
-          <h2 className="font-serif text-2xl font-bold text-brand-700">
+          <h2 className="font-serif text-2xl font-bold text-white sm:text-3xl">
             Pripravení začať svoju transformáciu?
           </h2>
-          <p className="mt-4 text-gray-600">
+          <p className="mt-4 text-white/80">
             Objednajte sa na konzultáciu a spoločne vytvoríme plán pre vašu krásu.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <Button href="#kontakt" color="primary" size="lg">
+            <Button href="/rezervacia" color="primary" size="lg">
               Rezervovať konzultáciu
             </Button>
             <Button href="/sluzby" color="secondary" size="lg">

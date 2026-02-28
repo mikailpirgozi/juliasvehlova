@@ -14,7 +14,7 @@ export function CategoryCard({ category, priority = false }: CategoryCardProps) 
   return (
     <Link
       href={`/sluzby/${category.slug}`}
-      className="group relative block aspect-[4/5] overflow-hidden rounded-xl"
+      className="group relative block aspect-[4/5] overflow-hidden"
     >
       <Image
         src={category.image}

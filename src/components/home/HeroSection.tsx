@@ -18,10 +18,13 @@ export function HeroSection() {
         <div className="bg-[#8698a4] px-6 pt-24 pb-8 text-center sm:px-10">
           <div className="animate-[fadeInUp_0.8s_ease-out_0.1s_both]">
             {/* Badge */}
-            <div className="mb-5">
+            <div className="mb-5 flex flex-col items-center gap-2">
               <span className="inline-flex items-center gap-2.5 text-xs font-semibold tracking-[0.2em] text-white/80 uppercase">
-                <span className="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-[#CDA882]" />
+                <span className="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-white/70" />
                 Julia Estetic Clinic
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-3 py-1 text-[0.65rem] font-semibold tracking-widest text-white/90 uppercase backdrop-blur-sm">
+                ✦ Jediná certifikovaná klinika v Malackách
               </span>
             </div>
 
@@ -34,8 +37,13 @@ export function HeroSection() {
               výnimočne
             </h1>
 
+            {/* Motto */}
+            <p className="mt-3 font-serif text-base italic text-brand-200/90 sm:text-lg">
+              SebaLáska na počkanie
+            </p>
+
             {/* Subtitle */}
-            <p className="mx-auto mt-6 max-w-sm text-base leading-relaxed text-white/90 sm:text-lg">
+            <p className="mx-auto mt-5 max-w-sm text-base leading-relaxed text-white/90 sm:text-lg">
               Vďaka skúsenostiam, odbornosti a individuálnemu prístupu vám
               pomáhame objaviť a zvýrazniť vašu prirodzenú krásu.
             </p>
@@ -66,14 +74,14 @@ export function HeroSection() {
             alt="Profesionálny tím Julia Estetic Clinic"
             width={1024}
             height={1024}
-            className="w-full scale-125 origin-[center_35%]"
+            className="w-full"
             priority
             sizes="100vw"
           />
           {/* Top fade for seamless blend with text section */}
           <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#8698a4] to-transparent" />
           {/* Bottom fade for seamless blend into next section */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white/80 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent" />
         </div>
       </div>
 
@@ -102,10 +110,13 @@ export function HeroSection() {
             <div className="w-full max-w-[45%] px-16 py-24 xl:max-w-[42%] xl:px-24">
               <div className="max-w-xl animate-[fadeInUp_0.8s_ease-out_0.1s_both]">
                 {/* Badge */}
-                <div className="mb-8">
+                <div className="mb-8 flex flex-col gap-3">
                   <span className="inline-flex items-center gap-2.5 text-sm font-semibold tracking-[0.2em] text-white/90 uppercase">
-                    <span className="h-px w-6 bg-[#CDA882]" />
+                    <span className="h-px w-6 bg-white/60" />
                     Julia Estetic Clinic
+                  </span>
+                  <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-widest text-white/90 uppercase backdrop-blur-sm">
+                    ✦ Jediná certifikovaná klinika v Malackách
                   </span>
                 </div>
 
@@ -118,8 +129,13 @@ export function HeroSection() {
                   výnimočne
                 </h1>
 
+                {/* Motto */}
+                <p className="mt-4 font-serif text-xl italic text-brand-200/90">
+                  SebaLáska na počkanie
+                </p>
+
                 {/* Subtitle */}
-                <p className="mt-8 max-w-md text-xl font-medium leading-relaxed text-white/90">
+                <p className="mt-6 max-w-md text-xl font-medium leading-relaxed text-white/90">
                   Vďaka skúsenostiam, odbornosti a individuálnemu prístupu vám
                   pomáhame objaviť a zvýrazniť vašu prirodzenú krásu.
                 </p>

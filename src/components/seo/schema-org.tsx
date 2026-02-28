@@ -46,7 +46,7 @@ export function OrganizationSchema() {
       latitude: CONTACT.geo.latitude,
       longitude: CONTACT.geo.longitude,
     },
-    sameAs: [SOCIAL_LINKS.facebook, SOCIAL_LINKS.instagram],
+    sameAs: [SOCIAL_LINKS.facebook, SOCIAL_LINKS.instagram, SOCIAL_LINKS.youtube, SOCIAL_LINKS.tiktok],
     priceRange: SEO_DEFAULTS.priceRange,
     paymentAccepted: 'Cash, Credit Card, Debit Card, Bank Transfer',
     currenciesAccepted: SEO_DEFAULTS.currency,
@@ -108,7 +108,7 @@ export function LocalBusinessSchema() {
         closes: OPENING_HOURS.saturday.closes,
       },
     ],
-    sameAs: [SOCIAL_LINKS.facebook, SOCIAL_LINKS.instagram],
+    sameAs: [SOCIAL_LINKS.facebook, SOCIAL_LINKS.instagram, SOCIAL_LINKS.youtube, SOCIAL_LINKS.tiktok],
   }
 
   return (
