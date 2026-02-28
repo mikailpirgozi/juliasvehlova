@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { ArrowLeft, ChevronRight, Home02, Clock, Check, Users01, Lightbulb01, Heart, Zap, Target01, Star01, RefreshCw01 } from '@untitledui/icons'
 import { Button } from '@/components/base/buttons/button'
+import { BookioWidget } from '@/components/booking/BookioWidget'
 import type { MainCategory, SimpleService, ServiceBenefit, ProcessStep } from '@/lib/services-new'
 
 interface DirectServicePageClientProps {
@@ -32,8 +33,8 @@ function BenefitIcon({ iconKey, className }: { iconKey?: string; className?: str
 }
 
 export function DirectServicePageClient({ category, service }: DirectServicePageClientProps) {
-  // Get related services (other services in the same category)
   const relatedServices = category.services?.filter((s) => s.id !== service.id).slice(0, 4) || []
+  const hasWidget = !!(service.bookioServiceId && service.bookioCategoryId)
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-white">
@@ -91,9 +92,9 @@ export function DirectServicePageClient({ category, service }: DirectServicePage
             {category.title}
           </Link>
 
-          <div className="grid gap-12 lg:grid-cols-5 lg:gap-16">
-            {/* Main Content */}
-            <div className="lg:col-span-3">
+          <div className="flex flex-col gap-12 lg:flex-row lg:items-stretch lg:gap-0">
+            {/* LEFT — Service content */}
+            <div className="flex-1 lg:pr-10 lg:border-r lg:border-gray-100">
               {/* Category Badge */}
               <div className="mb-6 flex items-center gap-3">
                 <span className="inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-xs font-medium uppercase tracking-wider text-brand-600">
@@ -118,40 +119,57 @@ export function DirectServicePageClient({ category, service }: DirectServicePage
                 </p>
               )}
 
+              {/* Price + duration */}
+              <div className="mt-6 flex items-center gap-6">
+                <span className="text-3xl font-bold text-gray-900">{service.price}</span>
+                <span className="flex items-center gap-2 text-sm text-gray-500">
+                  <Clock className="h-4 w-4" />
+                  {service.duration}
+                </span>
+              </div>
+
               {/* Short Description */}
               {service.shortDescription && (
-                <p className="mt-6 text-lg leading-relaxed text-gray-600 sm:text-xl">
+                <p className="mt-6 text-lg leading-relaxed text-gray-600">
                   {service.shortDescription}
+                </p>
+              )}
+
+              {/* Mobile booking widget */}
+              {hasWidget && (
+                <div className="mt-8 lg:hidden">
+                  <h2 className="mb-4 font-serif text-2xl font-bold text-gray-900">Rezervovať termín</h2>
+                  <BookioWidget
+                    preselectedService={service.bookioServiceId}
+                    preselectedCategory={service.bookioCategoryId}
+                  />
+                </div>
+              )}
+
+              {!hasWidget && (
+                <div className="mt-8">
+                  <Button href="/rezervacia" color="primary" size="lg">
+                    Rezervovať termín
+                  </Button>
+                </div>
+              )}
+
+              {service.note && (
+                <p className="mt-4 rounded-xl bg-brand-50 px-4 py-3 text-sm text-brand-700">
+                  {service.note}
                 </p>
               )}
             </div>
 
-            {/* Price Card - Floating */}
-            <div className="lg:col-span-2">
-              <div className="sticky top-24 rounded-2xl border border-gray-100 bg-white p-8 shadow-xl shadow-gray-100/50">
-                <div className="mb-6 text-center">
-                  <p className="text-sm font-medium uppercase tracking-wider text-gray-400">Cena</p>
-                  <p className="mt-2 text-4xl font-bold text-gray-900">{service.price}</p>
-                </div>
-                
-                <div className="mb-8 flex items-center justify-center gap-6 border-y border-gray-100 py-4">
-                  <span className="flex items-center gap-2 text-sm text-gray-500">
-                    <Clock className="h-4 w-4" />
-                    {service.duration}
-                  </span>
-                </div>
-
-                <Button href="/rezervacia" color="primary" size="lg" className="w-full">
-                  Rezervovať termín
-                </Button>
-
-                {service.note && (
-                  <p className="mt-4 text-center text-xs text-gray-400">
-                    {service.note}
-                  </p>
-                )}
+            {/* RIGHT — Bookio widget (desktop only) */}
+            {hasWidget && (
+              <div className="hidden lg:block lg:w-1/2 lg:flex-shrink-0 lg:pl-10">
+                <BookioWidget
+                  preselectedService={service.bookioServiceId}
+                  preselectedCategory={service.bookioCategoryId}
+                />
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>

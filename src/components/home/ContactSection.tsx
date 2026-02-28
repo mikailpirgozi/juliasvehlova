@@ -72,12 +72,12 @@ export function ContactSection() {
                   {info.href ? (
                     <a
                       href={info.href}
-                      className="mt-1 block text-sm font-semibold text-white hover:text-brand-300 transition-colors"
+                      className="mt-1 block text-sm font-semibold text-white hover:text-brand-300 transition-colors break-all"
                     >
                       {info.primary}
                     </a>
                   ) : (
-                    <p className="mt-1 text-sm font-semibold text-white">{info.primary}</p>
+                    <p className="mt-1 text-sm font-semibold text-white break-all">{info.primary}</p>
                   )}
                   <p className="mt-0.5 text-xs text-white/60">{info.secondary}</p>
                 </div>

@@ -208,7 +208,7 @@ function ServiceDetailContent({
                 <h2 className="mb-4 font-serif text-2xl font-bold text-gray-900">Rezervovať termín</h2>
                 <BookioWidget
                   preselectedService={service.bookioServiceId}
-                  preselectedCategory={subcategory.bookioCategoryId}
+                  preselectedCategory={service.bookioCategoryId ?? subcategory.bookioCategoryId}
                 />
               </div>
             )}
@@ -304,7 +304,7 @@ function ServiceDetailContent({
             <div className="hidden lg:block lg:w-1/2 lg:flex-shrink-0 lg:pl-10">
               <BookioWidget
                 preselectedService={service.bookioServiceId}
-                preselectedCategory={subcategory.bookioCategoryId}
+                preselectedCategory={service.bookioCategoryId ?? subcategory.bookioCategoryId}
               />
             </div>
           )}
