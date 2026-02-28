@@ -1404,6 +1404,7 @@ export const mainCategories: MainCategory[] = [
     description: 'Bezpečné a účinné trvalé odstránenie nežiaducich chĺpkov laserom.',
     iconKey: 'laser',
     image: '/images/services/laserova-epilacia-hero.png',
+    imagePosition: 'center center',
     subcategories: [
       {
         id: 'laser-damy',

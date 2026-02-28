@@ -3,7 +3,7 @@ import { readFileSync } from 'fs'
 import path from 'path'
 
 export const runtime = 'nodejs'
-export const size = { width: 180, height: 180 }
+export const size = { width: 192, height: 192 }
 export const contentType = 'image/png'
 
 function getLogoBase64() {
@@ -12,7 +12,7 @@ function getLogoBase64() {
   return `data:image/png;base64,${data.toString('base64')}`
 }
 
-export default function AppleIcon() {
+export default function Icon() {
   const logo = getLogoBase64()
 
   return new ImageResponse(
@@ -25,14 +25,14 @@ export default function AppleIcon() {
           alignItems: 'center',
           justifyContent: 'center',
           background: 'linear-gradient(145deg, #FAF5F2 0%, #EDD5C5 100%)',
-          borderRadius: 40,
         }}
       >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={logo}
           style={{
-            width: 144,
-            height: 144,
+            width: 156,
+            height: 156,
             objectFit: 'contain',
           }}
           alt="Julia Estetic Clinic"

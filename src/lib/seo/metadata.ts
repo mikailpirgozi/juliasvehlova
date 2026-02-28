@@ -193,7 +193,7 @@ export function generatePageMetadata(
       description,
       images: [
         {
-          url: `${BASE_URL}/images/og-image.jpg`,
+          url: `${BASE_URL}/opengraph-image`,
           width: SEO_DEFAULTS.ogImageWidth,
           height: SEO_DEFAULTS.ogImageHeight,
           alt: `${COMPANY_NAME} - Estetická medicína Malacky`,
@@ -204,7 +204,7 @@ export function generatePageMetadata(
       card: SEO_DEFAULTS.twitterCard,
       title,
       description,
-      images: [`${BASE_URL}/images/og-image.jpg`],
+      images: [`${BASE_URL}/twitter-image`],
     },
     robots: {
       index: true,
@@ -240,7 +240,7 @@ export function generateServiceMetadata(service: {
 }): Metadata {
   const { seoMeta, slug, images } = service
   const url = `${BASE_URL}/sluzby/${slug}`
-  const ogImage = images?.[0]?.url ?? `${BASE_URL}/images/og-image.jpg`
+  const ogImage = images?.[0]?.url ?? `${BASE_URL}/opengraph-image`
 
   return {
     title: seoMeta.title,
@@ -302,7 +302,7 @@ export function generateBlogPostMetadata(post: {
   author?: string
 }): Metadata {
   const url = `${BASE_URL}/blog/${post.slug}`
-  const ogImage = post.image ?? `${BASE_URL}/images/og-image.jpg`
+  const ogImage = post.image ?? `${BASE_URL}/opengraph-image`
 
   return {
     title: `${post.title} | Blog ${COMPANY_NAME}`,
@@ -377,7 +377,7 @@ export function getBaseMetadata(): Metadata {
       description: homeMeta.description,
       images: [
         {
-          url: `${BASE_URL}/images/og-image.jpg`,
+          url: `${BASE_URL}/opengraph-image`,
           width: SEO_DEFAULTS.ogImageWidth,
           height: SEO_DEFAULTS.ogImageHeight,
           alt: `${COMPANY_NAME} - Estetická medicína Malacky`,
@@ -388,7 +388,7 @@ export function getBaseMetadata(): Metadata {
       card: SEO_DEFAULTS.twitterCard,
       title: homeMeta.title,
       description: homeMeta.description,
-      images: [`${BASE_URL}/images/og-image.jpg`],
+      images: [`${BASE_URL}/twitter-image`],
     },
     robots: {
       index: true,

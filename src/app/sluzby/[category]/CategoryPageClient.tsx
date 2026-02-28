@@ -92,13 +92,13 @@ export function CategoryPageClient({ category }: CategoryPageClientProps) {
 
       {/* Hero Section - Modern, clean design */}
       <section className="relative overflow-hidden">
-        <div className="relative h-52 w-full sm:h-64 lg:h-80">
+        <div className="relative h-[60vh] w-full sm:h-[70vh] lg:h-screen">
           <Image
             src={category.image}
             alt={category.title}
             fill
             priority
-            className="object-cover"
+            className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
 

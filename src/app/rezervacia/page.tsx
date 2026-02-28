@@ -4,6 +4,11 @@ import { ReservationPageClient } from './ReservationPageClient'
 
 export const metadata: Metadata = generatePageMetadata('booking')
 
-export default function ReservationPage() {
-  return <ReservationPageClient />
+interface ReservationPageProps {
+  searchParams: Promise<{ service?: string }>
+}
+
+export default async function ReservationPage({ searchParams }: ReservationPageProps) {
+  const { service } = await searchParams
+  return <ReservationPageClient preselectedService={service} />
 }

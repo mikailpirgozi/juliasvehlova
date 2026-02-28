@@ -35,7 +35,7 @@ export function AboutSection() {
               <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] shadow-2xl">
                 <Image
                   src="/images/services/doctor-portrait.webp"
-                  alt="MUDr. Julia Svehlová - Estetická medicína"
+                  alt="MUDr. Júlia Švehlová - Estetická medicína"
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"
                   className="object-cover"
@@ -63,7 +63,7 @@ export function AboutSection() {
             <div>
               <p className="text-sm font-bold uppercase tracking-widest text-[#CDA882]">O nás</p>
               <h2 className="mt-2 font-serif text-3xl font-bold text-gray-900 sm:text-4xl">
-                Julia Svehlová
+                Júlia Švehlová
               </h2>
               <div className="mt-6 space-y-4 text-gray-600">
                 <p>

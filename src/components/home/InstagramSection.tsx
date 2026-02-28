@@ -11,19 +11,20 @@ interface InstagramPost {
   video: string
   poster: string
   alt: string
+  link: string
   featured?: boolean
 }
 
 // 8 reels - 2 featured (wider) + 6 normal
 const instagramPosts: InstagramPost[] = [
-  { id: 1, video: '/videos/instagram/reel-1.mp4', poster: '/videos/instagram/reel-1-poster.jpg', alt: 'Estetický zákrok', featured: true },
-  { id: 2, video: '/videos/instagram/reel-5.mp4', poster: '/videos/instagram/reel-5-poster.jpg', alt: 'Kozmetický zákrok' },
-  { id: 3, video: '/videos/instagram/reel-9.mp4', poster: '/videos/instagram/reel-9-poster.jpg', alt: 'Výsledky ošetrenia' },
-  { id: 4, video: '/videos/instagram/reel-3.mp4', poster: '/videos/instagram/reel-3-poster.jpg', alt: 'Profesionálne ošetrenie' },
-  { id: 5, video: '/videos/instagram/reel-12.mp4', poster: '/videos/instagram/reel-12-poster.jpg', alt: 'Kozmetické ošetrenie' },
-  { id: 6, video: '/videos/instagram/reel-7.mp4', poster: '/videos/instagram/reel-7-poster.jpg', alt: 'Starostlivosť o pleť' },
-  { id: 7, video: '/videos/instagram/reel-2.mp4', poster: '/videos/instagram/reel-2-poster.jpg', alt: 'Ošetrenie pleti' },
-  { id: 8, video: '/videos/instagram/reel-8.mp4', poster: '/videos/instagram/reel-8-poster.jpg', alt: 'Klinika Julia' },
+  { id: 1, video: '/videos/instagram/reel-1.mp4', poster: '/videos/instagram/reel-1-poster.jpg', alt: 'Estetický zákrok', link: 'https://www.instagram.com/p/DBN0BZ5OeGY/', featured: true },
+  { id: 2, video: '/videos/instagram/reel-5.mp4', poster: '/videos/instagram/reel-5-poster.jpg', alt: 'Kozmetický zákrok', link: INSTAGRAM_URL },
+  { id: 3, video: '/videos/instagram/reel-9.mp4', poster: '/videos/instagram/reel-9-poster.jpg', alt: 'Výsledky ošetrenia', link: 'https://www.instagram.com/p/DSaNuwOjJHR/' },
+  { id: 4, video: '/videos/instagram/reel-3.mp4', poster: '/videos/instagram/reel-3-poster.jpg', alt: 'Profesionálne ošetrenie', link: 'https://www.instagram.com/p/DTwAFFKDJwb/' },
+  { id: 5, video: '/videos/instagram/reel-12.mp4', poster: '/videos/instagram/reel-12-poster.jpg', alt: 'Kozmetické ošetrenie', link: 'https://www.instagram.com/p/DUllFZuDM5k/' },
+  { id: 6, video: '/videos/instagram/reel-7.mp4', poster: '/videos/instagram/reel-7-poster.jpg', alt: 'Starostlivosť o pleť', link: 'https://www.instagram.com/p/DUYsVAGDI2s/' },
+  { id: 7, video: '/videos/instagram/reel-2.mp4', poster: '/videos/instagram/reel-2-poster.jpg', alt: 'Ošetrenie pleti', link: 'https://www.instagram.com/p/DBYPBffuo_z/' },
+  { id: 8, video: '/videos/instagram/reel-8.mp4', poster: '/videos/instagram/reel-8-poster.jpg', alt: 'Klinika Julia', link: 'https://www.instagram.com/p/DTAZrjLDHss/' },
 ]
 
 const INSTAGRAM_ICON_PATH =
@@ -84,7 +85,7 @@ function VideoCard({ post }: { post: InstagramPost }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <Link
-        href={INSTAGRAM_URL}
+        href={post.link}
         target="_blank"
         rel="noopener noreferrer"
         className="absolute inset-0 z-10"
