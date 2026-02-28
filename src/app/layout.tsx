@@ -38,7 +38,8 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
 
-        {/* Favicon - explicit fallback for older browsers */}
+        {/* Favicon - SVG for modern browsers, PNG fallback for older */}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/icon" sizes="32x32" type="image/png" />
         <link rel="icon" href="/icon1" sizes="192x192" type="image/png" />
         <link rel="shortcut icon" href="/icon" />
