@@ -3,9 +3,7 @@
 import Link from 'next/link'
 import { ArrowLeft, ChevronRight, Home02, Clock, Check, Users01, Lightbulb01, Heart, Zap, Target01, Star01, RefreshCw01 } from '@untitledui/icons'
 import { Button } from '@/components/base/buttons/button'
-import { ImageGallery } from '@/components/services'
 import type { MainCategory, SimpleService, ServiceBenefit, ProcessStep } from '@/lib/services-new'
-import { getServiceGalleryImages } from '@/lib/service-images'
 
 interface DirectServicePageClientProps {
   category: MainCategory
@@ -36,9 +34,6 @@ function BenefitIcon({ iconKey, className }: { iconKey?: string; className?: str
 export function DirectServicePageClient({ category, service }: DirectServicePageClientProps) {
   // Get related services (other services in the same category)
   const relatedServices = category.services?.filter((s) => s.id !== service.id).slice(0, 4) || []
-  
-  // Get service images
-  const galleryImages = getServiceGalleryImages(category.slug, 8)
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-white">
@@ -171,9 +166,6 @@ export function DirectServicePageClient({ category, service }: DirectServicePage
           </div>
         </section>
       )}
-
-      {/* Image Gallery Section */}
-      <ImageGallery images={galleryImages} alt={service.name} />
 
       {/* Benefits Section */}
       {service.benefits && service.benefits.length > 0 && (

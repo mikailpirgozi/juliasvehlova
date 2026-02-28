@@ -31,6 +31,9 @@ export default function RootLayout({
         {/* Preconnect to external resources for faster loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preconnect to Bookio — establishes TCP+TLS connection before iframe loads */}
+        <link rel="preconnect" href="https://services.bookio.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://services.bookio.com" />
         {/* DNS prefetch for analytics */}
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />

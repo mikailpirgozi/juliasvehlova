@@ -1,16 +1,17 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/base/buttons/button'
 import Link from 'next/link'
 
 export function CookieConsent() {
-  const [showConsent, setShowConsent] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return !localStorage.getItem('cookie-consent')
-    }
-    return false
-  })
+  // Must start as false (same as server) to avoid hydration mismatch.
+  // localStorage is only available after hydration, so we read it in useEffect.
+  const [showConsent, setShowConsent] = useState(false)
+
+  useEffect(() => {
+    setShowConsent(!localStorage.getItem('cookie-consent'))
+  }, [])
 
   const handleAccept = (): void => {
     localStorage.setItem('cookie-consent', 'accepted')

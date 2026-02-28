@@ -18,10 +18,10 @@ import {
   Star01,
 } from '@untitledui/icons'
 import { Button } from '@/components/base/buttons/button'
-import { SubcategoryCard, ServicesPriceTable } from '@/components/services'
+import { SubcategoryCard, ServicesPriceTable, ImageGallery } from '@/components/services'
 import type { MainCategory, CategoryIconKey, SimpleService } from '@/lib/services-new'
 import { categoryHasSubcategories } from '@/lib/services-new'
-import { getServiceImage } from '@/lib/service-images'
+import { getServiceImage, getServiceGalleryImages } from '@/lib/service-images'
 
 // Map icon keys to Untitled UI icon components
 const iconComponents: Record<CategoryIconKey, FC<{ className?: string }>> = {
@@ -79,6 +79,7 @@ function ServiceCard({ service, categorySlug, index = 1 }: { service: SimpleServ
 export function CategoryPageClient({ category }: CategoryPageClientProps) {
   const IconComponent = iconComponents[category.iconKey]
   const hasSubcategories = categoryHasSubcategories(category)
+  const galleryImages = getServiceGalleryImages(category.slug, 8)
 
   // Check if any service has rich content
   const hasRichServices = category.services?.some(
@@ -92,7 +93,7 @@ export function CategoryPageClient({ category }: CategoryPageClientProps) {
 
       {/* Hero Section - Modern, clean design */}
       <section className="relative overflow-hidden">
-        <div className="relative h-[60vh] w-full sm:h-[70vh] lg:h-screen">
+        <div className="relative h-[280px] w-full sm:h-[320px] lg:h-[380px]">
           <Image
             src={category.image}
             alt={category.title}
@@ -165,6 +166,11 @@ export function CategoryPageClient({ category }: CategoryPageClientProps) {
                   ))}
                 </div>
               </div>
+
+              {/* Gallery */}
+              {galleryImages.length > 0 && (
+                <ImageGallery images={galleryImages} alt={category.title} />
+              )}
             </>
           ) : (
             <>

@@ -5,9 +5,10 @@ import { Button } from '@/components/base/buttons/button'
 
 interface ReservationPageClientProps {
   preselectedService?: string
+  preselectedCategory?: string
 }
 
-export function ReservationPageClient({ preselectedService }: ReservationPageClientProps) {
+export function ReservationPageClient({ preselectedService, preselectedCategory }: ReservationPageClientProps) {
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-white via-brand-50/30 to-brand-100/20">
       {/* Global decorative background elements */}
@@ -33,7 +34,7 @@ export function ReservationPageClient({ preselectedService }: ReservationPageCli
       {/* Bookio Widget */}
       <section className="relative z-10 px-4 py-16">
         <div className="mx-auto max-w-5xl">
-          <BookioWidget preselectedService={preselectedService} />
+          <BookioWidget preselectedService={preselectedService} preselectedCategory={preselectedCategory} />
 
           {/* Alternative Contact */}
           <div className="mt-12 rounded-2xl border border-brand-100 bg-white/80 p-8 text-center shadow-lg backdrop-blur-sm">
