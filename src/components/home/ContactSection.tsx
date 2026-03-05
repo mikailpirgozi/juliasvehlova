@@ -41,8 +41,15 @@ export function ContactSection() {
   ]
 
   return (
-    <section id="contact" className="bg-gradient-to-b from-[#718593] to-[#5c6e7b] py-16 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="relative bg-gradient-to-b from-[#718593] to-[#5c6e7b] pt-28 pb-28 sm:pt-36 sm:pb-36">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[120px] sm:h-[140px]"
+        style={{
+          background:
+            'linear-gradient(to bottom, white 0%, rgba(255,255,255,0.987) 8.1%, rgba(255,255,255,0.951) 15.5%, rgba(255,255,255,0.896) 22.5%, rgba(255,255,255,0.825) 29%, rgba(255,255,255,0.741) 35.3%, rgba(255,255,255,0.648) 41.2%, rgba(255,255,255,0.55) 47.1%, rgba(255,255,255,0.45) 52.9%, rgba(255,255,255,0.352) 58.8%, rgba(255,255,255,0.259) 64.7%, rgba(255,255,255,0.175) 71%, rgba(255,255,255,0.104) 77.5%, rgba(255,255,255,0.049) 84.5%, rgba(255,255,255,0.013) 91.9%, transparent 100%)',
+        }}
+      />
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <FadeIn delay={0.2}>
           <div className="text-center">
@@ -120,14 +127,14 @@ export function ContactSection() {
               <p className="mt-2 text-base text-gray-600">
                 Inšpirujte sa našimi výsledkami a zostaňte v obraze o novinkách
               </p>
-              <div className="mt-4 flex flex-wrap justify-center gap-3">
+              <div className="mt-5 flex justify-center gap-5">
                 {[
                   {
                     label: 'Instagram',
                     href: 'https://www.instagram.com/juliaesteticclinic',
-                    className: 'bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 hover:from-purple-700 hover:via-pink-600 hover:to-orange-500 shadow-pink-800/30 hover:shadow-pink-800/50',
+                    color: 'text-[#E4405F] hover:text-[#d62e4f]',
                     icon: (
-                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="h-7 w-7" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                       </svg>
                     ),
@@ -135,9 +142,9 @@ export function ContactSection() {
                   {
                     label: 'Facebook',
                     href: 'https://www.facebook.com/people/Julia-Estetic-Clinic/61560460323854/',
-                    className: 'bg-[#1877F2] hover:bg-[#0e65d9] shadow-blue-900/30 hover:shadow-blue-900/50',
+                    color: 'text-[#1877F2] hover:text-[#0e65d9]',
                     icon: (
-                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="h-7 w-7" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                       </svg>
                     ),
@@ -145,9 +152,9 @@ export function ContactSection() {
                   {
                     label: 'YouTube',
                     href: 'https://youtube.com/@juliaesteticclinic',
-                    className: 'bg-[#FF0000] hover:bg-[#cc0000] shadow-red-900/30 hover:shadow-red-900/50',
+                    color: 'text-[#FF0000] hover:text-[#cc0000]',
                     icon: (
-                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="h-7 w-7" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                       </svg>
                     ),
@@ -155,9 +162,9 @@ export function ContactSection() {
                   {
                     label: 'TikTok',
                     href: 'https://www.tiktok.com/@juliaesteticclinic_',
-                    className: 'bg-[#010101] hover:bg-[#2a2a2a] shadow-black/40 hover:shadow-black/60',
+                    color: 'text-[#010101] hover:text-[#333]',
                     icon: (
-                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="h-7 w-7" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z" />
                       </svg>
                     ),
@@ -168,11 +175,10 @@ export function ContactSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${social.className}`}
+                    className={`flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:opacity-80 ${social.color}`}
                     aria-label={social.label}
                   >
                     {social.icon}
-                    {social.label}
                   </a>
                 ))}
               </div>

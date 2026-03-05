@@ -43,11 +43,25 @@ function StarRating({ count }: { count: number }) {
   )
 }
 
+const SCRIM_TO_BOTTOM =
+  'linear-gradient(to bottom, white 0%, rgba(255,255,255,0.987) 8.1%, rgba(255,255,255,0.951) 15.5%, rgba(255,255,255,0.896) 22.5%, rgba(255,255,255,0.825) 29%, rgba(255,255,255,0.741) 35.3%, rgba(255,255,255,0.648) 41.2%, rgba(255,255,255,0.55) 47.1%, rgba(255,255,255,0.45) 52.9%, rgba(255,255,255,0.352) 58.8%, rgba(255,255,255,0.259) 64.7%, rgba(255,255,255,0.175) 71%, rgba(255,255,255,0.104) 77.5%, rgba(255,255,255,0.049) 84.5%, rgba(255,255,255,0.013) 91.9%, transparent 100%)'
+
+const SCRIM_TO_TOP =
+  'linear-gradient(to top, white 0%, rgba(255,255,255,0.987) 8.1%, rgba(255,255,255,0.951) 15.5%, rgba(255,255,255,0.896) 22.5%, rgba(255,255,255,0.825) 29%, rgba(255,255,255,0.741) 35.3%, rgba(255,255,255,0.648) 41.2%, rgba(255,255,255,0.55) 47.1%, rgba(255,255,255,0.45) 52.9%, rgba(255,255,255,0.352) 58.8%, rgba(255,255,255,0.259) 64.7%, rgba(255,255,255,0.175) 71%, rgba(255,255,255,0.104) 77.5%, rgba(255,255,255,0.049) 84.5%, rgba(255,255,255,0.013) 91.9%, transparent 100%)'
+
 export function TestimonialsSection() {
   return (
-    <section className="bg-gradient-to-b from-[#8698a4] to-[#718593] py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-gradient-to-b from-[#8698a4] to-[#718593] pt-28 pb-28 sm:pt-36 sm:pb-36">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[120px] sm:h-[140px]"
+        style={{ background: SCRIM_TO_BOTTOM }}
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[120px] sm:h-[140px]"
+        style={{ background: SCRIM_TO_TOP }}
+      />
 
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <FadeIn delay={0.2}>
           <div className="text-center">
@@ -99,7 +113,6 @@ export function TestimonialsSection() {
             </FadeIn>
           ))}
         </div>
-
       </div>
     </section>
   )

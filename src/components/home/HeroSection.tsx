@@ -1,20 +1,74 @@
 'use client'
 
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from '@untitledui/icons'
 
-// ---------------------------------------------------------------------------
-// Component
-// ---------------------------------------------------------------------------
+const SLIDE_INTERVAL_MS = 7_000
+const TRANSITION_DURATION_MS = 1_000
+
+interface HeroSlide {
+  webSrc: string
+  mobileSrc: string
+  alt: string
+}
+
+const SLIDES: HeroSlide[] = [
+  {
+    webSrc: '/images/hero/hero1-web.webp',
+    mobileSrc: '/images/hero/hero1-mobile.webp',
+    alt: 'Profesionálny tím Julia Estetic Clinic – foto 1',
+  },
+  {
+    webSrc: '/images/hero/hero2-web.webp',
+    mobileSrc: '/images/hero/hero2-mobile.webp',
+    alt: 'Profesionálny tím Julia Estetic Clinic – foto 2',
+  },
+]
+
 export function HeroSection() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  const startTimer = useCallback(() => {
+    timerRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % SLIDES.length)
+    }, SLIDE_INTERVAL_MS)
+  }, [])
+
+  const stopTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current)
+      timerRef.current = null
+    }
+  }, [])
+
+  useEffect(() => {
+    startTimer()
+    return stopTimer
+  }, [startTimer, stopTimer])
+
+  const goToSlide = useCallback(
+    (index: number) => {
+      setActiveIndex(index)
+      stopTimer()
+      startTimer()
+    },
+    [startTimer, stopTimer],
+  )
+
+  const transitionStyle = {
+    transitionDuration: `${TRANSITION_DURATION_MS}ms`,
+  }
+
   return (
     <section className="relative min-h-[100dvh] overflow-hidden">
       {/* ================================================================ */}
-      {/* MOBILE LAYOUT – text top, image bottom (mousse.sk style)         */}
+      {/* MOBILE LAYOUT – text top, image bottom                          */}
       {/* ================================================================ */}
       <div className="flex min-h-[100dvh] flex-col lg:hidden">
-        {/* Text section – clean background matching the image tones */}
+        {/* Text section */}
         <div className="bg-[#8698a4] px-6 pt-24 pb-8 text-center sm:px-10">
           <div className="animate-[fadeInUp_0.8s_ease-out_0.1s_both]">
             {/* Badge */}
@@ -66,21 +120,73 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Image section – team photo, zoomed in on the team */}
+        {/* Image carousel – mobile */}
         <div className="relative flex-1 overflow-hidden">
-          <Image
-            src="/images/hero/hero-mobile.jpeg"
-            alt="Profesionálny tím Julia Estetic Clinic"
-            width={1024}
-            height={1024}
-            className="w-full"
-            priority
-            sizes="100vw"
-          />
-          {/* Top fade for seamless blend with text section */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#8698a4] to-transparent" />
-          {/* Bottom fade for seamless blend into next section */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent" />
+          {/* Masked image layer */}
+          <div
+            className="absolute inset-0"
+            style={{
+              maskImage:
+                'linear-gradient(to bottom, black 0%, black 50%, transparent 100%)',
+              WebkitMaskImage:
+                'linear-gradient(to bottom, black 0%, black 50%, transparent 100%)',
+            }}
+          >
+            {SLIDES.map((slide, i) => (
+              <div
+                key={slide.mobileSrc}
+                className="absolute inset-0 transition-opacity ease-in-out"
+                style={{
+                  ...transitionStyle,
+                  opacity: i === activeIndex ? 1 : 0,
+                  zIndex: i === activeIndex ? 1 : 0,
+                }}
+              >
+                <Image
+                  src={slide.mobileSrc}
+                  alt={slide.alt}
+                  width={1696}
+                  height={2528}
+                  className="w-full"
+                  priority={i === 0}
+                  sizes="100vw"
+                  unoptimized
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Static first image for layout height */}
+          <div className="invisible" aria-hidden="true">
+            <Image
+              src={SLIDES[0]!.mobileSrc}
+              alt=""
+              width={1696}
+              height={2528}
+              className="w-full"
+              sizes="100vw"
+              unoptimized
+            />
+          </div>
+
+          {/* Top fade into header color */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-[#8698a4] to-transparent" />
+
+          {/* Dots – mobile */}
+          <div className="absolute inset-x-0 bottom-36 z-20 flex items-center justify-center gap-2.5">
+            {SLIDES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goToSlide(i)}
+                aria-label={`Zobraziť slide ${i + 1}`}
+                className={`h-2 rounded-full transition-all duration-500 ${
+                  i === activeIndex
+                    ? 'w-6 bg-white shadow-[0_0_8px_rgba(255,255,255,0.6)]'
+                    : 'w-2 bg-white/50 hover:bg-white/70'
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
@@ -89,20 +195,40 @@ export function HeroSection() {
       {/* ================================================================ */}
       <div className="hidden lg:block">
         <div className="relative min-h-[100dvh]">
-          {/* Background image */}
-          <Image
-            src="/images/hero/Hero 2.png"
-            alt="Profesionálny tím Julia Estetic Clinic"
-            fill
-            className="object-cover object-[75%_center]"
-            priority
-            quality={90}
-            sizes="100vw"
+          {/* Background image carousel */}
+          {SLIDES.map((slide, i) => (
+            <div
+              key={slide.webSrc}
+              className="absolute inset-0 transition-opacity ease-in-out"
+              style={{
+                ...transitionStyle,
+                opacity: i === activeIndex ? 1 : 0,
+                zIndex: i === activeIndex ? 1 : 0,
+              }}
+            >
+              <Image
+                src={slide.webSrc}
+                alt={slide.alt}
+                fill
+                className="object-cover object-[75%_center]"
+                priority={i === 0}
+                sizes="100vw"
+                unoptimized
+              />
+            </div>
+          ))}
+
+          {/* Left gradient overlay */}
+          <div className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-r from-[#8698a4]/95 via-[#8698a4]/60 via-30% to-transparent to-45%" />
+
+          {/* Bottom scrim — eased 16-stop gradient, no visible banding */}
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[220px]"
+            style={{
+              background:
+                'linear-gradient(to top, white 0%, rgba(255,255,255,0.987) 8.1%, rgba(255,255,255,0.951) 15.5%, rgba(255,255,255,0.896) 22.5%, rgba(255,255,255,0.825) 29%, rgba(255,255,255,0.741) 35.3%, rgba(255,255,255,0.648) 41.2%, rgba(255,255,255,0.55) 47.1%, rgba(255,255,255,0.45) 52.9%, rgba(255,255,255,0.352) 58.8%, rgba(255,255,255,0.259) 64.7%, rgba(255,255,255,0.175) 71%, rgba(255,255,255,0.104) 77.5%, rgba(255,255,255,0.049) 84.5%, rgba(255,255,255,0.013) 91.9%, transparent 100%)',
+            }}
           />
-
-          {/* Left gradient overlay – covers text area only, keeps team photo sharp */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#8698a4]/95 via-[#8698a4]/60 via-30% to-transparent to-45%" />
-
 
           {/* Content */}
           <div className="relative z-10 flex min-h-[100dvh] items-center">
@@ -176,11 +302,27 @@ export function HeroSection() {
             </div>
           </div>
 
+          {/* Dots – desktop */}
+          <div className="absolute inset-x-0 bottom-20 z-20 flex items-center justify-center gap-3">
+            {SLIDES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goToSlide(i)}
+                aria-label={`Zobraziť slide ${i + 1}`}
+                className={`h-2.5 rounded-full transition-all duration-500 ${
+                  i === activeIndex
+                    ? 'w-8 bg-[#8698a4] shadow-[0_0_12px_rgba(134,152,164,0.4)]'
+                    : 'w-2.5 bg-[#8698a4]/30 hover:bg-[#8698a4]/50'
+                }`}
+              />
+            ))}
+          </div>
+
           {/* Scroll indicator */}
           <div className="absolute bottom-10 left-1/2 z-20 -translate-x-1/2">
             <div className="animate-bounce">
               <svg
-                className="h-5 w-5 text-white/50"
+                className="h-5 w-5 text-[#8698a4]/40"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
