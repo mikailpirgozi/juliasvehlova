@@ -4,6 +4,7 @@ import { inter, playfair } from '@/lib/fonts'
 import { MainLayout } from '@/components/MainLayout'
 import { MainSchemaMarkup } from '@/components/seo'
 import { getBaseMetadata } from '@/lib/seo'
+import { Analytics } from '@vercel/analytics/next'
 
 /**
  * Root Metadata - provides base SEO configuration for all pages
@@ -68,6 +69,7 @@ export default function RootLayout({
         <MainSchemaMarkup />
         
         <MainLayout>{children}</MainLayout>
+        <Analytics />
       </body>
     </html>
   )

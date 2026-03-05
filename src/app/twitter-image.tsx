@@ -7,9 +7,9 @@ export const contentType = 'image/png'
 export const size = { width: 1200, height: 630 }
 
 function getLogoBase64() {
-  const logoPath = path.join(process.cwd(), 'public/images/branding/logo.png')
+  const logoPath = path.join(process.cwd(), 'public/images/branding/logo.svg')
   const data = readFileSync(logoPath)
-  return `data:image/png;base64,${data.toString('base64')}`
+  return `data:image/svg+xml;base64,${data.toString('base64')}`
 }
 
 export default function Image() {

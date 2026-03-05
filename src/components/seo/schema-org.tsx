@@ -31,7 +31,7 @@ export function OrganizationSchema() {
     logo: `${BASE_URL}/images/branding/logo.svg`,
     description:
       'Profesionálna klinika estetickej medicíny v Malackách. Botulotoxín, kyselina hyalurónová, permanentný make-up, laserová epilácia a kozmetické ošetrenia.',
-    image: `${BASE_URL}/images/og-image.jpg`,
+    image: `${BASE_URL}/opengraph-image`,
     telephone: CONTACT.phone,
     email: CONTACT.email,
     address: {
@@ -77,7 +77,7 @@ export function LocalBusinessSchema() {
     '@type': 'HealthAndBeautyBusiness',
     '@id': `${BASE_URL}/#localbusiness`,
     name: `${COMPANY_NAME} - Estetická klinika Malacky`,
-    image: `${BASE_URL}/images/og-image.jpg`,
+    image: `${BASE_URL}/opengraph-image`,
     url: BASE_URL,
     telephone: CONTACT.phone,
     email: CONTACT.email,
@@ -257,7 +257,7 @@ export function ServiceSchema({
     name,
     description,
     url,
-    image: image ?? `${BASE_URL}/images/og-image.jpg`,
+    image: image ?? `${BASE_URL}/opengraph-image`,
     provider: {
       '@id': `${BASE_URL}/#organization`,
     },
@@ -331,7 +331,7 @@ export function MedicalProcedureSchema({
     name,
     description,
     url,
-    image: image ?? `${BASE_URL}/images/og-image.jpg`,
+    image: image ?? `${BASE_URL}/opengraph-image`,
     procedureType: `https://schema.org/${procedureType}`,
     ...(bodyLocation && { bodyLocation }),
     ...(howPerformed && { howPerformed }),
@@ -379,7 +379,7 @@ export function ArticleSchema({
     headline,
     description,
     url,
-    image: image ?? `${BASE_URL}/images/og-image.jpg`,
+    image: image ?? `${BASE_URL}/opengraph-image`,
     author: {
       '@type': 'Person',
       name: author ?? COMPANY_NAME,
