@@ -41,7 +41,7 @@ const teamCertificates = [
   },
   {
     id: 'yasmin-betakova',
-    name: 'Dr. Yasmin Betáková',
+    name: 'MUDr. Yasmin Betáková',
     certificates: [
       '/certificates/yasmin-betakova/cert-1.webp',
       '/certificates/yasmin-betakova/cert-2.webp',
@@ -66,7 +66,7 @@ const teamMembers = [
   },
   {
     id: 'yasmin-betakova',
-    name: 'Dr. Yasmin Betáková',
+    name: 'MUDr. Yasmin Betáková',
     role: 'Estetická lekárka',
     photo: null,
     bio: [
