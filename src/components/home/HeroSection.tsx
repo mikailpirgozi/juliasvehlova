@@ -12,6 +12,7 @@ interface HeroSlide {
   webSrc: string
   mobileSrc: string
   alt: string
+  mobileTransform: string
 }
 
 const SLIDES: HeroSlide[] = [
@@ -19,11 +20,13 @@ const SLIDES: HeroSlide[] = [
     webSrc: '/images/hero/hero1-web.webp',
     mobileSrc: '/images/hero/hero1-mobile.webp',
     alt: 'Profesionálny tím Julia Estetic Clinic – foto 1',
+    mobileTransform: 'scale(1.35)',
   },
   {
     webSrc: '/images/hero/hero2-web.webp',
     mobileSrc: '/images/hero/hero2-mobile.webp',
     alt: 'Profesionálny tím Julia Estetic Clinic – foto 2',
+    mobileTransform: 'scale(1.15) translateX(5%)',
   },
 ]
 
@@ -69,10 +72,10 @@ export function HeroSection() {
       {/* ================================================================ */}
       <div className="flex min-h-[100dvh] flex-col lg:hidden">
         {/* Text section */}
-        <div className="bg-[#8698a4] px-6 pt-24 pb-8 text-center sm:px-10">
+        <div className="bg-[#8698a4] px-6 pt-20 pb-2 text-center sm:px-10">
           <div className="animate-[fadeInUp_0.8s_ease-out_0.1s_both]">
             {/* Badge */}
-            <div className="mb-5 flex flex-col items-center gap-2">
+            <div className="mb-2 flex flex-col items-center gap-1.5">
               <span className="inline-flex items-center text-xs font-semibold tracking-[0.2em] text-white/80 uppercase">
                 Julia Estetic Clinic
               </span>
@@ -82,7 +85,7 @@ export function HeroSection() {
             </div>
 
             {/* Heading */}
-            <h1 className="font-serif text-[2rem] leading-[1.1] font-bold tracking-tight text-white uppercase sm:text-[2.5rem]">
+            <h1 className="font-serif text-[1.75rem] leading-[1.1] font-bold tracking-tight text-white uppercase sm:text-[2.5rem]">
               Klinika krásy,
               <br />
               <span className="text-brand-200">kde sa cítite</span>
@@ -91,18 +94,18 @@ export function HeroSection() {
             </h1>
 
             {/* Motto */}
-            <p className="mt-3 font-serif text-base italic text-brand-200/90 sm:text-lg">
+            <p className="mt-2 font-serif text-sm italic text-brand-200/90 sm:text-lg">
               SebaLáska na počkanie
             </p>
 
             {/* Subtitle */}
-            <p className="mx-auto mt-5 max-w-sm text-base leading-relaxed text-white/90 sm:text-lg">
+            <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-white/90 sm:text-lg">
               Vďaka skúsenostiam, odbornosti a individuálnemu prístupu vám
               pomáhame objaviť a zvýrazniť vašu prirodzenú krásu.
             </p>
 
             {/* CTAs */}
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/sluzby"
                 className="inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/10 px-6 py-3 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 hover:border-white hover:scale-105"
@@ -127,9 +130,9 @@ export function HeroSection() {
             className="absolute inset-0"
             style={{
               maskImage:
-                'linear-gradient(to bottom, black 0%, black 50%, transparent 100%)',
+                'linear-gradient(to bottom, black 0%, black 80%, transparent 100%)',
               WebkitMaskImage:
-                'linear-gradient(to bottom, black 0%, black 50%, transparent 100%)',
+                'linear-gradient(to bottom, black 0%, black 80%, transparent 100%)',
             }}
           >
             {SLIDES.map((slide, i) => (
@@ -145,9 +148,9 @@ export function HeroSection() {
                 <Image
                   src={slide.mobileSrc}
                   alt={slide.alt}
-                  width={1696}
-                  height={2528}
-                  className="w-full"
+                  fill
+                  className="object-cover object-[50%_60%]"
+                  style={{ transform: slide.mobileTransform }}
                   priority={i === 0}
                   sizes="100vw"
                   unoptimized
@@ -156,21 +159,8 @@ export function HeroSection() {
             ))}
           </div>
 
-          {/* Static first image for layout height */}
-          <div className="invisible" aria-hidden="true">
-            <Image
-              src={SLIDES[0]!.mobileSrc}
-              alt=""
-              width={1696}
-              height={2528}
-              className="w-full"
-              sizes="100vw"
-              unoptimized
-            />
-          </div>
-
           {/* Top fade into header color */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-[#8698a4] to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-12 bg-gradient-to-b from-[#8698a4] to-transparent" />
 
           {/* Dots – mobile */}
           <div className="absolute inset-x-0 bottom-36 z-20 flex items-center justify-center gap-2.5">

@@ -69,7 +69,7 @@ export function AboutSection() {
                   ciele bezpečným a profesionálnym spôsobom.
                 </p>
                 <p>
-                  Moja filozofia je jednoduchá: <span className="font-medium text-brand-600">prirodzené výsledky</span>, individuálny prístup a maximálna
+                  Moja filozofia je jednoduchá: prirodzené výsledky, individuálny prístup a maximálna
                   bezpečnosť. Používam len certifikované produkty a najmodernejšie techniky, aby ste
                   sa cítili krásne a sebavedomé.
                 </p>
@@ -85,7 +85,7 @@ export function AboutSection() {
 
               <div className="mt-8">
                 <Button href="/o-nas" color="primary" size="md">
-                  Zistiť viac o mne
+                  Zistiť viac
                 </Button>
               </div>
             </div>
