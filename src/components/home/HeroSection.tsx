@@ -21,15 +21,15 @@ const SLIDES: HeroSlide[] = [
     webSrc: '/images/hero/hero1-web.webp',
     mobileSrc: '/images/hero/hero1-mobile.webp',
     alt: 'Profesionálny tím Julia Estetic Clinic – foto 1',
-    mobileTransform: 'scale(1.05)',
-    mobileObjectPosition: '50% 45%',
+    mobileTransform: 'scale(1.2)',
+    mobileObjectPosition: '50% 65%',
   },
   {
     webSrc: '/images/hero/hero2-web.webp',
     mobileSrc: '/images/hero/hero2-mobile.webp',
     alt: 'Profesionálny tím Julia Estetic Clinic – foto 2',
-    mobileTransform: 'scale(1.1) translateX(4%)',
-    mobileObjectPosition: '50% 15%',
+    mobileTransform: 'scale(1.15) translateX(8%)',
+    mobileObjectPosition: '50% 32%',
   },
 ]
 
@@ -71,13 +71,12 @@ export function HeroSection() {
   return (
     <section className="relative min-h-[100dvh] overflow-hidden">
       {/* ================================================================ */}
-      {/* MOBILE LAYOUT – text top, image bottom                          */}
+      {/* MOBILE LAYOUT – compact text top, generous photo bottom         */}
       {/* ================================================================ */}
       <div className="flex min-h-[100dvh] flex-col lg:hidden">
-        {/* Text section */}
-        <div className="bg-[#8698a4] px-6 pt-20 pb-2 text-center sm:px-10">
+        {/* Text section – compact */}
+        <div className="shrink-0 bg-[#8698a4] px-6 pt-16 pb-3 text-center sm:px-10">
           <div className="animate-[fadeInUp_0.8s_ease-out_0.1s_both]">
-            {/* Badge */}
             <div className="mb-2 flex flex-col items-center gap-1.5">
               <span className="inline-flex items-center text-xs font-semibold tracking-[0.2em] text-white/80 uppercase">
                 Julia Estetic Clinic
@@ -87,8 +86,7 @@ export function HeroSection() {
               </span>
             </div>
 
-            {/* Heading */}
-            <h1 className="font-serif text-[1.75rem] leading-[1.1] font-bold tracking-tight text-white uppercase sm:text-[2.5rem]">
+            <h1 className="font-serif text-[1.85rem] leading-[1.1] font-bold tracking-tight text-white uppercase sm:text-[2.5rem]">
               Klinika krásy,
               <br />
               <span className="text-brand-200">kde sa cítite</span>
@@ -96,77 +94,73 @@ export function HeroSection() {
               výnimočne
             </h1>
 
-            {/* Motto */}
-            <p className="mt-2 font-serif text-sm italic text-brand-200/90 sm:text-lg">
+            <p className="mt-1.5 font-serif text-sm italic text-brand-200/90 sm:text-lg">
               SebaLáska na počkanie
             </p>
 
-            {/* Subtitle */}
-            <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-white/90 sm:text-lg">
+            <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-white/85 sm:text-base">
               Vďaka skúsenostiam, odbornosti a individuálnemu prístupu vám
               pomáhame objaviť a zvýrazniť vašu prirodzenú krásu.
             </p>
 
-            {/* CTAs */}
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+            <div className="mt-3 flex flex-wrap items-center justify-center gap-2.5">
               <Link
                 href="/sluzby"
-                className="inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/10 px-6 py-3 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 hover:border-white hover:scale-105"
+                className="inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/10 px-5 py-2 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 hover:border-white hover:scale-105"
               >
                 Naše služby
               </Link>
               <Link
                 href="/rezervacia"
-                className="group relative inline-flex items-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-base font-semibold text-white shadow-[0_0_20px_rgba(216,167,177,0.4)] transition-all duration-300 hover:bg-brand-600 hover:shadow-[0_0_30px_rgba(216,167,177,0.6)] hover:scale-105"
+                className="group relative inline-flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2 text-sm font-semibold text-white shadow-[0_0_20px_rgba(216,167,177,0.4)] transition-all duration-300 hover:bg-brand-600 hover:shadow-[0_0_30px_rgba(216,167,177,0.6)] hover:scale-105"
               >
                 Objednať sa
-                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
             </div>
           </div>
         </div>
 
-        {/* Image carousel – mobile */}
-        <div className="relative flex-1 overflow-hidden">
-          {/* Masked image layer */}
-          <div
-            className="absolute inset-0"
-            style={{
-              maskImage:
-                'linear-gradient(to bottom, black 0%, black 80%, transparent 100%)',
-              WebkitMaskImage:
-                'linear-gradient(to bottom, black 0%, black 80%, transparent 100%)',
-            }}
-          >
-            {SLIDES.map((slide, i) => (
-              <div
-                key={slide.mobileSrc}
-                className="absolute inset-0 transition-opacity ease-in-out"
-                style={{
-                  ...transitionStyle,
-                  opacity: i === activeIndex ? 1 : 0,
-                  zIndex: i === activeIndex ? 1 : 0,
-                }}
-              >
-                <Image
-                  src={slide.mobileSrc}
-                  alt={slide.alt}
-                  fill
-                  className="object-cover"
-                  style={{
-                    transform: slide.mobileTransform,
-                    objectPosition: slide.mobileObjectPosition,
-                  }}
-                  priority={i === 0}
-                  sizes="100vw"
-                  unoptimized
-                />
-              </div>
-            ))}
-          </div>
+        {/* Photo carousel – guaranteed 60% of viewport */}
+        <div className="relative min-h-[58dvh] flex-1 overflow-hidden">
+          {/* Top gradient – seamless blend from brand color into photo */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-[#8698a4] to-transparent" />
 
-          {/* Top fade into header color */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-12 bg-gradient-to-b from-[#8698a4] to-transparent" />
+          {/* Carousel images */}
+          {SLIDES.map((slide, i) => (
+            <div
+              key={slide.mobileSrc}
+              className="absolute inset-0 transition-opacity ease-in-out"
+              style={{
+                ...transitionStyle,
+                opacity: i === activeIndex ? 1 : 0,
+                zIndex: i === activeIndex ? 1 : 0,
+              }}
+            >
+              <Image
+                src={slide.mobileSrc}
+                alt={slide.alt}
+                fill
+                className="object-cover"
+                style={{
+                  objectPosition: slide.mobileObjectPosition,
+                  transform: slide.mobileTransform || undefined,
+                }}
+                priority={i === 0}
+                sizes="100vw"
+                unoptimized
+              />
+            </div>
+          ))}
+
+          {/* Bottom fade to white */}
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[100px]"
+            style={{
+              background:
+                'linear-gradient(to top, white 0%, rgba(255,255,255,0.7) 35%, rgba(255,255,255,0.3) 60%, transparent 100%)',
+            }}
+          />
 
         </div>
       </div>
