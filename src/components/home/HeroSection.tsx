@@ -21,17 +21,15 @@ const SLIDES: HeroSlide[] = [
     webSrc: '/images/hero/hero1-web.webp',
     mobileSrc: '/images/hero/hero1-mobile.webp',
     alt: 'Profesionálny tím Julia Estetic Clinic – foto 1',
-    // Slide 1: mierne priblíženie, focus na hornú tretinu (hlavy viditeľné)
     mobileTransform: 'scale(1.05)',
-    mobileObjectPosition: '50% 25%',
+    mobileObjectPosition: '50% 45%',
   },
   {
     webSrc: '/images/hero/hero2-web.webp',
     mobileSrc: '/images/hero/hero2-mobile.webp',
     alt: 'Profesionálny tím Julia Estetic Clinic – foto 2',
-    // Slide 2: funguje dobre, len jemné doladenie
     mobileTransform: 'scale(1.1) translateX(4%)',
-    mobileObjectPosition: '50% 40%',
+    mobileObjectPosition: '50% 15%',
   },
 ]
 
