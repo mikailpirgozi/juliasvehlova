@@ -170,21 +170,6 @@ export function HeroSection() {
           {/* Top fade into header color */}
           <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-12 bg-gradient-to-b from-[#8698a4] to-transparent" />
 
-          {/* Dots – mobile */}
-          <div className="absolute inset-x-0 bottom-36 z-20 flex items-center justify-center gap-2.5">
-            {SLIDES.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => goToSlide(i)}
-                aria-label={`Zobraziť slide ${i + 1}`}
-                className={`h-2 rounded-full transition-all duration-500 ${
-                  i === activeIndex
-                    ? 'w-6 bg-white shadow-[0_0_8px_rgba(255,255,255,0.6)]'
-                    : 'w-2 bg-white/50 hover:bg-white/70'
-                }`}
-              />
-            ))}
-          </div>
         </div>
       </div>
 
