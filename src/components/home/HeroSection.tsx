@@ -13,6 +13,7 @@ interface HeroSlide {
   mobileSrc: string
   alt: string
   mobileTransform: string
+  mobileObjectPosition: string
 }
 
 const SLIDES: HeroSlide[] = [
@@ -20,13 +21,17 @@ const SLIDES: HeroSlide[] = [
     webSrc: '/images/hero/hero1-web.webp',
     mobileSrc: '/images/hero/hero1-mobile.webp',
     alt: 'Profesionálny tím Julia Estetic Clinic – foto 1',
-    mobileTransform: 'scale(1.35)',
+    // Slide 1: mierne priblíženie, focus na hornú tretinu (hlavy viditeľné)
+    mobileTransform: 'scale(1.05)',
+    mobileObjectPosition: '50% 25%',
   },
   {
     webSrc: '/images/hero/hero2-web.webp',
     mobileSrc: '/images/hero/hero2-mobile.webp',
     alt: 'Profesionálny tím Julia Estetic Clinic – foto 2',
-    mobileTransform: 'scale(1.15) translateX(5%)',
+    // Slide 2: funguje dobre, len jemné doladenie
+    mobileTransform: 'scale(1.1) translateX(4%)',
+    mobileObjectPosition: '50% 40%',
   },
 ]
 
@@ -149,8 +154,11 @@ export function HeroSection() {
                   src={slide.mobileSrc}
                   alt={slide.alt}
                   fill
-                  className="object-cover object-[50%_60%]"
-                  style={{ transform: slide.mobileTransform }}
+                  className="object-cover"
+                  style={{
+                    transform: slide.mobileTransform,
+                    objectPosition: slide.mobileObjectPosition,
+                  }}
                   priority={i === 0}
                   sizes="100vw"
                   unoptimized
