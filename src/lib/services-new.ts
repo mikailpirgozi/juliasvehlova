@@ -494,7 +494,7 @@ export const mainCategories: MainCategory[] = [
         title: 'Konzultácia',
         description: 'Odborná konzultácia estetických zákrokov s našimi špecialistami.',
         image: '/images/services/esteticka-konzultacia-hero.png',
-        bookioCategoryId: '36009',
+        bookioCategoryId: '36002',
         services: [
           {
             id: 'konzultacia-estetickych-zakrokov',
@@ -502,7 +502,7 @@ export const mainCategories: MainCategory[] = [
             name: 'Konzultácia estetických zákrokov',
             price: '30 €',
             duration: '15min.',
-            bookioServiceId: '149612',
+            bookioServiceId: '149589',
             tagline: 'Váš prvý krok k zmene',
             shortDescription: 'Odborná konzultácia pre výber ideálneho ošetrenia podľa vašich potrieb a cieľov.',
             benefits: [
