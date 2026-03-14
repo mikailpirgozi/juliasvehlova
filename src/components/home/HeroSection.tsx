@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from '@untitledui/icons'
 
-const SLIDE_INTERVAL_MS = 7_000
+const SLIDE_INTERVAL_MS = 5_000
 const TRANSITION_DURATION_MS = 1_000
 
 interface HeroSlide {
@@ -21,8 +21,8 @@ const SLIDES: HeroSlide[] = [
     webSrc: '/images/hero/hero1-web.webp',
     mobileSrc: '/images/hero/hero1-mobile.webp',
     alt: 'Profesionálny tím Julia Estetic Clinic – foto 1',
-    mobileTransform: 'scale(1.2)',
-    mobileObjectPosition: '50% 65%',
+    mobileTransform: 'scale(1.5)',
+    mobileObjectPosition: '50% 50%',
   },
   {
     webSrc: '/images/hero/hero2-web.webp',

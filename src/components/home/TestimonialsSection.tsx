@@ -29,6 +29,13 @@ const testimonials: Testimonial[] = [
     rating: 5,
     image: '/images/testimonials/majself.jpg',
   },
+  {
+    id: 3,
+    name: 'Klientka',
+    service: 'Kozmetika & estetika',
+    text: 'Kliniku som si zamilovala už od jej otvorenia a je prvou, na ktorú sa naozaj pravidelne vraciam. Okrem kozmetiky sa vždy teším na ústretový a profesionálny ženský kolektív, v ktorom sa cítim krásna aj zvnútra. A oceňujem, že Julka s jej tímom myslia na ženy z každého uhla – od estetiky, cez kozmetiku až po calibracie. Určite plánujem vyskúšať aj ďalšie služby.',
+    rating: 5,
+  },
 ]
 
 function StarRating({ count }: { count: number }) {
