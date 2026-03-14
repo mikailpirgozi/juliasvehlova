@@ -111,9 +111,12 @@ const teamMembers = [
   {
     id: 'dominika-stehlikova',
     name: 'Dominika Stehlíková',
-    role: 'Špecialistka',
+    role: 'Marketing Manager',
     photo: '/images/team/dominika-stehlikova.png',
-    bio: [],
+    bio: [
+      'Zodpovedám za budovanie značky a celkovú marketingovú komunikáciu Julia Estetic Clinic. Dbám na to, aby každý vizuál, text aj kampaň odrážali hodnoty, odbornosť a estetiku, na ktorých si značka zakladá.',
+      'Marketing vnímam ako strategický nástroj budovania dlhodobej dôvery a hodnoty. Vychádzam z niekoľkoročných skúseností v oblasti marketingu, ktoré prepájam s citom pre detail a dôrazom na kvalitu. Mojím cieľom je, aby komunikácia kliniky pôsobila reprezentatívne, prirodzene podčiarkovala jej odbornú autoritu a prémiový charakter.',
+    ],
   },
 ]
 
