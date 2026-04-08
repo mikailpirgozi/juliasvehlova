@@ -113,10 +113,6 @@ export function GiftVouchersPageClient() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#8698a4] to-[#718593] px-4 pb-16 pt-24 sm:pt-32">
-        <div className="pointer-events-none absolute left-10 top-10 h-64 w-64 rounded-full bg-brand-300/40 blur-3xl" />
-        <div className="pointer-events-none absolute right-10 bottom-10 h-80 w-80 rounded-full bg-brand-400/30 blur-3xl" />
-        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-brand-200/20 blur-3xl mix-blend-overlay" />
-        
         <div className="mx-auto max-w-7xl relative z-10">
           <FadeIn>
             <div className="text-center">

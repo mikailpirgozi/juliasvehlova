@@ -68,7 +68,7 @@ const teamMembers = [
     id: 'yasmin-betakova',
     name: 'MUDr. Yasmin Betáková',
     role: 'Estetická lekárka',
-    photo: null,
+    photo: '/images/team/yasmin-betakova.png',
     bio: [
       'Som lekárka so zázemím v psychiatrii, vďaka čomu vnímam estetiku v širšom kontexte psychiky a sebahodnoty. Verím, že skutočná krása vzniká v rovnováhe medzi vnútorným prežívaním a vonkajším vzhľadom.',
       'Pri ošetreniach dbám na prirodzenosť, harmóniu a rešpekt k individualite každého človeka. Moje dlhoročné skúsenosti sú podčiarknuté účasťou na medzinárodných školeniach a odborných vzdelávaniach v zahraničí, ktoré mi umožňujú prinášať moderné, bezpečné a precízne postupy.',

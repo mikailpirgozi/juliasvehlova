@@ -79,7 +79,7 @@ function ServiceDetailPanel({
   const hasDetails = service.shortDescription || service.benefits?.length || service.process?.length || service.forWhom?.length || service.note
 
   return (
-    <div className="space-y-6 px-6 py-4">
+    <div className="space-y-4 px-3 py-3 sm:space-y-6 sm:px-6 sm:py-4">
       {/* Tagline & Description */}
       {(service.tagline || service.shortDescription) ? (
         <div>
@@ -281,9 +281,6 @@ export function CennikPageClient() {
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#8698a4] to-[#718593] px-4 pb-16 pt-24 sm:pt-32">
-        <div className="pointer-events-none absolute left-10 top-10 h-64 w-64 rounded-full bg-brand-300/40 blur-3xl" />
-        <div className="pointer-events-none absolute right-10 bottom-10 h-80 w-80 rounded-full bg-brand-400/30 blur-3xl" />
-        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-brand-200/20 blur-3xl mix-blend-overlay" />
         <div className="relative z-10 mx-auto max-w-7xl">
           <p className="text-sm font-bold uppercase tracking-widest text-brand-200">Cenník</p>
           <h1 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">
@@ -443,7 +440,7 @@ export function CennikPageClient() {
                     <table className="w-full">
                       <thead className="bg-gray-50">
                         <tr>
-                          <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                          <th className="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 sm:px-6 sm:py-3">
                             Služba
                           </th>
                           <th className="hidden px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 sm:table-cell">
@@ -452,7 +449,7 @@ export function CennikPageClient() {
                           <th className="hidden px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 md:table-cell">
                             Trvanie
                           </th>
-                          <th className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
+                          <th className="px-3 py-2 text-right text-xs font-semibold uppercase tracking-wider text-gray-500 sm:px-6 sm:py-3">
                             Cena
                           </th>
                         </tr>
@@ -471,16 +468,16 @@ export function CennikPageClient() {
                                     : 'border-l-2 border-l-transparent hover:bg-gray-50 hover:shadow-sm'
                                 )}
                               >
-                                <td className="px-6 py-4">
-                                  <div className="flex items-center gap-3">
+                                <td className="px-3 py-2.5 sm:px-6 sm:py-4">
+                                  <div className="flex items-center gap-2 sm:gap-3">
                                     <button
                                       type="button"
-                                      className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gray-100 transition-colors hover:bg-brand-100"
+                                      className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-gray-100 transition-colors hover:bg-brand-100 sm:h-6 sm:w-6"
                                     >
                                       {isExpanded ? (
-                                        <ChevronDown className="h-4 w-4 text-brand-600" />
+                                        <ChevronDown className="h-3.5 w-3.5 text-brand-600 sm:h-4 sm:w-4" />
                                       ) : (
-                                        <ChevronRight className="h-4 w-4 text-gray-500" />
+                                        <ChevronRight className="h-3.5 w-3.5 text-gray-500 sm:h-4 sm:w-4" />
                                       )}
                                     </button>
                                     {item.service.popular && (
@@ -493,7 +490,7 @@ export function CennikPageClient() {
                                         Obľúbené
                                       </BadgeWithIcon>
                                     )}
-                                    <span className="font-medium text-gray-900">
+                                    <span className="text-sm font-medium text-gray-900 sm:text-base">
                                       {item.service.name}
                                     </span>
                                   </div>
@@ -504,9 +501,9 @@ export function CennikPageClient() {
                                 <td className="hidden px-6 py-4 text-sm text-gray-500 md:table-cell">
                                   {item.service.duration}
                                 </td>
-                                <td className="px-6 py-4 text-right">
+                                <td className="px-3 py-2.5 text-right sm:px-6 sm:py-4">
                                   <span className={cx(
-                                    'text-lg',
+                                    'text-base sm:text-lg',
                                     item.service.popular
                                       ? 'font-bold text-brand-600'
                                       : 'font-semibold text-gray-900'
@@ -578,13 +575,13 @@ export function CennikPageClient() {
                   <table className="w-full">
                     <thead className="bg-gray-50">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        <th className="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 sm:px-6 sm:py-3">
                           Služba
                         </th>
                         <th className="hidden px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 sm:table-cell">
                           Trvanie
                         </th>
-                        <th className="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        <th className="px-3 py-2 text-right text-xs font-semibold uppercase tracking-wider text-gray-500 sm:px-6 sm:py-3">
                           Cena
                         </th>
                       </tr>
@@ -603,16 +600,16 @@ export function CennikPageClient() {
                                   : 'border-l-2 border-l-transparent hover:bg-gray-50 hover:shadow-sm'
                               )}
                             >
-                              <td className="px-6 py-4">
-                                <div className="flex items-center gap-3">
+                              <td className="px-3 py-2.5 sm:px-6 sm:py-4">
+                                <div className="flex items-center gap-2 sm:gap-3">
                                   <button
                                     type="button"
-                                    className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gray-100 transition-colors hover:bg-brand-100"
+                                    className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-gray-100 transition-colors hover:bg-brand-100 sm:h-6 sm:w-6"
                                   >
                                     {isExpanded ? (
-                                      <ChevronDown className="h-4 w-4 text-brand-600" />
+                                      <ChevronDown className="h-3.5 w-3.5 text-brand-600 sm:h-4 sm:w-4" />
                                     ) : (
-                                      <ChevronRight className="h-4 w-4 text-gray-500" />
+                                      <ChevronRight className="h-3.5 w-3.5 text-gray-500 sm:h-4 sm:w-4" />
                                     )}
                                   </button>
                                   {service.popular && (
@@ -627,10 +624,10 @@ export function CennikPageClient() {
                                   )}
                                   <div>
                                     <span className={cx(
-                                      'font-medium',
+                                      'text-sm font-medium sm:text-base',
                                       service.popular ? 'text-gray-900' : 'text-gray-900'
                                     )}>{service.name}</span>
-                                    <p className="mt-1 text-sm text-gray-500 sm:hidden">
+                                    <p className="text-xs text-gray-500 sm:hidden">
                                       {service.duration}
                                     </p>
                                   </div>
@@ -639,9 +636,9 @@ export function CennikPageClient() {
                               <td className="hidden px-6 py-4 text-sm text-gray-500 sm:table-cell">
                                 {service.duration}
                               </td>
-                              <td className="px-6 py-4 text-right">
+                              <td className="px-3 py-2.5 text-right sm:px-6 sm:py-4">
                                 <span className={cx(
-                                  'text-lg',
+                                  'text-base sm:text-lg',
                                   service.popular
                                     ? 'font-bold text-brand-600'
                                     : 'font-semibold text-gray-900'
