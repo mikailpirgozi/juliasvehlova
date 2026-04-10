@@ -182,6 +182,21 @@ export const mainCategories: MainCategory[] = [
             forWhom: ['Pre tmavé kruhy pod očami', 'Pre vrásky okolo očí', 'Pre unavený vzhľad'],
           },
           {
+            id: 'polynukleotidova-biorevitalizacia-salmon-sperm',
+            slug: 'polynukleotidova-biorevitalizacia-pleti-salmon-sperm',
+            name: 'Polynukleotidová biorevitalizácia pleti Salmon Sperm',
+            price: '280 €',
+            duration: '15min.',
+            tagline: 'Omladenie pleti polynukleotidmi',
+            shortDescription: 'Inovatívne ošetrenie s polynukleotidmi pre hlbokú regeneráciu, zvýšenie elasticity a revitalizáciu pokožky tváre.',
+            benefits: [
+              { icon: 'regeneration', title: 'Hlboká regenerácia', description: 'Obnova pokožky na bunkovej úrovni' },
+              { icon: 'elasticity', title: 'Zvýšená elasticita', description: 'Pevnejšia a pružnejšia pleť' },
+              { icon: 'glow', title: 'Žiarivý vzhľad', description: 'Zdravá a svieža pokožka' },
+            ],
+            forWhom: ['Pre unavenú a matnú pleť', 'Pre prvé známky starnutia', 'Pre obnovu kvality pokožky'],
+          },
+          {
             id: 'profhilo',
             slug: 'profhilo-tvar',
             name: 'Profhilo tvár',
