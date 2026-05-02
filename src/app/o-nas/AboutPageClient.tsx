@@ -69,6 +69,7 @@ const teamMembers = [
     name: 'MUDr. Yasmin Betáková',
     role: 'Estetická lekárka',
     photo: '/images/team/yasmin-betakova.png',
+    photoClass: 'aspect-[4/5] object-center',
     bio: [
       'Som lekárka so zázemím v psychiatrii, vďaka čomu vnímam estetiku v širšom kontexte psychiky a sebahodnoty. Verím, že skutočná krása vzniká v rovnováhe medzi vnútorným prežívaním a vonkajším vzhľadom.',
       'Pri ošetreniach dbám na prirodzenosť, harmóniu a rešpekt k individualite každého človeka. Moje dlhoročné skúsenosti sú podčiarknuté účasťou na medzinárodných školeniach a odborných vzdelávaniach v zahraničí, ktoré mi umožňujú prinášať moderné, bezpečné a precízne postupy.',
@@ -249,7 +250,7 @@ export function AboutPageClient() {
                           alt={member.name}
                           width={680}
                           height={900}
-                          className="aspect-[3/4] w-full object-cover object-top"
+                          className={`w-full object-cover ${member.photoClass ?? 'aspect-[3/4] object-top'}`}
                           sizes="(max-width: 1024px) 256px, 340px"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#8698a4]/30 via-transparent to-transparent" />
