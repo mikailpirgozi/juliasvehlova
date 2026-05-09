@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { ChevronRight, Clock, Star01 } from '@untitledui/icons'
 import type { SimpleService } from '@/lib/services-new'
+import { ServicePriceDisplay } from './ServicePriceDisplay'
 
 interface ServicesPriceTableProps {
   services: SimpleService[]
@@ -83,9 +84,13 @@ export function ServicesPriceTable({
               <div className="mt-4 flex items-center justify-between gap-6 border-t border-gray-100 pt-4 sm:mt-0 sm:border-0 sm:pt-0">
                 <div className="text-left sm:text-right">
                   <p className="text-xs font-medium uppercase tracking-wider text-gray-400 sm:hidden">Cena</p>
-                  <p className="text-xl font-bold text-gray-900 sm:text-2xl">{service.price}</p>
+                  <ServicePriceDisplay
+                    serviceId={service.id}
+                    price={service.price}
+                    variant="card"
+                  />
                 </div>
-                
+
                 {showDetailLinks && (
                   <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gray-50 text-gray-400 transition-colors group-hover:bg-brand-50 group-hover:text-brand-600">
                     <ChevronRight className="h-5 w-5" />

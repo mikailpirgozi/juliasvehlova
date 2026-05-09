@@ -5,4 +5,5 @@ export { ImageGallery } from './ImageGallery'
 export { SubcategoryCard } from './SubcategoryCard'
 export { ServicesPriceTable } from './ServicesPriceTable'
 export { GiftVoucherSection } from './GiftVoucherSection'
+export { ServicePriceDisplay } from './ServicePriceDisplay'
 

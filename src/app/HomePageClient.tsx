@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { HeroSection } from '@/components/home'
+import { HeroSection, MothersDayHero } from '@/components/home'
 
 // Dynamic imports for below-the-fold sections - reduces initial bundle size
 const ServicesSection = dynamic(
@@ -29,10 +29,14 @@ const ContactSection = dynamic(
   { ssr: true }
 )
 
-export function HomePageClient() {
+interface HomePageClientProps {
+  showMothersDayHero: boolean
+}
+
+export function HomePageClient({ showMothersDayHero }: HomePageClientProps) {
   return (
     <>
-      <HeroSection />
+      {showMothersDayHero ? <MothersDayHero /> : <HeroSection />}
       <ServicesSection />
       <AboutSection />
       <TestimonialsSection />

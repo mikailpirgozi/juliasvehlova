@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ArrowLeft, ChevronRight, Home02, Clock, Check, Users01, Lightbulb01, Heart, Zap, Target01, Star01, RefreshCw01, Eye, Stars01, Shield01, Award01 } from '@untitledui/icons'
 import { Button } from '@/components/base/buttons/button'
 import { BookioWidget } from '@/components/booking'
+import { ServicePriceDisplay } from '@/components/services'
 import {
   getServiceBySlug,
   generateServiceStaticParams,
@@ -13,6 +14,7 @@ import {
   type ServiceBenefit,
   type ProcessStep,
 } from '@/lib/services-new'
+import { getActiveMothersDayPromo } from '@/lib/promotions'
 
 interface ServicePageProps {
   params: Promise<{
@@ -111,6 +113,7 @@ function ServiceDetailContent({
 }) {
   const relatedServices = subcategory.services.filter((s) => s.id !== service.id).slice(0, 4)
   const hasWidget = !!service.bookioServiceId
+  const activePromo = getActiveMothersDayPromo(service.id)
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-white">
@@ -187,13 +190,36 @@ function ServiceDetailContent({
             )}
 
             {/* Price + duration inline */}
-            <div className="mt-5 flex flex-wrap items-center gap-4">
-              <span className="text-3xl font-bold text-gray-900">{service.price}</span>
+            <div className="mt-5 flex flex-wrap items-end gap-4">
+              <ServicePriceDisplay
+                serviceId={service.id}
+                price={service.price}
+                variant="hero"
+              />
               <span className="flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-500">
                 <Clock className="h-3.5 w-3.5" />
                 {service.duration}
               </span>
             </div>
+
+            {/* Akciový banner – Deň matiek */}
+            {activePromo && (
+              <div className="mt-6 rounded-2xl border-2 border-brand-200 bg-gradient-to-br from-brand-50 to-brand-100/50 p-5">
+                <div className="flex items-start gap-3">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-brand-200">
+                    <Heart className="h-5 w-5 fill-brand-700 text-brand-700" />
+                  </div>
+                  <div>
+                    <p className="font-serif text-lg font-bold text-brand-700">
+                      Akcia ku Dňu matiek
+                    </p>
+                    <p className="mt-1 text-sm text-brand-700/80">
+                      Doprajte mame nezabudnuteľný darček. Zľava platí len v aktuálnom akciovom okne &mdash; rezervujte si termín nižšie.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Short description */}
             {service.shortDescription && (
