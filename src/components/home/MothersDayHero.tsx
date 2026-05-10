@@ -34,7 +34,7 @@ const SLIDES: PromoSlide[] = [
     procedure: 'Lososie spermie',
     shortDescription:
       'Polynukleotidová biorevitalizácia pleti – hĺbková regenerácia a spevnenie.',
-    originalPrice: '280 €',
+    originalPrice: '320 €',
     storySrc: '/images/hero/mothers-day/lososie-story.png',
     squareSrc: '/images/hero/mothers-day/lososie-square.png',
     alt: 'Akcia Deň matiek – Lososie spermie 20% zľava',
