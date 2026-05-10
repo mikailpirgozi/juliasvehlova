@@ -14,6 +14,13 @@ const MOTHERS_DAY_START_MONTH = 5 // máj
 const MOTHERS_DAY_START_DAY = 7
 const MOTHERS_DAY_END_DAY = 11
 
+/**
+ * Roky v ktorých je kampaň Deň matiek manuálne vypnutá (override).
+ * Užitočné keď chceš zachovať kód pre budúce roky, ale aktuálnu
+ * kampaň ukončiť skôr (napr. predčasne vypredané, zmenená stratégia).
+ */
+const MOTHERS_DAY_DISABLED_FOR_YEARS: ReadonlySet<number> = new Set([2026])
+
 export const MOTHERS_DAY_DISCOUNT_PERCENT = 20
 
 /**
@@ -82,10 +89,12 @@ function getBratislavaDateParts(now: Date = new Date()): DateParts {
 
 /**
  * Vráti `true` ak je aktuálny dátum (Europe/Bratislava) v rozmedzí
- * 7.–11. mája — t.j. v aktívnom okne kampane Deň matiek.
+ * 7.–11. mája a zároveň aktuálny rok nie je vo vypnutých rokoch
+ * (`MOTHERS_DAY_DISABLED_FOR_YEARS`).
  */
 export function isMothersDayActive(now: Date = new Date()): boolean {
-  const { month, day } = getBratislavaDateParts(now)
+  const { year, month, day } = getBratislavaDateParts(now)
+  if (MOTHERS_DAY_DISABLED_FOR_YEARS.has(year)) return false
   return (
     month === MOTHERS_DAY_START_MONTH &&
     day >= MOTHERS_DAY_START_DAY &&

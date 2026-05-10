@@ -122,7 +122,7 @@ export function HeroSection() {
         </div>
 
         {/* Photo carousel – guaranteed 60% of viewport */}
-        <div className="relative min-h-[58dvh] flex-1 overflow-hidden">
+        <div className="relative min-h-[58dvh] flex-1 overflow-hidden bg-[#8698a4]">
           {/* Top gradient – seamless blend from brand color into photo */}
           <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-[#8698a4] to-transparent" />
 
