@@ -313,6 +313,46 @@ export function AboutTeamSchema() {
 }
 
 /**
+ * /blog index: Blog + ItemList of posts + BreadcrumbList.
+ */
+export function BlogIndexSchema({
+  posts,
+}: {
+  posts: Array<{ title: string; slug: string; excerpt: string; date: string }>
+}) {
+  const breadcrumbs: BreadcrumbItem[] = [
+    { name: 'Domov', url: BASE_URL },
+    { name: 'Blog', url: `${BASE_URL}/blog` },
+  ]
+  const blog = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    '@id': `${BASE_URL}/blog#blog`,
+    url: `${BASE_URL}/blog`,
+    name: 'Blog Julia Estetic Clinic',
+    description:
+      'Tipy a novinky z estetickej medicíny, kozmetiky a starostlivosti o pleť.',
+    publisher: { '@id': `${BASE_URL}/#organization` },
+    blogPost: posts.map((p) => ({
+      '@type': 'BlogPosting',
+      headline: p.title,
+      url: `${BASE_URL}/blog/${p.slug}`,
+      datePublished: p.date,
+      description: p.excerpt,
+    })),
+  }
+  return (
+    <>
+      <BreadcrumbSchema items={breadcrumbs} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(blog) }}
+      />
+    </>
+  )
+}
+
+/**
  * Schema for a blog post: Article + BreadcrumbList.
  */
 export function BlogPostSchema({

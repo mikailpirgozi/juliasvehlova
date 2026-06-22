@@ -84,6 +84,26 @@ Po nastavení redeploy. Vzor je v `.env.example`.
 
 ---
 
+## 📊 Konkurenčná analýza (kde stojíme po týchto zmenách)
+
+Analyzovali sme reálnych konkurentov (mazrekumedical.sk, esthetic.sk, eveclinic.sk, jkaesthetic.sk, dreamcareclinique.sk, envyclinic.sk).
+
+**Kľúčové zistenia:**
+- **Jediný konkurent so silnou schémou + GEO je `mazrekumedical.sk`** (má Service/Offer/MedicalProcedure, llms.txt, AI-crawler allowlist). Ani on **nemá FAQPage schema** ani prítomnosť v Malackách.
+- Väčšina konkurentov sú **WordPress weby s JS-renderom a bez JSON-LD v zdrojovom HTML** (jkaesthetic, eveclinic, envy) → naša Next.js SSR schema je štrukturálna výhoda.
+- **Nikto nemá FAQPage schema, nikto neukazuje ceny na stránkach ošetrení, nikto nemá answer-first obsah pre AI.**
+- Lokálny konkurent v Malackách (`dreamcareclinique.sk`) je primárne **očná klinika** s tenkým estetickým obsahom → **Malacky/Záhorie estetický priestor je prakticky otvorený.**
+- Moat konkurentov je **objem Google recenzií** (esthetic.sk ~806, eveclinic ~330) — to sa dobehne len reálnym recenzným engine (Fáza 3, krok 4).
+
+**Po týchto zmenách ich predbiehame v:** per-page Service/Offer/MedicalProcedure schéme, FAQPage na každej službe (nikto iný nemá), answer-first obsahu, breadcrumboch, llms.txt, AI-crawler allowliste, SSR renderovaní, 237 URL pokrytí a 7 pillar/comparison článkoch (vrátane „HIFU vs RF", „polynukleotidy vs Profhilo", „botox cena").
+
+**Vedomé rozhodnutie — Review/AggregateRating schema:** konkurenčný agent ju odporúčal, ale **zámerne sme ju NEpridali.** Google považuje self-serving review markup (recenzie o sebe samom na vlastnej Organization/LocalBusiness) za **neeligible pre hviezdičky** a falšovanie rizikuje manuálnu penalizáciu. Hviezdičky legitímne žijú na **Google Business Profile** — preto je prioritou recenzný engine (Fáza 3), nie on-site markup.
+
+**Zostáva (odporúčané, Fáza 3 / ďalší obsah):**
+- **Lokálny obsah pre Malacky/Záhorie** — priestor je otvorený. Riešiť cez GBP + ďalšie články/sekcie (pozor na thin „doorway" stránky — radšej kvalitný obsah než veľa tenkých lokálnych URL).
+- **Before/after galéria** (`/galeria`) — žiadny lokálny konkurent ju nemá; potrebuje reálne fotky so súhlasom.
+- **Ďalšie články** podľa keyword medzier: „laserová epilácia – koľko sedení", „permanentný make-up obočia – pred a po", „výplne pier – cena a typy".
+
 ## Čo NErobiť (overené proti 2026 realite)
 - ❌ Nestavať na FAQ/HowTo rich results (mŕtve) — viditeľné FAQ a schema máme ako GEO/AEO bonus, nie pre hviezdičky.
 - ❌ Nerobiť self-review `AggregateRating` markup pre hviezdičky (neeligible). Recenzie → GBP.
