@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
+import { generatePageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Obchodné podmienky | Julia Estetic Clinic',
+export const metadata: Metadata = generatePageMetadata('terms', {
   description:
     'Všeobecné obchodné podmienky Julia Estetic Clinic. Informácie o poskytovaní služieb, rezervácii termínov a storno politike.',
-}
+})
 
 export default function TermsPage() {
   const lastUpdated = '1. november 2025'

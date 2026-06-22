@@ -139,7 +139,7 @@ export const pageMetadata: Record<string, PageMetadataConfig> = {
     ],
   },
   privacy: {
-    title: 'Ochrana osobných údajov',
+    title: 'Ochrana osobných údajov – GDPR',
     path: '/ochrana-udajov',
     description:
       'Informácie o spracovaní a ochrane osobných údajov v súlade s GDPR v Julia Estetic Clinic.',
@@ -244,10 +244,13 @@ export function generatePageMetadata(
         'max-snippet': -1,
       },
     },
+    ...overrides,
+    // Always keep a self-referential canonical, even if an override passes its
+    // own `alternates` (which would otherwise clobber it).
     alternates: {
       canonical: url,
+      ...(overrides?.alternates ?? {}),
     },
-    ...overrides,
   }
 }
 

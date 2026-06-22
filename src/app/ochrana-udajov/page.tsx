@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
+import { generatePageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Ochrana osobných údajov - GDPR | Julia Estetic Clinic',
+export const metadata: Metadata = generatePageMetadata('privacy', {
   description:
     'Informácie o spracovaní osobných údajov v Julia Estetic Clinic v súlade s GDPR. Vaše súkromie je pre nás prioritou.',
-}
+})
 
 export default function PrivacyPage() {
   const lastUpdated = '1. november 2025'

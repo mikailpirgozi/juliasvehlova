@@ -86,13 +86,20 @@ export function HeroSection() {
               </span>
             </div>
 
-            <h1 className="font-serif text-[1.85rem] leading-[1.1] font-bold tracking-tight text-white uppercase sm:text-[2.5rem]">
+            {/* Mobile heading: presentational (role=heading) so the DOM has a
+                single <h1> tag (the desktop one) while screen readers on mobile
+                still get a level-1 heading. */}
+            <p
+              role="heading"
+              aria-level={1}
+              className="font-serif text-[1.85rem] leading-[1.1] font-bold tracking-tight text-white uppercase sm:text-[2.5rem]"
+            >
               Klinika krásy,
               <br />
               <span className="text-brand-200">kde sa cítite</span>
               <br />
               výnimočne
-            </h1>
+            </p>
 
             <p className="mt-1.5 font-serif text-sm italic text-brand-200/90 sm:text-lg">
               SebaLáska na počkanie

@@ -15,7 +15,13 @@ import {
   type BreadcrumbItem,
 } from './schema-org'
 import { BASE_URL, COMPANY_NAME } from '@/lib/seo/constants'
-import type { MainCategory, Subcategory, SimpleService } from '@/lib/services-new'
+import { safeJsonLd } from '@/lib/seo/json-ld'
+import {
+  getAllMainCategories,
+  type MainCategory,
+  type Subcategory,
+  type SimpleService,
+} from '@/lib/services-new'
 
 /** Categories whose treatments are genuinely medical/injectable (performed by/under a physician). */
 const MEDICAL_CATEGORY_SLUGS = new Set(['esteticka-medicina'])
@@ -25,6 +31,18 @@ export function parsePrice(price: string | undefined): number | undefined {
   if (!price) return undefined
   const match = price.match(/\d+/)
   return match ? parseInt(match[0], 10) : undefined
+}
+
+/** True when the price string is a minimum ("od 100 €") rather than a fixed price. */
+function isFromPrice(price: string | undefined): boolean {
+  return !!price && /^\s*od\b/i.test(price)
+}
+
+/** Consultations and similar non-treatments must not be marked as MedicalProcedure. */
+function isConsultation(service: SimpleService, subcategory?: Subcategory): boolean {
+  const slug = `${service.slug} ${subcategory?.slug ?? ''}`.toLowerCase()
+  const name = service.name.toLowerCase()
+  return slug.includes('konzultacia') || name.includes('konzultác')
 }
 
 function serviceDescription(service: SimpleService): string {
@@ -50,7 +68,8 @@ export function ServiceDetailSchema({
   const url = `${BASE_URL}/sluzby/${category.slug}/${subcategory.slug}/${service.slug}`
   const description = serviceDescription(service)
   const price = parsePrice(service.price)
-  const isMedical = MEDICAL_CATEGORY_SLUGS.has(category.slug)
+  const priceFrom = isFromPrice(service.price)
+  const isMedical = MEDICAL_CATEGORY_SLUGS.has(category.slug) && !isConsultation(service, subcategory)
 
   const breadcrumbs: BreadcrumbItem[] = [
     { name: 'Domov', url: BASE_URL },
@@ -69,6 +88,7 @@ export function ServiceDetailSchema({
         url={url}
         image={category.image}
         price={price}
+        priceFrom={priceFrom}
         duration={service.duration}
         category={category.title}
       />
@@ -100,7 +120,8 @@ export function DirectServiceSchema({
   const url = `${BASE_URL}/sluzby/${category.slug}/${service.slug}`
   const description = serviceDescription(service)
   const price = parsePrice(service.price)
-  const isMedical = MEDICAL_CATEGORY_SLUGS.has(category.slug)
+  const priceFrom = isFromPrice(service.price)
+  const isMedical = MEDICAL_CATEGORY_SLUGS.has(category.slug) && !isConsultation(service)
 
   const breadcrumbs: BreadcrumbItem[] = [
     { name: 'Domov', url: BASE_URL },
@@ -118,6 +139,7 @@ export function DirectServiceSchema({
         url={url}
         image={category.image}
         price={price}
+        priceFrom={priceFrom}
         duration={service.duration}
         category={category.title}
       />
@@ -131,6 +153,50 @@ export function DirectServiceSchema({
         />
       )}
       <SpeakableSchema url={url} />
+    </>
+  )
+}
+
+/**
+ * Generic breadcrumb (Domov › Page) for a top-level static page such as
+ * /cennik, /darcekove-poukazky, /rezervacia, /kontakt.
+ */
+export function PageBreadcrumbSchema({ name, path }: { name: string; path: string }) {
+  const breadcrumbs: BreadcrumbItem[] = [
+    { name: 'Domov', url: BASE_URL },
+    { name, url: `${BASE_URL}${path}` },
+  ]
+  return <BreadcrumbSchema items={breadcrumbs} />
+}
+
+/**
+ * /sluzby index: BreadcrumbList + an ItemList of all main service categories
+ * (internal-link signal + cleaner crawl/AI understanding of the catalogue).
+ */
+export function ServicesIndexSchema() {
+  const categories = getAllMainCategories()
+  const breadcrumbs: BreadcrumbItem[] = [
+    { name: 'Domov', url: BASE_URL },
+    { name: 'Služby', url: `${BASE_URL}/sluzby` },
+  ]
+  const itemList = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Služby Julia Estetic Clinic',
+    itemListElement: categories.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.title,
+      url: `${BASE_URL}/sluzby/${c.slug}`,
+    })),
+  }
+  return (
+    <>
+      <BreadcrumbSchema items={breadcrumbs} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(itemList) }}
+      />
     </>
   )
 }
@@ -239,7 +305,7 @@ export function AboutTeamSchema() {
         <script
           key={i}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(person) }}
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(person) }}
         />
       ))}
     </>

@@ -13,6 +13,7 @@ import {
 import { Button } from '@/components/base/buttons/button'
 import { PageBackground } from '@/components/ui/PageBackground'
 import { FadeIn } from '@/components/ui/FadeIn'
+import { giftVoucherFaqItems as faqItems } from './faq-data'
 
 interface VoucherOption {
   id: string
@@ -76,33 +77,6 @@ const howItWorks = [
     step: '4',
     title: 'Darujte radosť',
     description: 'Obdarovaný si môže rezervovať ľubovoľnú službu podľa vlastného výberu',
-  },
-]
-
-const faqItems = [
-  {
-    question: 'Ako dlho platí darčeková poukážka?',
-    answer: 'Všetky naše darčekové poukážky majú platnosť 3 mesiace od dátumu zakúpenia.',
-  },
-  {
-    question: 'Na aké služby môžem poukážku použiť?',
-    answer:
-      'Poukážka je platná na všetky naše služby - estetickú medicínu, permanentný make-up, kozmetické ošetrenia aj profesionálne líčenie.',
-  },
-  {
-    question: 'Môžem získať poukážku aj na inú hodnotu?',
-    answer:
-      'Áno, vytvárame poukážky aj na mieru podľa vašich požiadaviek. Stačí nás kontaktovať s požadovanou hodnotou.',
-  },
-  {
-    question: 'Ako si môžem poukážku objednať?',
-    answer:
-      'Poukážku si môžete objednať telefonicky na +421 911 992 211, emailom na juliaesteticclinic@gmail.com alebo osobne v našej klinike v Malackách.',
-  },
-  {
-    question: 'Ako prebieha doručenie poukážky?',
-    answer:
-      'Poukážku si môžete vyzdvihnúť osobne v klinike alebo vám ju doručíme poštou v elegantnom balení. Možnosť expresného doručenia v Malackách a okolí.',
   },
 ]
 

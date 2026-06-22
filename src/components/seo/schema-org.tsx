@@ -12,6 +12,7 @@ import {
   OPENING_HOURS,
   SEO_DEFAULTS,
 } from '@/lib/seo/constants'
+import { safeJsonLd } from '@/lib/seo/json-ld'
 
 // =============================================================================
 // ORGANIZATION SCHEMA
@@ -82,7 +83,7 @@ export function OrganizationSchema() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
     />
   )
 }
@@ -137,7 +138,7 @@ export function LocalBusinessSchema() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
     />
   )
 }
@@ -174,7 +175,7 @@ export function WebSiteSchema() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
     />
   )
 }
@@ -206,7 +207,7 @@ export function BreadcrumbSchema({ items }: { items: BreadcrumbItem[] }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
     />
   )
 }
@@ -240,7 +241,7 @@ export function FAQSchema({ faqs }: { faqs: FAQItem[] }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
     />
   )
 }
@@ -258,7 +259,8 @@ export function SpeakableSchema({ url }: { url: string }) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': url,
+    // Distinct @id so it doesn't collide with the Service node (which uses `url`).
+    '@id': `${url}#webpage`,
     url,
     speakable: {
       '@type': 'SpeakableSpecification',
@@ -269,7 +271,7 @@ export function SpeakableSchema({ url }: { url: string }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
     />
   )
 }
@@ -285,6 +287,8 @@ export interface ServiceSchemaProps {
   image?: string
   /** Single price in EUR (preferred for individual services). */
   price?: number
+  /** When true, `price` is a minimum ("od X €") → emit minPrice, not a fixed price. */
+  priceFrom?: boolean
   /** Price range, when a service spans multiple variants. */
   priceRange?: {
     from: number
@@ -305,13 +309,26 @@ export function ServiceSchema({
   url,
   image,
   price,
+  priceFrom,
   priceRange,
   duration,
   category,
 }: ServiceSchemaProps) {
-  // Build a clean Offer: single price when known, otherwise a range.
+  // Build a clean Offer: a "from" minimum, an exact single price, or a range.
   const offer =
-    price != null
+    price != null && priceFrom
+      ? {
+          '@type': 'Offer',
+          priceCurrency: SEO_DEFAULTS.currency,
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            priceCurrency: SEO_DEFAULTS.currency,
+            minPrice: price,
+          },
+          availability: 'https://schema.org/InStock',
+          url,
+        }
+      : price != null
       ? {
           '@type': 'Offer',
           priceCurrency: SEO_DEFAULTS.currency,
@@ -362,7 +379,7 @@ export function ServiceSchema({
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
     />
   )
 }
@@ -414,7 +431,7 @@ export function MedicalProcedureSchema({
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
     />
   )
 }
@@ -479,7 +496,7 @@ export function ArticleSchema({
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
     />
   )
 }
