@@ -15,6 +15,9 @@ import {
   type ProcessStep,
 } from '@/lib/services-new'
 import { getActiveMothersDayPromo } from '@/lib/promotions'
+import { buildServiceMetadata } from '@/lib/seo'
+import { ServiceDetailSchema } from '@/components/seo/page-schemas'
+import { ServiceFaq } from '@/components/services/ServiceFaq'
 
 interface ServicePageProps {
   params: Promise<{
@@ -39,17 +42,19 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   }
 
   const { category, subcategory, service } = result
+  const durationPart = service.duration ? `${service.duration}, ` : ''
+  const description =
+    service.shortDescription ||
+    `${service.name} – ${durationPart}${service.price} v Julia Estetic Clinic Malacky. ${subcategory.title}, profesionálny prístup a bezpečnosť.`
 
-  return {
-    title: `${service.name} | ${subcategory.title} | Julia Estetic Clinic`,
-    description: service.shortDescription || `${service.name} - ${service.duration}, ${service.price}. ${subcategory.title} v Julia Estetic Clinic Malacky.`,
-    openGraph: {
-      title: `${service.name} | Julia Estetic Clinic`,
-      description: service.shortDescription || `${service.name} - ${service.duration}, ${service.price}`,
-      images: [category.image],
-    },
-    keywords: [service.name, subcategory.title, category.title, 'Julia Estetic Clinic', 'Malacky'],
-  }
+  return buildServiceMetadata({
+    title: `${service.name} – ${subcategory.title}`,
+    description,
+    path: `/sluzby/${category.slug}/${subcategory.slug}/${service.slug}`,
+    keywords: [service.name, subcategory.title, category.title, `${service.name} cena`, `${service.name} malacky`],
+    image: category.image,
+    imageAlt: service.name,
+  })
 }
 
 // Map icon keys to Untitled UI icons
@@ -221,9 +226,9 @@ function ServiceDetailContent({
               </div>
             )}
 
-            {/* Short description */}
+            {/* Short description — answer-first capsule for GEO/Speakable */}
             {service.shortDescription && (
-              <p className="mt-6 text-lg leading-relaxed text-gray-600">
+              <p className="geo-answer mt-6 text-lg leading-relaxed text-gray-600">
                 {service.shortDescription}
               </p>
             )}
@@ -323,6 +328,9 @@ function ServiceDetailContent({
                 </div>
               </div>
             )}
+
+            {/* Answer-first FAQ (visible + FAQPage schema) */}
+            <ServiceFaq service={service} category={category} subcategory={subcategory} />
           </div>
 
           {/* RIGHT — Bookio widget (desktop only) */}
@@ -405,10 +413,17 @@ export default async function ServicePage({ params }: ServicePageProps) {
   }
 
   return (
-    <ServiceDetailContent
-      category={result.category}
-      subcategory={result.subcategory}
-      service={result.service}
-    />
+    <>
+      <ServiceDetailSchema
+        category={result.category}
+        subcategory={result.subcategory}
+        service={result.service}
+      />
+      <ServiceDetailContent
+        category={result.category}
+        subcategory={result.subcategory}
+        service={result.service}
+      />
+    </>
   )
 }

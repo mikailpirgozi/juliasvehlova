@@ -10,21 +10,27 @@ export function CookieConsent() {
   const [showConsent, setShowConsent] = useState(false)
 
   useEffect(() => {
-    setShowConsent(!localStorage.getItem('cookie-consent'))
+    // Defer to the next frame so we don't call setState synchronously inside the
+    // effect body (avoids cascading renders); localStorage is only readable
+    // after hydration, which is why we don't read it during render.
+    const id = requestAnimationFrame(() => {
+      setShowConsent(!localStorage.getItem('cookie-consent'))
+    })
+    return () => cancelAnimationFrame(id)
   }, [])
 
   const handleAccept = (): void => {
     localStorage.setItem('cookie-consent', 'accepted')
     localStorage.setItem('cookie-consent-date', new Date().toISOString())
     setShowConsent(false)
-    if (window.gtag) {
-      window.gtag('config', process.env.NEXT_PUBLIC_GA_ID || '')
-    }
+    // Google Consent Mode v2 — unlock analytics storage after explicit consent.
+    window.gtag?.('consent', 'update', { analytics_storage: 'granted' })
   }
 
   const handleReject = (): void => {
     localStorage.setItem('cookie-consent', 'rejected')
     setShowConsent(false)
+    window.gtag?.('consent', 'update', { analytics_storage: 'denied' })
   }
 
   if (!showConsent) {

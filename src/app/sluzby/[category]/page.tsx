@@ -5,6 +5,8 @@ import {
   generateCategoryStaticParams,
   getCategoryServiceCount,
 } from '@/lib/services-new'
+import { buildServiceMetadata } from '@/lib/seo'
+import { CategoryBreadcrumbSchema } from '@/components/seo/page-schemas'
 import { CategoryPageClient } from './CategoryPageClient'
 
 interface CategoryPageProps {
@@ -28,23 +30,23 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   }
 
   const serviceCount = getCategoryServiceCount(category)
+  const description =
+    category.description ||
+    `${category.title} v Julia Estetic Clinic Malacky – ${serviceCount} služieb. Profesionálny prístup, bezpečnosť a individuálny prístup ku každému klientovi.`
 
-  return {
-    title: `${category.title} | Julia Estetic Clinic`,
-    description: category.description,
-    openGraph: {
-      title: `${category.title} | Julia Estetic Clinic`,
-      description: category.description,
-      ...(category.image ? { images: [category.image] } : {}),
-    },
+  return buildServiceMetadata({
+    title: category.title,
+    description,
+    path: `/sluzby/${category.slug}`,
     keywords: [
       category.title,
-      'Julia Estetic Clinic',
-      'Malacky',
+      `${category.title} malacky`,
+      `${category.title} cena`,
       'estetická medicína',
-      `${serviceCount} služieb`,
     ],
-  }
+    image: category.image,
+    imageAlt: category.title,
+  })
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
@@ -55,5 +57,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     notFound()
   }
 
-  return <CategoryPageClient category={category} />
+  return (
+    <>
+      <CategoryBreadcrumbSchema category={category} />
+      <CategoryPageClient category={category} />
+    </>
+  )
 }

@@ -13,10 +13,15 @@ export const blogPostMetaSchema = z
     excerpt: z.string().optional(),
     description: z.string().optional(),
     author: z.string().default('Julia Svehlová'),
+    /** Medical/professional reviewer (E-E-A-T) — e.g. "MUDr. Yasmin Betáková". */
+    reviewedBy: z.string().optional(),
     date: z.string(),
+    /** Last-updated date (ISO) → Article dateModified. */
+    updated: z.string().optional(),
     category: z.string(),
     tags: z.array(z.string()).default([]),
     coverImage: z.string().optional(),
+    keywords: z.array(z.string()).optional(),
     featured: z.boolean().default(false),
   })
   .refine(

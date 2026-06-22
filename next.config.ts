@@ -4,6 +4,13 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
 
+  // Next.js 15.2+ streams <head> metadata into <body> for most user agents.
+  // HTML-only crawlers (incl. some AI/search bots and social scrapers) don't
+  // execute JS, so they'd miss it. This regex forces fully-rendered metadata in
+  // <head> for these bots — important for SEO + GEO citations.
+  htmlLimitedBots:
+    /Googlebot|Googlebot-Image|Bingbot|Applebot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|facebookcatalog|Twitterbot|LinkedInBot|Pinterest|WhatsApp|TelegramBot|Slackbot|Discordbot|GPTBot|OAI-SearchBot|ChatGPT-User|PerplexityBot|Perplexity-User|ClaudeBot|Claude-SearchBot|Claude-User|anthropic-ai|Google-Extended|Applebot-Extended|cohere-ai|Amazonbot|Bytespider|Screaming Frog|SiteAuditBot/i,
+
   // Disable source maps in production for smaller bundles
   productionBrowserSourceMaps: false,
 

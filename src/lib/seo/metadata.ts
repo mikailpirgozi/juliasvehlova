@@ -34,16 +34,26 @@ export const DEFAULT_KEYWORDS = [
 // =============================================================================
 
 interface PageMetadataConfig {
+  /** Clean, brand-free page title. The root layout template appends "| Julia Estetic Clinic". */
   title: string
   description: string
   keywords: string[]
+  /** Absolute path of the page (e.g. "/cennik"). Used for canonical + OG url. Home = "". */
+  path: string
+  /**
+   * When true, the title is used verbatim (no template brand suffix). Reserved for the
+   * homepage, whose title already contains the brand name.
+   */
+  titleAbsolute?: boolean
 }
 
 export const pageMetadata: Record<string, PageMetadataConfig> = {
   home: {
-    title: `${COMPANY_NAME} - Profesionálne služby estetickej medicíny v Malackách`,
+    title: `${COMPANY_NAME} – estetická klinika a kozmetika v Malackách`,
+    titleAbsolute: true,
+    path: '',
     description:
-      'Komplexné služby estetickej medicíny, permanentného make-upu a profesionálneho líčenia v Malackách. Viac ako 10 rokov skúseností. Botulotoxín, filery, laserová epilácia.',
+      'Komplexné služby estetickej medicíny, permanentného make-upu a profesionálneho líčenia v Malackách. Viac ako 10 rokov skúseností. Botulotoxín, filery, HIFU, laserová epilácia.',
     keywords: [
       ...DEFAULT_KEYWORDS,
       'estetická medicína',
@@ -52,7 +62,8 @@ export const pageMetadata: Record<string, PageMetadataConfig> = {
     ],
   },
   services: {
-    title: `Služby - Estetická medicína a kozmetika | ${COMPANY_NAME}`,
+    title: 'Služby – estetická medicína a kozmetika',
+    path: '/sluzby',
     description:
       'Široká ponuka služieb estetickej medicíny: botulotoxín, kyselina hyalurónová, permanentný make-up, laserová epilácia, kozmetické ošetrenia. Profesionálny prístup a bezpečnosť.',
     keywords: [
@@ -64,7 +75,8 @@ export const pageMetadata: Record<string, PageMetadataConfig> = {
     ],
   },
   about: {
-    title: `O nás - Naša klinika a tím | ${COMPANY_NAME}`,
+    title: 'O nás – naša klinika a tím',
+    path: '/o-nas',
     description:
       'Spoznajte náš tím profesionálov v estetickej medicíne. Viac ako 10 rokov skúseností, certifikované procedúry a individuálny prístup ku každému klientovi v Malackách.',
     keywords: [
@@ -76,7 +88,8 @@ export const pageMetadata: Record<string, PageMetadataConfig> = {
     ],
   },
   pricing: {
-    title: `Cenník služieb | ${COMPANY_NAME}`,
+    title: 'Cenník služieb',
+    path: '/cennik',
     description:
       'Transparentný cenník všetkých služieb estetickej medicíny a kozmetiky. Botulotoxín od 120€, filery od 180€, permanentný make-up od 200€. Bezplatná konzultácia.',
     keywords: [
@@ -88,7 +101,8 @@ export const pageMetadata: Record<string, PageMetadataConfig> = {
     ],
   },
   booking: {
-    title: `Rezervácia termínu | ${COMPANY_NAME}`,
+    title: 'Rezervácia termínu',
+    path: '/rezervacia',
     description:
       'Objednajte sa online na konzultáciu alebo ošetrenie v Julia Estetic Clinic Malacky. Rýchla a jednoduchá rezervácia, bezplatná konzultácia.',
     keywords: [
@@ -100,7 +114,8 @@ export const pageMetadata: Record<string, PageMetadataConfig> = {
     ],
   },
   blog: {
-    title: `Blog - Tipy a novinky z estetickej medicíny | ${COMPANY_NAME}`,
+    title: 'Blog – tipy a novinky z estetickej medicíny',
+    path: '/blog',
     description:
       'Čítajte náš blog plný užitočných tipov o starostlivosti o pleť, novinkách v estetickej medicíne a odpovedí na najčastejšie otázky našich klientov.',
     keywords: [
@@ -112,7 +127,8 @@ export const pageMetadata: Record<string, PageMetadataConfig> = {
     ],
   },
   contact: {
-    title: `Kontakt | ${COMPANY_NAME}`,
+    title: 'Kontakt',
+    path: '/kontakt',
     description: `Kontaktujte Julia Estetic Clinic v Malackách. ☎️ ${CONTACT.phone} 📧 ${CONTACT.email} 📍 ${CONTACT.address.street}, ${CONTACT.address.city}. Tešíme sa na vás!`,
     keywords: [
       ...DEFAULT_KEYWORDS,
@@ -123,19 +139,22 @@ export const pageMetadata: Record<string, PageMetadataConfig> = {
     ],
   },
   privacy: {
-    title: `Ochrana osobných údajov | ${COMPANY_NAME}`,
+    title: 'Ochrana osobných údajov',
+    path: '/ochrana-udajov',
     description:
       'Informácie o spracovaní a ochrane osobných údajov v súlade s GDPR v Julia Estetic Clinic.',
     keywords: ['ochrana údajov', 'GDPR', 'súkromie'],
   },
   terms: {
-    title: `Obchodné podmienky | ${COMPANY_NAME}`,
+    title: 'Obchodné podmienky',
+    path: '/obchodne-podmienky',
     description:
       'Obchodné podmienky poskytovania služieb estetickej medicíny a kozmetiky v Julia Estetic Clinic.',
     keywords: ['obchodné podmienky', 'podmienky služieb'],
   },
   giftVouchers: {
-    title: `Darčekové poukážky | ${COMPANY_NAME}`,
+    title: 'Darčekové poukážky',
+    path: '/darcekove-poukazky',
     description:
       'Darujte krásu a pohodu. Darčekové poukážky na estetickú medicínu a kozmetické služby v hodnote 50€ až 500€. Ideálny darček na narodeniny, meniny či sviatok. Platnosť 3 mesiace.',
     keywords: [
@@ -171,10 +190,18 @@ export function generatePageMetadata(
   const pageMeta = getPageMetadata(pageKey)
   // Use home as fallback - guaranteed to exist
   const defaultMeta = pageMetadata['home']!
+  const meta = pageMeta ?? defaultMeta
 
-  const title = pageMeta?.title ?? defaultMeta.title
-  const description = pageMeta?.description ?? defaultMeta.description
-  const keywords = pageMeta?.keywords ?? defaultMeta.keywords
+  const description = meta.description
+  const keywords = meta.keywords
+  // Self-referential canonical + OG url from the page's own path (fixes the
+  // bug where every page canonicalised to the homepage).
+  const url = `${BASE_URL}${meta.path}`
+  // Home title already contains the brand → use it verbatim; all other titles
+  // are brand-free and get "| Julia Estetic Clinic" appended by the root template.
+  const title: Metadata['title'] = meta.titleAbsolute
+    ? { absolute: meta.title }
+    : meta.title
 
   return {
     title,
@@ -187,9 +214,9 @@ export function generatePageMetadata(
     openGraph: {
       type: 'website',
       locale: SEO_DEFAULTS.locale,
-      url: BASE_URL,
+      url,
       siteName: COMPANY_NAME,
-      title,
+      title: meta.title,
       description,
       images: [
         {
@@ -202,7 +229,7 @@ export function generatePageMetadata(
     },
     twitter: {
       card: SEO_DEFAULTS.twitterCard,
-      title,
+      title: meta.title,
       description,
       images: [`${BASE_URL}/twitter-image`],
     },
@@ -218,34 +245,40 @@ export function generatePageMetadata(
       },
     },
     alternates: {
-      canonical: BASE_URL,
+      canonical: url,
     },
     ...overrides,
   }
 }
 
 /**
- * Generate metadata for a service detail page
+ * Build metadata for any dynamic page under /sluzby (service detail, category,
+ * subcategory). Pass a clean brand-free `title` (the root template appends the
+ * brand) and the page `path` (e.g. "/sluzby/hifu-mfu/hifu-cela-tvar"). Always
+ * emits a self-referential canonical + OG url.
  */
-export function generateServiceMetadata(service: {
+export function buildServiceMetadata({
+  title,
+  description,
+  path,
+  keywords = [],
+  image,
+  imageAlt,
+}: {
   title: string
-  slug: string
-  shortDescription: string
-  seoMeta: {
-    title: string
-    description: string
-    keywords: string[]
-  }
-  images?: Array<{ url: string; alt: string }>
+  description: string
+  path: string
+  keywords?: string[]
+  image?: string
+  imageAlt?: string
 }): Metadata {
-  const { seoMeta, slug, images } = service
-  const url = `${BASE_URL}/sluzby/${slug}`
-  const ogImage = images?.[0]?.url ?? `${BASE_URL}/opengraph-image`
+  const url = `${BASE_URL}${path}`
+  const ogImage = image ?? `${BASE_URL}/opengraph-image`
 
   return {
-    title: seoMeta.title,
-    description: seoMeta.description,
-    keywords: [...seoMeta.keywords, ...DEFAULT_KEYWORDS.slice(0, 5)],
+    title,
+    description,
+    keywords: [...keywords, ...DEFAULT_KEYWORDS.slice(0, 5)],
     authors: [{ name: `${COMPANY_NAME} Team` }],
     creator: COMPANY_NAME,
     publisher: COMPANY_NAME,
@@ -255,21 +288,21 @@ export function generateServiceMetadata(service: {
       locale: SEO_DEFAULTS.locale,
       url,
       siteName: COMPANY_NAME,
-      title: seoMeta.title,
-      description: seoMeta.description,
+      title,
+      description,
       images: [
         {
           url: ogImage,
           width: SEO_DEFAULTS.ogImageWidth,
           height: SEO_DEFAULTS.ogImageHeight,
-          alt: service.title,
+          alt: imageAlt ?? title,
         },
       ],
     },
     twitter: {
       card: SEO_DEFAULTS.twitterCard,
-      title: seoMeta.title,
-      description: seoMeta.description,
+      title,
+      description,
       images: [ogImage],
     },
     robots: {
@@ -299,13 +332,15 @@ export function generateBlogPostMetadata(post: {
   keywords?: string[]
   image?: string
   publishedAt?: string
+  modifiedAt?: string
   author?: string
 }): Metadata {
   const url = `${BASE_URL}/blog/${post.slug}`
   const ogImage = post.image ?? `${BASE_URL}/opengraph-image`
 
   return {
-    title: `${post.title} | Blog ${COMPANY_NAME}`,
+    // Brand-free → the root template appends "| Julia Estetic Clinic" once.
+    title: post.title,
     description: post.excerpt,
     keywords: post.keywords ?? DEFAULT_KEYWORDS,
     authors: [{ name: post.author ?? `${COMPANY_NAME} Team` }],
@@ -320,6 +355,7 @@ export function generateBlogPostMetadata(post: {
       title: post.title,
       description: post.excerpt,
       publishedTime: post.publishedAt,
+      modifiedTime: post.modifiedAt ?? post.publishedAt,
       authors: [post.author ?? COMPANY_NAME],
       images: [
         {
@@ -351,7 +387,20 @@ export function generateBlogPostMetadata(post: {
  */
 export function getBaseMetadata(): Metadata {
   const homeMeta = pageMetadata['home']!
-  
+
+  // Search-engine verification tokens (optional). Set in env / Vercel:
+  //   GOOGLE_SITE_VERIFICATION  – Google Search Console (HTML-tag method)
+  //   BING_SITE_VERIFICATION    – Bing Webmaster Tools
+  const googleVerification = process.env.GOOGLE_SITE_VERIFICATION
+  const bingVerification = process.env.BING_SITE_VERIFICATION
+  const verification: Metadata['verification'] | undefined =
+    googleVerification || bingVerification
+      ? {
+          ...(googleVerification && { google: googleVerification }),
+          ...(bingVerification && { other: { 'msvalidate.01': bingVerification } }),
+        }
+      : undefined
+
   return {
     metadataBase: new URL(BASE_URL),
     title: {
@@ -363,6 +412,7 @@ export function getBaseMetadata(): Metadata {
     authors: [{ name: `${COMPANY_NAME} Team` }],
     creator: COMPANY_NAME,
     publisher: COMPANY_NAME,
+    ...(verification && { verification }),
     formatDetection: {
       email: false,
       address: false,
@@ -401,8 +451,8 @@ export function getBaseMetadata(): Metadata {
         'max-snippet': -1,
       },
     },
-    alternates: {
-      canonical: BASE_URL,
-    },
+    // NOTE: intentionally NO root-level alternates.canonical. Each page sets its
+    // own self-referential canonical (a base-level canonical leaks the homepage
+    // URL onto every subpage).
   }
 }

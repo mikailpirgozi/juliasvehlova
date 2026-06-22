@@ -20,7 +20,7 @@ export {
   pageMetadata,
   getPageMetadata,
   generatePageMetadata,
-  generateServiceMetadata,
+  buildServiceMetadata,
   generateBlogPostMetadata,
   getBaseMetadata,
 } from './metadata'

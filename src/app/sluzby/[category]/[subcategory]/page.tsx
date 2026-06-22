@@ -8,6 +8,9 @@ import {
   getDirectServiceBySlug,
   getAllMainCategories,
 } from '@/lib/services-new'
+import { buildServiceMetadata } from '@/lib/seo'
+import { DirectServiceSchema, SubcategoryBreadcrumbSchema } from '@/components/seo/page-schemas'
+import { ServiceFaq } from '@/components/services/ServiceFaq'
 import { SubcategoryPageClient } from './SubcategoryPageClient'
 import { DirectServicePageClient } from './DirectServicePageClient'
 
@@ -49,16 +52,16 @@ export async function generateMetadata({ params }: SubcategoryPageProps): Promis
     const service = category.services?.find((s) => s.slug === subcategorySlug)
     if (service) {
       const durationPart = service.duration ? `${service.duration}, ` : ''
-      return {
-        title: `${service.name} | ${category.title} | Julia Estetic Clinic`,
-        description: `${service.name} - ${durationPart}${service.price}. ${category.title} v Julia Estetic Clinic Malacky.`,
-        openGraph: {
-          title: `${service.name} | Julia Estetic Clinic`,
-          description: `${service.name} - ${durationPart}${service.price}`,
-          ...(category.image ? { images: [category.image] } : {}),
-        },
-        keywords: [service.name, category.title, 'Julia Estetic Clinic', 'Malacky'],
-      }
+      return buildServiceMetadata({
+        title: `${service.name} – ${category.title}`,
+        description:
+          service.shortDescription ||
+          `${service.name} – ${durationPart}${service.price} v Julia Estetic Clinic Malacky. ${category.title}, profesionálny prístup a bezpečnosť.`,
+        path: `/sluzby/${category.slug}/${service.slug}`,
+        keywords: [service.name, category.title, `${service.name} cena`, `${service.name} malacky`],
+        image: category.image,
+        imageAlt: service.name,
+      })
     }
   }
 
@@ -72,26 +75,22 @@ export async function generateMetadata({ params }: SubcategoryPageProps): Promis
 
   const { category: cat, subcategory } = result
 
-  return {
-    title: `${subcategory.title} | ${cat.title} | Julia Estetic Clinic`,
+  return buildServiceMetadata({
+    title: `${subcategory.title} – ${cat.title}`,
     description:
       subcategory.description ||
-      `${subcategory.title} - ${subcategory.services.length} služieb. Julia Estetic Clinic Malacky.`,
-    openGraph: {
-      title: `${subcategory.title} | ${cat.title} | Julia Estetic Clinic`,
-      description:
-        subcategory.description ||
-        `${subcategory.title} - ${subcategory.services.length} služieb.`,
-      images: [subcategory.image ?? cat.image],
-    },
+      `${subcategory.title} v Julia Estetic Clinic Malacky – ${subcategory.services.length} služieb. Profesionálny prístup a bezpečnosť.`,
+    path: `/sluzby/${cat.slug}/${subcategory.slug}`,
     keywords: [
       subcategory.title,
       cat.title,
-      'Julia Estetic Clinic',
-      'Malacky',
+      `${subcategory.title} malacky`,
+      `${subcategory.title} cena`,
       ...subcategory.services.slice(0, 5).map((s) => s.name),
     ],
-  }
+    image: subcategory.image ?? cat.image,
+    imageAlt: subcategory.title,
+  })
 }
 
 export default async function SubcategoryPage({ params }: SubcategoryPageProps) {
@@ -101,10 +100,24 @@ export default async function SubcategoryPage({ params }: SubcategoryPageProps) 
   const directServiceResult = getDirectServiceBySlug(categorySlug, subcategorySlug)
   if (directServiceResult) {
     return (
-      <DirectServicePageClient
-        category={directServiceResult.category}
-        service={directServiceResult.service}
-      />
+      <>
+        <DirectServiceSchema
+          category={directServiceResult.category}
+          service={directServiceResult.service}
+        />
+        <DirectServicePageClient
+          category={directServiceResult.category}
+          service={directServiceResult.service}
+        />
+        <section className="bg-white px-4 pb-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <ServiceFaq
+              service={directServiceResult.service}
+              category={directServiceResult.category}
+            />
+          </div>
+        </section>
+      </>
     )
   }
 
@@ -114,5 +127,10 @@ export default async function SubcategoryPage({ params }: SubcategoryPageProps) 
     notFound()
   }
 
-  return <SubcategoryPageClient category={result.category} subcategory={result.subcategory} />
+  return (
+    <>
+      <SubcategoryBreadcrumbSchema category={result.category} subcategory={result.subcategory} />
+      <SubcategoryPageClient category={result.category} subcategory={result.subcategory} />
+    </>
+  )
 }

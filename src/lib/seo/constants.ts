@@ -26,7 +26,10 @@ export const CONTACT = {
     countryCode: 'SK',
   },
   geo: {
-    latitude: '48.4369', // TODO: Update with real coordinates
+    // Approx. Malacky (Javorová 2). Verify the exact building coordinates in
+    // Google Business Profile → "Edit profile → Location" and copy them here
+    // (5+ decimal places) so Maps/local SEO pin the correct spot.
+    latitude: '48.4369',
     longitude: '17.0218',
   },
 } as const

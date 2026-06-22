@@ -1,5 +1,9 @@
 import { MetadataRoute } from 'next'
-import { getAllServiceSlugs, getAllMainCategorySlugs } from '@/lib/services-new'
+import {
+  getAllServiceSlugs,
+  getAllMainCategorySlugs,
+  generateSubcategoryStaticParams,
+} from '@/lib/services-new'
 import { getBlogPosts } from '@/lib/blog'
 import { BASE_URL } from '@/lib/seo/constants'
 
@@ -55,6 +59,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${BASE_URL}/kontakt`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
       url: `${BASE_URL}/ochrana-udajov`,
       lastModified: now,
       changeFrequency: 'yearly',
@@ -68,8 +78,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  // Service detail pages
-  const serviceSlugs = getAllServiceSlugs()
+  // Service detail pages (filter out any empty slugs that would yield an
+  // invalid empty <loc>)
+  const serviceSlugs = getAllServiceSlugs().filter(Boolean)
   const servicePages: MetadataRoute.Sitemap = serviceSlugs.map((slug) => ({
     url: `${BASE_URL}/sluzby/${slug}`,
     lastModified: now,
@@ -78,13 +89,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
 
   // Service category pages
-  const categorySlugs = getAllMainCategorySlugs()
+  const categorySlugs = getAllMainCategorySlugs().filter(Boolean)
   const categoryPages: MetadataRoute.Sitemap = categorySlugs.map((slug) => ({
     url: `${BASE_URL}/sluzby/${slug}`,
     lastModified: now,
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }))
+
+  // Service subcategory pages (e.g. /sluzby/esteticka-medicina/botulotoxin) —
+  // real built routes that were previously missing from the sitemap.
+  const subcategoryPages: MetadataRoute.Sitemap = generateSubcategoryStaticParams()
+    .filter((p) => p.category && p.subcategory)
+    .map((p) => ({
+      url: `${BASE_URL}/sluzby/${p.category}/${p.subcategory}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
 
   // Blog posts
   let blogPages: MetadataRoute.Sitemap = []
@@ -101,5 +123,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     console.warn('Could not load blog posts for sitemap')
   }
 
-  return [...staticPages, ...servicePages, ...categoryPages, ...blogPages]
+  return [
+    ...staticPages,
+    ...categoryPages,
+    ...subcategoryPages,
+    ...servicePages,
+    ...blogPages,
+    // Final guard: drop any entry with an empty/whitespace URL so the generated
+    // sitemap.xml never contains an invalid empty <loc>.
+  ].filter((entry) => Boolean(entry.url) && entry.url.trim() !== '')
 }

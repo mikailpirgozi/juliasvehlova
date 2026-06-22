@@ -31,7 +31,6 @@ export default function Icon() {
           borderRadius: 5,
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={logoMark}
           style={{

@@ -50,10 +50,33 @@ export function OrganizationSchema() {
     priceRange: SEO_DEFAULTS.priceRange,
     paymentAccepted: 'Cash, Credit Card, Debit Card, Bank Transfer',
     currenciesAccepted: SEO_DEFAULTS.currency,
-    areaServed: {
-      '@type': 'City',
-      name: CONTACT.address.city,
+    founder: {
+      '@type': 'Person',
+      name: 'Júlia Švehlová',
+      jobTitle: 'Zakladateľka',
     },
+    // Entity grounding for search + AI engines (GEO): the topics this clinic is
+    // a recognised authority on.
+    knowsAbout: [
+      'Estetická medicína',
+      'Botulotoxín',
+      'Kyselina hyalurónová',
+      'Biorevitalizácia pleti',
+      'Polynukleotidy',
+      'HIFU lifting',
+      'Rádiofrekvenčné mikroihličkovanie',
+      'Mezoterapia',
+      'Permanentný make-up',
+      'Laserová epilácia',
+    ],
+    // Primary city + the wider catchment area (Záhorie / Bratislavský kraj).
+    areaServed: [
+      { '@type': 'City', name: 'Malacky' },
+      { '@type': 'City', name: 'Stupava' },
+      { '@type': 'City', name: 'Bratislava' },
+      { '@type': 'AdministrativeArea', name: 'Záhorie' },
+      { '@type': 'AdministrativeArea', name: 'Bratislavský kraj' },
+    ],
   }
 
   return (
@@ -223,6 +246,35 @@ export function FAQSchema({ faqs }: { faqs: FAQItem[] }) {
 }
 
 // =============================================================================
+// SPEAKABLE SCHEMA (GEO / voice / AI answers)
+// =============================================================================
+
+/**
+ * WebPage + SpeakableSpecification — marks the answer-bearing elements
+ * (`h1`, the `.geo-answer` capsule and `.faq-answer` blocks) as the parts of the
+ * page suitable for AI assistants / voice to read aloud.
+ */
+export function SpeakableSchema({ url }: { url: string }) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': url,
+    url,
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['h1', '.geo-answer', '.faq-answer'],
+    },
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  )
+}
+
+// =============================================================================
 // SERVICE SCHEMA
 // =============================================================================
 
@@ -231,11 +283,16 @@ export interface ServiceSchemaProps {
   description: string
   url: string
   image?: string
+  /** Single price in EUR (preferred for individual services). */
+  price?: number
+  /** Price range, when a service spans multiple variants. */
   priceRange?: {
     from: number
     to: number
   }
   duration?: string
+  /** Service category, e.g. "Estetická medicína". */
+  category?: string
   provider?: string
 }
 
@@ -247,9 +304,36 @@ export function ServiceSchema({
   description,
   url,
   image,
+  price,
   priceRange,
   duration,
+  category,
 }: ServiceSchemaProps) {
+  // Build a clean Offer: single price when known, otherwise a range.
+  const offer =
+    price != null
+      ? {
+          '@type': 'Offer',
+          priceCurrency: SEO_DEFAULTS.currency,
+          price: String(price),
+          availability: 'https://schema.org/InStock',
+          url,
+        }
+      : priceRange
+        ? {
+            '@type': 'Offer',
+            priceCurrency: SEO_DEFAULTS.currency,
+            priceSpecification: {
+              '@type': 'PriceSpecification',
+              priceCurrency: SEO_DEFAULTS.currency,
+              minPrice: priceRange.from,
+              maxPrice: priceRange.to,
+            },
+            availability: 'https://schema.org/InStock',
+            url,
+          }
+        : null
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -258,6 +342,7 @@ export function ServiceSchema({
     description,
     url,
     image: image ?? `${BASE_URL}/opengraph-image`,
+    ...(category && { category }),
     provider: {
       '@id': `${BASE_URL}/#organization`,
     },
@@ -265,20 +350,7 @@ export function ServiceSchema({
       '@type': 'City',
       name: CONTACT.address.city,
     },
-    ...(priceRange && {
-      offers: {
-        '@type': 'Offer',
-        priceCurrency: SEO_DEFAULTS.currency,
-        price: `${priceRange.from}-${priceRange.to}`,
-        priceSpecification: {
-          '@type': 'PriceSpecification',
-          priceCurrency: SEO_DEFAULTS.currency,
-          minPrice: priceRange.from,
-          maxPrice: priceRange.to,
-        },
-        availability: 'https://schema.org/InStock',
-      },
-    }),
+    ...(offer && { offers: offer }),
     ...(duration && {
       serviceOutput: {
         '@type': 'Thing',
@@ -359,6 +431,8 @@ export interface ArticleSchemaProps {
   datePublished?: string
   dateModified?: string
   author?: string
+  /** Medical/professional reviewer (E-E-A-T) — e.g. "MUDr. Yasmin Betáková". */
+  reviewedBy?: string
 }
 
 /**
@@ -372,6 +446,7 @@ export function ArticleSchema({
   datePublished,
   dateModified,
   author,
+  reviewedBy,
 }: ArticleSchemaProps) {
   const schema = {
     '@context': 'https://schema.org',
@@ -387,6 +462,12 @@ export function ArticleSchema({
     publisher: {
       '@id': `${BASE_URL}/#organization`,
     },
+    ...(reviewedBy && {
+      reviewedBy: {
+        '@type': 'Person',
+        name: reviewedBy,
+      },
+    }),
     ...(datePublished && { datePublished }),
     ...(dateModified && { dateModified }),
     mainEntityOfPage: {

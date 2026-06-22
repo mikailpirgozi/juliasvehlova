@@ -5,6 +5,8 @@ import { getBlogPosts, getBlogPostBySlug, getRelatedBlogPosts } from '@/lib/blog
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { Button } from '@/components/base/buttons/button'
 import { ShareButtons } from '@/components/blog/ShareButtons'
+import { generateBlogPostMetadata, BASE_URL } from '@/lib/seo'
+import { BlogPostSchema } from '@/components/seo/page-schemas'
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -25,17 +27,20 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     return { title: 'Článok nenájdený' }
   }
 
-  return {
-    title: `${post.title} | Julia Clinic Blog`,
-    description: post.excerpt,
-    keywords: [post.category, ...post.tags],
-    openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      type: 'article',
-      publishedTime: post.date,
-    },
-  }
+  return generateBlogPostMetadata({
+    title: post.title,
+    slug: post.slug,
+    excerpt: post.excerpt,
+    keywords: post.keywords ?? [post.category, ...post.tags],
+    image: post.coverImage
+      ? post.coverImage.startsWith('http')
+        ? post.coverImage
+        : `${BASE_URL}${post.coverImage}`
+      : undefined,
+    publishedAt: post.date,
+    modifiedAt: post.updated,
+    author: post.author,
+  })
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -47,9 +52,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   const relatedPosts = getRelatedBlogPosts(slug)
+  const coverImage = post.coverImage
+    ? post.coverImage.startsWith('http')
+      ? post.coverImage
+      : `${BASE_URL}${post.coverImage}`
+    : undefined
 
   return (
     <div className="bg-white">
+      <BlogPostSchema
+        title={post.title}
+        description={post.excerpt}
+        slug={post.slug}
+        image={coverImage}
+        datePublished={post.date}
+        dateModified={post.updated ?? post.date}
+        author={post.author}
+        reviewedBy={post.reviewedBy}
+      />
       {/* Hero */}
       <section className="bg-gray-50 px-4 pb-12 pt-24">
         <div className="mx-auto max-w-3xl">
@@ -72,8 +92,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </h1>
 
           <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
-            <span>Napísal{post.author === 'Julia Svehlová' ? 'a' : ''} {post.author}</span>
-            <time>
+            <span>Napísal{post.author?.endsWith('á') || post.author?.endsWith('a') ? 'a' : ''} {post.author}</span>
+            <time dateTime={post.date}>
               {new Date(post.date).toLocaleDateString('sk-SK', {
                 year: 'numeric',
                 month: 'long',
@@ -81,6 +101,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               })}
             </time>
           </div>
+
+          {post.reviewedBy && (
+            <p className="mt-2 text-sm text-gray-500">
+              Odborne posúdila{' '}
+              <span className="font-medium text-gray-700">{post.reviewedBy}</span>
+            </p>
+          )}
         </div>
       </section>
 

@@ -5,6 +5,7 @@ import { MainLayout } from '@/components/MainLayout'
 import { MainSchemaMarkup } from '@/components/seo'
 import { getBaseMetadata } from '@/lib/seo'
 import { Analytics } from '@vercel/analytics/next'
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 
 /**
  * Root Metadata - provides base SEO configuration for all pages
@@ -70,6 +71,7 @@ export default function RootLayout({
         
         <MainLayout>{children}</MainLayout>
         <Analytics />
+        <GoogleAnalytics />
       </body>
     </html>
   )
