@@ -16,15 +16,19 @@ export function CategoryCard({ category, priority = false }: CategoryCardProps) 
       href={`/sluzby/${category.slug}`}
       className="group relative block aspect-[4/5] overflow-hidden"
     >
-      <Image
-        src={category.image}
-        alt={category.title}
-        fill
-        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
-        className="object-cover transition-transform duration-700 group-hover:scale-105"
-        style={category.imagePosition ? { objectPosition: category.imagePosition } : undefined}
-        priority={priority}
-      />
+      {category.image ? (
+        <Image
+          src={category.image}
+          alt={category.title}
+          fill
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          style={category.imagePosition ? { objectPosition: category.imagePosition } : undefined}
+          priority={priority}
+        />
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-br from-[#8698a4] via-[#9aa9b3] to-[#718593] transition-transform duration-700 group-hover:scale-105" />
+      )}
 
       {/* Subtle dark gradient at bottom for text readability */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />

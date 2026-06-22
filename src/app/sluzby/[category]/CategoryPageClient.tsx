@@ -15,6 +15,8 @@ import {
   Brush01,
   Award01,
   ArrowLeft,
+  ArrowRight,
+  Check,
 } from '@untitledui/icons'
 import { Button } from '@/components/base/buttons/button'
 import { SubcategoryCard, ServicesPriceTable, ImageGallery } from '@/components/services'
@@ -45,6 +47,9 @@ export function CategoryPageClient({ category }: CategoryPageClientProps) {
   const IconComponent = iconComponents[category.iconKey]
   const hasSubcategories = categoryHasSubcategories(category)
   const galleryImages = getServiceGalleryImages(category.slug, 8)
+  const isInfoCategory = Boolean(
+    category.fullDescription || (category.packageGroups && category.packageGroups.length > 0)
+  )
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-white">
@@ -54,13 +59,17 @@ export function CategoryPageClient({ category }: CategoryPageClientProps) {
       {/* Hero Section - Modern, clean design */}
       <section className="relative overflow-hidden">
         <div className="relative h-[280px] w-full sm:h-[320px] lg:h-[380px]">
-          <Image
-            src={category.image}
-            alt={category.title}
-            fill
-            priority
-            className="object-cover object-center"
-          />
+          {category.image ? (
+            <Image
+              src={category.image}
+              alt={category.title}
+              fill
+              priority
+              className="object-cover object-center"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-[#8698a4] via-[#9aa9b3] to-[#718593]" />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
 
           {/* Content Overlay */}
@@ -106,6 +115,100 @@ export function CategoryPageClient({ category }: CategoryPageClientProps) {
       {/* Content Section */}
       <section className="relative z-10 px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
         <div className="mx-auto max-w-6xl">
+          {/* Informational content (e.g. RF microneedling, HIFU) */}
+          {isInfoCategory && (
+            <div className="mb-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+              {/* LEFT — description + suitable-for + results note */}
+              <div>
+                {category.fullDescription && (
+                  <p className="text-base leading-relaxed text-gray-700 sm:text-lg">
+                    {category.fullDescription}
+                  </p>
+                )}
+
+                {category.suitableFor && category.suitableFor.length > 0 && (
+                  <div className="mt-8">
+                    <h2 className="font-serif text-xl font-bold text-gray-900 sm:text-2xl">
+                      Vhodné na
+                    </h2>
+                    <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                      {category.suitableFor.map((item) => (
+                        <li key={item} className="flex items-start gap-2.5">
+                          <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-brand-100">
+                            <Check className="h-3 w-3 text-brand-600" />
+                          </span>
+                          <span className="text-sm leading-relaxed text-gray-700 sm:text-base">
+                            {item}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {category.resultsNote && (
+                  <p className="mt-6 rounded-xl border border-brand-100 bg-brand-50/50 px-4 py-3 text-sm leading-relaxed text-gray-600 sm:text-base">
+                    {category.resultsNote}
+                  </p>
+                )}
+              </div>
+
+              {/* RIGHT — highlighted packages box */}
+              {category.packageGroups && category.packageGroups.length > 0 && (
+                <div className="lg:sticky lg:top-8 lg:self-start">
+                  <div className="space-y-5">
+                    {category.packageGroups.map((group) => (
+                      <div
+                        key={group.title}
+                        className="overflow-hidden rounded-2xl border border-brand-200 bg-gradient-to-b from-brand-50 to-white shadow-sm ring-1 ring-brand-100"
+                      >
+                        <div className="border-b border-brand-100 bg-brand-100/40 px-5 py-3.5">
+                          <h3 className="font-serif text-lg font-bold text-gray-900">
+                            {group.title}
+                          </h3>
+                        </div>
+                        <ul className="divide-y divide-brand-100 px-5">
+                          {group.items.map((item) => (
+                            <li
+                              key={item.name}
+                              className="flex items-baseline justify-between gap-4 py-3"
+                            >
+                              <span className="text-sm font-medium text-gray-700 sm:text-base">
+                                {item.name}
+                              </span>
+                              <span className="whitespace-nowrap font-serif text-base font-bold text-brand-700 sm:text-lg">
+                                {item.price}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                        {group.note && (
+                          <p className="px-5 pb-4 pt-2 text-xs leading-relaxed text-gray-500 sm:text-sm">
+                            {group.note}
+                          </p>
+                        )}
+                      </div>
+                    ))}
+
+                    {category.bookingUrl && (
+                      <Button
+                        href={category.bookingUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        color="primary"
+                        size="lg"
+                        iconTrailing={ArrowRight}
+                        className="w-full"
+                      >
+                        Rezervovať termín
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
           {hasSubcategories ? (
             <>
               {/* Subcategories Grid */}

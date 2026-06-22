@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     openGraph: {
       title: `${category.title} | Julia Estetic Clinic`,
       description: category.description,
-      images: [category.image],
+      ...(category.image ? { images: [category.image] } : {}),
     },
     keywords: [
       category.title,

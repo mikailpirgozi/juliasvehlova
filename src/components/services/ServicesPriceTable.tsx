@@ -72,12 +72,14 @@ export function ServicesPriceTable({
                   ) : service.shortDescription ? (
                     <p className="mt-1 text-sm text-gray-500 line-clamp-2">{service.shortDescription}</p>
                   ) : null}
-                  <div className="mt-2 flex items-center gap-4 text-sm text-gray-500">
-                    <span className="flex items-center gap-1.5">
-                      <Clock className="h-4 w-4" />
-                      {service.duration}
-                    </span>
-                  </div>
+                  {service.duration && (
+                    <div className="mt-2 flex items-center gap-4 text-sm text-gray-500">
+                      <span className="flex items-center gap-1.5">
+                        <Clock className="h-4 w-4" />
+                        {service.duration}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
 

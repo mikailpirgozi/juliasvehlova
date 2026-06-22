@@ -23,7 +23,7 @@ export const simpleServiceSchema = z.object({
   slug: z.string().min(1),
   name: z.string().min(1),
   price: z.string().min(1),
-  duration: z.string().min(1),
+  duration: z.string().optional(),
   popular: z.boolean().optional(),
   bookioServiceId: z.string().optional(),
   bookioCategoryId: z.string().optional(),
@@ -61,14 +61,33 @@ export const categoryIconKeySchema = z.enum([
   'crown',
 ])
 
+// Highlighted package / treatment-plan group shown on category landing pages
+// (e.g. recommended cure, treatment packages, body-area discounts)
+export const categoryPackageItemSchema = z.object({
+  name: z.string().min(1),
+  price: z.string().min(1),
+})
+
+export const categoryPackageGroupSchema = z.object({
+  title: z.string().min(1),
+  items: z.array(categoryPackageItemSchema).min(1),
+  note: z.string().optional(),
+})
+
 export const mainCategorySchema = z.object({
   id: z.string().min(1),
   slug: z.string().min(1),
   title: z.string().min(1),
   description: z.string().min(1),
   iconKey: categoryIconKeySchema,
-  image: z.string().min(1),
+  image: z.string(), // may be empty for categories without a hero image yet
   imagePosition: z.string().optional(),
+  // Rich informational content for device/treatment category landing pages
+  fullDescription: z.string().optional(), // Intro paragraph
+  suitableFor: z.array(z.string()).optional(), // "Vhodné na" list
+  resultsNote: z.string().optional(), // Paragraph shown after the list (e.g. result timeline)
+  packageGroups: z.array(categoryPackageGroupSchema).optional(), // Highlighted package boxes
+  bookingUrl: z.string().optional(), // Target for the reservation button
   subcategories: z.array(subcategorySchema).optional(),
   services: z.array(simpleServiceSchema).optional(),
 })
@@ -82,6 +101,8 @@ export type ProcessStep = z.infer<typeof processStepSchema>
 export type SimpleService = z.infer<typeof simpleServiceSchema>
 export type Subcategory = z.infer<typeof subcategorySchema>
 export type CategoryIconKey = z.infer<typeof categoryIconKeySchema>
+export type CategoryPackageItem = z.infer<typeof categoryPackageItemSchema>
+export type CategoryPackageGroup = z.infer<typeof categoryPackageGroupSchema>
 export type MainCategory = z.infer<typeof mainCategorySchema>
 
 // ========================================
@@ -811,6 +832,119 @@ export const mainCategories: MainCategory[] = [
         ],
       },
     ],
+  },
+
+  // ========================================
+  // RÁDIOFREKVENČNÉ MIKROIHLIČKOVANIE (Morpheus8 typ)
+  // ========================================
+  {
+    id: 'radiofrekvencne-mikroihlickovanie',
+    slug: 'radiofrekvencne-mikroihlickovanie',
+    title: 'Rádiofrekvenčné mikroihličkovanie',
+    description: 'Moderné omladzovacie ošetrenie kombinujúce mikroihličkovanie a rádiofrekvenčnú energiu (Morpheus8 typ).',
+    iconKey: 'sparkle',
+    image: '', // TODO: doplniť hero obrázok
+    fullDescription:
+      'Rádiofrekvenčné mikroihličkovanie je moderné omladzovacie ošetrenie, ktoré kombinuje účinky jemného mikroihličkovania a rádiofrekvenčnej energie. Ošetrenie stimuluje tvorbu kolagénu a elastínu v hlbších vrstvách pokožky, čím pomáha zlepšiť jej pevnosť, pružnosť a celkovú kvalitu.',
+    suitableFor: [
+      'ochabnutú pokožku tváre a krku',
+      'jemné a stredne hlboké vrásky',
+      'rozšírené póry',
+      'jazvy po akné',
+      'nerovnomernú štruktúru pokožky',
+      'zlepšenie kontúr tváre',
+    ],
+    packageGroups: [
+      {
+        title: 'Odporúčaná kúra',
+        items: [
+          { name: '3× celá tvár', price: '891 €' },
+          { name: '3× tvár + krk', price: '1 161 €' },
+          { name: '3× tvár + krk + dekolt', price: '1 395 €' },
+        ],
+        note: 'Rádiofrekvenčné mikroihličkovanie odporúčame absolvovať formou kúry 3 ošetrení s odstupom 4–6 týždňov.',
+      },
+    ],
+    services: [
+      { id: 'rf-cela-tvar', slug: 'cela-tvar', name: 'Celá tvár', price: '351 €', bookioCategoryId: '39787', bookioServiceId: '166086' },
+      { id: 'rf-cela-tvar-akne-jazvy', slug: 'cela-tvar-akne-jazvy', name: 'Celá tvár (akné + jazvy)', price: '351 €', bookioCategoryId: '39787', bookioServiceId: '166091' },
+      { id: 'rf-cela-tvar-podbradok', slug: 'cela-tvar-podbradok', name: 'Celá tvár + podbradok', price: '405 €', bookioCategoryId: '39787', bookioServiceId: '166087' },
+      { id: 'rf-cela-tvar-krk', slug: 'cela-tvar-krk', name: 'Celá tvár + krk', price: '441 €', bookioCategoryId: '39787', bookioServiceId: '166088' },
+      { id: 'rf-cela-tvar-krk-dekolt', slug: 'cela-tvar-krk-dekolt', name: 'Celá tvár + krk + dekolt', price: '531 €', bookioCategoryId: '39787', bookioServiceId: '166089' },
+      { id: 'rf-okolie-ust', slug: 'okolie-ust', name: 'Okolie úst', price: '162 €', bookioCategoryId: '39787', bookioServiceId: '165969' },
+      { id: 'rf-ocne-okolie', slug: 'ocne-okolie', name: 'Očné okolie', price: '162 €', bookioCategoryId: '39787', bookioServiceId: '165968' },
+      { id: 'rf-podbradok', slug: 'podbradok', name: 'Podbradok', price: '198 €', bookioCategoryId: '39787', bookioServiceId: '165970' },
+      { id: 'rf-krk', slug: 'krk', name: 'Krk', price: '225 €', bookioCategoryId: '39787', bookioServiceId: '166084' },
+      { id: 'rf-dekolt', slug: 'dekolt', name: 'Dekolt', price: '225 €', bookioCategoryId: '39787', bookioServiceId: '166085' },
+      { id: 'rf-jazvy-po-akne', slug: 'jazvy-po-akne-lokalne', name: 'Jazvy po akné (lokálne)', price: '240 €', bookioCategoryId: '39787', bookioServiceId: '166090' },
+      { id: 'rf-paze', slug: 'paze', name: 'Paže', price: '315 €', bookioCategoryId: '39787', bookioServiceId: '166127' },
+      { id: 'rf-kolena', slug: 'kolena', name: 'Kolená', price: '261 €', bookioCategoryId: '39787', bookioServiceId: '166129' },
+      { id: 'rf-brucho', slug: 'brucho', name: 'Brucho', price: '400 €', bookioCategoryId: '39787', bookioServiceId: '166128' },
+      { id: 'rf-vnutorne-stehna', slug: 'vnutorne-stehna', name: 'Vnútorné stehná', price: '405 €', bookioCategoryId: '39787', bookioServiceId: '166149' },
+      { id: 'rf-zadok', slug: 'zadok', name: 'Zadok', price: '405 €', duration: '40 min.', bookioCategoryId: '39787', bookioServiceId: '166150' },
+      { id: 'rf-strie-mala', slug: 'strie-mala-oblast', name: 'Strie — malá oblasť', price: '225 €', bookioCategoryId: '39787', bookioServiceId: '166124' },
+      { id: 'rf-strie-vacsia', slug: 'strie-vacsia-oblast', name: 'Strie — väčšia oblasť', price: '360 €', bookioCategoryId: '39787', bookioServiceId: '166125' },
+    ],
+    bookingUrl: 'https://services.bookio.com/julia-estetic-clinic/widget?lang=sk&category=39787',
+  },
+
+  // ========================================
+  // HIFU MFU
+  // ========================================
+  {
+    id: 'hifu-mfu',
+    slug: 'hifu-mfu',
+    title: 'HIFU MFU',
+    description: 'Neinvazívny lifting fokusovaným ultrazvukom pre prirodzené spevnenie pokožky bez operácie.',
+    iconKey: 'laser',
+    image: '', // TODO: doplniť hero obrázok
+    fullDescription:
+      'HIFU (High-Intensity Focused Ultrasound) je neinvazívne liftingové ošetrenie využívajúce fokusovaný ultrazvuk na stimuláciu tvorby nového kolagénu v hlbokých vrstvách tkaniva. Výsledkom je postupné spevnenie pokožky, zlepšenie kontúr tváre a prirodzený lifting bez chirurgického zákroku.',
+    suitableFor: [
+      'lifting tváre a krku',
+      'spevnenie podbradku',
+      'zlepšenie kontúr čeľuste',
+      'ochabnutú pokožku dekoltu',
+      'neinvazívne omladenie bez rekonvalescencie',
+    ],
+    resultsNote:
+      'Výsledok sa vyvíja postupne počas 2–3 mesiacov po ošetrení a môže pretrvávať 12–18 mesiacov v závislosti od individuálneho stavu pokožky.',
+    packageGroups: [
+      {
+        title: 'HIFU balíčky',
+        items: [
+          { name: 'Signature Lift (tvár + podbradok + krk)', price: '621 €' },
+          { name: 'Complete Rejuvenation (tvár + krk + dekolt)', price: '621 €' },
+        ],
+      },
+      {
+        title: 'HIFU telo',
+        items: [
+          { name: '2 oblasti tela', price: 'zľava 10 %' },
+          { name: '3 a viac oblastí tela', price: 'zľava 20 %' },
+        ],
+      },
+    ],
+    services: [
+      { id: 'hifu-ocne-okolie', slug: 'hifu-ocne-okolie', name: 'Očné okolie', price: '135 €', bookioCategoryId: '39786', bookioServiceId: '165953' },
+      { id: 'hifu-krk', slug: 'hifu-krk', name: 'Krk', price: '153 €', bookioCategoryId: '39786', bookioServiceId: '165950' },
+      { id: 'hifu-horna-tretina-tvare', slug: 'hifu-horna-tretina-tvare', name: 'Horná tretina tváre', price: '162 €', bookioCategoryId: '39786', bookioServiceId: '165949' },
+      { id: 'hifu-podbradok', slug: 'hifu-podbradok', name: 'Podbradok', price: '162 €', bookioCategoryId: '39786', bookioServiceId: '165952' },
+      { id: 'hifu-dekolt', slug: 'hifu-dekolt', name: 'Dekolt', price: '198 €', bookioCategoryId: '39786', bookioServiceId: '165954' },
+      { id: 'hifu-krk-podbradok', slug: 'hifu-krk-podbradok', name: 'Krk + podbradok', price: '225 €', bookioCategoryId: '39786', bookioServiceId: '165951' },
+      { id: 'hifu-spodna-tretina-tvare', slug: 'hifu-spodna-tretina-tvare', name: 'Spodná tretina tváre', price: '261 €', bookioCategoryId: '39786', bookioServiceId: '165948' },
+      { id: 'hifu-cela-tvar', slug: 'hifu-cela-tvar', name: 'Celá tvár', price: '315 €', bookioCategoryId: '39786', bookioServiceId: '165943' },
+      { id: 'hifu-cela-tvar-podbradok', slug: 'hifu-cela-tvar-podbradok', name: 'Celá tvár + podbradok', price: '378 €', duration: '1h 15min.', bookioCategoryId: '39786', bookioServiceId: '165944' },
+      { id: 'hifu-cela-tvar-krk', slug: 'hifu-cela-tvar-krk', name: 'Celá tvár + krk', price: '444 €', bookioCategoryId: '39786', bookioServiceId: '165945' },
+      { id: 'hifu-cela-tvar-krk-dekolt', slug: 'hifu-cela-tvar-krk-dekolt', name: 'Celá tvár + krk + dekolt', price: '621 €', bookioCategoryId: '39786', bookioServiceId: '165947' },
+      { id: 'hifu-signature-lift', slug: 'hifu-signature-lift', name: 'Signature Lift (tvár + podbradok + krk)', price: '621 €', popular: true, bookioCategoryId: '39786', bookioServiceId: '165964' },
+      { id: 'hifu-paze', slug: 'hifu-paze', name: 'Paže', price: '261 €', bookioCategoryId: '39786', bookioServiceId: '165956' },
+      { id: 'hifu-boky', slug: 'hifu-boky', name: 'Boky', price: '315 €', bookioCategoryId: '39786', bookioServiceId: '165962' },
+      { id: 'hifu-kolena', slug: 'hifu-kolena', name: 'Kolená (spevnenie pokožky)', price: '225 €', bookioCategoryId: '39786', bookioServiceId: '165957' },
+      { id: 'hifu-vnutorne-stehna', slug: 'hifu-vnutorne-stehna', name: 'Vnútorné stehná', price: '351 €', bookioCategoryId: '39786', bookioServiceId: '165961' },
+      { id: 'hifu-zadok', slug: 'hifu-zadok', name: 'Zadok', price: '351 €', bookioCategoryId: '39786', bookioServiceId: '165960' },
+    ],
+    bookingUrl: 'https://services.bookio.com/julia-estetic-clinic/widget?lang=sk&category=39786',
   },
 
   // ========================================

@@ -48,13 +48,14 @@ export async function generateMetadata({ params }: SubcategoryPageProps): Promis
   if (category && !categoryHasSubcategories(category)) {
     const service = category.services?.find((s) => s.slug === subcategorySlug)
     if (service) {
+      const durationPart = service.duration ? `${service.duration}, ` : ''
       return {
         title: `${service.name} | ${category.title} | Julia Estetic Clinic`,
-        description: `${service.name} - ${service.duration}, ${service.price}. ${category.title} v Julia Estetic Clinic Malacky.`,
+        description: `${service.name} - ${durationPart}${service.price}. ${category.title} v Julia Estetic Clinic Malacky.`,
         openGraph: {
           title: `${service.name} | Julia Estetic Clinic`,
-          description: `${service.name} - ${service.duration}, ${service.price}`,
-          images: [category.image],
+          description: `${service.name} - ${durationPart}${service.price}`,
+          ...(category.image ? { images: [category.image] } : {}),
         },
         keywords: [service.name, category.title, 'Julia Estetic Clinic', 'Malacky'],
       }

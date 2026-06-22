@@ -42,14 +42,18 @@ export function ServicesSection() {
                 href={`/sluzby/${category.slug}`}
                 className="group relative block aspect-[4/5] overflow-hidden"
               >
-                <Image
-                  src={category.image}
-                  alt={category.title}
-                  fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
-                  priority={index < 4}
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+                {category.image ? (
+                  <Image
+                    src={category.image}
+                    alt={category.title}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
+                    priority={index < 4}
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#8698a4] via-[#9aa9b3] to-[#718593] transition-transform duration-700 group-hover:scale-105" />
+                )}
 
                 <div className="absolute inset-0 bg-brand-900/40 opacity-0 transition-opacity duration-500 group-hover:opacity-100 mix-blend-multiply z-10" />
                 

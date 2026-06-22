@@ -122,10 +122,12 @@ export function DirectServicePageClient({ category, service }: DirectServicePage
               {/* Price + duration */}
               <div className="mt-6 flex items-center gap-6">
                 <span className="text-3xl font-bold text-gray-900">{service.price}</span>
-                <span className="flex items-center gap-2 text-sm text-gray-500">
-                  <Clock className="h-4 w-4" />
-                  {service.duration}
-                </span>
+                {service.duration && (
+                  <span className="flex items-center gap-2 text-sm text-gray-500">
+                    <Clock className="h-4 w-4" />
+                    {service.duration}
+                  </span>
+                )}
               </div>
 
               {/* Short Description */}
@@ -323,12 +325,14 @@ export function DirectServicePageClient({ category, service }: DirectServicePage
                     {related.name}
                   </h3>
                   
-                  <div className="flex items-center gap-4 text-sm text-gray-500">
-                    <span className="flex items-center gap-1">
-                      <Clock className="h-4 w-4" />
-                      {related.duration}
-                    </span>
-                  </div>
+                  {related.duration && (
+                    <div className="flex items-center gap-4 text-sm text-gray-500">
+                      <span className="flex items-center gap-1">
+                        <Clock className="h-4 w-4" />
+                        {related.duration}
+                      </span>
+                    </div>
+                  )}
 
                   {related.tagline && (
                     <p className="mt-3 text-sm text-gray-500">
