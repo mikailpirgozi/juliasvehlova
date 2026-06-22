@@ -843,7 +843,7 @@ export const mainCategories: MainCategory[] = [
     title: 'Rádiofrekvenčné mikroihličkovanie',
     description: 'Moderné omladzovacie ošetrenie kombinujúce mikroihličkovanie a rádiofrekvenčnú energiu (Morpheus8 typ).',
     iconKey: 'sparkle',
-    image: '', // TODO: doplniť hero obrázok
+    image: '/images/services/radiofrekvencne-mikroihlickovanie-hero.jpg',
     fullDescription:
       'Rádiofrekvenčné mikroihličkovanie je moderné omladzovacie ošetrenie, ktoré kombinuje účinky jemného mikroihličkovania a rádiofrekvenčnej energie. Ošetrenie stimuluje tvorbu kolagénu a elastínu v hlbších vrstvách pokožky, čím pomáha zlepšiť jej pevnosť, pružnosť a celkovú kvalitu.',
     suitableFor: [
@@ -897,7 +897,7 @@ export const mainCategories: MainCategory[] = [
     title: 'HIFU MFU',
     description: 'Neinvazívny lifting fokusovaným ultrazvukom pre prirodzené spevnenie pokožky bez operácie.',
     iconKey: 'laser',
-    image: '', // TODO: doplniť hero obrázok
+    image: '/images/services/hifu-mfu-hero.jpg',
     fullDescription:
       'HIFU (High-Intensity Focused Ultrasound) je neinvazívne liftingové ošetrenie využívajúce fokusovaný ultrazvuk na stimuláciu tvorby nového kolagénu v hlbokých vrstvách tkaniva. Výsledkom je postupné spevnenie pokožky, zlepšenie kontúr tváre a prirodzený lifting bez chirurgického zákroku.',
     suitableFor: [
