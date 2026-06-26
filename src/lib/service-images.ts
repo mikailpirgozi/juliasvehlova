@@ -11,7 +11,6 @@ const IMAGE_FOLDERS: Record<string, number> = {
   'hollywood-peeling': 1,
   'kozmeticke-osetrenia': 12,
   'laserova-epilacia': 12,
-  'masaze': 1,
   'masaze-maderoterapia': 12,
   'permanentny-makeup': 13,
   'piercing': 15,
@@ -39,10 +38,8 @@ const SUBCATEGORY_TO_IMAGE_FOLDER: Record<string, string> = {
   'hollywood-carbon-peel': 'hollywood-peeling',
   'doplnkove-kozmeticke-sluzby': 'permanentny-makeup',
   
-  // Regenerácia tela
-  'masaze': 'masaze',
-  'maderoterapia': 'masaze-maderoterapia',
-  
+  // Regenerácia tela – lymfodrenáž hero image set directly in services data
+
   // Laserová epilácia
   'laserova-epilacia-damy': 'laserova-epilacia',
   'laserova-epilacia-pani': 'laserova-epilacia',
