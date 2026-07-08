@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Calendar, Clock, Ticket01, Heart, ArrowRight } from '@untitledui/icons'
 import { FadeIn } from '@/components/ui/FadeIn'
-import type { ClinicEvent } from '@/lib/events'
+import { getEventBookingHref, type ClinicEvent } from '@/lib/events'
 
 interface EventPromoSectionProps {
   event: ClinicEvent
@@ -16,6 +16,7 @@ interface EventPromoSectionProps {
  * `getUpcomingEvent()`), links to /eventy.
  */
 export function EventPromoSection({ event }: EventPromoSectionProps) {
+  const bookingHref = getEventBookingHref(event)
   return (
     <section
       aria-label={`Pripravované podujatie ${event.title}`}
@@ -60,22 +61,31 @@ export function EventPromoSection({ event }: EventPromoSectionProps) {
 
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
-                  href="/eventy"
+                  href={bookingHref ?? '/eventy'}
                   className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 text-base font-semibold text-brand-700 shadow-[0_8px_30px_rgba(0,0,0,0.2)] transition-all duration-300 hover:bg-brand-50 hover:-translate-y-1"
                 >
-                  Viac o podujatí
+                  {bookingHref ? 'Rezervovať miesto' : 'Viac o podujatí'}
                   <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
-                {event.charity && (
-                  <a
-                    href={event.charity.donationUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                {bookingHref ? (
+                  <Link
+                    href="/eventy"
                     className="inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/10 px-7 py-4 text-base font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white/20"
                   >
-                    <Heart className="h-4 w-4" />
-                    Prispieť do zbierky
-                  </a>
+                    Viac o podujatí
+                  </Link>
+                ) : (
+                  event.charity && (
+                    <a
+                      href={event.charity.donationUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/10 px-7 py-4 text-base font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white/20"
+                    >
+                      <Heart className="h-4 w-4" />
+                      Prispieť do zbierky
+                    </a>
+                  )
                 )}
               </div>
             </div>

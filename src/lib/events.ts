@@ -32,6 +32,9 @@ export interface ClinicEvent {
   outro: string
   posterSrc: string
   posterAlt: string
+  /** Bookio service/category — rezervácia miesta cez /rezervacia (voliteľné) */
+  bookioServiceId?: string
+  bookioCategoryId?: string
   charity?: EventCharity
 }
 
@@ -58,6 +61,8 @@ export const CLINIC_EVENTS: ClinicEvent[] = [
       'Príďte si užiť príjemný letný večer plný inšpirácie, noviniek, pohybu a dobrej myšlienky.',
     posterSrc: '/images/events/den-krasy-2026/plagat-den-krasy.webp',
     posterAlt: 'Plagát podujatia Deň krásy v Julia Estetic Clinic — 22. 7. 2026, 18:00 – 21:00',
+    bookioServiceId: '17913',
+    bookioCategoryId: '40282',
     charity: {
       name: 'Deťom s rakovinou n. o.',
       description:
@@ -71,6 +76,14 @@ export const CLINIC_EVENTS: ClinicEvent[] = [
     },
   },
 ]
+
+/** Interný link na rezerváciu miesta (preselektne Bookio widget na /rezervacia), alebo null. */
+export function getEventBookingHref(event: ClinicEvent): string | null {
+  if (!event.bookioServiceId) return null
+  const params = new URLSearchParams({ service: event.bookioServiceId })
+  if (event.bookioCategoryId) params.set('category', event.bookioCategoryId)
+  return `/rezervacia?${params.toString()}`
+}
 
 /** Event je „aktuálny" kým neskončí (vrátane dňa konania). */
 export function isEventUpcoming(event: ClinicEvent, now: Date = new Date()): boolean {

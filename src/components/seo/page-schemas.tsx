@@ -16,7 +16,7 @@ import {
 } from './schema-org'
 import { BASE_URL, COMPANY_NAME, CONTACT } from '@/lib/seo/constants'
 import { safeJsonLd } from '@/lib/seo/json-ld'
-import type { ClinicEvent } from '@/lib/events'
+import { getEventBookingHref, type ClinicEvent } from '@/lib/events'
 import {
   getAllMainCategories,
   type MainCategory,
@@ -239,6 +239,7 @@ export function SubcategoryBreadcrumbSchema({
  */
 export function ClinicEventSchema({ event }: { event: ClinicEvent }) {
   const url = `${BASE_URL}/eventy`
+  const bookingHref = getEventBookingHref(event)
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Event',
@@ -256,7 +257,7 @@ export function ClinicEventSchema({ event }: { event: ClinicEvent }) {
       price: 0,
       priceCurrency: 'EUR',
       availability: 'https://schema.org/InStock',
-      url,
+      url: bookingHref ? `${BASE_URL}${bookingHref}` : url,
     },
     location: {
       '@type': 'Place',

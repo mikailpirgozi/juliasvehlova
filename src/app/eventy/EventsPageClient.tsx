@@ -16,7 +16,7 @@ import {
 import { PageBackground } from '@/components/ui/PageBackground'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { CONTACT } from '@/lib/seo/constants'
-import type { ClinicEvent } from '@/lib/events'
+import { getEventBookingHref, type ClinicEvent } from '@/lib/events'
 
 interface EventsPageClientProps {
   events: Array<{ event: ClinicEvent; isPast: boolean }>
@@ -46,7 +46,9 @@ export function EventsPageClient({ events }: EventsPageClientProps) {
           </div>
         </section>
 
-        {events.map(({ event, isPast }) => (
+        {events.map(({ event, isPast }) => {
+          const bookingHref = getEventBookingHref(event)
+          return (
           <section key={event.slug} className="relative z-10 px-4 py-16">
             <div className="mx-auto max-w-7xl">
               {/* Event header */}
@@ -115,9 +117,19 @@ export function EventsPageClient({ events }: EventsPageClientProps) {
                     </p>
                     {!isPast && (
                       <div className="mt-8 flex flex-wrap gap-4">
+                        {bookingHref && (
+                          <Link
+                            href={bookingHref}
+                            className="group inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5"
+                          >
+                            <Calendar className="h-4 w-4" />
+                            Rezervovať si miesto
+                            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                          </Link>
+                        )}
                         <Link
                           href="/kontakt"
-                          className="group inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:bg-brand-700 hover:-translate-y-0.5"
+                          className="inline-flex items-center gap-2 rounded-full border border-brand-300 bg-white px-6 py-3.5 text-sm font-semibold text-brand-700 shadow-sm transition-all duration-300 hover:bg-brand-50 hover:-translate-y-0.5"
                         >
                           <Phone className="h-4 w-4" />
                           Máte otázky? Kontaktujte nás
@@ -210,7 +222,8 @@ export function EventsPageClient({ events }: EventsPageClientProps) {
               )}
             </div>
           </section>
-        ))}
+          )
+        })}
       </main>
     </PageBackground>
   )
