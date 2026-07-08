@@ -1,5 +1,6 @@
 export { HeroSection } from './HeroSection'
 export { MothersDayHero } from './MothersDayHero'
+export { EventPromoSection } from './EventPromoSection'
 export { ServicesSection } from './ServicesSection'
 export { AboutSection } from './AboutSection'
 export { TestimonialsSection } from './TestimonialsSection'

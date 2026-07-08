@@ -2,8 +2,14 @@
 
 import dynamic from 'next/dynamic'
 import { HeroSection, MothersDayHero } from '@/components/home'
+import type { ClinicEvent } from '@/lib/events'
 
 // Dynamic imports for below-the-fold sections - reduces initial bundle size
+const EventPromoSection = dynamic(
+  () => import('@/components/home/EventPromoSection').then((mod) => mod.EventPromoSection),
+  { ssr: true }
+)
+
 const ServicesSection = dynamic(
   () => import('@/components/home/ServicesSection').then((mod) => mod.ServicesSection),
   { ssr: true }
@@ -31,12 +37,14 @@ const ContactSection = dynamic(
 
 interface HomePageClientProps {
   showMothersDayHero: boolean
+  upcomingEvent: ClinicEvent | null
 }
 
-export function HomePageClient({ showMothersDayHero }: HomePageClientProps) {
+export function HomePageClient({ showMothersDayHero, upcomingEvent }: HomePageClientProps) {
   return (
     <>
       {showMothersDayHero ? <MothersDayHero /> : <HeroSection />}
+      {upcomingEvent && <EventPromoSection event={upcomingEvent} />}
       <ServicesSection />
       <AboutSection />
       <TestimonialsSection />

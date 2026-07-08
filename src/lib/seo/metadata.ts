@@ -152,6 +152,20 @@ export const pageMetadata: Record<string, PageMetadataConfig> = {
       'Obchodné podmienky poskytovania služieb estetickej medicíny a kozmetiky v Julia Estetic Clinic.',
     keywords: ['obchodné podmienky', 'podmienky služieb'],
   },
+  events: {
+    title: 'Eventy a podujatia',
+    path: '/eventy',
+    description:
+      'Podujatia v Julia Estetic Clinic Malacky. Deň krásy 22. 7. 2026 od 18:00 — novinky z anti-agingu, odborné prednášky, LIVE performance zákrokov, latina a charitatívna zbierka pre Deťom s rakovinou n. o.',
+    keywords: [
+      ...DEFAULT_KEYWORDS,
+      'eventy malacky',
+      'podujatia malacky',
+      'deň krásy',
+      'deň krásy julia estetic clinic',
+      'charitatívna zbierka',
+    ],
+  },
   giftVouchers: {
     title: 'Darčekové poukážky',
     path: '/darcekove-poukazky',

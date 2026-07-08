@@ -14,8 +14,9 @@ import {
   SpeakableSchema,
   type BreadcrumbItem,
 } from './schema-org'
-import { BASE_URL, COMPANY_NAME } from '@/lib/seo/constants'
+import { BASE_URL, COMPANY_NAME, CONTACT } from '@/lib/seo/constants'
 import { safeJsonLd } from '@/lib/seo/json-ld'
+import type { ClinicEvent } from '@/lib/events'
 import {
   getAllMainCategories,
   type MainCategory,
@@ -230,6 +231,57 @@ export function SubcategoryBreadcrumbSchema({
     { name: subcategory.title, url: `${BASE_URL}/sluzby/${category.slug}/${subcategory.slug}` },
   ]
   return <BreadcrumbSchema items={breadcrumbs} />
+}
+
+/**
+ * schema.org Event for a clinic event on /eventy — eligible for Google event
+ * rich results. Free (voluntary-admission) offline event at the clinic.
+ */
+export function ClinicEventSchema({ event }: { event: ClinicEvent }) {
+  const url = `${BASE_URL}/eventy`
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: event.title,
+    description: event.intro,
+    startDate: event.startsAt,
+    endDate: event.endsAt,
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    image: `${BASE_URL}${event.posterSrc}`,
+    url,
+    isAccessibleForFree: true,
+    offers: {
+      '@type': 'Offer',
+      price: 0,
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+      url,
+    },
+    location: {
+      '@type': 'Place',
+      name: COMPANY_NAME,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: CONTACT.address.street,
+        addressLocality: CONTACT.address.city,
+        postalCode: CONTACT.address.postalCode,
+        addressCountry: CONTACT.address.countryCode,
+      },
+    },
+    organizer: {
+      '@type': 'Organization',
+      '@id': `${BASE_URL}/#organization`,
+      name: COMPANY_NAME,
+      url: BASE_URL,
+    },
+  }
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
+    />
+  )
 }
 
 // =============================================================================

@@ -159,6 +159,7 @@ export function Header() {
 
   const navLinksEnd = [
     { label: 'Darčekové poukážky', href: '/darcekove-poukazky' },
+    { label: 'Eventy', href: '/eventy' },
     { label: 'Kontakt', href: '/kontakt' },
   ]
 

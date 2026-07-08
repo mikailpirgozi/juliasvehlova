@@ -15,6 +15,7 @@ export function Footer() {
       { name: 'O nás', href: '/o-nas' },
       { name: 'Cenník', href: '/cennik' },
       { name: 'Darčekové poukážky', href: '/darcekove-poukazky' },
+      { name: 'Eventy', href: '/eventy' },
       { name: 'Blog', href: '/blog' },
       { name: 'Kontakt', href: '/#contact' },
     ],
