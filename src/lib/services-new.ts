@@ -1171,6 +1171,26 @@ export const mainCategories: MainCategory[] = [
         bookioCategoryId: '35823',
         services: [
           {
+            id: 'aqua-star-letna-akcia',
+            slug: 'aqua-star-letna-akcia',
+            name: 'Aqua Star Letná akcia',
+            bookioServiceId: '168182',
+            price: '75 €',
+            duration: '1h',
+            popular: true,
+            tagline: 'Letná akciová cena',
+            shortDescription: 'Obľúbené Aqua Star ošetrenie za zvýhodnenú letnú cenu — hĺbkové čistenie, hydratácia a okamžitá žiarivosť pleti.',
+            fullDescription: 'Aqua Star je multifunkčné ošetrenie pleti, ktoré kombinuje hĺbkové čistenie, hydratáciu, exfoliáciu, lifting a regeneráciu. Pleť je po ošetrení rozjasnená, svieža a viditeľne pevnejšia. Teraz počas leta za akciovú cenu 75 € namiesto 120 €.',
+            benefits: [
+              { icon: 'multifunction', title: 'Multifunkčné', description: 'Čistenie, hydratácia a lifting' },
+              { icon: 'gentle', title: 'Šetrné', description: 'Pre všetky typy pleti' },
+              { icon: 'immediate', title: 'Okamžité výsledky', description: 'Žiarivá pleť ihneď' },
+              { icon: 'nodowntime', title: 'Letná cena', description: '75 € namiesto 120 €' },
+            ],
+            forWhom: ['Pre všetky typy pleti', 'Pre hydratáciu počas leta', 'Pre okamžitú žiarivosť'],
+            note: 'Letná akcia platí len počas letných mesiacov.',
+          },
+          {
             id: 'aqua-star-exclusive',
             slug: 'aqua-star-exclusive',
             name: 'Aqua Star exclusive',
