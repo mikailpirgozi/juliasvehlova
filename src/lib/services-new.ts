@@ -413,7 +413,7 @@ export const mainCategories: MainCategory[] = [
             id: 'botox-fullface-krk',
             slug: 'botulotoxin-fullface-krk',
             name: 'Botulotoxin - Fullface + krk',
-            price: '450 €',
+            price: '550 €',
             duration: '15min.',
             bookioServiceId: '109031',
             tagline: 'Tvár aj krk v harmónii',
